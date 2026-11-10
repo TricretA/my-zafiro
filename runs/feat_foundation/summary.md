@@ -2,8 +2,8 @@
 
 **Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42887978587
-- GITHUB_SHA: 7d7a567fa01a594ee58e720e1c02b4ca066fef01
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42896554353
+- GITHUB_SHA: 3d0e5c617a45682058b1e5598faec15edf61bc02
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -13,7 +13,7 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1881 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1886 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
@@ -35,12 +35,13 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotificat
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 8m 53s
+BUILD FAILED in 9m 37s
 ```
 ## lint: key error lines
 ```
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
+> Task :agent-runtime:lintDebug FAILED
 > Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
@@ -49,7 +50,10 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:l
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
 * What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 29s
+BUILD FAILED in 3m 56s
 ```
