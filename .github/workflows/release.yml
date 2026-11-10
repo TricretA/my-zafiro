@@ -1,0 +1,96 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'   # Chaquopy buildPython requirement
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Setup signing credentials
+        env:
+          KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          STORE_PW: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          KEY_PW: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          mkdir -p ~/.android_packing
+          printf '%s' "$KEYSTORE_BASE64" | base64 -d > ~/.android_packing/zafiro.jks
+          {
+            printf 'RELEASE_STORE_PASSWORD=%s\n' "$STORE_PW"
+            printf 'RELEASE_KEY_ALIAS=%s\n' "$KEY_ALIAS"
+            printf 'RELEASE_KEY_PASSWORD=%s\n' "$KEY_PW"
+          } > ~/.android_packing/signing.properties
+
+      - name: Build signed release APK
+        run: ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: Resolve version name
+        id: version
+        run: |
+          VN=$(grep -m1 'versionName' app/build.gradle.kts | sed -E 's/.*"(.*)".*/\1/')
+          echo "name=$VN" >> "$GITHUB_OUTPUT"
+
+      - name: Stage APK and mapping
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk \
+             "Zafiro-${{ steps.version.outputs.name }}.apk"
+          zip -j "mapping-${{ steps.version.outputs.name }}.zip" \
+            app/build/outputs/mapping/release/mapping.txt
+
+      - name: Upload APK artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Zafiro-${{ steps.version.outputs.name }}
+          path: |
+            Zafiro-*.apk
+            mapping-*.zip
+          if-no-files-found: error
+
+      - name: Stamp github channel
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          python3 tools/apk_channel.py stamp \
+            "Zafiro-${{ steps.version.outputs.name }}.apk" \
+            "Zafiro-${{ steps.version.outputs.name }}.apk" \
+            github
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            Zafiro-*.apk \
+            mapping-*.zip \
+            --title "${{ github.ref_name }}" \
+            --generate-notes

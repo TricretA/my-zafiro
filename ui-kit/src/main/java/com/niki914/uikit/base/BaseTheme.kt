@@ -1,0 +1,198 @@
+package com.niki914.uikit.base
+
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+import com.materialkolor.PaletteStyle
+import com.materialkolor.dynamicColorScheme
+import com.materialkolor.rememberDynamicColorScheme
+import com.niki914.uikit.base.theme.DarkColorScheme
+import com.niki914.uikit.base.theme.LightColorScheme
+import com.niki914.uikit.base.theme.Typography
+
+/**
+ * 依据上下文、昼夜模式与种子色解析对应的 [androidx.compose.material3.ColorScheme]（供 Compose 外部使用，如常驻通知）。
+ */
+fun resolveThemeColorScheme(
+    context: Context,
+    darkTheme: Boolean,
+    dynamicColor: Boolean = true,
+    seedColor: Color? = null,
+    themeStyle: ThemeStyle = ThemeStyle.default(),
+): ColorScheme {
+    val paletteStyle = when (themeStyle) {
+        ThemeStyle.Material3Expressive -> PaletteStyle.Expressive
+        else -> PaletteStyle.TonalSpot
+    }
+    return when {
+        seedColor != null -> dynamicColorScheme(
+            seedColor = seedColor,
+            isDark = darkTheme,
+            isAmoled = false,
+            style = paletteStyle,
+        )
+
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val systemScheme =
+                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (themeStyle == ThemeStyle.Material3Expressive) {
+                dynamicColorScheme(
+                    seedColor = systemScheme.primary,
+                    isDark = darkTheme,
+                    isAmoled = false,
+                    style = PaletteStyle.Expressive,
+                )
+            } else {
+                systemScheme
+            }
+        }
+
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+}
+
+/** 全局深色模式单一来源，由 BaseTheme 提供；所有深色判断必须读它而非 isSystemInDarkTheme。 */
+val LocalAppDarkTheme = staticCompositionLocalOf { false }
+
+/** 应用支持的三种设计语言风格。 */
+enum class ThemeStyle(val storageKey: String) {
+    LiquidGlass("liquid"),
+    Material3("md3"),
+    Material3Expressive("md3e");
+
+    companion object {
+        /**
+         * 默认设计语言风格：
+         * Android 14 (API 34 / UPSIDE_DOWN_CAKE) 及以上具备成熟的 Backdrop / RenderEffect 渲染管线，默认 LiquidGlass；
+         * Android 14 以下设备渲染毛玻璃性能与视觉表现不佳，默认使用 Material3Expressive (MD3E)。
+         */
+        fun default(): ThemeStyle =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                LiquidGlass
+            } else {
+                Material3Expressive
+            }
+
+        fun fromStorageKey(value: String?): ThemeStyle =
+            entries.firstOrNull { it.storageKey == value } ?: default()
+    }
+}
+
+/** 全局主题设计语言单一来源，由 BaseTheme 提供。 */
+val LocalThemeStyle = staticCompositionLocalOf { ThemeStyle.default() }
+
+@Composable
+fun BaseTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(), // 判断系统是否为深色模式
+    // 动态颜色仅在 Android 12+ (SDK 31+) 可用
+    dynamicColor: Boolean = true, // 启用动态颜色
+    /** 非空时从种子色生成 Material 色板，忽略 dynamicColor。 */
+    seedColor: Color? = null,
+    paintWindowBackground: Boolean = true,
+    themeStyle: ThemeStyle = ThemeStyle.default(),
+    content: @Composable () -> Unit, // 实际要应用主题的 Composable 内容
+) {
+    val paletteStyle = when (themeStyle) {
+        ThemeStyle.Material3Expressive -> PaletteStyle.Expressive
+        else -> PaletteStyle.TonalSpot
+    }
+
+    // 根据条件选择颜色方案
+    val colorScheme = when {
+        // 种子色优先：用户主动选定的主题颜色
+        seedColor != null ->
+            rememberDynamicColorScheme(
+                seedColor = seedColor,
+                isDark = darkTheme,
+                isAmoled = false,
+                style = paletteStyle,
+            )
+
+        // 如果启用动态颜色且 Android 版本 >= S (Android 12)
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current // 获取当前上下文
+            val systemScheme =
+                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (themeStyle == ThemeStyle.Material3Expressive) {
+                rememberDynamicColorScheme(
+                    seedColor = systemScheme.primary,
+                    isDark = darkTheme,
+                    isAmoled = false,
+                    style = PaletteStyle.Expressive,
+                )
+            } else {
+                systemScheme
+            }
+        }
+
+        darkTheme -> DarkColorScheme // 如果是深色模式但不支持动态颜色，使用预定义深色方案
+        else -> LightColorScheme // 否则，使用预定义浅色方案
+    }
+
+    // 系统栏样式跟随应用主题（唯一来源，运行时切主题即时生效）。
+    // enableEdgeToEdge 默认按【系统】昼夜决定纱罩与导航栏图标颜色；应用内主题与系统
+    // 不一致时（系统浅色 + 应用深色），返回键导航的设备上会被系统对比度强制渲染成
+    // 一条突兀的浅色导航栏底带。这里统一改为透明底 + 按应用主题控制图标亮暗；
+    // 26-28 没有对比度开关，透明底会让三键导航键不可见，退回半透明纱罩。
+    val view = LocalView.current
+    if (!view.isInEditMode) { // 避免在预览模式下执行
+        SideEffect {
+            val window = view.context.findActivity()?.window ?: return@SideEffect
+            WindowCompat.getInsetsController(window, view).apply {
+                // 控制状态栏/导航栏图标颜色，根据应用主题亮暗调整
+                isAppearanceLightStatusBars = !darkTheme
+                isAppearanceLightNavigationBars = !darkTheme
+            }
+            // 页面自身不画背景（透出 window），必须跟随应用主题而非系统 DayNight
+            if (paintWindowBackground) {
+                window.decorView.setBackgroundColor(colorScheme.background.toArgb())
+            }
+            window.statusBarColor = android.graphics.Color.TRANSPARENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                window.navigationBarColor = android.graphics.Color.TRANSPARENT
+                window.isNavigationBarContrastEnforced = false
+            } else {
+                window.navigationBarColor =
+                    if (darkTheme) DarkSystemBarScrim else LightSystemBarScrim
+            }
+        }
+    }
+
+    CompositionLocalProvider(
+        LocalAppDarkTheme provides darkTheme,
+        LocalThemeStyle provides themeStyle,
+    ) {
+        // 应用 MaterialTheme
+        MaterialTheme(
+            colorScheme = colorScheme, // 使用选择的颜色方案
+            typography = Typography, // 你的字体排版定义（通常在 Type.kt 中）
+            content = content // 渲染传入的内容
+        )
+    }
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
+}
+
+/** 与 androidx.activity EdgeToEdge 默认纱罩一致：26-28 三键导航下代替透明底，保证导航键可见。 */
+private const val LightSystemBarScrim = 0xE6FFFFFF.toInt()
+private const val DarkSystemBarScrim = 0x801B1B1B.toInt()
