@@ -1,160 +1,160 @@
-> Task :voice:stripDebugDebugSymbols NO-SOURCE
-> Task :voice:copyDebugJniLibsProjectAndLocalJars UP-TO-DATE
-> Task :voice:generateDebugResources UP-TO-DATE
-> Task :voice:packageDebugResources UP-TO-DATE
-> Task :voice:processDebugNavigationResources UP-TO-DATE
-> Task :voice:parseDebugLocalResources UP-TO-DATE
-> Task :voice:generateDebugRFile UP-TO-DATE
-> Task :voice:extractDebugAnnotations UP-TO-DATE
-> Task :voice:extractDeepLinksForAarDebug UP-TO-DATE
-> Task :voice:generateDebugAssets UP-TO-DATE
-> Task :voice:mergeDebugAssets UP-TO-DATE
-> Task :voice:compileDebugKotlin UP-TO-DATE
-> Task :voice:javaPreCompileDebug UP-TO-DATE
-> Task :voice:compileDebugJavaWithJavac NO-SOURCE
-> Task :voice:mergeDebugGeneratedProguardFiles UP-TO-DATE
-> Task :voice:mergeDebugConsumerProguardFiles UP-TO-DATE
-> Task :voice:prepareDebugArtProfile UP-TO-DATE
-> Task :voice:prepareLintJarForPublish UP-TO-DATE
-> Task :voice:processDebugManifest UP-TO-DATE
-> Task :voice:processDebugJavaRes UP-TO-DATE
-> Task :voice:mergeDebugJavaResource UP-TO-DATE
-> Task :voice:syncDebugLibJars UP-TO-DATE
-> Task :voice:writeDebugAarMetadata UP-TO-DATE
-> Task :voice:bundleDebugLocalLintAar
-> Task :app:preBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :app:generateDebugBuildConfig UP-TO-DATE
-> Task :app:generateDebugResources UP-TO-DATE
-> Task :app:packageDebugResources UP-TO-DATE
-> Task :app:processDebugNavigationResources UP-TO-DATE
-> Task :app:parseDebugLocalResources UP-TO-DATE
-> Task :app:generateDebugRFile UP-TO-DATE
-> Task :remote-view:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :store:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :voice:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :xposed-runtime:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :autonomy:android:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :business:agent:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :business:files:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :business:remote:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :agent-runtime:lintAnalyzeDebugUnitTest
-> Task :app:kspDebugKotlin UP-TO-DATE
-> Task :libs:okia:lintAnalyzeDebugUnitTest
-> Task :app:javaPreCompileDebug UP-TO-DATE
-> Task :agent-runtime:mapDebugSourceSetPaths UP-TO-DATE
-> Task :agent-runtime:compileDebugLibraryResources UP-TO-DATE
-> Task :app:checkDebugAarMetadata UP-TO-DATE
-> Task :app:mapDebugSourceSetPaths UP-TO-DATE
-> Task :app:compileDebugNavigationResources UP-TO-DATE
-> Task :app:mergeDebugResources UP-TO-DATE
-> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
-> Task :agent-runtime:extractDeepLinksDebug UP-TO-DATE
-> Task :app:extractDeepLinksDebug UP-TO-DATE
-> Task :remote-view:extractDeepLinksDebug UP-TO-DATE
-> Task :store:extractDeepLinksDebug UP-TO-DATE
-> Task :ui-kit:extractDeepLinksDebug UP-TO-DATE
-> Task :voice:extractDeepLinksDebug UP-TO-DATE
-> Task :xposed-api:extractDeepLinksDebug UP-TO-DATE
-> Task :xposed-runtime:extractDeepLinksDebug UP-TO-DATE
-> Task :autonomy:android:extractDeepLinksDebug UP-TO-DATE
-> Task :business:agent:extractDeepLinksDebug UP-TO-DATE
-> Task :business:application:extractDeepLinksDebug UP-TO-DATE
-> Task :business:files:extractDeepLinksDebug UP-TO-DATE
-> Task :business:notification:extractDeepLinksDebug UP-TO-DATE
-> Task :business:permission:extractDeepLinksDebug UP-TO-DATE
-> Task :business:remote:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-backend-libsu:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-backend-ssh:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-runtime:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:okia:extractDeepLinksDebug UP-TO-DATE
-> Task :app:processDebugMainManifest UP-TO-DATE
-> Task :app:processDebugManifest UP-TO-DATE
-> Task :app:processDebugManifestForPackage UP-TO-DATE
-> Task :remote-view:mapDebugSourceSetPaths UP-TO-DATE
-> Task :remote-view:compileDebugLibraryResources UP-TO-DATE
-> Task :store:mapDebugSourceSetPaths UP-TO-DATE
-> Task :store:compileDebugLibraryResources UP-TO-DATE
-> Task :ui-kit:mapDebugSourceSetPaths UP-TO-DATE
-> Task :ui-kit:compileDebugLibraryResources UP-TO-DATE
-> Task :voice:mapDebugSourceSetPaths UP-TO-DATE
-> Task :voice:compileDebugLibraryResources UP-TO-DATE
-> Task :xposed-api:mapDebugSourceSetPaths UP-TO-DATE
-> Task :xposed-api:compileDebugLibraryResources UP-TO-DATE
-> Task :xposed-runtime:mapDebugSourceSetPaths UP-TO-DATE
-> Task :xposed-runtime:compileDebugLibraryResources UP-TO-DATE
-> Task :autonomy:android:mapDebugSourceSetPaths UP-TO-DATE
-> Task :autonomy:android:compileDebugLibraryResources UP-TO-DATE
-> Task :business:agent:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:agent:compileDebugLibraryResources UP-TO-DATE
-> Task :business:application:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:application:compileDebugLibraryResources UP-TO-DATE
-> Task :business:files:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:files:compileDebugLibraryResources UP-TO-DATE
-> Task :business:notification:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:notification:compileDebugLibraryResources UP-TO-DATE
-> Task :business:permission:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:permission:compileDebugLibraryResources UP-TO-DATE
-> Task :business:remote:mapDebugSourceSetPaths UP-TO-DATE
-> Task :business:remote:compileDebugLibraryResources UP-TO-DATE
-> Task :libs:libterm-backend-libsu:mapDebugSourceSetPaths UP-TO-DATE
-> Task :libs:libterm-backend-libsu:compileDebugLibraryResources UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:mapDebugSourceSetPaths UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:compileDebugLibraryResources UP-TO-DATE
-> Task :libs:libterm-backend-ssh:mapDebugSourceSetPaths UP-TO-DATE
-> Task :libs:libterm-backend-ssh:compileDebugLibraryResources UP-TO-DATE
-> Task :libs:libterm-runtime:mapDebugSourceSetPaths UP-TO-DATE
-> Task :libs:libterm-runtime:compileDebugLibraryResources UP-TO-DATE
-> Task :libs:okia:mapDebugSourceSetPaths UP-TO-DATE
-> Task :libs:okia:compileDebugLibraryResources UP-TO-DATE
-> Task :app:processDebugResources UP-TO-DATE
-> Task :app:preDebugAndroidTestBuild SKIPPED
-> Task :remote-view:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :remote-view:createFullJarDebug
-> Task :remote-view:writeDebugLintModelMetadata
-> Task :store:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :store:createFullJarDebug
-> Task :store:writeDebugLintModelMetadata
-> Task :ui-kit:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :ui-kit:createFullJarDebug
-> Task :ui-kit:writeDebugLintModelMetadata
-> Task :voice:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :voice:createFullJarDebug
-> Task :voice:writeDebugLintModelMetadata
-> Task :xposed-runtime:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :xposed-runtime:createFullJarDebug
-> Task :xposed-runtime:writeDebugLintModelMetadata
-> Task :autonomy:android:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :autonomy:android:createFullJarDebug
-> Task :autonomy:android:writeDebugLintModelMetadata
-> Task :business:agent:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :business:agent:createFullJarDebug
-> Task :business:agent:writeDebugLintModelMetadata
-> Task :business:files:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :business:files:createFullJarDebug
-> Task :business:files:writeDebugLintModelMetadata
-> Task :business:remote:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :business:remote:createFullJarDebug
-> Task :business:remote:writeDebugLintModelMetadata
-> Task :app:extractProguardFiles
-> Task :remote-view:extractProguardFiles
-> Task :ui-kit:extractProguardFiles
-> Task :app:compileDebugKotlin
-> Task :ui-kit:generateDebugLintModel
-> Task :remote-view:generateDebugLintModel
-> Task :store:extractProguardFiles
-> Task :store:generateDebugLintModel
-> Task :voice:extractProguardFiles
-> Task :voice:generateDebugLintModel
-> Task :xposed-runtime:extractProguardFiles
-> Task :xposed-runtime:generateDebugLintModel
-> Task :autonomy:android:extractProguardFiles
-> Task :autonomy:android:generateDebugLintModel
-> Task :business:agent:extractProguardFiles
-> Task :business:agent:generateDebugLintModel
-> Task :business:files:extractProguardFiles
-> Task :business:files:generateDebugLintModel
-> Task :business:remote:extractProguardFiles
-> Task :business:remote:generateDebugLintModel
-> Task :app:preDebugUnitTestBuild UP-TO-DATE
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.RuntimeException: Lint found errors in the project; aborting build.
+
+Fix the issues identified by lint, or create a baseline to see only new errors.
+To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
+```
+android {
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+}
+```
+For more details, see https://developer.android.com/studio/write/lint#snapshot
+
+Lint found 2 errors, 4 warnings. First failure:
+
+/home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:108: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        NotificationManagerCompat.from(context).notify(notificationId, builder.build())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The full lint text report is located at:
+  /home/runner/work/my-zafiro/my-zafiro/business/notification/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+	at com.android.build.gradle.internal.lint.AndroidLintWorkAction$Companion.maybeThrowException(AndroidLintWorkAction.kt:232)
+	at com.android.build.gradle.internal.lint.AndroidLintTextOutputTask.doTaskAction(AndroidLintTextOutputTask.kt:105)
+	at com.android.build.gradle.internal.tasks.NonIncrementalTask$taskAction$$inlined$recordTaskAction$1.invoke(BaseTask.kt:72)
+	at com.android.build.gradle.internal.tasks.Blocks.recordSpan(Blocks.java:51)
+	at com.android.build.gradle.internal.tasks.NonIncrementalTask.taskAction(NonIncrementalTask.kt:71)
+	at jdk.internal.reflect.GeneratedMethodAccessor518.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:259)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:110)
+	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:64)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:61)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:61)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:47)
+	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:70)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:40)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:62)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:27)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:192)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+	at org.gradle.internal.Either$Right.fold(Either.java:176)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:64)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:42)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:77)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:133)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:59)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+	... 33 more
+
+==============================================================================
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 2m 17s
+818 actionable tasks: 285 executed, 533 up-to-date

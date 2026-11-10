@@ -156,5 +156,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 5m 39s
-636 actionable tasks: 636 executed
+BUILD FAILED in 4m 55s
+604 actionable tasks: 604 executed
