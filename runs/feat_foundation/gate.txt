@@ -1,1 +1,1 @@
-PASS
+FAIL: only 548 tests ran (minimum 1770) - a module probably failed to compile
