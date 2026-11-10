@@ -1,3 +1,7 @@
+> Task :libs:libterm-backend-ssh:extractDeepLinksDebug UP-TO-DATE
+> Task :libs:libterm-backend-ssh:processDebugManifest UP-TO-DATE
+> Task :libs:libterm-runtime:extractDeepLinksDebug UP-TO-DATE
+> Task :libs:libterm-runtime:processDebugManifest UP-TO-DATE
 > Task :libs:logging:processAndroidMainManifest UP-TO-DATE
 > Task :libs:okia:extractDeepLinksDebug UP-TO-DATE
 > Task :libs:okia:processDebugManifest UP-TO-DATE
@@ -78,9 +82,9 @@
 > Task :libs:libterm-runtime:mergeDebugAssets UP-TO-DATE
 > Task :libs:okia:generateDebugAssets UP-TO-DATE
 > Task :libs:okia:mergeDebugAssets UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
 > Task :app:bundleDebugClassesToRuntimeJar
 > Task :app:mergeDebugAssets UP-TO-DATE
-> Task :app:bundleDebugClassesToCompileJar
 > Task :app:packageDebugUnitTestForUnitTest
 > Task :app:processDebugUnitTestManifest
 > Task :app:generateDebugUnitTestConfig
@@ -104,15 +108,15 @@
 > Task :store:preDebugUnitTestBuild UP-TO-DATE
 > Task :remote-view:generateDebugUnitTestStubRFile
 > Task :store:generateDebugUnitTestStubRFile
-> Task :store:compileDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestKotlin
-> Task :store:javaPreCompileDebugUnitTest
 > Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :store:compileDebugUnitTestKotlin
 > Task :remote-view:processDebugUnitTestJavaRes
 > Task :app:kspDebugUnitTestKotlin
 > Task :remote-view:testDebugUnitTest
-> Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :store:javaPreCompileDebugUnitTest
 > Task :store:processDebugUnitTestJavaRes
+> Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :store:testDebugUnitTest
 > Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
 > Task :ui-kit:javaPreCompileDebugUnitTest
@@ -126,12 +130,12 @@
 > Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
 > Task :xposed-runtime:generateDebugUnitTestStubRFile
 > Task :xposed-runtime:compileDebugUnitTestKotlin NO-SOURCE
-> Task :ui-kit:generateDebugUnitTestStubRFile
 > Task :xposed-runtime:javaPreCompileDebugUnitTest
 > Task :xposed-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
 > Task :xposed-runtime:testDebugUnitTest NO-SOURCE
 > Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
+> Task :ui-kit:generateDebugUnitTestStubRFile
 > Task :business:agent:generateDebugUnitTestStubRFile
 > Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :ui-kit:compileDebugUnitTestKotlin
@@ -141,20 +145,16 @@
 > Task :business:agent:javaPreCompileDebugUnitTest
 > Task :business:application:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:generateDebugUnitTestStubRFile
-> Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
-> Task :business:application:javaPreCompileDebugUnitTest
-> Task :business:application:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
-> Task :business:application:testDebugUnitTest NO-SOURCE
-> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:files:generateDebugUnitTestStubRFile
 > Task :business:agent:compileDebugUnitTestKotlin
+> Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
 > Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:agent:processDebugUnitTestJavaRes
-> Task :business:files:compileDebugUnitTestKotlin
 
 > Task :app:compileDebugUnitTestKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:141:24 Java type mismatch: inferred type is 'String?', but 'String' was expected.
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:146:19 Java type mismatch: inferred type is 'File?', but 'File' was expected.
 
 > Task :business:agent:testDebugUnitTest
+> Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :agent-runtime:processDebugUnitTestJavaRes
+> Task :agent-runtime:testDebugUnitTest
