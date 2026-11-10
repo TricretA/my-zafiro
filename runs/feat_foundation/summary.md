@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: 1 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42788171534
-- GITHUB_SHA: bdb1f7e8637e6e8a1430efb3bdb5ddd776f30bab
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42850940127
+- GITHUB_SHA: e8d3ebb6a6ed1f5b276b3a3fcbf8a2c4ae709379
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -13,8 +13,10 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1779 run, 6 failed (6 known upstream, 0 NEW), 0 skipped
+Unit tests: 1805 run, 7 failed (6 known upstream, 1 NEW), 0 skipped
 
+## NEW failing tests
+- `com.niki914.zafiro.chat.AgentSessionEngineOkiaTest.ensureSession_createsInstanceAndReturnsTreeId` — java.lang.AssertionError: expected:<98bcc6ad-f8e5-4a32-b860-33984a68eb33> but was:<null>
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
@@ -25,6 +27,8 @@ Unit tests: 1779 run, 6 failed (6 known upstream, 0 NEW), 0 skipped
 
 ## unit_tests: key error lines
 ```
+AgentSessionEngineOkiaTest > ensureSession_createsInstanceAndReturnsTreeId FAILED
+> Task :agent-runtime:testDebugUnitTest FAILED
 ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
 TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
 TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
@@ -33,9 +37,12 @@ TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification 
 TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
 > Task :app:testDebugUnitTest FAILED
 * What went wrong:
+Execution failed for task ':agent-runtime:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:testDebugUnitTest'.
+* What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 13s
+BUILD FAILED in 8m 34s
 ```
 ## lint: key error lines
 ```
@@ -51,5 +58,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 30s
+BUILD FAILED in 2m 22s
 ```

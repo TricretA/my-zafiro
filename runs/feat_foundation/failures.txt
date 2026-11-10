@@ -101,3 +101,21 @@ java.lang.AssertionError: expected:<2> but was:<1>
 	at kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:58)
 	at kotli
 
+=== com.niki914.zafiro.chat.AgentSessionEngineOkiaTest.ensureSession_createsInstanceAndReturnsTreeId
+java.lang.AssertionError: expected:<98bcc6ad-f8e5-4a32-b860-33984a68eb33> but was:<null>
+java.lang.AssertionError: expected:<98bcc6ad-f8e5-4a32-b860-33984a68eb33> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.chat.AgentSessionEngineOkiaTest$ensureSession_createsInstanceAndReturnsTreeId$1.invokeSuspend(AgentSessionEngineOkiaTest.kt:385)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:47)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
+	at kotlin.coroutin
+

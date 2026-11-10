@@ -24,7 +24,7 @@ android {
 ```
 For more details, see https://developer.android.com/studio/write/lint#snapshot
 
-Lint found 3 errors, 82 warnings, 3 hints. First failure:
+Lint found 3 errors, 84 warnings, 3 hints. First failure:
 
 /home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/runtime/service/AgentRuntimeService.kt:404: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
             NotificationManagerCompat.from(this@AgentRuntimeService).notify(
@@ -156,5 +156,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 3m 30s
+BUILD FAILED in 2m 22s
 828 actionable tasks: 263 executed, 565 up-to-date
