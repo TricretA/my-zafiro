@@ -1,12 +1,22 @@
+
+> Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :libs:okia:processDebugUnitTestJavaRes
+> Task :libs:okia:testDebugUnitTest
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1794352984241.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
 * What went wrong:
-Execution failed for task ':business:agent:testDebugUnitTest'.
-> There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/business/agent/build/reports/tests/testDebugUnitTest/index.html
+Execution failed for task ':app:testDebugUnitTest'.
+> There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/app/build/reports/tests/testDebugUnitTest/index.html
 
 * Try:
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 
 * Exception is:
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:agent:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
@@ -40,17 +50,10 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/business/agent/build/reports/tests/testDebugUnitTest/index.html
+Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/app/build/reports/tests/testDebugUnitTest/index.html
 	at org.gradle.api.tasks.testing.AbstractTestTask.executeTests(AbstractTestTask.java:552)
 	at org.gradle.api.tasks.testing.Test.executeTests(Test.java:722)
 	at com.android.build.gradle.tasks.factory.AndroidUnitTest.executeTests(AndroidUnitTest.java:172)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
@@ -105,7 +108,6 @@ Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There
 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
@@ -137,7 +139,6 @@ Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There
 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
@@ -146,9 +147,8 @@ Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 33 more
+	... 30 more
 
-==============================================================================
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 
@@ -156,5 +156,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 9m 27s
+BUILD FAILED in 9m 4s
 461 actionable tasks: 107 executed, 354 up-to-date

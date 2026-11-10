@@ -1,23 +1,3 @@
-=== com.niki914.zafiro.business.agent.AgentManagerImplTest.destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch
-java.lang.AssertionError: expected not same
-java.lang.AssertionError: expected not same
-	at org.junit.Assert.fail(Assert.java:89)
-	at org.junit.Assert.failSame(Assert.java:820)
-	at org.junit.Assert.assertNotSame(Assert.java:799)
-	at org.junit.Assert.assertNotSame(Assert.java:812)
-	at com.niki914.zafiro.business.agent.AgentManagerImplTest$destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch$1.invokeSuspend(AgentManagerImplTest.kt:176)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
-	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
-	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
-	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:47)
-	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
-	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
-	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:54)
-	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlockingImpl(Builders.kt:30)
-	at kotlinx.coroutines.BuildersKt.runBlockingImpl(Unknown Source)
-	at kotlinx.coroutines.BuildersKt__Builders_concurrentKt.runBlockingK(Builders.concurrent.kt:172)
-	
-
 === com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification
 kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
 kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
