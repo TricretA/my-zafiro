@@ -1,1 +1,1 @@
-PASS
+FAIL: assembleDebug failed; 1 NEW test failure(s); only 1402 tests ran (minimum 1860) - a module probably failed to compile

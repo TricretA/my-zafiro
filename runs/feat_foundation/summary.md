@@ -1,59 +1,43 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: assembleDebug failed; 1 NEW test failure(s); only 1402 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42906485124
-- GITHUB_SHA: d7592b7b4c5a6a0955887b3271f59f11778de811
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42915295717
+- GITHUB_SHA: 6a49f2ac09f29e31d347c8ea20e8ed8da976415b
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
+| assemble | failure |
 | unit_tests | failure |
-| lint | failure |
+| lint | cancelled |
 
-Unit tests: 1892 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1402 run, 1 failed (0 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
 
-## Known upstream failures (also fail on pristine upstream)
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
+## NEW failing tests
+- `com.niki914.zafiro.business.agent.AgentManagerImplTest.destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch` — java.lang.AssertionError
 
+## assemble: key error lines
+```
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/SkillApi.kt:75:86 Cannot access 'companion object Companion : Any': it is private in 'com/niki914/zafiro/repo/SkillFileRepository'.
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 5m 39s
+```
 ## unit_tests: key error lines
 ```
-ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
-TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
-> Task :app:testDebugUnitTest FAILED
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/SkillApi.kt:75:86 Cannot access 'companion object Companion : Any': it is private in 'com/niki914/zafiro/repo/SkillFileRepository'.
+AgentManagerImplTest > destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch FAILED
+> Task :business:agent:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 39s
-```
-## lint: key error lines
-```
-> Task :store:lintDebug FAILED
-> Task :business:notification:lintDebug FAILED
-> Task :agent-runtime:lintDebug FAILED
-> Task :app:lintDebug FAILED
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
 * What went wrong:
-Execution failed for task ':store:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
-* What went wrong:
-Execution failed for task ':business:notification:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 50s
+Execution failed for task ':business:agent:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:agent:testDebugUnitTest'.
+BUILD FAILED in 4m 20s
 ```
