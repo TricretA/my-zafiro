@@ -1,7 +1,9 @@
 # CI result
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42781760098
-- GITHUB_SHA: b6742a5a4657d7b7db1b90207424d520fbafbf38
+**Gate: PASS**
+
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42784634504
+- GITHUB_SHA: b649e1ebdb0cf07c5bdea651eec1213236901b27
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -11,15 +13,15 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1740 run, 6 failed, 0 skipped
+Unit tests: 1779 run, 6 failed (6 known upstream, 0 NEW), 0 skipped
 
-## Failing tests
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification` — kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification` — kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification` — kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification` — kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification` — kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd` — java.lang.AssertionError: expected:<2> but was:<1>
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
 ## unit_tests: key error lines
 ```
@@ -33,7 +35,7 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotificat
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 9s
+BUILD FAILED in 8m 35s
 ```
 ## lint: key error lines
 ```
@@ -49,5 +51,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 46s
+BUILD FAILED in 2m 23s
 ```
