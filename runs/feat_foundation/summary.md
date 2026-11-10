@@ -1,16 +1,16 @@
 # CI result
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42775335239
-- GITHUB_SHA: 8c6f86529290ddc405b47c73611d74b95ae7e566
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42776242031
+- GITHUB_SHA: 127fcc65f33c1d8fc77bcc5a791535d49bd91d82
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
-| unit_tests | cancelled |
+| assemble | cancelled |
+| unit_tests | skipped |
 | lint | skipped |
 
-Unit tests: 112 run, 0 failed, 0 skipped
+Unit tests: 0 run, 0 failed, 0 skipped
 
 
