@@ -1,7 +1,7 @@
 # CI result
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42776650636
-- GITHUB_SHA: 90eeb90a23c3bf35268baad76d77939a3e45b5e6
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42778064303
+- GITHUB_SHA: 1ab9c06cb6ac26af0e5f00454a1a866f9d7cb1a1
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -91,11 +91,10 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin
 * What went wrong:
 Execution failed for task ':autonomy:android:compileDebugKotlin'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:compileDebugKotlin'.
-BUILD FAILED in 3m 24s
+BUILD FAILED in 3m 13s
 ```
 ## unit_tests: key error lines
 ```
-> Task :autonomy:android:compileDebugKotlin FAILED
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/Approvals.kt:7:28 Unresolved reference 'api'.
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/Approvals.kt:8:28 Unresolved reference 'api'.
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/Approvals.kt:9:28 Unresolved reference 'api'.
@@ -167,10 +166,11 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/RunExecutor.kt:161:17 Not enough information to infer type argument for 'R'.
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/RunExecutor.kt:163:21 Not enough information to infer type argument for 'K'.
 e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/run/RunExecutor.kt:163:50 Unresolved reference 'destroy'.
+> Task :autonomy:android:compileDebugKotlin FAILED
 * What went wrong:
 Execution failed for task ':autonomy:android:compileDebugKotlin'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:compileDebugKotlin'.
-BUILD FAILED in 3m 36s
+BUILD FAILED in 3m 20s
 ```
 ## lint: key error lines
 ```
