@@ -1,0 +1,1029 @@
+Downloading https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 9.3.1!
+
+Here are the highlights of this release:
+ - Test reporting improvements
+ - Error and warning improvements
+ - Build authoring improvements
+
+For more details see https://docs.gradle.org/9.3.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :agent-runtime
+WARNING: The option setting 'android.disallowKotlinSourceSets=false' is experimental.
+The current default is 'true'.
+
+> Configure project :xsettings
+w: ⚠️ Deprecated Gradle Property 'kotlin.incremental.useClasspathSnapshot' Used
+The `kotlin.incremental.useClasspathSnapshot` deprecated property is used in your build.
+Solutions:
+ • It is unsupported, please stop using it.
+ • History based incremental compilation approach for JVM platform is removed. Kotlin Gradle plugin is now using a more efficient approach based on ABI snapshots.
+
+
+> Task :agent-runtime:preBuild UP-TO-DATE
+> Task :agent-runtime:preDebugBuild UP-TO-DATE
+> Task :xposed-api:preBuild UP-TO-DATE
+> Task :xposed-api:preDebugBuild UP-TO-DATE
+> Task :business:application:preBuild UP-TO-DATE
+> Task :business:application:preDebugBuild UP-TO-DATE
+> Task :business:notification:preBuild UP-TO-DATE
+> Task :business:notification:preDebugBuild UP-TO-DATE
+> Task :business:permission:preBuild UP-TO-DATE
+> Task :business:permission:preDebugBuild UP-TO-DATE
+> Task :business:notification:writeDebugAarMetadata
+> Task :libs:libterm-backend-libsu:preBuild UP-TO-DATE
+> Task :xposed-api:writeDebugAarMetadata
+> Task :business:permission:writeDebugAarMetadata
+> Task :business:application:writeDebugAarMetadata
+> Task :libs:libterm-backend-libsu:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:preBuild UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-backend-libsu:writeDebugAarMetadata
+> Task :libs:libterm-backend-ssh:preBuild UP-TO-DATE
+> Task :libs:libterm-backend-ssh:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:writeDebugAarMetadata
+> Task :libs:libterm-runtime:preBuild UP-TO-DATE
+> Task :libs:libterm-backend-ssh:writeDebugAarMetadata
+> Task :libs:libterm-runtime:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-runtime:writeDebugAarMetadata
+> Task :libs:logging:androidPreBuild UP-TO-DATE
+> Task :libs:logging:preAndroidMainBuild UP-TO-DATE
+> Task :libs:okia:preBuild UP-TO-DATE
+> Task :libs:okia:preDebugBuild UP-TO-DATE
+> Task :libs:logging:writeAndroidMainAarMetadata
+> Task :libs:okia:writeDebugAarMetadata
+> Task :agent-runtime:generateDebugPythonJniLibs
+> Task :agent-runtime:checkDebugAarMetadata
+> Task :agent-runtime:mergeDebugJniLibFolders
+> Task :business:api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :agent-runtime:mergeDebugNativeLibs
+> Task :business:api:processResources NO-SOURCE
+> Task :xsettings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :agent-runtime:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libchaquopy_java.so, libcrypto_chaquopy.so, libcrypto_python.so, libpython3.11.so, libsqlite3_chaquopy.so, libsqlite3_python.so, libssl_chaquopy.so, libssl_python.so. Run with --info option to learn more.
+
+> Task :xsettings:processResources NO-SOURCE
+> Task :libs:libterm-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :agent-runtime:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-core:processResources NO-SOURCE
+> Task :agent-runtime:extractDebugPythonBuildPackages
+
+> Task :agent-runtime:installDebugPythonRequirements
+Chaquopy: Installing for arm64-v8a
+Looking in indexes: https://pypi.org/simple, https://chaquo.com/pypi-13.1
+
+> Task :xsettings:compileKotlin
+
+> Task :agent-runtime:installDebugPythonRequirements
+Collecting requests==2.34.2
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting beautifulsoup4==4.15.0
+  Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting charset_normalizer<4,>=2 (from requests==2.34.2)
+  Downloading charset_normalizer-3.5.2-py3-none-any.whl.metadata (46 kB)
+Collecting idna<4,>=2.5 (from requests==2.34.2)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests==2.34.2)
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests==2.34.2)
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting soupsieve>=1.6.1 (from beautifulsoup4==4.15.0)
+  Downloading soupsieve-4.1-py3-none-any.whl.metadata (4.4 kB)
+Collecting typing-extensions>=4.0.0 (from beautifulsoup4==4.15.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Downloading charset_normalizer-3.5.2-py3-none-any.whl (68 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+
+> Task :libs:libterm-core:compileKotlin
+> Task :business:api:compileKotlin
+
+> Task :agent-runtime:installDebugPythonRequirements
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+Downloading soupsieve-4.1-py3-none-any.whl (52 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: urllib3, typing-extensions, soupsieve, idna, charset_normalizer, certifi, requests, beautifulsoup4
+
+Successfully installed beautifulsoup4-4.15.0 certifi-2026.10.23 charset_normalizer-3.5.2 idna-3.20 requests-2.34.2 soupsieve-4.1 typing-extensions-4.16.0 urllib3-2.8.0
+
+> Task :business:api:compileJava NO-SOURCE
+> Task :business:api:classes UP-TO-DATE
+> Task :business:api:jar
+> Task :xsettings:compileJava NO-SOURCE
+> Task :xsettings:classes UP-TO-DATE
+> Task :xsettings:jar
+> Task :libs:libterm-core:compileJava NO-SOURCE
+> Task :libs:libterm-core:classes UP-TO-DATE
+> Task :libs:libterm-core:jar
+> Task :agent-runtime:mergeDebugPythonSources
+> Task :agent-runtime:generateDebugPythonProxies
+> Task :agent-runtime:generateDebugResources
+> Task :agent-runtime:packageDebugResources
+> Task :agent-runtime:processDebugNavigationResources
+> Task :xposed-api:generateDebugResources
+> Task :xposed-api:packageDebugResources
+> Task :xposed-api:processDebugNavigationResources
+> Task :libs:logging:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :xposed-api:parseDebugLocalResources
+> Task :agent-runtime:parseDebugLocalResources
+> Task :xposed-api:javaPreCompileDebug
+> Task :agent-runtime:generateDebugRFile
+> Task :xposed-api:generateDebugRFile
+> Task :business:notification:generateDebugResources
+> Task :business:notification:packageDebugResources
+> Task :business:notification:processDebugNavigationResources
+> Task :business:application:generateDebugResources
+> Task :business:application:packageDebugResources
+> Task :business:notification:parseDebugLocalResources
+> Task :business:application:processDebugNavigationResources
+> Task :business:notification:generateDebugRFile
+> Task :business:application:javaPreCompileDebug
+> Task :business:application:parseDebugLocalResources
+> Task :business:permission:generateDebugResources
+> Task :business:application:generateDebugRFile
+> Task :business:permission:packageDebugResources
+> Task :business:permission:processDebugNavigationResources
+> Task :business:permission:javaPreCompileDebug
+> Task :business:permission:parseDebugLocalResources
+> Task :business:notification:javaPreCompileDebug
+> Task :libs:libterm-backend-libsu:generateDebugResources
+> Task :business:permission:generateDebugRFile
+> Task :libs:libterm-backend-libsu:packageDebugResources
+> Task :libs:libterm-backend-libsu:processDebugNavigationResources
+> Task :libs:libterm-backend-libsu:javaPreCompileDebug
+> Task :libs:libterm-backend-libsu:parseDebugLocalResources
+> Task :libs:libterm-backend-shizuku:generateDebugResources
+> Task :libs:libterm-backend-libsu:generateDebugRFile
+> Task :libs:libterm-backend-shizuku:packageDebugResources
+> Task :libs:logging:compileAndroidMain
+> Task :libs:libterm-backend-shizuku:processDebugNavigationResources
+> Task :libs:libterm-backend-shizuku:parseDebugLocalResources
+> Task :libs:libterm-backend-shizuku:generateDebugRFile
+> Task :libs:logging:bundleAndroidMainClassesToCompileJar
+> Task :libs:libterm-backend-shizuku:javaPreCompileDebug
+> Task :libs:libterm-backend-shizuku:compileDebugAidl
+> Task :libs:libterm-backend-libsu:compileDebugKotlin
+> Task :xposed-api:compileDebugKotlin
+> Task :libs:libterm-backend-libsu:compileDebugJavaWithJavac NO-SOURCE
+> Task :xposed-api:compileDebugJavaWithJavac NO-SOURCE
+> Task :xposed-api:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-libsu:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-ssh:generateDebugResources
+> Task :libs:libterm-backend-ssh:packageDebugResources
+> Task :libs:libterm-backend-ssh:processDebugNavigationResources
+> Task :libs:libterm-backend-ssh:javaPreCompileDebug
+> Task :libs:libterm-runtime:generateDebugResources
+> Task :libs:libterm-backend-ssh:parseDebugLocalResources
+> Task :libs:libterm-runtime:packageDebugResources
+> Task :libs:libterm-runtime:processDebugNavigationResources
+> Task :libs:libterm-backend-ssh:generateDebugRFile
+> Task :libs:libterm-runtime:parseDebugLocalResources
+> Task :libs:libterm-runtime:generateDebugRFile
+> Task :libs:libterm-runtime:javaPreCompileDebug
+> Task :libs:okia:generateDebugResources
+> Task :libs:okia:packageDebugResources
+> Task :libs:okia:processDebugNavigationResources
+> Task :business:application:compileDebugKotlin
+> Task :business:application:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:okia:parseDebugLocalResources
+> Task :business:application:bundleLibCompileToJarDebug
+> Task :libs:okia:generateDebugRFile
+
+> Task :libs:libterm-backend-ssh:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-ssh/src/main/java/com/niki914/libterm/backend/ssh/JschSshShellAdapterFactory.kt:97:25 'fun setPassword(p0: String!): Unit' is deprecated. Deprecated in Java.
+
+> Task :libs:libterm-backend-ssh:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-ssh:bundleLibCompileToJarDebug
+> Task :libs:okia:javaPreCompileDebug
+> Task :agent-runtime:extractDeepLinksForAarDebug
+> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:compileDebugKotlin
+> Task :agent-runtime:generateDebugPythonMiscAssets
+> Task :business:permission:compileDebugKotlin
+> Task :libs:libterm-backend-shizuku:compileDebugJavaWithJavac
+> Task :business:permission:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:permission:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-shizuku:bundleLibCompileToJarDebug
+> Task :agent-runtime:generateDebugPythonRequirementsAssets
+> Task :agent-runtime:generateDebugPythonSourceAssets
+> Task :agent-runtime:generateDebugPythonBuildAssets
+> Task :agent-runtime:mergeDebugAssets
+> Task :agent-runtime:javaPreCompileDebug
+> Task :agent-runtime:prepareDebugArtProfile
+> Task :agent-runtime:prepareLintJarForPublish
+> Task :agent-runtime:processDebugManifest
+> Task :agent-runtime:writeDebugAarMetadata
+
+> Task :business:notification:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:69:51 'static field USAGE_NOTIFICATION_COMMUNICATION_INSTANT: Int' is deprecated. Deprecated in Java.
+
+> Task :app:adbForward
+Using ADB path: /usr/local/lib/android/sdk/platform-tools/adb
+ADB forward successful.
+
+> Task :business:notification:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :business:notification:bundleLibCompileToJarDebug
+> Task :app:generateDebugBuildConfig
+> Task :app:generateDebugResources
+> Task :libs:libterm-runtime:compileDebugKotlin
+> Task :app:packageDebugResources
+> Task :libs:libterm-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :remote-view:preBuild UP-TO-DATE
+> Task :remote-view:preDebugBuild UP-TO-DATE
+> Task :remote-view:processDebugNavigationResources
+> Task :store:preBuild UP-TO-DATE
+> Task :store:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-runtime:bundleLibCompileToJarDebug
+> Task :store:processDebugNavigationResources
+> Task :ui-kit:preBuild UP-TO-DATE
+> Task :ui-kit:preDebugBuild UP-TO-DATE
+> Task :ui-kit:processDebugNavigationResources
+> Task :xposed-runtime:preBuild UP-TO-DATE
+> Task :xposed-runtime:preDebugBuild UP-TO-DATE
+> Task :xposed-runtime:processDebugNavigationResources
+> Task :business:agent:preBuild UP-TO-DATE
+> Task :business:agent:preDebugBuild UP-TO-DATE
+> Task :business:agent:processDebugNavigationResources
+> Task :business:files:preBuild UP-TO-DATE
+> Task :business:files:preDebugBuild UP-TO-DATE
+> Task :business:files:processDebugNavigationResources
+> Task :business:remote:preBuild UP-TO-DATE
+> Task :business:remote:preDebugBuild UP-TO-DATE
+> Task :business:remote:processDebugNavigationResources
+> Task :libs:logging:generateAndroidMainEmptyResourceFiles
+
+> Task :libs:okia:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/loop/RealAgentLoop.kt:485:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/transport/OkHttpEngine.kt:91:30 The corresponding parameter in the supertype 'RequestBody' is named 'sink'. This may cause problems when calling this function with named arguments.
+
+> Task :app:processDebugNavigationResources
+> Task :libs:okia:compileDebugJavaWithJavac NO-SOURCE
+> Task :remote-view:generateDebugResources
+> Task :libs:okia:bundleLibCompileToJarDebug
+> Task :remote-view:packageDebugResources
+> Task :app:parseDebugLocalResources
+> Task :agent-runtime:extractDebugAnnotations
+> Task :remote-view:parseDebugLocalResources
+> Task :ui-kit:generateDebugResources
+> Task :app:generateDebugRFile
+> Task :ui-kit:packageDebugResources
+> Task :remote-view:generateDebugRFile
+> Task :ui-kit:parseDebugLocalResources
+> Task :ui-kit:javaPreCompileDebug
+> Task :remote-view:javaPreCompileDebug
+> Task :store:generateDebugBuildConfig
+> Task :ui-kit:generateDebugRFile
+> Task :store:generateDebugResources
+> Task :store:packageDebugResources
+> Task :store:parseDebugLocalResources
+> Task :store:javaPreCompileDebug
+> Task :xposed-runtime:generateDebugResources
+> Task :store:generateDebugRFile
+> Task :xposed-runtime:packageDebugResources
+> Task :xposed-runtime:parseDebugLocalResources
+> Task :xposed-runtime:generateDebugRFile
+> Task :store:compileDebugKotlin
+> Task :xposed-runtime:compileDebugKotlin
+> Task :store:compileDebugJavaWithJavac
+> Task :store:bundleLibCompileToJarDebug
+> Task :xposed-runtime:javaPreCompileDebug
+> Task :business:agent:generateDebugResources
+> Task :xposed-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :xposed-runtime:bundleLibCompileToJarDebug
+> Task :business:agent:packageDebugResources
+> Task :business:agent:javaPreCompileDebug
+> Task :business:agent:parseDebugLocalResources
+> Task :business:files:generateDebugResources
+> Task :business:agent:generateDebugRFile
+> Task :business:files:packageDebugResources
+> Task :business:files:parseDebugLocalResources
+> Task :business:files:javaPreCompileDebug
+> Task :business:remote:generateDebugResources
+> Task :business:files:generateDebugRFile
+> Task :business:remote:packageDebugResources
+> Task :business:remote:parseDebugLocalResources
+> Task :business:remote:generateDebugRFile
+> Task :business:files:compileDebugKotlin
+> Task :business:files:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:files:bundleLibCompileToJarDebug
+> Task :business:remote:javaPreCompileDebug
+
+> Task :agent-runtime:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/AccessibilityController.kt:637:18 'var isChecked: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/TreeFormatter.kt:77:30 'var isChecked: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/device/AppInfoCache.kt:206:13 'constructor(p0: String!): Locale' is deprecated. Deprecated in Java.
+
+> Task :business:remote:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:108:40 'fun getInstallerPackageName(p0: String): String?' is deprecated. Deprecated in Java.
+
+> Task :app:javaPreCompileDebug
+> Task :agent-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :agent-runtime:mergeDebugGeneratedProguardFiles
+> Task :agent-runtime:mergeDebugConsumerProguardFiles
+> Task :agent-runtime:processDebugJavaRes
+> Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:remote:bundleLibCompileToJarDebug
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :remote-view:generateDebugAssets UP-TO-DATE
+> Task :remote-view:mergeDebugAssets
+> Task :store:generateDebugAssets UP-TO-DATE
+> Task :agent-runtime:bundleLibCompileToJarDebug
+> Task :store:mergeDebugAssets
+> Task :agent-runtime:mergeDebugJavaResource
+> Task :agent-runtime:syncDebugLibJars
+> Task :agent-runtime:bundleDebugAar
+> Task :agent-runtime:assembleDebug
+> Task :ui-kit:generateDebugAssets UP-TO-DATE
+> Task :ui-kit:mergeDebugAssets
+> Task :xposed-api:generateDebugAssets UP-TO-DATE
+> Task :xposed-api:mergeDebugAssets
+> Task :xposed-runtime:generateDebugAssets UP-TO-DATE
+> Task :xposed-runtime:mergeDebugAssets
+> Task :business:agent:generateDebugAssets UP-TO-DATE
+> Task :business:agent:mergeDebugAssets
+> Task :business:application:generateDebugAssets UP-TO-DATE
+> Task :business:application:mergeDebugAssets
+> Task :business:files:generateDebugAssets UP-TO-DATE
+> Task :business:files:mergeDebugAssets
+> Task :business:notification:generateDebugAssets UP-TO-DATE
+> Task :business:notification:mergeDebugAssets
+> Task :business:permission:generateDebugAssets UP-TO-DATE
+> Task :business:permission:mergeDebugAssets
+> Task :business:remote:generateDebugAssets UP-TO-DATE
+> Task :business:remote:mergeDebugAssets
+> Task :libs:libterm-backend-libsu:generateDebugAssets UP-TO-DATE
+> Task :libs:libterm-backend-libsu:mergeDebugAssets
+> Task :libs:libterm-backend-shizuku:generateDebugAssets UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:mergeDebugAssets
+> Task :libs:libterm-backend-ssh:generateDebugAssets UP-TO-DATE
+> Task :libs:libterm-backend-ssh:mergeDebugAssets
+> Task :libs:libterm-runtime:generateDebugAssets UP-TO-DATE
+> Task :libs:libterm-runtime:mergeDebugAssets
+> Task :libs:okia:generateDebugAssets UP-TO-DATE
+> Task :libs:okia:mergeDebugAssets
+
+> Task :ui-kit:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:166:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:168:24 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:171:24 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/infra/component/OptionSheet.kt:51:22 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+
+> Task :business:agent:compileDebugKotlin
+> Task :app:mergeDebugAssets
+> Task :business:agent:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:agent:bundleLibCompileToJarDebug
+> Task :ui-kit:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:agent:bundleLibRuntimeToJarDebug
+> Task :app:compressDebugAssets
+> Task :ui-kit:bundleLibCompileToJarDebug
+> Task :business:files:bundleLibRuntimeToJarDebug
+> Task :agent-runtime:bundleLibRuntimeToJarDebug
+> Task :business:notification:bundleLibRuntimeToJarDebug
+> Task :business:permission:bundleLibRuntimeToJarDebug
+> Task :business:application:bundleLibRuntimeToJarDebug
+> Task :business:remote:bundleLibRuntimeToJarDebug
+> Task :ui-kit:bundleLibRuntimeToJarDebug
+> Task :xposed-runtime:bundleLibRuntimeToJarDebug
+> Task :remote-view:compileDebugKotlin
+> Task :remote-view:compileDebugJavaWithJavac NO-SOURCE
+> Task :remote-view:bundleLibCompileToJarDebug
+> Task :remote-view:bundleLibRuntimeToJarDebug
+> Task :store:bundleLibRuntimeToJarDebug
+> Task :xposed-api:bundleLibRuntimeToJarDebug
+> Task :libs:logging:bundleAndroidMainClassesToRuntimeJar
+> Task :libs:okia:bundleLibRuntimeToJarDebug
+> Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug
+> Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug
+> Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug
+> Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug
+> Task :agent-runtime:mapDebugSourceSetPaths
+> Task :app:desugarDebugFileDependencies
+> Task :remote-view:writeDebugAarMetadata
+> Task :agent-runtime:compileDebugLibraryResources
+> Task :store:writeDebugAarMetadata
+> Task :ui-kit:writeDebugAarMetadata
+> Task :xposed-runtime:writeDebugAarMetadata
+> Task :business:agent:writeDebugAarMetadata
+> Task :business:files:writeDebugAarMetadata
+> Task :business:remote:writeDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:checkDebugAarMetadata
+> Task :app:compileDebugNavigationResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :agent-runtime:extractDeepLinksDebug
+> Task :app:extractDeepLinksDebug
+> Task :remote-view:extractDeepLinksDebug
+> Task :store:extractDeepLinksDebug
+> Task :remote-view:processDebugManifest
+> Task :ui-kit:extractDeepLinksDebug
+> Task :store:processDebugManifest
+> Task :xposed-api:extractDeepLinksDebug
+> Task :xposed-api:processDebugManifest
+> Task :xposed-runtime:extractDeepLinksDebug
+> Task :ui-kit:processDebugManifest
+> Task :business:agent:extractDeepLinksDebug
+> Task :business:agent:processDebugManifest
+> Task :business:application:extractDeepLinksDebug
+> Task :business:application:processDebugManifest
+> Task :business:files:extractDeepLinksDebug
+> Task :business:files:processDebugManifest
+> Task :business:notification:extractDeepLinksDebug
+> Task :business:notification:processDebugManifest
+> Task :business:permission:extractDeepLinksDebug
+> Task :xposed-runtime:processDebugManifest
+> Task :business:remote:extractDeepLinksDebug
+> Task :business:permission:processDebugManifest
+> Task :libs:libterm-backend-libsu:extractDeepLinksDebug
+> Task :business:remote:processDebugManifest
+> Task :libs:libterm-backend-libsu:processDebugManifest
+> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
+> Task :libs:libterm-backend-ssh:extractDeepLinksDebug
+> Task :libs:libterm-backend-shizuku:processDebugManifest
+> Task :libs:libterm-runtime:extractDeepLinksDebug
+> Task :libs:libterm-backend-ssh:processDebugManifest
+> Task :libs:libterm-runtime:processDebugManifest
+> Task :libs:logging:processAndroidMainManifest
+> Task :libs:okia:extractDeepLinksDebug
+> Task :remote-view:mapDebugSourceSetPaths
+> Task :libs:okia:processDebugManifest
+> Task :remote-view:compileDebugLibraryResources
+> Task :app:mergeDebugResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :store:mapDebugSourceSetPaths
+> Task :store:compileDebugLibraryResources
+> Task :app:processDebugManifestForPackage
+> Task :ui-kit:mapDebugSourceSetPaths
+> Task :ui-kit:compileDebugLibraryResources
+> Task :xposed-api:mapDebugSourceSetPaths
+> Task :xposed-api:compileDebugLibraryResources
+> Task :xposed-runtime:mapDebugSourceSetPaths
+> Task :xposed-runtime:compileDebugLibraryResources
+> Task :business:agent:mapDebugSourceSetPaths
+> Task :business:agent:compileDebugLibraryResources
+> Task :business:application:mapDebugSourceSetPaths
+> Task :business:application:compileDebugLibraryResources
+> Task :business:files:mapDebugSourceSetPaths
+> Task :business:files:compileDebugLibraryResources
+> Task :business:notification:mapDebugSourceSetPaths
+> Task :business:notification:compileDebugLibraryResources
+> Task :business:permission:mapDebugSourceSetPaths
+> Task :business:permission:compileDebugLibraryResources
+> Task :business:remote:mapDebugSourceSetPaths
+> Task :business:remote:compileDebugLibraryResources
+> Task :libs:libterm-backend-libsu:mapDebugSourceSetPaths
+> Task :libs:libterm-backend-libsu:compileDebugLibraryResources
+> Task :libs:libterm-backend-shizuku:mapDebugSourceSetPaths
+> Task :libs:libterm-backend-shizuku:compileDebugLibraryResources
+> Task :libs:libterm-backend-ssh:mapDebugSourceSetPaths
+> Task :libs:libterm-backend-ssh:compileDebugLibraryResources
+> Task :libs:libterm-runtime:mapDebugSourceSetPaths
+> Task :libs:okia:mapDebugSourceSetPaths
+> Task :libs:libterm-runtime:compileDebugLibraryResources
+> Task :libs:okia:compileDebugLibraryResources
+> Task :remote-view:processDebugJavaRes
+> Task :store:processDebugJavaRes
+> Task :ui-kit:processDebugJavaRes
+> Task :xposed-api:processDebugJavaRes
+> Task :xposed-runtime:processDebugJavaRes
+> Task :business:agent:processDebugJavaRes
+> Task :business:application:processDebugJavaRes
+> Task :business:files:processDebugJavaRes
+> Task :business:notification:processDebugJavaRes
+> Task :business:permission:processDebugJavaRes
+> Task :business:remote:processDebugJavaRes
+> Task :libs:libterm-backend-libsu:processDebugJavaRes
+> Task :libs:libterm-backend-shizuku:processDebugJavaRes
+> Task :libs:libterm-backend-ssh:processDebugJavaRes
+> Task :libs:libterm-runtime:processDebugJavaRes
+> Task :libs:logging:processAndroidMainJavaRes
+> Task :libs:okia:processDebugJavaRes
+> Task :app:processDebugResources
+> Task :app:checkDebugDuplicateClasses
+> Task :business:agent:bundleLibRuntimeToDirDebug
+> Task :agent-runtime:bundleLibRuntimeToDirDebug
+> Task :app:kspDebugKotlin
+> Task :app:mergeExtDexDebug
+> Task :business:notification:bundleLibRuntimeToDirDebug
+> Task :business:files:bundleLibRuntimeToDirDebug
+> Task :business:permission:bundleLibRuntimeToDirDebug
+> Task :business:application:bundleLibRuntimeToDirDebug
+> Task :business:remote:bundleLibRuntimeToDirDebug
+> Task :remote-view:bundleLibRuntimeToDirDebug
+> Task :xposed-runtime:bundleLibRuntimeToDirDebug
+> Task :ui-kit:bundleLibRuntimeToDirDebug
+> Task :store:bundleLibRuntimeToDirDebug
+> Task :xposed-api:bundleLibRuntimeToDirDebug
+> Task :libs:logging:bundleLibRuntimeToDirAndroidMain
+> Task :libs:okia:bundleLibRuntimeToDirDebug
+> Task :libs:libterm-runtime:bundleLibRuntimeToDirDebug
+> Task :libs:libterm-backend-libsu:bundleLibRuntimeToDirDebug
+> Task :libs:libterm-backend-shizuku:bundleLibRuntimeToDirDebug
+> Task :libs:libterm-backend-ssh:bundleLibRuntimeToDirDebug
+> Task :agent-runtime:copyDebugJniLibsProjectOnly
+> Task :app:mergeDebugJniLibFolders
+> Task :remote-view:mergeDebugJniLibFolders
+> Task :remote-view:mergeDebugNativeLibs NO-SOURCE
+> Task :remote-view:copyDebugJniLibsProjectOnly
+> Task :store:mergeDebugJniLibFolders
+> Task :store:mergeDebugNativeLibs NO-SOURCE
+> Task :store:copyDebugJniLibsProjectOnly
+> Task :ui-kit:mergeDebugJniLibFolders
+> Task :ui-kit:mergeDebugNativeLibs NO-SOURCE
+> Task :ui-kit:copyDebugJniLibsProjectOnly
+> Task :xposed-api:mergeDebugJniLibFolders
+> Task :xposed-api:mergeDebugNativeLibs NO-SOURCE
+> Task :xposed-api:copyDebugJniLibsProjectOnly
+> Task :xposed-runtime:mergeDebugJniLibFolders
+> Task :xposed-runtime:mergeDebugNativeLibs NO-SOURCE
+> Task :xposed-runtime:copyDebugJniLibsProjectOnly
+> Task :business:agent:mergeDebugJniLibFolders
+> Task :business:agent:mergeDebugNativeLibs NO-SOURCE
+> Task :business:agent:copyDebugJniLibsProjectOnly
+> Task :business:application:mergeDebugJniLibFolders
+> Task :business:application:mergeDebugNativeLibs NO-SOURCE
+> Task :business:application:copyDebugJniLibsProjectOnly
+> Task :business:files:mergeDebugJniLibFolders
+> Task :business:files:mergeDebugNativeLibs NO-SOURCE
+> Task :business:files:copyDebugJniLibsProjectOnly
+> Task :business:notification:mergeDebugJniLibFolders
+> Task :business:notification:mergeDebugNativeLibs NO-SOURCE
+> Task :business:notification:copyDebugJniLibsProjectOnly
+> Task :business:permission:mergeDebugJniLibFolders
+> Task :business:permission:mergeDebugNativeLibs NO-SOURCE
+> Task :business:permission:copyDebugJniLibsProjectOnly
+> Task :business:remote:mergeDebugJniLibFolders
+> Task :business:remote:mergeDebugNativeLibs NO-SOURCE
+> Task :business:remote:copyDebugJniLibsProjectOnly
+> Task :libs:libterm-backend-libsu:mergeDebugJniLibFolders
+> Task :libs:libterm-backend-libsu:mergeDebugNativeLibs NO-SOURCE
+> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectOnly
+> Task :libs:libterm-backend-shizuku:mergeDebugJniLibFolders
+> Task :libs:libterm-backend-shizuku:mergeDebugNativeLibs NO-SOURCE
+> Task :libs:libterm-backend-shizuku:copyDebugJniLibsProjectOnly
+> Task :libs:libterm-backend-ssh:mergeDebugJniLibFolders
+> Task :libs:libterm-backend-ssh:mergeDebugNativeLibs NO-SOURCE
+> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectOnly
+> Task :libs:libterm-runtime:mergeDebugJniLibFolders
+> Task :libs:libterm-runtime:mergeDebugNativeLibs NO-SOURCE
+> Task :libs:libterm-runtime:copyDebugJniLibsProjectOnly
+> Task :libs:logging:mergeAndroidMainJniLibFolders
+> Task :libs:logging:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :libs:logging:copyAndroidMainJniLibsProjectOnly
+> Task :libs:okia:mergeDebugJniLibFolders
+> Task :libs:okia:mergeDebugNativeLibs NO-SOURCE
+> Task :libs:okia:copyDebugJniLibsProjectOnly
+> Task :app:mergeDebugNativeLibs
+> Task :app:mergeLibDexDebug
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libchaquopy_java.so, libcrypto_chaquopy.so, libcrypto_python.so, libdexkit.so, libjnidispatch.so, libpython3.11.so, libresvg_core.so, libsqlite3_chaquopy.so, libsqlite3_python.so, libssl_chaquopy.so, libssl_python.so. Run with --info option to learn more.
+
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :remote-view:stripDebugDebugSymbols NO-SOURCE
+> Task :remote-view:copyDebugJniLibsProjectAndLocalJars
+> Task :remote-view:checkDebugAarMetadata
+> Task :remote-view:extractDebugAnnotations
+> Task :remote-view:extractDeepLinksForAarDebug
+> Task :remote-view:mergeDebugGeneratedProguardFiles
+> Task :remote-view:mergeDebugConsumerProguardFiles
+> Task :remote-view:prepareDebugArtProfile
+> Task :remote-view:prepareLintJarForPublish
+> Task :remote-view:mergeDebugJavaResource
+> Task :store:checkDebugAarMetadata
+> Task :remote-view:syncDebugLibJars
+> Task :remote-view:bundleDebugAar
+> Task :remote-view:assembleDebug
+> Task :store:stripDebugDebugSymbols NO-SOURCE
+> Task :store:copyDebugJniLibsProjectAndLocalJars
+> Task :store:extractDebugAnnotations
+> Task :store:extractDeepLinksForAarDebug
+> Task :store:mergeDebugGeneratedProguardFiles
+> Task :store:mergeDebugConsumerProguardFiles
+> Task :store:prepareDebugArtProfile
+> Task :store:prepareLintJarForPublish
+> Task :store:mergeDebugJavaResource
+> Task :ui-kit:checkDebugAarMetadata
+> Task :store:syncDebugLibJars
+> Task :store:bundleDebugAar
+> Task :store:assembleDebug
+> Task :ui-kit:stripDebugDebugSymbols NO-SOURCE
+> Task :ui-kit:copyDebugJniLibsProjectAndLocalJars
+> Task :ui-kit:extractDebugAnnotations
+> Task :ui-kit:extractDeepLinksForAarDebug
+> Task :ui-kit:mergeDebugGeneratedProguardFiles
+> Task :ui-kit:mergeDebugConsumerProguardFiles
+> Task :ui-kit:prepareDebugArtProfile
+> Task :ui-kit:prepareLintJarForPublish
+> Task :xposed-api:checkDebugAarMetadata
+> Task :ui-kit:mergeDebugJavaResource
+> Task :xposed-api:stripDebugDebugSymbols NO-SOURCE
+> Task :ui-kit:syncDebugLibJars
+> Task :ui-kit:bundleDebugAar
+> Task :ui-kit:assembleDebug
+> Task :xposed-api:copyDebugJniLibsProjectAndLocalJars
+> Task :xposed-api:extractDebugAnnotations
+> Task :xposed-api:extractDeepLinksForAarDebug
+> Task :xposed-api:mergeDebugGeneratedProguardFiles
+> Task :xposed-api:mergeDebugConsumerProguardFiles
+> Task :xposed-api:prepareDebugArtProfile
+> Task :xposed-api:prepareLintJarForPublish
+> Task :xposed-api:mergeDebugJavaResource
+> Task :xposed-runtime:checkDebugAarMetadata
+> Task :xposed-api:syncDebugLibJars
+> Task :xposed-api:bundleDebugAar
+> Task :xposed-api:assembleDebug
+> Task :xposed-runtime:stripDebugDebugSymbols NO-SOURCE
+> Task :xposed-runtime:copyDebugJniLibsProjectAndLocalJars
+> Task :xposed-runtime:extractDebugAnnotations
+> Task :xposed-runtime:extractDeepLinksForAarDebug
+> Task :xposed-runtime:mergeDebugGeneratedProguardFiles
+> Task :xposed-runtime:mergeDebugConsumerProguardFiles
+> Task :xposed-runtime:prepareDebugArtProfile
+> Task :xposed-runtime:prepareLintJarForPublish
+> Task :xposed-runtime:mergeDebugJavaResource
+> Task :business:agent:checkDebugAarMetadata
+> Task :xposed-runtime:syncDebugLibJars
+> Task :xposed-runtime:bundleDebugAar
+> Task :xposed-runtime:assembleDebug
+> Task :business:agent:stripDebugDebugSymbols NO-SOURCE
+> Task :business:agent:copyDebugJniLibsProjectAndLocalJars
+> Task :business:agent:extractDebugAnnotations
+> Task :business:agent:extractDeepLinksForAarDebug
+> Task :business:agent:mergeDebugGeneratedProguardFiles
+> Task :business:agent:mergeDebugConsumerProguardFiles
+> Task :business:agent:prepareDebugArtProfile
+> Task :business:agent:prepareLintJarForPublish
+> Task :business:agent:mergeDebugJavaResource
+> Task :business:application:checkDebugAarMetadata
+> Task :business:agent:syncDebugLibJars
+> Task :business:agent:bundleDebugAar
+> Task :business:agent:assembleDebug
+> Task :business:application:stripDebugDebugSymbols NO-SOURCE
+> Task :business:application:copyDebugJniLibsProjectAndLocalJars
+> Task :business:application:extractDebugAnnotations
+> Task :business:application:extractDeepLinksForAarDebug
+> Task :business:application:mergeDebugGeneratedProguardFiles
+> Task :business:application:mergeDebugConsumerProguardFiles
+> Task :business:application:prepareDebugArtProfile
+> Task :business:application:prepareLintJarForPublish
+> Task :business:application:mergeDebugJavaResource
+> Task :business:files:checkDebugAarMetadata
+> Task :business:application:syncDebugLibJars
+> Task :business:application:bundleDebugAar
+> Task :business:application:assembleDebug
+> Task :business:files:stripDebugDebugSymbols NO-SOURCE
+> Task :business:files:copyDebugJniLibsProjectAndLocalJars
+> Task :business:files:extractDebugAnnotations
+> Task :business:files:extractDeepLinksForAarDebug
+> Task :business:files:mergeDebugGeneratedProguardFiles
+> Task :business:files:mergeDebugConsumerProguardFiles
+> Task :business:files:prepareDebugArtProfile
+> Task :business:files:prepareLintJarForPublish
+> Task :business:files:mergeDebugJavaResource
+> Task :business:notification:checkDebugAarMetadata
+> Task :business:files:syncDebugLibJars
+> Task :business:files:bundleDebugAar
+> Task :business:files:assembleDebug
+> Task :business:notification:stripDebugDebugSymbols NO-SOURCE
+> Task :business:notification:copyDebugJniLibsProjectAndLocalJars
+> Task :business:notification:extractDebugAnnotations
+> Task :business:notification:extractDeepLinksForAarDebug
+> Task :business:notification:mergeDebugGeneratedProguardFiles
+> Task :business:notification:mergeDebugConsumerProguardFiles
+> Task :business:notification:prepareDebugArtProfile
+> Task :business:notification:prepareLintJarForPublish
+> Task :business:notification:mergeDebugJavaResource
+> Task :business:permission:checkDebugAarMetadata
+> Task :business:notification:syncDebugLibJars
+> Task :business:notification:bundleDebugAar
+> Task :business:notification:assembleDebug
+> Task :business:permission:stripDebugDebugSymbols NO-SOURCE
+> Task :business:permission:copyDebugJniLibsProjectAndLocalJars
+> Task :business:permission:extractDebugAnnotations
+> Task :business:permission:extractDeepLinksForAarDebug
+> Task :business:permission:mergeDebugGeneratedProguardFiles
+> Task :business:permission:mergeDebugConsumerProguardFiles
+> Task :business:permission:prepareDebugArtProfile
+> Task :business:permission:prepareLintJarForPublish
+> Task :business:permission:mergeDebugJavaResource
+> Task :business:remote:checkDebugAarMetadata
+> Task :business:permission:syncDebugLibJars
+> Task :business:permission:bundleDebugAar
+> Task :business:permission:assembleDebug
+> Task :business:remote:stripDebugDebugSymbols NO-SOURCE
+> Task :business:remote:copyDebugJniLibsProjectAndLocalJars
+> Task :business:remote:extractDebugAnnotations
+> Task :business:remote:extractDeepLinksForAarDebug
+> Task :business:remote:mergeDebugGeneratedProguardFiles
+> Task :business:remote:mergeDebugConsumerProguardFiles
+> Task :business:remote:prepareDebugArtProfile
+> Task :business:remote:prepareLintJarForPublish
+> Task :business:remote:mergeDebugJavaResource
+> Task :libs:libterm-backend-libsu:checkDebugAarMetadata
+> Task :business:remote:syncDebugLibJars
+> Task :business:remote:bundleDebugAar
+> Task :business:remote:assembleDebug
+> Task :libs:libterm-backend-libsu:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-libsu:extractDebugAnnotations
+> Task :libs:libterm-backend-libsu:extractDeepLinksForAarDebug
+> Task :libs:libterm-backend-libsu:mergeDebugGeneratedProguardFiles
+> Task :libs:libterm-backend-libsu:mergeDebugConsumerProguardFiles
+> Task :libs:libterm-backend-libsu:prepareDebugArtProfile
+> Task :libs:libterm-backend-libsu:prepareLintJarForPublish
+> Task :libs:libterm-backend-libsu:mergeDebugJavaResource
+> Task :libs:libterm-backend-shizuku:checkDebugAarMetadata
+> Task :libs:libterm-backend-libsu:syncDebugLibJars
+> Task :libs:libterm-backend-libsu:bundleDebugAar
+> Task :libs:libterm-backend-libsu:assembleDebug
+> Task :libs:libterm-backend-shizuku:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-shizuku:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-shizuku:extractDebugAnnotations
+> Task :libs:libterm-backend-shizuku:extractDeepLinksForAarDebug
+> Task :libs:libterm-backend-shizuku:mergeDebugGeneratedProguardFiles
+> Task :libs:libterm-backend-shizuku:mergeDebugConsumerProguardFiles
+> Task :libs:libterm-backend-shizuku:prepareDebugArtProfile
+> Task :libs:libterm-backend-shizuku:prepareLintJarForPublish
+> Task :libs:libterm-backend-shizuku:mergeDebugJavaResource
+> Task :libs:libterm-backend-ssh:checkDebugAarMetadata
+> Task :libs:libterm-backend-ssh:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-shizuku:syncDebugLibJars
+> Task :libs:libterm-backend-shizuku:bundleDebugAar
+> Task :libs:libterm-backend-shizuku:assembleDebug
+> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-ssh:extractDebugAnnotations
+> Task :libs:libterm-backend-ssh:extractDeepLinksForAarDebug
+> Task :libs:libterm-backend-ssh:mergeDebugGeneratedProguardFiles
+> Task :libs:libterm-backend-ssh:mergeDebugConsumerProguardFiles
+> Task :libs:libterm-backend-ssh:prepareDebugArtProfile
+> Task :libs:libterm-backend-ssh:prepareLintJarForPublish
+> Task :libs:libterm-backend-ssh:mergeDebugJavaResource
+> Task :libs:libterm-runtime:checkDebugAarMetadata
+> Task :libs:libterm-backend-ssh:syncDebugLibJars
+> Task :libs:libterm-backend-ssh:bundleDebugAar
+> Task :libs:libterm-backend-ssh:assembleDebug
+> Task :libs:libterm-runtime:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-runtime:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-runtime:extractDebugAnnotations
+> Task :libs:libterm-runtime:extractDeepLinksForAarDebug
+> Task :libs:libterm-runtime:mergeDebugGeneratedProguardFiles
+> Task :libs:libterm-runtime:mergeDebugConsumerProguardFiles
+> Task :libs:libterm-runtime:prepareDebugArtProfile
+> Task :libs:libterm-runtime:prepareLintJarForPublish
+> Task :libs:libterm-runtime:mergeDebugJavaResource
+> Task :libs:okia:checkDebugAarMetadata
+> Task :libs:libterm-runtime:syncDebugLibJars
+> Task :libs:libterm-runtime:bundleDebugAar
+> Task :libs:libterm-runtime:assembleDebug
+> Task :libs:okia:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:okia:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:okia:extractDebugAnnotations
+> Task :libs:okia:extractDeepLinksForAarDebug
+> Task :libs:okia:mergeDebugGeneratedProguardFiles
+> Task :libs:okia:mergeDebugConsumerProguardFiles
+> Task :libs:okia:prepareDebugArtProfile
+> Task :libs:okia:prepareLintJarForPublish
+> Task :libs:okia:mergeDebugJavaResource
+> Task :libs:okia:syncDebugLibJars
+> Task :libs:okia:bundleDebugAar
+> Task :libs:okia:assembleDebug
+> Task :app:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/build/generated/ksp/debug/kotlin/com/niki914/zafiro/app/conversation/ConversationDao_Impl.kt:848:31 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/conversation/ConversationDatabase.kt:31:10 'fun fallbackToDestructiveMigrationOnDowngrade(): RoomDatabase.Builder<ConversationDatabase>' is deprecated. Replace by overloaded version with parameter to indicate if all tables should be dropped or not.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/conversation/ConversationRepo.kt:376:15 'suspend fun updateDraft(conversationId: String, draftText: String): Int' is deprecated. Dead method: draft has migrated to XRepo global storage.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/chat/composable/text/ToolResultText.kt:37:38 'val Fling: NestedScrollSource' is deprecated. This has been replaced by SideEffect.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConfigureSettingsBlocks.kt:212:45 'val Icons.Filled.FormatListBulleted: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.FormatListBulleted.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/SelectionPageContent.kt:31:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:20:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:22:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:48:9 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:106:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:109:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:112:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:85:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:88:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:91:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:92:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:93:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:94:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:34:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:37:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:40:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/OnboardingPreferencesViewModel.kt:55:26 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:31:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:32:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:33:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:34:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:36:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:37:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SettingsState.kt:10:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SettingsState.kt:42:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:86:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:89:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:92:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:113:59 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/StorageSettingsState.kt:15:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/StorageSettingsState.kt:16:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:80:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:83:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:86:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroPages.kt:19:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroSettingsGroup.kt:7:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroSettingsGroup.kt:8:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/BuiltinToolGroups.kt:17:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/BuiltinToolGroups.kt:18:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/runtime/service/AgentRuntimeService.kt:340:59 Condition is always 'true'.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/runtime/service/AgentRuntimeService.kt:372:69 Condition is always 'true'.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:processDebugJavaRes
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/assemble-1794298817187.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 5m 7s
+581 actionable tasks: 581 executed
