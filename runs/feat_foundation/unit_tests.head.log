@@ -156,8 +156,8 @@ Solutions:
 > Task :agent-runtime:processDebugJavaRes UP-TO-DATE
 > Task :xposed-api:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :xposed-api:processDebugJavaRes UP-TO-DATE
-> Task :agent-runtime:javaPreCompileDebugUnitTest
 > Task :business:application:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :agent-runtime:javaPreCompileDebugUnitTest
 > Task :business:application:processDebugJavaRes UP-TO-DATE
 > Task :business:notification:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :business:notification:processDebugJavaRes UP-TO-DATE
@@ -178,13 +178,13 @@ Solutions:
 > Task :autonomy:core:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :autonomy:core:compileKotlin UP-TO-DATE
 > Task :autonomy:core:compileJava NO-SOURCE
+> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :autonomy:core:processResources NO-SOURCE
 > Task :autonomy:core:classes UP-TO-DATE
 > Task :autonomy:core:jar UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :app:generateDebugBuildConfig UP-TO-DATE
-> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :app:generateDebugResources UP-TO-DATE
 > Task :app:packageDebugResources UP-TO-DATE
 > Task :remote-view:preBuild UP-TO-DATE
@@ -437,8 +437,10 @@ Solutions:
 > Task :business:permission:generateDebugAssets UP-TO-DATE
 > Task :business:permission:mergeDebugAssets UP-TO-DATE
 > Task :business:remote:generateDebugAssets UP-TO-DATE
+> Task :app:bundleDebugClassesToRuntimeJar
 > Task :business:remote:mergeDebugAssets UP-TO-DATE
 > Task :libs:libterm-backend-libsu:generateDebugAssets UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
 > Task :libs:libterm-backend-libsu:mergeDebugAssets UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:generateDebugAssets UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:mergeDebugAssets UP-TO-DATE
@@ -448,8 +450,6 @@ Solutions:
 > Task :libs:libterm-runtime:mergeDebugAssets UP-TO-DATE
 > Task :libs:okia:generateDebugAssets UP-TO-DATE
 > Task :libs:okia:mergeDebugAssets UP-TO-DATE
-> Task :app:bundleDebugClassesToRuntimeJar
-> Task :app:bundleDebugClassesToCompileJar
 > Task :app:mergeDebugAssets UP-TO-DATE
 > Task :app:packageDebugUnitTestForUnitTest
 > Task :app:processDebugUnitTestManifest
@@ -478,13 +478,51 @@ Solutions:
 > Task :store:preDebugUnitTestBuild UP-TO-DATE
 > Task :remote-view:generateDebugUnitTestStubRFile
 > Task :store:generateDebugUnitTestStubRFile
-> Task :remote-view:compileDebugUnitTestKotlin
 > Task :store:compileDebugUnitTestKotlin
+> Task :store:javaPreCompileDebugUnitTest
+> Task :remote-view:compileDebugUnitTestKotlin
+> Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :remote-view:processDebugUnitTestJavaRes
 > Task :app:kspDebugUnitTestKotlin
-> Task :remote-view:testDebugUnitTest
 > Task :agent-runtime:compileDebugUnitTestKotlin
+> Task :remote-view:testDebugUnitTest
+> Task :store:processDebugUnitTestJavaRes
+> Task :store:testDebugUnitTest
+> Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
+> Task :ui-kit:javaPreCompileDebugUnitTest
+> Task :voice:preDebugUnitTestBuild UP-TO-DATE
+> Task :ui-kit:generateDebugUnitTestStubRFile
+> Task :voice:generateDebugUnitTestStubRFile
+> Task :voice:compileDebugUnitTestKotlin
+> Task :voice:javaPreCompileDebugUnitTest
+> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :voice:processDebugUnitTestJavaRes
+> Task :ui-kit:compileDebugUnitTestKotlin
+> Task :voice:testDebugUnitTest
+> Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :ui-kit:processDebugUnitTestJavaRes
+> Task :ui-kit:testDebugUnitTest
+> Task :xposed-api:preDebugUnitTestBuild UP-TO-DATE
+> Task :xposed-api:generateDebugUnitTestStubRFile
+> Task :xposed-api:javaPreCompileDebugUnitTest
+> Task :xposed-api:compileDebugUnitTestKotlin NO-SOURCE
+> Task :xposed-api:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :xposed-api:processDebugUnitTestJavaRes NO-SOURCE
+> Task :xposed-api:testDebugUnitTest NO-SOURCE
+> Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
+> Task :xposed-runtime:javaPreCompileDebugUnitTest
+> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
+> Task :xposed-runtime:generateDebugUnitTestStubRFile
+> Task :xposed-runtime:compileDebugUnitTestKotlin NO-SOURCE
+> Task :xposed-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
+> Task :autonomy:android:checkDebugUnitTestAarMetadata
+> Task :xposed-runtime:testDebugUnitTest NO-SOURCE
+> Task :autonomy:android:mapDebugUnitTestSourceSetPaths
+> Task :autonomy:android:generateDebugUnitTestResources
+> Task :autonomy:android:mergeDebugUnitTestResources
+> Task :autonomy:android:processDebugUnitTestManifest
 > Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :agent-runtime:processDebugUnitTestJavaRes
 
@@ -516,50 +554,9 @@ TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification 
 TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
     kotlinx.coroutines.test.UncompletedCoroutinesError at TestBuilders.kt:353
 
-PermissionEntryGuardTest > no private permission calls outside allowlist FAILED
-    java.lang.AssertionError at PermissionEntryGuardTest.kt:93
-
-468 tests completed, 7 failed
+468 tests completed, 6 failed
 
 > Task :app:testDebugUnitTest FAILED
-> Task :store:javaPreCompileDebugUnitTest
-> Task :store:processDebugUnitTestJavaRes
-> Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :store:testDebugUnitTest
-> Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
-> Task :voice:preDebugUnitTestBuild UP-TO-DATE
-> Task :ui-kit:javaPreCompileDebugUnitTest
-> Task :ui-kit:generateDebugUnitTestStubRFile
-> Task :voice:generateDebugUnitTestStubRFile
-> Task :voice:javaPreCompileDebugUnitTest
-> Task :xposed-api:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-api:javaPreCompileDebugUnitTest
-> Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-api:generateDebugUnitTestStubRFile
-> Task :xposed-api:compileDebugUnitTestKotlin NO-SOURCE
-> Task :xposed-runtime:generateDebugUnitTestStubRFile
-> Task :xposed-api:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :xposed-api:processDebugUnitTestJavaRes NO-SOURCE
-> Task :xposed-api:testDebugUnitTest NO-SOURCE
-> Task :xposed-runtime:compileDebugUnitTestKotlin NO-SOURCE
-> Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
-> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-runtime:javaPreCompileDebugUnitTest
-> Task :xposed-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :xposed-runtime:testDebugUnitTest NO-SOURCE
-> Task :autonomy:android:checkDebugUnitTestAarMetadata
-> Task :autonomy:android:mapDebugUnitTestSourceSetPaths
-> Task :autonomy:android:generateDebugUnitTestResources
-> Task :voice:compileDebugUnitTestKotlin
-> Task :ui-kit:compileDebugUnitTestKotlin
-> Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :ui-kit:processDebugUnitTestJavaRes
-> Task :autonomy:android:mergeDebugUnitTestResources
-> Task :ui-kit:testDebugUnitTest
-> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :voice:processDebugUnitTestJavaRes
-> Task :voice:testDebugUnitTest
-> Task :autonomy:android:processDebugUnitTestManifest
 > Task :autonomy:android:generateDebugUnitTestAssets UP-TO-DATE
 > Task :autonomy:android:javaPreCompileDebugUnitTest
 > Task :autonomy:android:mergeDebugUnitTestAssets
@@ -570,84 +567,84 @@ PermissionEntryGuardTest > no private permission calls outside allowlist FAILED
 > Task :business:application:generateDebugUnitTestStubRFile
 > Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
 > Task :business:application:javaPreCompileDebugUnitTest
-> Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
 > Task :business:application:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:application:testDebugUnitTest NO-SOURCE
-> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:files:generateDebugUnitTestStubRFile
-> Task :business:files:javaPreCompileDebugUnitTest
+> Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
 > Task :autonomy:android:processDebugUnitTestResources
+> Task :business:application:testDebugUnitTest NO-SOURCE
 > Task :autonomy:android:packageDebugUnitTestForUnitTest
+> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
 > Task :autonomy:android:generateDebugUnitTestConfig
+> Task :business:files:javaPreCompileDebugUnitTest
 > Task :business:notification:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:files:compileDebugUnitTestKotlin
+> Task :business:files:generateDebugUnitTestStubRFile
 > Task :business:notification:generateDebugUnitTestStubRFile
+> Task :autonomy:android:kspDebugUnitTestKotlin
+> Task :business:files:compileDebugUnitTestKotlin
 > Task :business:files:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:files:processDebugUnitTestJavaRes
-> Task :autonomy:android:kspDebugUnitTestKotlin
-> Task :business:agent:compileDebugUnitTestKotlin
+> Task :business:notification:compileDebugUnitTestKotlin
 > Task :business:files:testDebugUnitTest
-> Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:agent:processDebugUnitTestJavaRes
+> Task :business:notification:javaPreCompileDebugUnitTest
+> Task :business:notification:processDebugUnitTestJavaRes
+> Task :business:notification:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :business:agent:compileDebugUnitTestKotlin
 > Task :autonomy:android:compileDebugUnitTestKotlin
-> Task :business:agent:testDebugUnitTest
+> Task :business:notification:testDebugUnitTest
 > Task :autonomy:android:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :autonomy:android:processDebugUnitTestJavaRes
 > Task :autonomy:android:testDebugUnitTest
+> Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :business:agent:processDebugUnitTestJavaRes
+> Task :business:agent:testDebugUnitTest
 > Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:notification:javaPreCompileDebugUnitTest
 > Task :business:remote:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:permission:javaPreCompileDebugUnitTest
 > Task :business:permission:generateDebugUnitTestStubRFile
+> Task :business:permission:javaPreCompileDebugUnitTest
 > Task :business:remote:generateDebugUnitTestStubRFile
-> Task :business:remote:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-libsu:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:remote:javaPreCompileDebugUnitTest
+> Task :libs:libterm-backend-libsu:javaPreCompileDebugUnitTest
+> Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-libsu:generateDebugUnitTestStubRFile
-> Task :business:notification:compileDebugUnitTestKotlin
-> Task :business:notification:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:notification:processDebugUnitTestJavaRes
+> Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestKotlin
+> Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
 > Task :business:permission:compileDebugUnitTestKotlin
+> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
 
 > Task :business:remote:compileDebugUnitTestKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:93:51 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:99:43 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
 
-> Task :business:notification:testDebugUnitTest
+> Task :libs:libterm-backend-libsu:testDebugUnitTest
 > Task :business:permission:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:permission:processDebugUnitTestJavaRes
 > Task :business:permission:testDebugUnitTest
 > Task :business:remote:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:remote:processDebugUnitTestJavaRes
 > Task :business:remote:testDebugUnitTest
-> Task :libs:libterm-backend-libsu:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-libsu:testDebugUnitTest
-> Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
-> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
+> Task :libs:libterm-backend-shizuku:processDebugUnitTestJavaRes
+> Task :libs:libterm-backend-shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-shizuku:testDebugUnitTest
+> Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-ssh:javaPreCompileDebugUnitTest
+> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-runtime:generateDebugUnitTestStubRFile
-> Task :libs:libterm-runtime:javaPreCompileDebugUnitTest
 > Task :libs:okia:preDebugUnitTestBuild UP-TO-DATE
+> Task :libs:libterm-runtime:javaPreCompileDebugUnitTest
 > Task :libs:okia:generateDebugUnitTestStubRFile
+> Task :libs:okia:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
 > Task :libs:libterm-runtime:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-ssh:testDebugUnitTest
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-shizuku:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-shizuku:testDebugUnitTest
 > Task :libs:libterm-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-runtime:processDebugUnitTestJavaRes
 > Task :libs:libterm-runtime:testDebugUnitTest
-> Task :libs:okia:javaPreCompileDebugUnitTest
 
 > Task :libs:okia:compileDebugUnitTestKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/loop/RealAgentLoopToolLoopTest.kt:477:20 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
@@ -663,7 +660,7 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki
 > Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:okia:processDebugUnitTestJavaRes
 > Task :libs:okia:testDebugUnitTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1794297971710.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1794299242345.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
 
@@ -709,37 +706,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:tes
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:276)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:187)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:187)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/app/build/reports/tests/testDebugUnitTest/index.html
@@ -839,7 +805,7 @@ Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
+	... 30 more
 
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
@@ -848,5 +814,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 8m 28s
+BUILD FAILED in 9m 9s
 459 actionable tasks: 105 executed, 354 up-to-date
