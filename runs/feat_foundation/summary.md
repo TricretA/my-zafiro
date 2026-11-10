@@ -1,7 +1,7 @@
 # CI result
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42774241859
-- GITHUB_SHA: f615e64fe1a9794b3024f12725a1705de552a5d7
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42774387623
+- GITHUB_SHA: 8749c8b5609ca17d5528adcb12c4ec8f5ba9c94f
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
