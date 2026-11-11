@@ -33,32 +33,32 @@ Solutions:
 > Task :business:application:preDebugBuild UP-TO-DATE
 > Task :business:notification:preBuild UP-TO-DATE
 > Task :business:notification:preDebugBuild UP-TO-DATE
+> Task :xposed-api:writeDebugAarMetadata
+> Task :business:application:writeDebugAarMetadata
 > Task :business:permission:preBuild UP-TO-DATE
 > Task :business:permission:preDebugBuild UP-TO-DATE
-> Task :business:application:writeDebugAarMetadata
-> Task :xposed-api:writeDebugAarMetadata
 > Task :business:notification:writeDebugAarMetadata
 > Task :libs:libterm-backend-libsu:preBuild UP-TO-DATE
 > Task :libs:libterm-backend-libsu:preDebugBuild UP-TO-DATE
 > Task :business:permission:writeDebugAarMetadata
 > Task :libs:libterm-backend-shizuku:preBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:preDebugBuild UP-TO-DATE
-> Task :libs:libterm-backend-libsu:writeDebugAarMetadata
 > Task :libs:libterm-backend-ssh:preBuild UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:writeDebugAarMetadata
 > Task :libs:libterm-backend-ssh:preDebugBuild UP-TO-DATE
+> Task :libs:libterm-backend-libsu:writeDebugAarMetadata
+> Task :libs:libterm-backend-shizuku:writeDebugAarMetadata
 > Task :libs:libterm-runtime:preBuild UP-TO-DATE
 > Task :libs:libterm-runtime:preDebugBuild UP-TO-DATE
-> Task :libs:libterm-backend-ssh:writeDebugAarMetadata
 > Task :libs:logging:androidPreBuild UP-TO-DATE
 > Task :libs:logging:preAndroidMainBuild UP-TO-DATE
 > Task :libs:libterm-runtime:writeDebugAarMetadata
+> Task :libs:libterm-backend-ssh:writeDebugAarMetadata
 > Task :libs:okia:preBuild UP-TO-DATE
 > Task :libs:okia:preDebugBuild UP-TO-DATE
 > Task :libs:logging:writeAndroidMainAarMetadata
 > Task :libs:okia:writeDebugAarMetadata
-> Task :agent-runtime:checkDebugAarMetadata
 > Task :agent-runtime:generateDebugPythonJniLibs
+> Task :agent-runtime:checkDebugAarMetadata
 > Task :agent-runtime:mergeDebugJniLibFolders
 > Task :business:api:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :agent-runtime:mergeDebugNativeLibs
@@ -78,10 +78,6 @@ Unable to strip the following libraries, packaging them as they are: libchaquopy
 Chaquopy: Installing for arm64-v8a
 Looking in indexes: https://pypi.org/simple, https://chaquo.com/pypi-13.1
 Collecting requests==2.34.2
-
-> Task :xsettings:compileKotlin
-
-> Task :agent-runtime:installDebugPythonRequirements
   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
 Collecting beautifulsoup4==4.15.0
   Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
@@ -95,11 +91,6 @@ Collecting certifi>=2023.5.7 (from requests==2.34.2)
   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
 Collecting soupsieve>=1.6.1 (from beautifulsoup4==4.15.0)
   Downloading soupsieve-4.1-py3-none-any.whl.metadata (4.4 kB)
-
-> Task :libs:libterm-core:compileKotlin
-> Task :business:api:compileKotlin
-
-> Task :agent-runtime:installDebugPythonRequirements
 Collecting typing-extensions>=4.0.0 (from beautifulsoup4==4.15.0)
   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
@@ -114,15 +105,10 @@ Installing collected packages: urllib3, typing-extensions, soupsieve, idna, char
 
 Successfully installed beautifulsoup4-4.15.0 certifi-2026.10.23 charset_normalizer-3.5.2 idna-3.20 requests-2.34.2 soupsieve-4.1 typing-extensions-4.16.0 urllib3-2.8.0
 
-> Task :business:api:compileJava NO-SOURCE
-> Task :business:api:classes UP-TO-DATE
-> Task :business:api:jar
+> Task :xsettings:compileKotlin
 > Task :xsettings:compileJava NO-SOURCE
 > Task :xsettings:classes UP-TO-DATE
 > Task :xsettings:jar
-> Task :libs:libterm-core:compileJava NO-SOURCE
-> Task :libs:libterm-core:classes UP-TO-DATE
-> Task :libs:libterm-core:jar
 > Task :agent-runtime:mergeDebugPythonSources
 > Task :agent-runtime:generateDebugPythonProxies
 > Task :agent-runtime:generateDebugResources
@@ -131,43 +117,53 @@ Successfully installed beautifulsoup4-4.15.0 certifi-2026.10.23 charset_normaliz
 > Task :xposed-api:generateDebugResources
 > Task :xposed-api:packageDebugResources
 > Task :xposed-api:processDebugNavigationResources
-> Task :libs:logging:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :xposed-api:parseDebugLocalResources
 > Task :agent-runtime:parseDebugLocalResources
-> Task :xposed-api:javaPreCompileDebug
-> Task :agent-runtime:generateDebugRFile
 > Task :xposed-api:generateDebugRFile
+> Task :libs:logging:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :agent-runtime:generateDebugRFile
+> Task :xposed-api:javaPreCompileDebug
 > Task :business:notification:generateDebugResources
 > Task :business:notification:packageDebugResources
 > Task :business:notification:processDebugNavigationResources
-> Task :business:application:generateDebugResources
 > Task :business:notification:parseDebugLocalResources
+> Task :business:notification:generateDebugRFile
+> Task :business:application:generateDebugResources
 > Task :business:application:packageDebugResources
 > Task :business:application:processDebugNavigationResources
-> Task :business:notification:generateDebugRFile
+> Task :business:application:parseDebugLocalResources
+> Task :business:application:generateDebugRFile
 > Task :business:application:javaPreCompileDebug
 > Task :business:permission:generateDebugResources
+> Task :libs:libterm-core:compileKotlin
 > Task :business:permission:packageDebugResources
-> Task :business:application:parseDebugLocalResources
+> Task :business:api:compileKotlin
+> Task :libs:libterm-core:compileJava NO-SOURCE
+> Task :business:api:compileJava NO-SOURCE
+> Task :business:api:classes UP-TO-DATE
+> Task :business:api:jar
+> Task :libs:libterm-core:classes UP-TO-DATE
+> Task :libs:libterm-core:jar
 > Task :business:permission:processDebugNavigationResources
 > Task :business:permission:parseDebugLocalResources
-> Task :business:permission:javaPreCompileDebug
-> Task :business:application:generateDebugRFile
-> Task :business:notification:javaPreCompileDebug
 > Task :business:permission:generateDebugRFile
+> Task :business:permission:javaPreCompileDebug
+> Task :business:notification:javaPreCompileDebug
 > Task :libs:libterm-backend-libsu:generateDebugResources
 > Task :libs:libterm-backend-libsu:packageDebugResources
 > Task :libs:libterm-backend-libsu:processDebugNavigationResources
 > Task :libs:logging:compileAndroidMain
 > Task :libs:libterm-backend-libsu:parseDebugLocalResources
-> Task :libs:libterm-backend-libsu:javaPreCompileDebug
 > Task :libs:libterm-backend-libsu:generateDebugRFile
 > Task :libs:logging:bundleAndroidMainClassesToCompileJar
-> Task :libs:libterm-backend-shizuku:compileDebugAidl
 > Task :xposed-api:compileDebugKotlin
-> Task :libs:libterm-backend-shizuku:generateDebugResources
+> Task :libs:libterm-backend-libsu:compileDebugKotlin
 > Task :xposed-api:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-libsu:javaPreCompileDebug
 > Task :xposed-api:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-libsu:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-libsu:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-shizuku:generateDebugResources
 > Task :libs:libterm-backend-shizuku:packageDebugResources
 > Task :libs:libterm-backend-shizuku:processDebugNavigationResources
 > Task :libs:libterm-backend-shizuku:javaPreCompileDebug
@@ -176,16 +172,10 @@ Successfully installed beautifulsoup4-4.15.0 certifi-2026.10.23 charset_normaliz
 > Task :libs:libterm-backend-shizuku:generateDebugRFile
 > Task :libs:libterm-backend-ssh:packageDebugResources
 > Task :libs:libterm-backend-ssh:processDebugNavigationResources
-> Task :libs:libterm-backend-ssh:parseDebugLocalResources
-> Task :libs:libterm-backend-ssh:generateDebugRFile
-> Task :business:application:compileDebugKotlin
-> Task :business:application:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:application:bundleLibCompileToJarDebug
-> Task :libs:libterm-backend-libsu:compileDebugKotlin
-> Task :libs:libterm-backend-libsu:compileDebugJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-libsu:bundleLibCompileToJarDebug
 > Task :libs:libterm-backend-ssh:javaPreCompileDebug
+> Task :libs:libterm-backend-ssh:parseDebugLocalResources
 > Task :libs:libterm-runtime:generateDebugResources
+> Task :libs:libterm-backend-ssh:generateDebugRFile
 > Task :libs:libterm-runtime:packageDebugResources
 > Task :libs:libterm-runtime:processDebugNavigationResources
 > Task :libs:libterm-runtime:parseDebugLocalResources
@@ -194,36 +184,40 @@ Successfully installed beautifulsoup4-4.15.0 certifi-2026.10.23 charset_normaliz
 > Task :libs:okia:generateDebugResources
 > Task :libs:okia:packageDebugResources
 > Task :libs:okia:processDebugNavigationResources
+> Task :libs:libterm-backend-shizuku:compileDebugAidl
+> Task :business:application:compileDebugKotlin
+> Task :business:application:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:okia:parseDebugLocalResources
+> Task :business:application:bundleLibCompileToJarDebug
+> Task :libs:okia:generateDebugRFile
 
 > Task :libs:libterm-backend-ssh:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-ssh/src/main/java/com/niki914/libterm/backend/ssh/JschSshShellAdapterFactory.kt:97:25 'fun setPassword(p0: String!): Unit' is deprecated. Deprecated in Java.
 
 > Task :libs:libterm-backend-ssh:compileDebugJavaWithJavac NO-SOURCE
-> Task :libs:okia:parseDebugLocalResources
 > Task :libs:libterm-backend-ssh:bundleLibCompileToJarDebug
 > Task :libs:okia:javaPreCompileDebug
-> Task :libs:okia:generateDebugRFile
 > Task :agent-runtime:extractDeepLinksForAarDebug
-> Task :libs:libterm-backend-shizuku:compileDebugKotlin
+> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :agent-runtime:generateDebugPythonMiscAssets
 > Task :business:permission:compileDebugKotlin
+> Task :agent-runtime:generateDebugPythonRequirementsAssets
 > Task :business:permission:compileDebugJavaWithJavac NO-SOURCE
 > Task :business:permission:bundleLibCompileToJarDebug
-> Task :libs:libterm-backend-shizuku:compileDebugJavaWithJavac
-> Task :agent-runtime:generateDebugAssets UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:bundleLibCompileToJarDebug
+> Task :agent-runtime:generateDebugPythonSourceAssets
+> Task :libs:libterm-backend-shizuku:compileDebugKotlin
 
 > Task :business:notification:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:69:51 'static field USAGE_NOTIFICATION_COMMUNICATION_INSTANT: Int' is deprecated. Deprecated in Java.
 
-> Task :agent-runtime:generateDebugPythonMiscAssets
+> Task :libs:libterm-backend-shizuku:compileDebugJavaWithJavac
 > Task :business:notification:compileDebugJavaWithJavac NO-SOURCE
 > Task :business:notification:bundleLibCompileToJarDebug
-> Task :agent-runtime:generateDebugPythonRequirementsAssets
-> Task :agent-runtime:generateDebugPythonSourceAssets
+> Task :libs:libterm-backend-shizuku:bundleLibCompileToJarDebug
 > Task :agent-runtime:generateDebugPythonBuildAssets
 > Task :agent-runtime:mergeDebugAssets
-> Task :agent-runtime:javaPreCompileDebug
 > Task :agent-runtime:prepareDebugArtProfile
+> Task :agent-runtime:javaPreCompileDebug
 > Task :agent-runtime:prepareLintJarForPublish
 > Task :agent-runtime:writeDebugAarMetadata
 > Task :agent-runtime:processDebugManifest
@@ -254,88 +248,81 @@ ADB forward successful.
 > Task :voice:processDebugNavigationResources
 > Task :xposed-runtime:preBuild UP-TO-DATE
 > Task :xposed-runtime:preDebugBuild UP-TO-DATE
-
-> Task :libs:okia:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/loop/RealAgentLoop.kt:485:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/transport/OkHttpEngine.kt:91:30 The corresponding parameter in the supertype 'RequestBody' is named 'sink'. This may cause problems when calling this function with named arguments.
-
 > Task :xposed-runtime:processDebugNavigationResources
 > Task :autonomy:android:preBuild UP-TO-DATE
 > Task :autonomy:android:preDebugBuild UP-TO-DATE
 > Task :autonomy:android:processDebugNavigationResources
 > Task :business:agent:preBuild UP-TO-DATE
 > Task :business:agent:preDebugBuild UP-TO-DATE
-> Task :libs:libterm-runtime:compileDebugKotlin
 > Task :business:agent:processDebugNavigationResources
-> Task :libs:libterm-runtime:compileDebugJavaWithJavac NO-SOURCE
-> Task :libs:okia:compileDebugJavaWithJavac NO-SOURCE
 > Task :business:files:preBuild UP-TO-DATE
 > Task :business:files:preDebugBuild UP-TO-DATE
-> Task :libs:libterm-runtime:bundleLibCompileToJarDebug
 > Task :business:files:processDebugNavigationResources
 > Task :business:remote:preBuild UP-TO-DATE
 > Task :business:remote:preDebugBuild UP-TO-DATE
 > Task :business:remote:processDebugNavigationResources
-> Task :libs:okia:bundleLibCompileToJarDebug
 > Task :libs:logging:generateAndroidMainEmptyResourceFiles
+> Task :libs:libterm-runtime:compileDebugKotlin
 > Task :autonomy:core:compileKotlin
-> Task :agent-runtime:extractDebugAnnotations
+
+> Task :libs:okia:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/loop/RealAgentLoop.kt:485:17 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
+w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/transport/OkHttpEngine.kt:91:30 The corresponding parameter in the supertype 'RequestBody' is named 'sink'. This may cause problems when calling this function with named arguments.
+
+> Task :app:processDebugNavigationResources
+> Task :libs:libterm-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:okia:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:libterm-runtime:bundleLibCompileToJarDebug
 > Task :autonomy:core:compileJava NO-SOURCE
 > Task :autonomy:core:classes UP-TO-DATE
 > Task :autonomy:core:jar
-
-> Task :agent-runtime:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/AccessibilityController.kt:637:18 'var isChecked: Boolean' is deprecated. Deprecated in Java.
-w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/TreeFormatter.kt:77:30 'var isChecked: Boolean' is deprecated. Deprecated in Java.
-w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/device/AppInfoCache.kt:206:13 'constructor(p0: String!): Locale' is deprecated. Deprecated in Java.
-
-> Task :app:processDebugNavigationResources
-> Task :agent-runtime:compileDebugJavaWithJavac NO-SOURCE
-> Task :agent-runtime:mergeDebugGeneratedProguardFiles
-> Task :agent-runtime:mergeDebugConsumerProguardFiles
-> Task :agent-runtime:processDebugJavaRes
 > Task :remote-view:generateDebugResources
+> Task :libs:okia:bundleLibCompileToJarDebug
 > Task :remote-view:packageDebugResources
-> Task :agent-runtime:bundleLibCompileToJarDebug
+> Task :app:parseDebugLocalResources
+> Task :agent-runtime:extractDebugAnnotations
 > Task :ui-kit:generateDebugResources
 > Task :remote-view:parseDebugLocalResources
 > Task :ui-kit:packageDebugResources
-> Task :app:parseDebugLocalResources
-> Task :remote-view:generateDebugRFile
-> Task :ui-kit:javaPreCompileDebug
-> Task :ui-kit:parseDebugLocalResources
-> Task :remote-view:javaPreCompileDebug
 > Task :app:generateDebugRFile
+> Task :remote-view:generateDebugRFile
+> Task :ui-kit:parseDebugLocalResources
+> Task :ui-kit:javaPreCompileDebug
+> Task :ui-kit:generateDebugRFile
+> Task :remote-view:javaPreCompileDebug
 > Task :store:generateDebugBuildConfig
 > Task :store:generateDebugResources
-> Task :ui-kit:generateDebugRFile
-> Task :agent-runtime:mergeDebugJavaResource
 > Task :store:packageDebugResources
-> Task :agent-runtime:syncDebugLibJars
-> Task :agent-runtime:bundleDebugAar
-> Task :agent-runtime:assembleDebug
 > Task :store:javaPreCompileDebug
 > Task :store:parseDebugLocalResources
 > Task :voice:generateDebugResources
 > Task :store:generateDebugRFile
 > Task :voice:packageDebugResources
-> Task :voice:javaPreCompileDebug
-> Task :xposed-runtime:generateDebugResources
 > Task :voice:parseDebugLocalResources
-> Task :xposed-runtime:packageDebugResources
 > Task :voice:generateDebugRFile
-> Task :xposed-runtime:parseDebugLocalResources
-> Task :xposed-runtime:generateDebugRFile
 > Task :voice:compileDebugKotlin
+> Task :voice:javaPreCompileDebug
 > Task :voice:compileDebugJavaWithJavac NO-SOURCE
 > Task :voice:bundleLibCompileToJarDebug
-> Task :xposed-runtime:javaPreCompileDebug
-> Task :autonomy:android:generateDebugResources
-> Task :autonomy:android:packageDebugResources
-> Task :autonomy:android:parseDebugLocalResources
-> Task :autonomy:android:generateDebugRFile
+> Task :xposed-runtime:generateDebugResources
+> Task :xposed-runtime:packageDebugResources
+> Task :xposed-runtime:parseDebugLocalResources
+> Task :xposed-runtime:generateDebugRFile
 > Task :store:compileDebugKotlin
 > Task :xposed-runtime:compileDebugKotlin
+> Task :store:compileDebugJavaWithJavac
+> Task :store:bundleLibCompileToJarDebug
+> Task :xposed-runtime:javaPreCompileDebug
+> Task :autonomy:android:generateDebugResources
+> Task :xposed-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :xposed-runtime:bundleLibCompileToJarDebug
+> Task :autonomy:android:packageDebugResources
+> Task :autonomy:android:parseDebugLocalResources
+
+> Task :agent-runtime:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/AccessibilityController.kt:637:18 'var isChecked: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/accessibility/TreeFormatter.kt:77:30 'var isChecked: Boolean' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/device/AppInfoCache.kt:206:13 'constructor(p0: String!): Locale' is deprecated. Deprecated in Java.
 
 > Task :ui-kit:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:166:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
@@ -343,20 +330,26 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:171:24 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/infra/component/OptionSheet.kt:51:22 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
 
-> Task :store:compileDebugJavaWithJavac
-> Task :ui-kit:compileDebugJavaWithJavac NO-SOURCE
-> Task :xposed-runtime:compileDebugJavaWithJavac NO-SOURCE
-> Task :store:bundleLibCompileToJarDebug
-> Task :xposed-runtime:bundleLibCompileToJarDebug
-> Task :ui-kit:bundleLibCompileToJarDebug
 > Task :autonomy:android:javaPreCompileDebug
+> Task :agent-runtime:compileDebugJavaWithJavac NO-SOURCE
+> Task :agent-runtime:mergeDebugGeneratedProguardFiles
+> Task :agent-runtime:mergeDebugConsumerProguardFiles
+> Task :agent-runtime:processDebugJavaRes
+> Task :ui-kit:compileDebugJavaWithJavac NO-SOURCE
+> Task :autonomy:android:generateDebugRFile
+> Task :agent-runtime:bundleLibCompileToJarDebug
+> Task :ui-kit:bundleLibCompileToJarDebug
+> Task :agent-runtime:mergeDebugJavaResource
+> Task :agent-runtime:syncDebugLibJars
+> Task :agent-runtime:bundleDebugAar
+> Task :agent-runtime:assembleDebug
 > Task :business:agent:generateDebugResources
 > Task :business:agent:packageDebugResources
 > Task :business:agent:javaPreCompileDebug
-> Task :business:files:generateDebugResources
 > Task :business:agent:parseDebugLocalResources
-> Task :business:files:packageDebugResources
+> Task :business:files:generateDebugResources
 > Task :business:agent:generateDebugRFile
+> Task :business:files:packageDebugResources
 > Task :business:files:parseDebugLocalResources
 > Task :business:files:generateDebugRFile
 > Task :business:files:compileDebugKotlin
@@ -417,6 +410,10 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :remote-view:bundleLibCompileToJarDebug
 > Task :agent-runtime:bundleLibRuntimeToJarDebug
 > Task :business:files:bundleLibRuntimeToJarDebug
+> Task :business:notification:bundleLibRuntimeToJarDebug
+> Task :business:permission:bundleLibRuntimeToJarDebug
+> Task :business:application:bundleLibRuntimeToJarDebug
+> Task :remote-view:bundleLibRuntimeToJarDebug
 
 > Task :business:remote:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
@@ -424,42 +421,34 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 
 > Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
 > Task :business:remote:bundleLibCompileToJarDebug
-> Task :business:notification:bundleLibRuntimeToJarDebug
-> Task :business:permission:bundleLibRuntimeToJarDebug
-> Task :business:application:bundleLibRuntimeToJarDebug
 > Task :business:remote:bundleLibRuntimeToJarDebug
-> Task :remote-view:bundleLibRuntimeToJarDebug
-> Task :autonomy:android:kspDebugKotlin
-> Task :ui-kit:bundleLibRuntimeToJarDebug
 > Task :xposed-runtime:bundleLibRuntimeToJarDebug
+> Task :ui-kit:bundleLibRuntimeToJarDebug
 > Task :store:bundleLibRuntimeToJarDebug
 > Task :voice:bundleLibRuntimeToJarDebug
 > Task :xposed-api:bundleLibRuntimeToJarDebug
 > Task :libs:logging:bundleAndroidMainClassesToRuntimeJar
 > Task :libs:okia:bundleLibRuntimeToJarDebug
-> Task :autonomy:android:compileDebugKotlin
-> Task :autonomy:android:compileDebugJavaWithJavac NO-SOURCE
-> Task :autonomy:android:bundleLibCompileToJarDebug
 > Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug
-> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug
-> Task :app:desugarDebugFileDependencies
 > Task :agent-runtime:mapDebugSourceSetPaths
-> Task :remote-view:writeDebugAarMetadata
+> Task :app:desugarDebugFileDependencies
+> Task :autonomy:android:kspDebugKotlin
 > Task :agent-runtime:compileDebugLibraryResources
-> Task :ui-kit:writeDebugAarMetadata
+> Task :remote-view:writeDebugAarMetadata
 > Task :store:writeDebugAarMetadata
+> Task :ui-kit:writeDebugAarMetadata
 > Task :voice:writeDebugAarMetadata
 > Task :xposed-runtime:writeDebugAarMetadata
 > Task :autonomy:android:writeDebugAarMetadata
 > Task :business:agent:writeDebugAarMetadata
 > Task :business:files:writeDebugAarMetadata
-> Task :app:mapDebugSourceSetPaths
 > Task :business:remote:writeDebugAarMetadata
-> Task :app:compileDebugNavigationResources
+> Task :app:mapDebugSourceSetPaths
 > Task :app:checkDebugAarMetadata
+> Task :app:compileDebugNavigationResources
 > Task :app:createDebugCompatibleScreenManifests
 > Task :agent-runtime:extractDeepLinksDebug
 > Task :app:extractDeepLinksDebug
@@ -467,9 +456,9 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :store:extractDeepLinksDebug
 > Task :remote-view:processDebugManifest
 > Task :ui-kit:extractDeepLinksDebug
-> Task :ui-kit:processDebugManifest
-> Task :voice:extractDeepLinksDebug
 > Task :store:processDebugManifest
+> Task :voice:extractDeepLinksDebug
+> Task :ui-kit:processDebugManifest
 > Task :xposed-api:extractDeepLinksDebug
 > Task :voice:processDebugManifest
 > Task :xposed-runtime:extractDeepLinksDebug
@@ -480,35 +469,39 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :autonomy:android:processDebugManifest
 > Task :business:application:extractDeepLinksDebug
 > Task :business:agent:processDebugManifest
-> Task :business:application:processDebugManifest
 > Task :business:files:extractDeepLinksDebug
 > Task :business:files:processDebugManifest
+> Task :business:application:processDebugManifest
 > Task :business:notification:extractDeepLinksDebug
 > Task :business:notification:processDebugManifest
 > Task :business:permission:extractDeepLinksDebug
-> Task :business:permission:processDebugManifest
 > Task :business:remote:extractDeepLinksDebug
+> Task :business:permission:processDebugManifest
 > Task :business:remote:processDebugManifest
 > Task :libs:libterm-backend-libsu:extractDeepLinksDebug
-> Task :libs:libterm-backend-libsu:processDebugManifest
 > Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
-> Task :libs:libterm-backend-ssh:extractDeepLinksDebug
-> Task :libs:libterm-backend-ssh:processDebugManifest
+> Task :libs:libterm-backend-libsu:processDebugManifest
 > Task :libs:libterm-backend-shizuku:processDebugManifest
+> Task :libs:libterm-backend-ssh:extractDeepLinksDebug
 > Task :libs:libterm-runtime:extractDeepLinksDebug
+> Task :libs:libterm-backend-ssh:processDebugManifest
 > Task :libs:libterm-runtime:processDebugManifest
 > Task :libs:okia:extractDeepLinksDebug
 > Task :libs:logging:processAndroidMainManifest
-> Task :remote-view:mapDebugSourceSetPaths
 > Task :libs:okia:processDebugManifest
-> Task :remote-view:compileDebugLibraryResources
+> Task :remote-view:mapDebugSourceSetPaths
 > Task :app:mergeDebugResources
 > Task :app:processDebugMainManifest
 > Task :app:processDebugManifest
+> Task :remote-view:compileDebugLibraryResources
 > Task :store:mapDebugSourceSetPaths
 > Task :store:compileDebugLibraryResources
-> Task :app:processDebugManifestForPackage
+> Task :autonomy:android:compileDebugKotlin
 > Task :ui-kit:mapDebugSourceSetPaths
+> Task :autonomy:android:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:processDebugManifestForPackage
+> Task :autonomy:android:bundleLibCompileToJarDebug
+> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :ui-kit:compileDebugLibraryResources
 > Task :voice:mapDebugSourceSetPaths
 > Task :voice:compileDebugLibraryResources
@@ -517,8 +510,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :xposed-runtime:mapDebugSourceSetPaths
 > Task :xposed-runtime:compileDebugLibraryResources
 > Task :autonomy:android:mapDebugSourceSetPaths
-> Task :autonomy:android:compileDebugLibraryResources
 > Task :business:agent:mapDebugSourceSetPaths
+> Task :autonomy:android:compileDebugLibraryResources
 > Task :business:agent:compileDebugLibraryResources
 > Task :business:application:mapDebugSourceSetPaths
 > Task :business:application:compileDebugLibraryResources
@@ -567,8 +560,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :app:mergeExtDexDebug
 > Task :business:files:bundleLibRuntimeToDirDebug
 > Task :business:notification:bundleLibRuntimeToDirDebug
-> Task :autonomy:android:bundleLibRuntimeToDirDebug
 > Task :business:permission:bundleLibRuntimeToDirDebug
+> Task :autonomy:android:bundleLibRuntimeToDirDebug
 > Task :business:application:bundleLibRuntimeToDirDebug
 > Task :business:remote:bundleLibRuntimeToDirDebug
 > Task :remote-view:bundleLibRuntimeToDirDebug
@@ -603,10 +596,10 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :xposed-runtime:mergeDebugJniLibFolders
 > Task :xposed-runtime:mergeDebugNativeLibs NO-SOURCE
 > Task :xposed-runtime:copyDebugJniLibsProjectOnly
+> Task :app:mergeLibDexDebug
 > Task :autonomy:android:mergeDebugJniLibFolders
 > Task :autonomy:android:mergeDebugNativeLibs NO-SOURCE
 > Task :autonomy:android:copyDebugJniLibsProjectOnly
-> Task :app:mergeLibDexDebug
 > Task :business:agent:mergeDebugJniLibFolders
 > Task :business:agent:mergeDebugNativeLibs NO-SOURCE
 > Task :business:agent:copyDebugJniLibsProjectOnly
@@ -686,13 +679,13 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :ui-kit:mergeDebugConsumerProguardFiles
 > Task :ui-kit:prepareDebugArtProfile
 > Task :ui-kit:prepareLintJarForPublish
-> Task :voice:checkDebugAarMetadata
-> Task :voice:stripDebugDebugSymbols NO-SOURCE
 > Task :ui-kit:mergeDebugJavaResource
-> Task :voice:copyDebugJniLibsProjectAndLocalJars
+> Task :voice:checkDebugAarMetadata
 > Task :ui-kit:syncDebugLibJars
 > Task :ui-kit:bundleDebugAar
 > Task :ui-kit:assembleDebug
+> Task :voice:stripDebugDebugSymbols NO-SOURCE
+> Task :voice:copyDebugJniLibsProjectAndLocalJars
 > Task :voice:extractDebugAnnotations
 > Task :voice:extractDeepLinksForAarDebug
 > Task :voice:mergeDebugGeneratedProguardFiles
@@ -700,11 +693,11 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :voice:prepareDebugArtProfile
 > Task :voice:prepareLintJarForPublish
 > Task :voice:mergeDebugJavaResource
+> Task :xposed-api:stripDebugDebugSymbols NO-SOURCE
 > Task :xposed-api:checkDebugAarMetadata
 > Task :voice:syncDebugLibJars
 > Task :voice:bundleDebugAar
 > Task :voice:assembleDebug
-> Task :xposed-api:stripDebugDebugSymbols NO-SOURCE
 > Task :xposed-api:copyDebugJniLibsProjectAndLocalJars
 > Task :xposed-api:extractDebugAnnotations
 > Task :xposed-api:extractDeepLinksForAarDebug
@@ -714,10 +707,10 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :xposed-api:prepareLintJarForPublish
 > Task :xposed-api:mergeDebugJavaResource
 > Task :xposed-runtime:checkDebugAarMetadata
+> Task :xposed-runtime:stripDebugDebugSymbols NO-SOURCE
 > Task :xposed-api:syncDebugLibJars
 > Task :xposed-api:bundleDebugAar
 > Task :xposed-api:assembleDebug
-> Task :xposed-runtime:stripDebugDebugSymbols NO-SOURCE
 > Task :xposed-runtime:copyDebugJniLibsProjectAndLocalJars
 > Task :xposed-runtime:extractDebugAnnotations
 > Task :xposed-runtime:extractDeepLinksForAarDebug
@@ -764,13 +757,13 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :business:application:mergeDebugConsumerProguardFiles
 > Task :business:application:prepareDebugArtProfile
 > Task :business:application:prepareLintJarForPublish
-> Task :business:application:mergeDebugJavaResource
 > Task :business:files:checkDebugAarMetadata
+> Task :business:application:mergeDebugJavaResource
+> Task :business:files:stripDebugDebugSymbols NO-SOURCE
+> Task :business:files:copyDebugJniLibsProjectAndLocalJars
 > Task :business:application:syncDebugLibJars
 > Task :business:application:bundleDebugAar
 > Task :business:application:assembleDebug
-> Task :business:files:stripDebugDebugSymbols NO-SOURCE
-> Task :business:files:copyDebugJniLibsProjectAndLocalJars
 > Task :business:files:extractDebugAnnotations
 > Task :business:files:extractDeepLinksForAarDebug
 > Task :business:files:mergeDebugGeneratedProguardFiles
@@ -816,53 +809,53 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :business:remote:mergeDebugConsumerProguardFiles
 > Task :business:remote:prepareDebugArtProfile
 > Task :business:remote:prepareLintJarForPublish
-> Task :libs:libterm-backend-libsu:checkDebugAarMetadata
-> Task :libs:libterm-backend-libsu:stripDebugDebugSymbols NO-SOURCE
 > Task :business:remote:mergeDebugJavaResource
-> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectAndLocalJars
-> Task :libs:libterm-backend-libsu:extractDebugAnnotations
+> Task :libs:libterm-backend-libsu:checkDebugAarMetadata
 > Task :business:remote:syncDebugLibJars
 > Task :business:remote:bundleDebugAar
 > Task :business:remote:assembleDebug
+> Task :libs:libterm-backend-libsu:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-libsu:extractDebugAnnotations
 > Task :libs:libterm-backend-libsu:extractDeepLinksForAarDebug
 > Task :libs:libterm-backend-libsu:mergeDebugGeneratedProguardFiles
 > Task :libs:libterm-backend-libsu:mergeDebugConsumerProguardFiles
 > Task :libs:libterm-backend-libsu:prepareDebugArtProfile
 > Task :libs:libterm-backend-libsu:prepareLintJarForPublish
-> Task :libs:libterm-backend-shizuku:stripDebugDebugSymbols NO-SOURCE
-> Task :libs:libterm-backend-shizuku:checkDebugAarMetadata
-> Task :libs:libterm-backend-shizuku:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:libterm-backend-libsu:mergeDebugJavaResource
-> Task :libs:libterm-backend-shizuku:extractDebugAnnotations
+> Task :libs:libterm-backend-shizuku:checkDebugAarMetadata
+> Task :libs:libterm-backend-shizuku:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:libterm-backend-libsu:syncDebugLibJars
 > Task :libs:libterm-backend-libsu:bundleDebugAar
 > Task :libs:libterm-backend-libsu:assembleDebug
+> Task :libs:libterm-backend-shizuku:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-shizuku:extractDebugAnnotations
 > Task :libs:libterm-backend-shizuku:extractDeepLinksForAarDebug
 > Task :libs:libterm-backend-shizuku:mergeDebugGeneratedProguardFiles
 > Task :libs:libterm-backend-shizuku:mergeDebugConsumerProguardFiles
 > Task :libs:libterm-backend-shizuku:prepareDebugArtProfile
 > Task :libs:libterm-backend-shizuku:prepareLintJarForPublish
-> Task :libs:libterm-backend-ssh:stripDebugDebugSymbols NO-SOURCE
-> Task :libs:libterm-backend-ssh:checkDebugAarMetadata
-> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:libterm-backend-shizuku:mergeDebugJavaResource
-> Task :libs:libterm-backend-ssh:extractDebugAnnotations
+> Task :libs:libterm-backend-ssh:checkDebugAarMetadata
 > Task :libs:libterm-backend-shizuku:syncDebugLibJars
 > Task :libs:libterm-backend-shizuku:bundleDebugAar
 > Task :libs:libterm-backend-shizuku:assembleDebug
+> Task :libs:libterm-backend-ssh:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-ssh:extractDebugAnnotations
 > Task :libs:libterm-backend-ssh:extractDeepLinksForAarDebug
 > Task :libs:libterm-backend-ssh:mergeDebugGeneratedProguardFiles
 > Task :libs:libterm-backend-ssh:mergeDebugConsumerProguardFiles
 > Task :libs:libterm-backend-ssh:prepareDebugArtProfile
 > Task :libs:libterm-backend-ssh:prepareLintJarForPublish
-> Task :libs:libterm-backend-ssh:mergeDebugJavaResource
+> Task :libs:libterm-runtime:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:libterm-runtime:checkDebugAarMetadata
+> Task :libs:libterm-runtime:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-ssh:mergeDebugJavaResource
+> Task :libs:libterm-runtime:extractDebugAnnotations
 > Task :libs:libterm-backend-ssh:syncDebugLibJars
 > Task :libs:libterm-backend-ssh:bundleDebugAar
 > Task :libs:libterm-backend-ssh:assembleDebug
-> Task :libs:libterm-runtime:stripDebugDebugSymbols NO-SOURCE
-> Task :libs:libterm-runtime:copyDebugJniLibsProjectAndLocalJars
-> Task :libs:libterm-runtime:extractDebugAnnotations
 > Task :libs:libterm-runtime:extractDeepLinksForAarDebug
 > Task :libs:libterm-runtime:mergeDebugGeneratedProguardFiles
 > Task :libs:libterm-runtime:mergeDebugConsumerProguardFiles
@@ -1098,7 +1091,7 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/za
 > Task :app:packageDebug
 > Task :app:createDebugApkListingFileRedirect
 > Task :app:assembleDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/assemble-1794352668598.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/assemble-1794376427301.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
 
@@ -1108,5 +1101,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 5m 20s
+BUILD SUCCESSFUL in 5m 45s
 644 actionable tasks: 644 executed

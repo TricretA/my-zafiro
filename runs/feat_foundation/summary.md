@@ -2,8 +2,8 @@
 
 **Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42922099426
-- GITHUB_SHA: 66761e33b6b880489b7c4f2267240692e1979678
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42968671590
+- GITHUB_SHA: d0a0d0332d3433c20ed1ea77dfe0ea45cb54b1a5
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -13,7 +13,7 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1894 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1904 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
@@ -35,7 +35,7 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotificat
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 4s
+BUILD FAILED in 9m 7s
 ```
 ## lint: key error lines
 ```
@@ -55,5 +55,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 49s
+BUILD FAILED in 3m
 ```
