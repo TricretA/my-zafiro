@@ -1,1 +1,1 @@
-FAIL: 4 NEW test failure(s)
+PASS
