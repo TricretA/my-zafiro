@@ -1,59 +1,72 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: assembleDebug failed; only 1452 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43719164129
-- GITHUB_SHA: ce2223cde5a8df7797bb2f8c341306582326ce6f
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43726672543
+- GITHUB_SHA: c26064d63a38065f80461a202ed051352a77dc11
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
+| assemble | failure |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2021 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1452 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## Known upstream failures (also fail on pristine upstream)
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
+## assemble: key error lines
+```
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:111 Unresolved reference 'statusBars'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:111 Unresolved reference 'navigationBars'.
+> Task :app:compileDebugKotlin FAILED
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 4m 51s
+```
 ## unit_tests: key error lines
 ```
-ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
-TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
-> Task :app:testDebugUnitTest FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:111 Unresolved reference 'statusBars'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:111 Unresolved reference 'navigationBars'.
+> Task :app:compileDebugKotlin FAILED
 * What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 9s
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 3m 51s
 ```
 ## lint: key error lines
 ```
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:52:111 Unresolved reference 'statusBars'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Cannot infer type for this parameter. Specify it explicitly.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:5 Return type mismatch: expected 'Dp', actual 'String'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:57:111 Unresolved reference 'navigationBars'.
+> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
-> Task :agent-runtime:lintDebug FAILED
-> Task :app:lintDebug FAILED
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 59s
+BUILD FAILED in 2m 11s
 ```
