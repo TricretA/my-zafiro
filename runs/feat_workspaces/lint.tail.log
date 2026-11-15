@@ -1,0 +1,160 @@
+> Task :voice:generateDebugAndroidTestLintModel
+> Task :voice:preDebugUnitTestBuild UP-TO-DATE
+> Task :voice:generateDebugUnitTestLintModel
+> Task :voice:lintAnalyzeDebugAndroidTest
+> Task :ui-kit:lintAnalyzeDebugUnitTest
+> Task :xposed-runtime:preDebugAndroidTestBuild UP-TO-DATE
+> Task :xposed-runtime:generateDebugAndroidTestLintModel
+> Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
+> Task :xposed-runtime:generateDebugUnitTestLintModel
+> Task :xposed-runtime:lintAnalyzeDebugAndroidTest
+> Task :xposed-runtime:lintAnalyzeDebugUnitTest
+> Task :autonomy:android:preDebugAndroidTestBuild UP-TO-DATE
+> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:agent:preDebugAndroidTestBuild UP-TO-DATE
+> Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:files:preDebugAndroidTestBuild UP-TO-DATE
+> Task :business:files:generateDebugAndroidTestLintModel
+> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:files:generateDebugUnitTestLintModel
+> Task :business:files:lintAnalyzeDebugAndroidTest
+> Task :business:files:lintAnalyzeDebugUnitTest
+> Task :business:remote:preDebugAndroidTestBuild UP-TO-DATE
+> Task :business:remote:generateDebugAndroidTestLintModel
+> Task :business:remote:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:remote:generateDebugUnitTestLintModel
+> Task :voice:lintAnalyzeDebugUnitTest
+> Task :business:remote:lintAnalyzeDebugAndroidTest
+> Task :remote-view:generateDebugLintReportModel
+> Task :store:generateDebugLintReportModel
+
+> Task :store:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/store/build/reports/lint-results-debug.html
+Lint found 1 error and 6 warnings. First failure:
+/home/runner/work/my-zafiro/my-zafiro/store/src/main/java/com/niki914/store/XIpcBridge.kt:280: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        NotificationManagerCompat.from(context).notify(
+        ^
+
+
+> Task :store:lintDebug FAILED
+Lint found 1 error, 6 warnings. First failure:
+
+/home/runner/work/my-zafiro/my-zafiro/store/src/main/java/com/niki914/store/XIpcBridge.kt:280: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        NotificationManagerCompat.from(context).notify(
+        ^
+
+   Explanation for issues of type "MissingPermission":
+   This check scans through your code and libraries and looks at the APIs
+   being used, and checks this against the set of permissions required to
+   access those APIs. If the code using those APIs is called at runtime, then
+   the program will crash.
+
+   Furthermore, for permissions that are revocable (with targetSdkVersion 23),
+   client code must also be prepared to handle the calls throwing an exception
+   if the user rejects the request for permission at runtime.
+
+
+The full lint text report is located at:
+  /home/runner/work/my-zafiro/my-zafiro/store/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+
+> Task :ui-kit:generateDebugLintReportModel
+> Task :voice:generateDebugLintReportModel
+
+> Task :voice:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/voice/build/reports/lint-results-debug.html
+
+> Task :voice:lintDebug
+> Task :xposed-api:generateDebugLintReportModel
+
+> Task :xposed-api:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/xposed-api/build/reports/lint-results-debug.html
+
+> Task :xposed-api:lintDebug
+> Task :xposed-runtime:generateDebugLintReportModel
+
+> Task :xposed-runtime:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/xposed-runtime/build/reports/lint-results-debug.html
+
+> Task :xposed-runtime:lintDebug
+> Task :business:application:generateDebugLintReportModel
+
+> Task :business:application:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/business/application/build/reports/lint-results-debug.html
+
+> Task :business:application:lintDebug
+> Task :business:files:generateDebugLintReportModel
+
+> Task :business:files:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/business/files/build/reports/lint-results-debug.html
+
+> Task :business:files:lintDebug
+> Task :business:notification:generateDebugLintReportModel
+
+> Task :business:notification:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/business/notification/build/reports/lint-results-debug.html
+Lint found 2 errors and 4 warnings. First failure:
+/home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:108: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        NotificationManagerCompat.from(context).notify(notificationId, builder.build())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+> Task :business:notification:lintDebug FAILED
+Lint found 2 errors, 4 warnings. First failure:
+
+/home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:108: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        NotificationManagerCompat.from(context).notify(notificationId, builder.build())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The full lint text report is located at:
+  /home/runner/work/my-zafiro/my-zafiro/business/notification/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+
+> Task :business:permission:generateDebugLintReportModel
+
+> Task :business:permission:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/business/permission/build/reports/lint-results-debug.html
+
+> Task :business:permission:lintDebug
+> Task :business:remote:generateDebugLintReportModel
+> Task :libs:libterm-backend-libsu:generateDebugLintReportModel
+
+> Task :libs:libterm-backend-libsu:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-libsu/build/reports/lint-results-debug.html
+
+> Task :libs:libterm-backend-libsu:lintDebug
+> Task :libs:libterm-backend-shizuku:generateDebugLintReportModel
+
+> Task :libs:libterm-backend-shizuku:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-shizuku/build/reports/lint-results-debug.html
+
+> Task :libs:libterm-backend-shizuku:lintDebug
+> Task :libs:libterm-backend-ssh:generateDebugLintReportModel
+
+> Task :libs:libterm-backend-ssh:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-ssh/build/reports/lint-results-debug.html
+
+> Task :libs:libterm-backend-ssh:lintDebug
+> Task :libs:libterm-runtime:generateDebugLintReportModel
+
+> Task :libs:libterm-runtime:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-runtime/build/reports/lint-results-debug.html
+
+> Task :libs:libterm-runtime:lintDebug
+> Task :libs:okia:generateDebugLintReportModel
+
+> Task :libs:okia:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/build/reports/lint-results-debug.html
+
+> Task :libs:okia:lintDebug
+> Task :business:remote:lintAnalyzeDebug
+> Task :business:remote:lintAnalyzeDebugUnitTest
+
+> Task :business:remote:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/business/remote/build/reports/lint-results-debug.html
+
+> Task :business:remote:lintDebug
+> Task :ui-kit:lintAnalyzeDebug
+
+> Task :ui-kit:lintReportDebug
+Wrote HTML report to file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/build/reports/lint-results-debug.html
+
+> Task :ui-kit:lintDebug
