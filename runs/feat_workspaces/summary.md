@@ -1,87 +1,61 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; 7 NEW test failure(s); only 1440 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: 4 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43694413185
-- GITHUB_SHA: b2df2aa7b8bf69c29c7723005bafb54e8a67548e
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43695572778
+- GITHUB_SHA: a49cb7c9d4209d3279eba8373dd390e2c16d1ebe
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | failure |
+| assemble | success |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1440 run, 7 failed (0 known upstream, 0 flaky upstream, 7 NEW), 0 skipped
+Unit tests: 2003 run, 10 failed (6 known upstream, 0 flaky upstream, 4 NEW), 0 skipped
 
 ## NEW failing tests
-- `com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills` — java.lang.AssertionError: whatsapp: skill community-management is not bundled
-- `com.tricreta.zafiro.autonomy.WorkspaceTest.newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks` — com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",           "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent"
-- `com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes` — org.json.JSONException: No value for id
-- `com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools` — java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
-- `com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface` — java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routi
-- `com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes` — java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
-- `com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64` — java.lang.AssertionError
+- `com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills` — com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Workspace id "x" must be lowercase letters, digits, - or _.
+- `com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupsReferenceRegisteredToolsWithoutOverlap` — java.lang.ExceptionInInitializerError
+- `com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupWriteThroughTogglesAllMembersAtomically` — java.lang.NoClassDefFoundError: Could not initialize class com.niki914.zafiro.repo.BuiltinToolGroups
+- `com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections` — java.lang.AssertionError: expected:<[Theme, GeneralSettings, Backup]> but was:<[Theme, Backup, GeneralSettings]>
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
-## assemble: key error lines
-```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 5m 52s
-```
 ## unit_tests: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-BuiltinToolTest > defaultRegistry_offersOneScreenSurface FAILED
-SaveFileBuiltinTest > rejectsPathEscapes FAILED
-SaveFileBuiltinTest > reportsMissingContentAndBadBase64 FAILED
-BundledAssetsTest > workspaceAgentsOnlyUseRealTools FAILED
-> Task :agent-runtime:testDebugUnitTest FAILED
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+SettingsViewModelTest > buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections FAILED
+XRepoDomainSettingsTest > builtinGroupsReferenceRegisteredToolsWithoutOverlap FAILED
+XRepoDomainSettingsTest > builtinGroupWriteThroughTogglesAllMembersAtomically FAILED
+> Task :app:testDebugUnitTest FAILED
 BundledWorkspacesTest > everyBundledWorkspaceParsesAndReferencesRealSkills FAILED
-TeamServiceTest > ownThreadRepliesAreAutomaticAndRejectionDemotes FAILED
-WorkspaceTest > newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks FAILED
 > Task :autonomy:android:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-* What went wrong:
-Execution failed for task ':agent-runtime:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:testDebugUnitTest'.
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
 * What went wrong:
 Execution failed for task ':autonomy:android:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:testDebugUnitTest'.
-BUILD FAILED in 4m 17s
+BUILD FAILED in 9m 9s
 ```
 ## lint: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
 > Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+> Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':agent-runtime:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
@@ -91,5 +65,8 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:l
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-BUILD FAILED in 2m 53s
+* What went wrong:
+Execution failed for task ':app:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+BUILD FAILED in 2m 56s
 ```

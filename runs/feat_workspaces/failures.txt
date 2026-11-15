@@ -1,43 +1,8 @@
 === com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills
-java.lang.AssertionError: whatsapp: skill community-management is not bundled
-java.lang.AssertionError: whatsapp: skill community-management is not bundled
-	at org.junit.Assert.fail(Assert.java:89)
-	at kotlin.test.junit.JUnitAsserter.fail(JUnitSupport.kt:56)
-	at kotlin.test.Asserter.assertTrue(Assertions.kt:694)
-	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
-	at kotlin.test.Asserter.assertTrue(Assertions.kt:704)
-	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
-	at kotlin.test.AssertionsKt__AssertionsKt.assertTrue(Assertions.kt:44)
-	at kotlin.test.AssertionsKt.assertTrue(Unknown Source)
-	at com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills(BundledWorkspacesTest.kt:25)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(Reflect
-
-=== com.tricreta.zafiro.autonomy.WorkspaceTest.newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks
-com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",
-          "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent"
-com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",
-          "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent","board"],"skills":["a"]},
-                    {"id":"poster","name":"Poster","instructions":"post","usesScreen":true}],
-          "tasks":[{"key":"morning","name":"Morning","prompt":"go","agent":"director","trigger":"DAILY","time":"07:15"},
-                   {"key":"weekly","name":"Weekly","prompt":"plan","agent":"director","trigger":"WEEKLY","time":"18:00","days":["SUN"]},
-                   {"key":"off","name":"Optional","prompt":"x","agent":"poster","trigger":"DAILY","time":"09:00","enabled":false}
-                   ,"{"key":"new","name":"New","prompt":"n","agent":"poster","trigger":"INTERVAL","intervalMinutes":120}]}
-	at com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Companion.parse(WorkspaceDef.kt:26)
-	at com.tricreta.zafiro.autonomy.WorkspaceTest.def(WorkspaceTest.kt:35)
-	at com.tricreta.zafiro.autonomy.WorkspaceTest.access$def(WorkspaceTest.kt:22)
-	at com.tricreta.zafiro.a
-
-=== com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes
-org.json.JSONException: No value for id
-org.json.JSONException: No value for id
-	at org.json.JSONObject.get(JSONObject.java:398)
-	at org.json.JSONObject.getLong(JSONObject.java:523)
-	at com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes(TeamServiceTest.kt:78)
+com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Workspace id "x" must be lowercase letters, digits, - or _.
+com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Workspace id "x" must be lowercase letters, digits, - or _.
+	at com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Companion.parse(WorkspaceDef.kt:28)
+	at com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills(BundledWorkspacesTest.kt:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -46,76 +11,158 @@ org.json.JSONException: No value for id
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(Robolec
+
+=== com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupsReferenceRegisteredToolsWithoutOverlap
+java.lang.ExceptionInInitializerError
+java.lang.ExceptionInInitializerError
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupsReferenceRegisteredToolsWithoutOverlap(XRepoDomainSettingsTest.kt:300)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
 	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at com.niki914.zafiro.app.util.SilentLoggerRule$apply$1.evaluate(SilentLoggerRule.kt:34)
 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.ja
 
-=== com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools
-java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
-java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
-	at org.junit.Assert.fail(Assert.java:89)
-	at org.junit.Assert.assertTrue(Assert.java:42)
-	at com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools(BundledAssetsTest.kt:31)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:
+=== com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupWriteThroughTogglesAllMembersAtomically
+java.lang.NoClassDefFoundError: Could not initialize class com.niki914.zafiro.repo.BuiltinToolGroups
+java.lang.NoClassDefFoundError: Could not initialize class com.niki914.zafiro.repo.BuiltinToolGroups
+	at com.niki914.zafiro.repo.BuiltinToolApi.setGroupEnabled(XRepo.kt:1779)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$builtinGroupWriteThroughTogglesAllMembersAtomically$1.invokeSuspend(XRepoDomainSettingsTest.kt:281)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$builtinGroupWriteThroughTogglesAllMembersAtomically$1.invoke(XRepoDomainSettingsTest.kt)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$builtinGroupWriteThroughTogglesAllMembersAtomically$1.invoke(XRepoDomainSettingsTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(T
 
-=== com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface
-java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routi
-java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routine, screens, screenshot, shell, ssh, take_over, view_image, wait]> but was:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routine, screens, screenshot, shell, ssh, take_over, view_image, wait]>
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections
+java.lang.AssertionError: expected:<[Theme, GeneralSettings, Backup]> but was:<[Theme, Backup, GeneralSettings]>
+java.lang.AssertionError: expected:<[Theme, GeneralSettings, Backup]> but was:<[Theme, Backup, GeneralSettings]>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
 	at org.junit.Assert.assertEquals(Assert.java:120)
 	at org.junit.Assert.assertEquals(Assert.java:146)
-	at com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface(BuiltinToolTest.kt:16)
+	at com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections(SettingsViewModelTest.kt:31)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.i
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at com.niki914.zafiro.app.util.Sil
 
-=== com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes
-java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
-java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
+=== com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd
+java.lang.AssertionError: expected:<2> but was:<1>
+java.lang.AssertionError: expected:<2> but was:<1>
 	at org.junit.Assert.fail(Assert.java:89)
-	at org.junit.Assert.failNotNull(Assert.java:756)
-	at org.junit.Assert.assertNull(Assert.java:738)
-	at com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes(SaveFileBuiltinTest.kt:35)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
-	at org.junit.runners.ParentRunner$3.evaluate(Parent
-
-=== com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64
-java.lang.AssertionError
-java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:87)
-	at org.junit.Assert.assertTrue(Assert.java:42)
-	at org.junit.Assert.assertFalse(Assert.java:65)
-	at org.junit.Assert.assertFalse(Assert.java:75)
-	at com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64(SaveFileBuiltinTest.kt:42)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.conversation.ConversationPersisterTest$trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd$1.invokeSuspend(ConversationPersisterTest.kt:183)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:233)
+	at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:152)
+	at kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:58)
+	at kotli
 
