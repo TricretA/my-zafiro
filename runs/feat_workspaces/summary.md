@@ -1,57 +1,59 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; only 1452 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43717879480
-- GITHUB_SHA: 5f306cb09658ee23174679302d947089be990b9b
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43719164129
+- GITHUB_SHA: ce2223cde5a8df7797bb2f8c341306582326ce6f
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | failure |
+| assemble | success |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1452 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2021 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
-## assemble: key error lines
-```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/BackupSettingsContent.kt:176:20 Type 'MutableState<BackupArchive.Summary?>' has no method 'setValue(Nothing?, KMutableProperty0<*>, BackupArchive.Summary?)', so it cannot serve as a delegate for var (read-write property).
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 5m 57s
-```
 ## unit_tests: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/BackupSettingsContent.kt:176:20 Type 'MutableState<BackupArchive.Summary?>' has no method 'setValue(Nothing?, KMutableProperty0<*>, BackupArchive.Summary?)', so it cannot serve as a delegate for var (read-write property).
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+> Task :app:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 4m 24s
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 9m 9s
 ```
 ## lint: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/BackupSettingsContent.kt:176:20 Type 'MutableState<BackupArchive.Summary?>' has no method 'setValue(Nothing?, KMutableProperty0<*>, BackupArchive.Summary?)', so it cannot serve as a delegate for var (read-write property).
-> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+> Task :agent-runtime:lintDebug FAILED
+> Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-BUILD FAILED in 2m 56s
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
+Execution failed for task ':app:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+BUILD FAILED in 2m 59s
 ```
