@@ -2,14 +2,14 @@
 
 **Gate: FAIL: assembleDebug failed; only 0 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43693686786
-- GITHUB_SHA: 066f877d82f08f00d543104dc2db8fe80560aaba
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43693750204
+- GITHUB_SHA: f7ddd1803d26e4c86e1f8c9bbdf3888d5e60ab47
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
-| python_check | skipped |
-| assemble | skipped |
+| python_check | success |
+| assemble | cancelled |
 | unit_tests | skipped |
 | lint | skipped |
 
