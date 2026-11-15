@@ -1,66 +1,34 @@
 # CI result
 
-**Gate: FAIL: 1 NEW test failure(s)**
+**Gate: FAIL: assembleDebug failed; only 998 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43704237721
-- GITHUB_SHA: df8c577641bf52ef50adabbe42924b6342ac765a
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43710036841
+- GITHUB_SHA: 35efc89eb8fbcd51cdbb91ff8862384ef14a8d38
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
-| unit_tests | failure |
-| lint | failure |
+| assemble | failure |
+| unit_tests | cancelled |
+| lint | skipped |
 
-Unit tests: 2003 run, 7 failed (6 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
+Unit tests: 998 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.niki914.zafiro.business.agent.AgentManagerImplTest.destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch` — java.lang.AssertionError: expected not same
-## Known upstream failures (also fail on pristine upstream)
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
+## assemble: key error lines
+```
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/SkillsSettingsContent.kt:145:15 Type 'MutableState<String>' has no method 'setValue(Nothing?, KMutableProperty0<*>, String)', so it cannot serve as a delegate for var (read-write property).
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:225:26 Unresolved reference 'fillMaxWidth'.
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 4m 46s
+```
 ## unit_tests: key error lines
 ```
-ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
-TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
-> Task :app:testDebugUnitTest FAILED
-AgentManagerImplTest > destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch FAILED
-> Task :business:agent:testDebugUnitTest FAILED
-* What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-* What went wrong:
-Execution failed for task ':business:agent:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:agent:testDebugUnitTest'.
-BUILD FAILED in 8m 56s
-```
-## lint: key error lines
-```
-> Task :agent-runtime:lintDebug FAILED
-> Task :store:lintDebug FAILED
-> Task :business:notification:lintDebug FAILED
-> Task :app:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':store:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
-* What went wrong:
-Execution failed for task ':business:notification:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 46s
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/SkillsSettingsContent.kt:145:15 Type 'MutableState<String>' has no method 'setValue(Nothing?, KMutableProperty0<*>, String)', so it cannot serve as a delegate for var (read-write property).
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:225:26 Unresolved reference 'fillMaxWidth'.
 ```
