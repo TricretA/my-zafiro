@@ -1,160 +1,160 @@
-> Task :store:compileDebugUnitTestKotlin
-> Task :store:javaPreCompileDebugUnitTest
-> Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :store:processDebugUnitTestJavaRes
-> Task :remote-view:compileDebugUnitTestKotlin
-> Task :store:testDebugUnitTest
-> Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :remote-view:processDebugUnitTestJavaRes
-> Task :agent-runtime:compileDebugUnitTestKotlin
-> Task :remote-view:testDebugUnitTest
-> Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
-> Task :ui-kit:javaPreCompileDebugUnitTest
-> Task :voice:preDebugUnitTestBuild UP-TO-DATE
-> Task :ui-kit:generateDebugUnitTestStubRFile
-> Task :voice:generateDebugUnitTestStubRFile
-> Task :app:compileDebugKotlin
-> Task :ui-kit:compileDebugUnitTestKotlin
-> Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :ui-kit:processDebugUnitTestJavaRes
-> Task :voice:compileDebugUnitTestKotlin
-> Task :ui-kit:testDebugUnitTest
-> Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :agent-runtime:processDebugUnitTestJavaRes
+	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
+	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+	at org.gradle.workers.internal.DefaultWorkerExecutor$WorkItemExecution.waitForCompletion(DefaultWorkerExecutor.java:289)
+	at org.gradle.internal.work.DefaultAsyncWorkTracker.lambda$waitForItemsAndGatherFailures$2(DefaultAsyncWorkTracker.java:130)
+	at org.gradle.internal.Factories$1.create(Factories.java:30)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withoutLocks$2(DefaultWorkerLeaseService.java:344)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:342)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:326)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLock(DefaultWorkerLeaseService.java:331)
+	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:126)
+	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:92)
+	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForAll(DefaultAsyncWorkTracker.java:78)
+	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForCompletion(DefaultAsyncWorkTracker.java:66)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:267)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
+	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:110)
+	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:64)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:61)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:61)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:47)
+	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:70)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:40)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:62)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:27)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:192)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
+	at org.gradle.internal.Either$Right.fold(Either.java:176)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:64)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:42)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:77)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:133)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:64)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
+	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+	... 61 more
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:74)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:68)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:64)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:61)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:102)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:61)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:58)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:176)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:30)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	... 2 more
 
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/SkillsSettingsContent.kt:145:15 Type 'MutableState<String>' has no method 'setValue(Nothing?, KMutableProperty0<*>, String)', so it cannot serve as a delegate for var (read-write property).
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:225:26 Unresolved reference 'fillMaxWidth'.
 
-> Task :agent-runtime:testDebugUnitTest
-> Task :voice:javaPreCompileDebugUnitTest
-> Task :voice:processDebugUnitTestJavaRes
-> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :voice:testDebugUnitTest
-> Task :xposed-api:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-api:javaPreCompileDebugUnitTest
-> Task :xposed-api:generateDebugUnitTestStubRFile
-> Task :xposed-api:compileDebugUnitTestKotlin NO-SOURCE
-> Task :xposed-api:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :xposed-api:processDebugUnitTestJavaRes NO-SOURCE
-> Task :xposed-runtime:generateDebugUnitTestStubRFile
-> Task :xposed-api:testDebugUnitTest NO-SOURCE
-> Task :xposed-runtime:compileDebugUnitTestKotlin NO-SOURCE
-> Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
-> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
-> Task :xposed-runtime:javaPreCompileDebugUnitTest
-> Task :xposed-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :xposed-runtime:testDebugUnitTest NO-SOURCE
-> Task :autonomy:android:checkDebugUnitTestAarMetadata
-> Task :autonomy:android:mapDebugUnitTestSourceSetPaths
-> Task :autonomy:android:generateDebugUnitTestResources
-> Task :autonomy:android:mergeDebugUnitTestResources
-> Task :autonomy:android:processDebugUnitTestManifest
-> Task :autonomy:android:generateDebugUnitTestAssets UP-TO-DATE
-> Task :autonomy:android:javaPreCompileDebugUnitTest
-> Task :autonomy:android:mergeDebugUnitTestAssets
-> Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:application:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:agent:javaPreCompileDebugUnitTest
-> Task :business:agent:generateDebugUnitTestStubRFile
-> Task :business:application:generateDebugUnitTestStubRFile
-> Task :autonomy:android:processDebugUnitTestResources
-> Task :autonomy:android:packageDebugUnitTestForUnitTest
-> Task :autonomy:android:generateDebugUnitTestConfig
-> Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
-> Task :business:agent:compileDebugUnitTestKotlin
-> Task :business:application:javaPreCompileDebugUnitTest
-> Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:agent:processDebugUnitTestJavaRes
-> Task :autonomy:android:kspDebugUnitTestKotlin
-> Task :business:agent:testDebugUnitTest
-> Task :business:application:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
-> Task :business:application:testDebugUnitTest NO-SOURCE
-> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:notification:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:files:javaPreCompileDebugUnitTest
-> Task :business:files:generateDebugUnitTestStubRFile
-> Task :business:notification:javaPreCompileDebugUnitTest
-> Task :business:notification:generateDebugUnitTestStubRFile
-> Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:permission:generateDebugUnitTestStubRFile
-> Task :business:files:compileDebugUnitTestKotlin
-> Task :business:files:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:files:processDebugUnitTestJavaRes
-> Task :business:notification:compileDebugUnitTestKotlin
-> Task :business:permission:compileDebugUnitTestKotlin
-> Task :business:files:testDebugUnitTest
-> Task :business:notification:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:notification:processDebugUnitTestJavaRes
-> Task :autonomy:android:compileDebugUnitTestKotlin
-> Task :business:notification:testDebugUnitTest
-> Task :autonomy:android:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :autonomy:android:processDebugUnitTestJavaRes
-> Task :autonomy:android:testDebugUnitTest
-> Task :business:permission:javaPreCompileDebugUnitTest
-> Task :business:permission:processDebugUnitTestJavaRes
-> Task :business:permission:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:permission:testDebugUnitTest
-> Task :business:remote:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-libsu:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:remote:generateDebugUnitTestStubRFile
-> Task :business:remote:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-libsu:generateDebugUnitTestStubRFile
-> Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-libsu:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
-> Task :libs:libterm-backend-shizuku:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
-> Task :libs:libterm-backend-libsu:compileDebugUnitTestKotlin
-> Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 
-> Task :business:remote:compileDebugUnitTestKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:93:51 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:99:43 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
 
-> Task :libs:libterm-backend-libsu:testDebugUnitTest
-> Task :business:remote:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:remote:processDebugUnitTestJavaRes
-> Task :business:remote:testDebugUnitTest
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-shizuku:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-shizuku:testDebugUnitTest
-> Task :libs:libterm-backend-ssh:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
-> Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-ssh:testDebugUnitTest
-> Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:okia:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-runtime:javaPreCompileDebugUnitTest
-> Task :libs:libterm-runtime:generateDebugUnitTestStubRFile
-> Task :libs:okia:generateDebugUnitTestStubRFile
-> Task :libs:okia:javaPreCompileDebugUnitTest
-> Task :autonomy:core:processTestResources NO-SOURCE
-> Task :autonomy:core:compileTestKotlin
-> Task :autonomy:core:compileTestJava NO-SOURCE
-> Task :autonomy:core:testClasses UP-TO-DATE
-> Task :libs:libterm-runtime:compileDebugUnitTestKotlin
-> Task :autonomy:core:test
-> Task :libs:libterm-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-runtime:processDebugUnitTestJavaRes
-> Task :libs:libterm-runtime:testDebugUnitTest
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-> Task :libs:okia:compileDebugUnitTestKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/loop/RealAgentLoopToolLoopTest.kt:477:20 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/loop/RealAgentLoopToolLoopTest.kt:502:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/loop/RealAgentLoopToolLoopTest.kt:504:42 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/loop/RealAgentLoopToolLoopTest.kt:506:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/mcp/McpDiscoveryTest.kt:355:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/transport/SseEventParserTest.kt:214:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/transport/SseEventParserTest.kt:216:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/transport/SseLineParserTest.kt:196:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki914/okia/transport/SseLineParserTest.kt:198:9 This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'
-
-> Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:okia:processDebugUnitTestJavaRes
+BUILD FAILED in 4m 14s
+476 actionable tasks: 107 executed, 369 up-to-date
