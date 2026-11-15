@@ -2,8 +2,8 @@
 
 **Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/42968671590
-- GITHUB_SHA: d0a0d0332d3433c20ed1ea77dfe0ea45cb54b1a5
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43691250396
+- GITHUB_SHA: e905e3f878fd10c68aafaeefc606d656d037ba54
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -35,7 +35,7 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotificat
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 7s
+BUILD FAILED in 9m 1s
 ```
 ## lint: key error lines
 ```
@@ -55,5 +55,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m
+BUILD FAILED in 2m 45s
 ```
