@@ -1,0 +1,121 @@
+=== com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills
+java.lang.AssertionError: whatsapp: skill community-management is not bundled
+java.lang.AssertionError: whatsapp: skill community-management is not bundled
+	at org.junit.Assert.fail(Assert.java:89)
+	at kotlin.test.junit.JUnitAsserter.fail(JUnitSupport.kt:56)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:694)
+	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.Asserter.assertTrue(Assertions.kt:704)
+	at kotlin.test.junit.JUnitAsserter.assertTrue(JUnitSupport.kt:30)
+	at kotlin.test.AssertionsKt__AssertionsKt.assertTrue(Assertions.kt:44)
+	at kotlin.test.AssertionsKt.assertTrue(Unknown Source)
+	at com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills(BundledWorkspacesTest.kt:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(Reflect
+
+=== com.tricreta.zafiro.autonomy.WorkspaceTest.newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks
+com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",
+          "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent"
+com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",
+          "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent","board"],"skills":["a"]},
+                    {"id":"poster","name":"Poster","instructions":"post","usesScreen":true}],
+          "tasks":[{"key":"morning","name":"Morning","prompt":"go","agent":"director","trigger":"DAILY","time":"07:15"},
+                   {"key":"weekly","name":"Weekly","prompt":"plan","agent":"director","trigger":"WEEKLY","time":"18:00","days":["SUN"]},
+                   {"key":"off","name":"Optional","prompt":"x","agent":"poster","trigger":"DAILY","time":"09:00","enabled":false}
+                   ,"{"key":"new","name":"New","prompt":"n","agent":"poster","trigger":"INTERVAL","intervalMinutes":120}]}
+	at com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Companion.parse(WorkspaceDef.kt:26)
+	at com.tricreta.zafiro.autonomy.WorkspaceTest.def(WorkspaceTest.kt:35)
+	at com.tricreta.zafiro.autonomy.WorkspaceTest.access$def(WorkspaceTest.kt:22)
+	at com.tricreta.zafiro.a
+
+=== com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes
+org.json.JSONException: No value for id
+org.json.JSONException: No value for id
+	at org.json.JSONObject.get(JSONObject.java:398)
+	at org.json.JSONObject.getLong(JSONObject.java:523)
+	at com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes(TeamServiceTest.kt:78)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	
+
+=== com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools
+java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
+java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools(BundledAssetsTest.kt:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:
+
+=== com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface
+java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routi
+java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routine, screens, screenshot, shell, ssh, take_over, view_image, wait]> but was:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routine, screens, screenshot, shell, ssh, take_over, view_image, wait]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface(BuiltinToolTest.kt:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.i
+
+=== com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes
+java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
+java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotNull(Assert.java:756)
+	at org.junit.Assert.assertNull(Assert.java:738)
+	at com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes(SaveFileBuiltinTest.kt:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+	at org.junit.runners.ParentRunner$3.evaluate(Parent
+
+=== com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64
+java.lang.AssertionError
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at org.junit.Assert.assertFalse(Assert.java:75)
+	at com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64(SaveFileBuiltinTest.kt:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.
+

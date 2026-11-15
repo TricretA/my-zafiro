@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; only 832 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: assembleDebug failed; 7 NEW test failure(s); only 1440 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43693801066
-- GITHUB_SHA: 5e71093452316ec24e34da43088b597fb087619c
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43694413185
+- GITHUB_SHA: b2df2aa7b8bf69c29c7723005bafb54e8a67548e
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
@@ -13,206 +13,83 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 832 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1440 run, 7 failed (0 known upstream, 0 flaky upstream, 7 NEW), 0 skipped
 
+## NEW failing tests
+- `com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills` — java.lang.AssertionError: whatsapp: skill community-management is not bundled
+- `com.tricreta.zafiro.autonomy.WorkspaceTest.newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks` — com.tricreta.zafiro.autonomy.workspace.WorkspaceDef$Invalid: Not valid JSON: Unterminated array at character 717 of {"id":"substack","version":2,"name":"Substack","platform":"substack","quotas":"comment=3",           "agents":[{"id":"director","name":"Director","instructions":"lead","tools":["agent"
+- `com.tricreta.zafiro.autonomy.TeamServiceTest.ownThreadRepliesAreAutomaticAndRejectionDemotes` — org.json.JSONException: No value for id
+- `com.niki914.zafiro.chat.agentic.routine.BundledAssetsTest.workspaceAgentsOnlyUseRealTools` — java.lang.AssertionError: whatsapp.json: unknown tool py_web_read
+- `com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface` — java.lang.AssertionError: expected:<[agent, board, clipboard, compose_message, create_skill, device_info, engage, examples, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, save_file, screen_operation, screen_routi
+- `com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.rejectsPathEscapes` — java.lang.AssertionError: /etc/passwd expected null, but was:</tmp/junit3787881781932555686/outputs/etc/passwd>
+- `com.niki914.zafiro.chat.agentic.buildin.impl.SaveFileBuiltinTest.reportsMissingContentAndBadBase64` — java.lang.AssertionError
 
 ## assemble: key error lines
 ```
-> Task :agent-runtime:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:11:48 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:40:22 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:47:52 Unresolved reference 'steps'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:49:77 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:23 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:44 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:61 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:83 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:117 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:59:130 Unresolved reference 'joinToString'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:67:65 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:68:24 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:19 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:45 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:37 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:60 Unresolved reference 'platform'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:92 Unresolved reference 'description'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:41 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:67 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:80 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:93 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:19 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:62 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:101 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:112 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/routine/RoutineStore.kt:23:1 Syntax error: Unclosed comment.
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
 * What went wrong:
-Execution failed for task ':agent-runtime:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
-BUILD FAILED in 2m 56s
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 5m 52s
 ```
 ## unit_tests: key error lines
 ```
-> Task :agent-runtime:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:11:48 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:40:22 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:47:52 Unresolved reference 'steps'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:49:77 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:23 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:44 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:61 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:83 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:117 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:59:130 Unresolved reference 'joinToString'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:67:65 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:68:24 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:19 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:45 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:37 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:60 Unresolved reference 'platform'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:92 Unresolved reference 'description'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:41 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:67 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:80 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:93 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:19 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:62 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:101 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:112 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/routine/RoutineStore.kt:23:1 Syntax error: Unclosed comment.
-> Task :autonomy:android:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceDef.kt:66:1 Syntax error: Unclosed comment.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:24:30 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:25:42 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:26:66 Unresolved reference 'version'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:28:28 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:28:41 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:32:94 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:35:13 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:35:30 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:36:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:36:35 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:37:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:28 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:41 Unresolved reference 'name'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:64 Unresolved reference 'instructions'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:124 Unresolved reference 'tools'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:40:32 Unresolved reference 'skills'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:40:73 Unresolved reference 'usesScreen'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:41:97 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:24 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:47 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:51 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:47:34 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:48:13 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:48:29 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:49:33 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:49:39 Unresolved reference 'key'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:50:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:51:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:51:70 Unresolved reference 'defaultEnabled'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:52:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:49 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:64 Unresolved reference 'version'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:82 Unresolved reference 'quotas'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:55:34 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:55:51 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:59:33 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:61:36 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:61:66 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:63:43 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:65:13 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:65:29 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:66:33 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:66:39 Unresolved reference 'key'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:67:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:67:39 Return type mismatch: expected 'ERROR CLASS: Cannot infer type variable TypeVariable(_L)', actual 'Unit'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:68:35 Unresolved reference 'defaultEnabled'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:69:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:70:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:75:31 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:85:80 Unresolved reference 'id'.
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+BuiltinToolTest > defaultRegistry_offersOneScreenSurface FAILED
+SaveFileBuiltinTest > rejectsPathEscapes FAILED
+SaveFileBuiltinTest > reportsMissingContentAndBadBase64 FAILED
+BundledAssetsTest > workspaceAgentsOnlyUseRealTools FAILED
+> Task :agent-runtime:testDebugUnitTest FAILED
+BundledWorkspacesTest > everyBundledWorkspaceParsesAndReferencesRealSkills FAILED
+TeamServiceTest > ownThreadRepliesAreAutomaticAndRejectionDemotes FAILED
+WorkspaceTest > newerVersionUpdatesContentKeepsOnStateAndDropsRemovedTasks FAILED
+> Task :autonomy:android:testDebugUnitTest FAILED
 * What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:testDebugUnitTest'.
+* What went wrong:
+Execution failed for task ':autonomy:android:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:testDebugUnitTest'.
+BUILD FAILED in 4m 17s
 ```
 ## lint: key error lines
 ```
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:11:48 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:40:22 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:47:52 Unresolved reference 'steps'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:49:77 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:23 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:44 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:61 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:83 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:58:117 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:59:130 Unresolved reference 'joinToString'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:67:65 Unresolved reference 'RoutineStore'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:68:24 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:19 Unresolved reference 'routines'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:71:45 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:37 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:60 Unresolved reference 'platform'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:73:92 Unresolved reference 'description'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:41 Unresolved reference 'params'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:67 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:80 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:74:93 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:19 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:62 Unresolved reference 'errors'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:101 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/ScreenRoutineBuiltin.kt:78:112 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/routine/RoutineStore.kt:23:1 Syntax error: Unclosed comment.
-> Task :agent-runtime:compileDebugKotlin FAILED
-> Task :autonomy:android:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceDef.kt:66:1 Syntax error: Unclosed comment.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:24:30 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:25:42 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:26:66 Unresolved reference 'version'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:28:28 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:28:41 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:32:94 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:35:13 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:35:30 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:36:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:36:35 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:37:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:28 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:41 Unresolved reference 'name'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:64 Unresolved reference 'instructions'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:39:124 Unresolved reference 'tools'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:40:32 Unresolved reference 'skills'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:40:73 Unresolved reference 'usesScreen'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:41:97 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:24 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:47 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:46:51 Unresolved reference 'it'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:47:34 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:48:13 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:48:29 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:49:33 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:49:39 Unresolved reference 'key'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:50:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:51:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:51:70 Unresolved reference 'defaultEnabled'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:52:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:49 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:64 Unresolved reference 'version'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:54:82 Unresolved reference 'quotas'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:55:34 Unresolved reference 'agents'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:55:51 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:59:33 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:61:36 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:61:66 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:63:43 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:65:13 Unresolved reference 'tasks'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:65:29 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:66:33 Unresolved reference 'id'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:66:39 Unresolved reference 'key'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:67:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:67:39 Return type mismatch: expected 'ERROR CLASS: Cannot infer type variable TypeVariable(_L)', actual 'Unit'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:68:35 Unresolved reference 'defaultEnabled'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:69:17 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:70:27 Suspension functions can only be called within coroutine body.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:75:31 Unresolved reference 'WorkspaceDef'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/autonomy/android/src/main/kotlin/com/tricreta/zafiro/autonomy/workspace/WorkspaceInstaller.kt:85:80 Unresolved reference 'id'.
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:111 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:374:161 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:109 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:375:160 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:104 No value passed for parameter 'onClick'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ConversationHistoryPageContent.kt:377:150 Argument type mismatch: actual type is 'Function0<Unit>', but 'Modifier' was expected.
+> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
+> Task :business:notification:lintDebug FAILED
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
+Execution failed for task ':store:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
+* What went wrong:
+Execution failed for task ':business:notification:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
+BUILD FAILED in 2m 53s
 ```
