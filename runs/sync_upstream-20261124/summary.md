@@ -1,57 +1,62 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; only 1492 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: 1 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45393058814
-- GITHUB_SHA: 1b0ed0c85c910679806bb4e0b21957b536b767f7
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45397170229
+- GITHUB_SHA: 1185381ec5e79e32827f8283a7475acce8b0c9df
 - GITHUB_REF_NAME: sync/upstream-20261124
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | failure |
+| assemble | success |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1492 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2159 run, 7 failed (6 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
 
+## NEW failing tests
+- `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords` — java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
-## assemble: key error lines
-```
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
-> Task :app:compileDebugKotlin FAILED
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 6m 2s
-```
 ## unit_tests: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
+> Task :app:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 4m 24s
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 9m 13s
 ```
 ## lint: key error lines
 ```
-> Task :agent-runtime:lintDebug FAILED
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+> Task :agent-runtime:lintDebug FAILED
+> Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-BUILD FAILED in 3m 2s
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
+Execution failed for task ':app:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+BUILD FAILED in 3m 13s
 ```
