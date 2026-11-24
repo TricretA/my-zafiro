@@ -2,8 +2,8 @@
 
 **Gate: FAIL: 4 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43692381399
-- GITHUB_SHA: ef6769efdeabec1682481b4fe2f2876cd677ecd4
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45402199222
+- GITHUB_SHA: 32b2c80e1ef8723c3a0d8e734f3fe9538bfbb63e
 - GITHUB_REF_NAME: sync/upstream-20261115
 
 | step | outcome |
@@ -16,9 +16,9 @@
 Unit tests: 1961 run, 10 failed (6 known upstream, 0 flaky upstream, 4 NEW), 0 skipped
 
 ## NEW failing tests
+- `com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections` — java.lang.AssertionError: expected:<[Theme, GeneralSettings, Backup]> but was:<[Theme, Backup, GeneralSettings]>
 - `com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupsReferenceRegisteredToolsWithoutOverlap` — java.lang.ExceptionInInitializerError
 - `com.niki914.zafiro.repo.XRepoDomainSettingsTest.builtinGroupWriteThroughTogglesAllMembersAtomically` — java.lang.NoClassDefFoundError: Could not initialize class com.niki914.zafiro.repo.BuiltinToolGroups
-- `com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections` — java.lang.AssertionError: expected:<[Theme, GeneralSettings, Backup]> but was:<[Theme, Backup, GeneralSettings]>
 - `com.niki914.zafiro.chat.BuiltinToolTest.defaultRegistry_offersOneScreenSurface` — java.lang.AssertionError: expected:<[agent, clipboard, compose_message, device_info, execute_python, find_installed_apps, http_request, launch_app, load_skill, lock_screen, memory, notify, open, open_uri, py_meta_tools, screen_operation, screens, screenshot, shell, ssh, take_over, view_image, wait]>
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
@@ -48,25 +48,25 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 33s
+BUILD FAILED in 8m 58s
 ```
 ## lint: key error lines
 ```
 > Task :store:lintDebug FAILED
-> Task :business:notification:lintDebug FAILED
 > Task :agent-runtime:lintDebug FAILED
+> Task :business:notification:lintDebug FAILED
 > Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
-Execution failed for task ':business:notification:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-* What went wrong:
 Execution failed for task ':agent-runtime:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
+Execution failed for task ':business:notification:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
+* What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 48s
+BUILD FAILED in 2m 46s
 ```
