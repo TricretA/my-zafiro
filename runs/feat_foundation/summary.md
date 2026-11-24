@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: 1 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43691250396
-- GITHUB_SHA: e905e3f878fd10c68aafaeefc606d656d037ba54
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45402143466
+- GITHUB_SHA: 30665067e0bf34e12821528c18754cc5bd07babb
 - GITHUB_REF_NAME: feat/foundation
 
 | step | outcome |
@@ -13,8 +13,10 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1904 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1904 run, 7 failed (6 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
 
+## NEW failing tests
+- `com.niki914.zafiro.business.agent.AgentManagerImplTest.destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch` — java.lang.AssertionError: expected not same
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
@@ -32,10 +34,15 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppIn
 TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
 TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
 > Task :app:testDebugUnitTest FAILED
+AgentManagerImplTest > destroy_removesAgentFromContainerAndForcesNewInstanceOnNextSwitch FAILED
+> Task :business:agent:testDebugUnitTest FAILED
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 1s
+* What went wrong:
+Execution failed for task ':business:agent:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:agent:testDebugUnitTest'.
+BUILD FAILED in 9m 25s
 ```
 ## lint: key error lines
 ```
@@ -55,5 +62,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 45s
+BUILD FAILED in 3m 36s
 ```
