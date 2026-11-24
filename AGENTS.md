@@ -309,3 +309,9 @@ Zafiro Agent 的对话功能是限定在主进程之内的，虽然有一个宿�
 - Routine labels are guesses: first run on the phone needs calibration (edit files/routines/*.json). Never claim they work before the owner confirms.
 - MCP OAuth: token saved as Authorization header; refresh loop in App every 10 min while the process lives.
 - Owner removed phone blockers (no PIN, app never killed, charged) and asked everything to run day and night.
+
+## Owner rules added 2026-11-24
+- Commits and PRs must carry NO assistant attribution: no "Co-Authored-By: Claude", no session links. Commit as `TricretA <TricretA@users.noreply.github.com>` (git config is set locally). History was rewritten once to remove these from all our branches; release TAGS still point at the old commits (tags cannot be pushed from the agent proxy).
+- NEVER put screenshots or logs from the owner's phone in the repo without opening and checking each for personal data (a phone number, name and location were exposed once; history was purged). README has no images.
+- Force-pushing `release/**` branches triggers release.yml (publishes a release per push). Do not rewrite or force-push release branches without cancelling the runs it starts.
+- Open upstream PRs #404/#414 (our branches proposed to niki914/zafiro) must stay closed: we do not contribute to upstream.
