@@ -106,22 +106,22 @@ Solutions:
 > Task :accessibility:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :accessibility:preDebugUnitTestBuild UP-TO-DATE
 > Task :accessibility:bundleLibRuntimeToJarDebug
-> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :accessibility:processDebugJavaRes UP-TO-DATE
+> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-libsu:processDebugJavaRes
-> Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-shizuku:processDebugJavaRes
-> Task :accessibility:generateDebugUnitTestStubRFile
+> Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug
 > Task :libs:libterm-backend-ssh:processDebugJavaRes
 > Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug
+> Task :accessibility:generateDebugUnitTestStubRFile
 > Task :libs:libterm-runtime:processDebugJavaRes
 > Task :libs:logging:bundleAndroidMainClassesToRuntimeJar
 > Task :libs:logging:processAndroidMainJavaRes
+> Task :libs:shizuku:bundleLibRuntimeToJarDebug
 > Task :libs:shizuku:processDebugJavaRes
 > Task :xsettings:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :libs:shizuku:bundleLibRuntimeToJarDebug
 > Task :xsettings:compileKotlin UP-TO-DATE
 > Task :xsettings:compileJava NO-SOURCE
 > Task :xsettings:processResources NO-SOURCE
@@ -264,9 +264,9 @@ Solutions:
 > Task :remote-view:javaPreCompileDebug UP-TO-DATE
 > Task :store:generateDebugBuildConfig UP-TO-DATE
 > Task :store:generateDebugResources UP-TO-DATE
+> Task :ui-kit:bundleLibCompileToJarDebug
 > Task :store:packageDebugResources UP-TO-DATE
 > Task :store:parseDebugLocalResources UP-TO-DATE
-> Task :ui-kit:bundleLibCompileToJarDebug
 > Task :store:generateDebugRFile UP-TO-DATE
 > Task :store:compileDebugKotlin UP-TO-DATE
 > Task :store:javaPreCompileDebug UP-TO-DATE
@@ -374,54 +374,52 @@ Solutions:
 > Task :autonomy:android:processDebugManifest
 > Task :business:agent:extractDeepLinksDebug
 > Task :business:agent:processDebugManifest
-
-> Task :business:remote:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:108:40 'fun getInstallerPackageName(p0: String): String?' is deprecated. Deprecated in Java.
-
 > Task :business:application:extractDeepLinksDebug
 > Task :business:application:processDebugManifest
 > Task :business:files:extractDeepLinksDebug
 > Task :business:files:processDebugManifest
 > Task :business:notification:extractDeepLinksDebug
 > Task :business:notification:processDebugManifest
-> Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:remote:bundleLibCompileToJarDebug
 > Task :business:permission:extractDeepLinksDebug
-> Task :business:remote:extractDeepLinksDebug
 > Task :business:permission:processDebugManifest
+> Task :business:remote:extractDeepLinksDebug
 > Task :business:remote:processDebugManifest
 > Task :libs:libterm-backend-libsu:extractDeepLinksDebug
-> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
 > Task :libs:libterm-backend-libsu:processDebugManifest
+> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
 > Task :libs:libterm-backend-shizuku:processDebugManifest
 > Task :libs:libterm-backend-ssh:extractDeepLinksDebug
-> Task :libs:libterm-runtime:extractDeepLinksDebug
 > Task :libs:libterm-backend-ssh:processDebugManifest
+> Task :libs:libterm-runtime:extractDeepLinksDebug
 > Task :libs:libterm-runtime:processDebugManifest
+> Task :libs:logging:processAndroidMainManifest
+> Task :libs:okia:extractDeepLinksDebug
+> Task :libs:okia:processDebugManifest
+> Task :libs:shizuku:extractDeepLinksDebug
+> Task :libs:shizuku:processDebugManifest
+
+> Task :business:remote:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:108:40 'fun getInstallerPackageName(p0: String): String?' is deprecated. Deprecated in Java.
+
+> Task :agent-runtime:compileDebugKotlin
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:30:83 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:41:68 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:43:58 Unresolved reference 'AppName'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:44:16 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
 
 > Task :agent-runtime:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:15:53 Unresolved reference 'LaunchAppBuiltin'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:27:53 Unresolved reference 'OpenUriBuiltin'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:66:17 Unresolved reference 'OpenUriBuiltin'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:67:17 Unresolved reference 'LaunchAppBuiltin'.
-
-> Task :libs:okia:extractDeepLinksDebug
-> Task :libs:logging:processAndroidMainManifest
-> Task :libs:shizuku:extractDeepLinksDebug
-> Task :libs:okia:processDebugManifest
-> Task :remote-view:mapDebugSourceSetPaths
-> Task :libs:shizuku:processDebugManifest
-> Task :store:mapDebugSourceSetPaths
-> Task :remote-view:compileDebugLibraryResources
 > Task :app:processDebugMainManifest
+> Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:remote:bundleLibCompileToJarDebug
 > Task :app:processDebugManifest
-> Task :autonomy:android:compileDebugJavaWithJavac NO-SOURCE
+> Task :remote-view:mapDebugSourceSetPaths
+> Task :app:processDebugManifestForPackage
+> Task :remote-view:compileDebugLibraryResources
+> Task :store:mapDebugSourceSetPaths
 > Task :store:compileDebugLibraryResources
-> Task :autonomy:android:bundleLibCompileToJarDebug
 > Task :ui-kit:mapDebugSourceSetPaths
 > Task :ui-kit:compileDebugLibraryResources
-> Task :app:processDebugManifestForPackage
 > Task :voice:mapDebugSourceSetPaths
 > Task :voice:compileDebugLibraryResources
 > Task :xposed-api:mapDebugSourceSetPaths
@@ -439,17 +437,19 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/
 > Task :business:notification:mapDebugSourceSetPaths
 > Task :business:notification:compileDebugLibraryResources
 > Task :business:permission:mapDebugSourceSetPaths
-> Task :business:permission:compileDebugLibraryResources
 > Task :business:remote:mapDebugSourceSetPaths
+> Task :business:permission:compileDebugLibraryResources
 > Task :business:remote:compileDebugLibraryResources
 > Task :libs:libterm-backend-libsu:mapDebugSourceSetPaths
 > Task :libs:libterm-backend-libsu:compileDebugLibraryResources
 > Task :libs:libterm-backend-shizuku:mapDebugSourceSetPaths
 > Task :libs:libterm-backend-shizuku:compileDebugLibraryResources
 > Task :libs:libterm-backend-ssh:mapDebugSourceSetPaths
+> Task :autonomy:android:compileDebugJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-ssh:compileDebugLibraryResources
 > Task :libs:libterm-runtime:mapDebugSourceSetPaths
 > Task :libs:libterm-runtime:compileDebugLibraryResources
+> Task :autonomy:android:bundleLibCompileToJarDebug
 > Task :libs:okia:mapDebugSourceSetPaths
 > Task :libs:okia:compileDebugLibraryResources
 > Task :libs:shizuku:mapDebugSourceSetPaths
@@ -507,28 +507,28 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/
 > Task :app:processDebugResources
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest9644045134450409405.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest9644045134450409405.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest3519178127842368981.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest3519178127842368981.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:packageDebugUnitTestForUnitTest
 > Task :app:generateDebugUnitTestConfig
-> Task :remote-view:bundleLibRuntimeToJarDebug
 > Task :remote-view:processDebugJavaRes
+> Task :remote-view:bundleLibRuntimeToJarDebug
 > Task :store:bundleLibRuntimeToJarDebug
 > Task :store:processDebugJavaRes
 > Task :ui-kit:processDebugJavaRes
-> Task :ui-kit:bundleLibRuntimeToJarDebug
 > Task :voice:bundleLibRuntimeToJarDebug
+> Task :ui-kit:bundleLibRuntimeToJarDebug
 > Task :voice:processDebugJavaRes
 > Task :xposed-runtime:bundleLibRuntimeToJarDebug
 > Task :xposed-runtime:processDebugJavaRes
 > Task :autonomy:android:processDebugJavaRes
-> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :business:files:bundleLibRuntimeToJarDebug
 > Task :business:files:processDebugJavaRes
-> Task :business:remote:bundleLibRuntimeToJarDebug
+> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :business:remote:processDebugJavaRes
 > Task :remote-view:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:remote:bundleLibRuntimeToJarDebug
 > Task :store:preDebugUnitTestBuild UP-TO-DATE
 > Task :remote-view:javaPreCompileDebugUnitTest
 > Task :remote-view:generateDebugUnitTestStubRFile
@@ -560,24 +560,24 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/
 > Task :xposed-runtime:preDebugUnitTestBuild UP-TO-DATE
 > Task :xposed-api:generateDebugUnitTestStubRFile
 > Task :xposed-api:javaPreCompileDebugUnitTest
-> Task :xposed-runtime:generateDebugUnitTestStubRFile
 > Task :xposed-api:compileDebugUnitTestKotlin NO-SOURCE
+> Task :xposed-runtime:generateDebugUnitTestStubRFile
 > Task :xposed-api:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :xposed-api:processDebugUnitTestJavaRes NO-SOURCE
 > Task :xposed-api:testDebugUnitTest NO-SOURCE
 > Task :xposed-runtime:compileDebugUnitTestKotlin NO-SOURCE
-> Task :xposed-runtime:javaPreCompileDebugUnitTest
 > Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
+> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
+> Task :xposed-runtime:javaPreCompileDebugUnitTest
+> Task :autonomy:android:checkDebugUnitTestAarMetadata
 > Task :xposed-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :xposed-runtime:testDebugUnitTest NO-SOURCE
-> Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
-> Task :autonomy:android:checkDebugUnitTestAarMetadata
 > Task :autonomy:android:mapDebugUnitTestSourceSetPaths
 > Task :autonomy:android:generateDebugUnitTestResources
-> Task :autonomy:android:mergeDebugUnitTestResources
 > Task :autonomy:android:processDebugUnitTestManifest
 > Task :autonomy:android:generateDebugUnitTestAssets UP-TO-DATE
 > Task :autonomy:android:javaPreCompileDebugUnitTest
+> Task :autonomy:android:mergeDebugUnitTestResources
 > Task :autonomy:android:mergeDebugUnitTestAssets
 > Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:preDebugUnitTestBuild UP-TO-DATE
@@ -586,19 +586,19 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/
 > Task :autonomy:android:processDebugUnitTestResources
 > Task :business:application:generateDebugUnitTestStubRFile
 > Task :autonomy:android:packageDebugUnitTestForUnitTest
-> Task :autonomy:android:generateDebugUnitTestConfig
 > Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
+> Task :autonomy:android:generateDebugUnitTestConfig
 > Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
 > Task :business:files:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:javaPreCompileDebugUnitTest
 > Task :business:application:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:application:testDebugUnitTest NO-SOURCE
-> Task :business:files:generateDebugUnitTestStubRFile
-> Task :business:files:javaPreCompileDebugUnitTest
 > Task :business:notification:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:files:javaPreCompileDebugUnitTest
+> Task :business:files:generateDebugUnitTestStubRFile
+> Task :business:notification:generateDebugUnitTestStubRFile
 > Task :business:notification:javaPreCompileDebugUnitTest
 > Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:notification:generateDebugUnitTestStubRFile
 > Task :business:permission:generateDebugUnitTestStubRFile
 > Task :business:files:compileDebugUnitTestKotlin
 > Task :business:files:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -622,10 +622,10 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/
 > Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
 > Task :autonomy:android:kspDebugUnitTestKotlin
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
+> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-libsu:testDebugUnitTest
 > Task :libs:libterm-backend-shizuku:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-shizuku:processDebugUnitTestJavaRes
@@ -644,22 +644,18 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/
 > Task :business:remote:processDebugUnitTestJavaRes
 > Task :business:remote:testDebugUnitTest
 > Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-ssh:javaPreCompileDebugUnitTest
+> Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-runtime:generateDebugUnitTestStubRFile
 > Task :libs:okia:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-runtime:javaPreCompileDebugUnitTest
-> Task :libs:okia:generateDebugUnitTestStubRFile
 > Task :libs:okia:javaPreCompileDebugUnitTest
 > Task :libs:shizuku:preDebugUnitTestBuild UP-TO-DATE
+> Task :libs:okia:generateDebugUnitTestStubRFile
 > Task :libs:shizuku:generateDebugUnitTestStubRFile
-> Task :libs:shizuku:compileDebugUnitTestKotlin
-> Task :libs:shizuku:javaPreCompileDebugUnitTest
-> Task :libs:shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:shizuku:processDebugUnitTestJavaRes
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
-> Task :libs:shizuku:testDebugUnitTest
+> Task :libs:shizuku:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
 > Task :libs:libterm-runtime:compileDebugUnitTestKotlin
@@ -667,6 +663,10 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/
 > Task :libs:libterm-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-runtime:processDebugUnitTestJavaRes
 > Task :libs:libterm-runtime:testDebugUnitTest
+> Task :libs:shizuku:javaPreCompileDebugUnitTest
+> Task :libs:shizuku:processDebugUnitTestJavaRes
+> Task :libs:shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :libs:shizuku:testDebugUnitTest
 > Task :autonomy:core:processTestResources NO-SOURCE
 > Task :autonomy:core:compileTestKotlin
 > Task :autonomy:core:compileTestJava NO-SOURCE
@@ -687,7 +687,7 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki
 > Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:okia:processDebugUnitTestJavaRes
 > Task :libs:okia:testDebugUnitTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795522130164.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795522695477.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
 
@@ -883,5 +883,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 2m 7s
+BUILD FAILED in 2m 8s
 484 actionable tasks: 294 executed, 190 up-to-date
