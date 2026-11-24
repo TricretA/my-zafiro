@@ -54,9 +54,11 @@ jobs:
           VER=$(grep -m1 'versionName' app/build.gradle.kts | sed 's/.*"\(.*\)".*/\1/')
           TAG="v${VER}-auto.${GITHUB_RUN_NUMBER}"
           cp "$APK" "zafiro-autonomous-${TAG}.apk"
-          git sparse-checkout disable || true   # this job checks out only part of the tree; the notes need CHANGELOG.md
+          # The job checks out only part of the tree, so fetch the two files the notes need straight from the commit.
+          gh api -H 'Accept: application/vnd.github.raw' "repos/${GITHUB_REPOSITORY}/contents/CHANGELOG.md?ref=${GITHUB_SHA}" > /tmp/CHANGELOG.md || : > /tmp/CHANGELOG.md
+          gh api -H 'Accept: application/vnd.github.raw' "repos/${GITHUB_REPOSITORY}/contents/UPSTREAM_SYNCED_SHA?ref=${GITHUB_SHA}" > /tmp/UPSTREAM_SYNCED_SHA || echo unknown > /tmp/UPSTREAM_SYNCED_SHA
           VER=$(grep -m1 'versionName' app/build.gradle.kts | sed 's/.*"\(.*\)".*/\1/')
-          { echo "## What's new in $VER"; awk -v v="$VER" 'index($0,"## ["v"]"){f=1;next} f&&/^## \[/{exit} f' CHANGELOG.md; echo; echo "Includes upstream niki914/zafiro up to $(cut -c1-8 UPSTREAM_SYNCED_SHA)."; echo "Early build: not yet verified on every phone."; } > /tmp/release-notes.md
+          { echo "## What's new in $VER"; awk -v v="$VER" 'index($0,"## ["v"]"){f=1;next} f&&/^## \[/{exit} f' /tmp/CHANGELOG.md; echo; echo "Includes upstream niki914/zafiro up to $(cut -c1-8 /tmp/UPSTREAM_SYNCED_SHA)."; echo "Early build: not yet verified on every phone."; } > /tmp/release-notes.md
           gh release create "$TAG" "zafiro-autonomous-${TAG}.apk" --target "$GITHUB_SHA" \
             --title "Zafiro Autonomous ${TAG}" \
             --notes-file /tmp/release-notes.md
