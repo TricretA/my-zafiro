@@ -1,5 +1,7 @@
 <div align="center">
 
+<a href="https://github.com/TricretA"><img src="https://github.com/TricretA.png?size=240" width="110" height="110" alt="TricretA" /></a>
+
 # Zafiro Autonomous
 
 ### An AI team that runs your phone, day and night.
@@ -214,4 +216,4 @@ Bug reports and ideas are welcome through [issues](https://github.com/TricretA/m
 
 Released under the [MIT License](LICENSE). Zafiro was created by [niki914](https://github.com/niki914/zafiro); this fork keeps the original license and credits. Bundled skills keep their own licenses (see [NOTICE](NOTICE)).
 
-Maintained by [TricretA](https://tricreta.co.ke).
+Maintained by [TricretA](https://github.com/TricretA) · [tricreta.co.ke](https://tricreta.co.ke).
