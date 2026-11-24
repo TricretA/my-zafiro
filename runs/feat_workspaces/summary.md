@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; only 904 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: assembleDebug failed; only 1492 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45391496313
-- GITHUB_SHA: 4d09c72617d4a41460c92d8990bcdaee20c892dd
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45393058090
+- GITHUB_SHA: 1b0ed0c85c910679806bb4e0b21957b536b767f7
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
@@ -13,50 +13,45 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 904 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 1492 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
 
 ## assemble: key error lines
 ```
-> Task :agent-runtime:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:30:83 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:41:68 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:43:58 Unresolved reference 'AppName'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:44:16 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
+> Task :app:compileDebugKotlin FAILED
 * What went wrong:
-Execution failed for task ':agent-runtime:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
-BUILD FAILED in 3m 4s
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 6m 5s
 ```
 ## unit_tests: key error lines
 ```
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:30:83 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:41:68 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:43:58 Unresolved reference 'AppName'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:44:16 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-> Task :agent-runtime:compileDebugKotlin FAILED
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
 * What went wrong:
-Execution failed for task ':agent-runtime:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
-BUILD FAILED in 1m 47s
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 4m 30s
 ```
 ## lint: key error lines
 ```
-> Task :agent-runtime:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:30:83 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:41:68 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:43:58 Unresolved reference 'AppName'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/impl/LegacyOpenBuiltins.kt:44:16 Return type mismatch: expected 'BuiltinToolResult', actual 'TextToolResult'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/AboutSettingsContent.kt:156:21 Type 'MutableState<Boolean>' has no method 'setValue(Nothing?, KMutableProperty0<*>, Boolean)', so it cannot serve as a delegate for var (read-write property).
+> Task :app:compileDebugKotlin FAILED
+> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
 * What went wrong:
-Execution failed for task ':agent-runtime:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-BUILD FAILED in 2m 1s
+BUILD FAILED in 3m 17s
 ```
