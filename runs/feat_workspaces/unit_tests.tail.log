@@ -1,17 +1,3 @@
-> Task :libs:libterm-backend-libsu:processDebugManifest UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-backend-shizuku:processDebugManifest UP-TO-DATE
-> Task :libs:libterm-backend-ssh:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-backend-ssh:processDebugManifest UP-TO-DATE
-> Task :libs:libterm-runtime:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:libterm-runtime:processDebugManifest UP-TO-DATE
-> Task :libs:logging:processAndroidMainManifest UP-TO-DATE
-> Task :libs:okia:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:okia:processDebugManifest UP-TO-DATE
-> Task :libs:shizuku:extractDeepLinksDebug UP-TO-DATE
-> Task :libs:shizuku:processDebugManifest UP-TO-DATE
-> Task :app:processDebugMainManifest UP-TO-DATE
-> Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
 > Task :remote-view:mapDebugSourceSetPaths UP-TO-DATE
 > Task :remote-view:compileDebugLibraryResources UP-TO-DATE
@@ -111,8 +97,8 @@
 > Task :app:packageDebugUnitTestForUnitTest
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest7933463164581070100.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest7933463164581070100.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest2589351745581099151.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest2589351745581099151.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:generateDebugUnitTestConfig
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -139,6 +125,7 @@
 > Task :store:preDebugUnitTestBuild UP-TO-DATE
 > Task :remote-view:generateDebugUnitTestStubRFile
 > Task :store:generateDebugUnitTestStubRFile
+> Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :store:compileDebugUnitTestKotlin
 > Task :store:javaPreCompileDebugUnitTest
 > Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -146,10 +133,23 @@
 > Task :remote-view:compileDebugUnitTestKotlin
 > Task :app:kspDebugUnitTestKotlin
 > Task :store:testDebugUnitTest
-> Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :remote-view:processDebugUnitTestJavaRes
 > Task :remote-view:testDebugUnitTest
+> Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
+> Task :ui-kit:javaPreCompileDebugUnitTest
+> Task :voice:preDebugUnitTestBuild UP-TO-DATE
+> Task :ui-kit:generateDebugUnitTestStubRFile
+> Task :voice:generateDebugUnitTestStubRFile
+> Task :ui-kit:compileDebugUnitTestKotlin
+> Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :ui-kit:processDebugUnitTestJavaRes
+> Task :voice:compileDebugUnitTestKotlin
+> Task :ui-kit:testDebugUnitTest
+> Task :voice:javaPreCompileDebugUnitTest
+> Task :voice:processDebugUnitTestJavaRes
+> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :voice:testDebugUnitTest
 > Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :agent-runtime:processDebugUnitTestJavaRes
 
