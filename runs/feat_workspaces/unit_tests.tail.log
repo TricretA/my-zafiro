@@ -1,3 +1,5 @@
+> Task :libs:libterm-backend-libsu:processDebugManifest UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:processDebugManifest UP-TO-DATE
 > Task :libs:libterm-backend-ssh:extractDeepLinksDebug UP-TO-DATE
 > Task :libs:libterm-backend-ssh:processDebugManifest UP-TO-DATE
@@ -52,16 +54,16 @@
 > Task :app:processDebugResources UP-TO-DATE
 > Task :app:bundleDebugClassesToRuntimeJar
 > Task :app:preDebugUnitTestBuild UP-TO-DATE
-> Task :app:bundleDebugClassesToCompileJar
 > Task :app:javaPreCompileDebugUnitTest
+> Task :accessibility:generateDebugAssets UP-TO-DATE
+> Task :accessibility:mergeDebugAssets UP-TO-DATE
+> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :agent-runtime:generateDebugPythonMiscAssets UP-TO-DATE
 > Task :accessibility:compileDebugUnitTestKotlin
 > Task :accessibility:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :accessibility:processDebugUnitTestJavaRes
 > Task :accessibility:testDebugUnitTest
-> Task :accessibility:generateDebugAssets UP-TO-DATE
-> Task :accessibility:mergeDebugAssets UP-TO-DATE
-> Task :agent-runtime:generateDebugAssets UP-TO-DATE
-> Task :agent-runtime:generateDebugPythonMiscAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonRequirementsAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonSourceAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonBuildAssets UP-TO-DATE
@@ -109,8 +111,8 @@
 > Task :app:packageDebugUnitTestForUnitTest
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest14364919380613874919.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest14364919380613874919.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest7933463164581070100.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest7933463164581070100.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:generateDebugUnitTestConfig
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -141,8 +143,8 @@
 > Task :store:javaPreCompileDebugUnitTest
 > Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :store:processDebugUnitTestJavaRes
-> Task :app:kspDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestKotlin
+> Task :app:kspDebugUnitTestKotlin
 > Task :store:testDebugUnitTest
 > Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -156,5 +158,3 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/za
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:147:19 Java type mismatch: inferred type is 'File?', but 'File' was expected.
 
 > Task :agent-runtime:testDebugUnitTest
-> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :app:processDebugUnitTestJavaRes

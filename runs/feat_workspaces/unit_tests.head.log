@@ -110,23 +110,23 @@ Solutions:
 > Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-libsu:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-shizuku:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-ssh:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-runtime:processDebugJavaRes UP-TO-DATE
 > Task :libs:logging:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
 > Task :libs:logging:processAndroidMainJavaRes UP-TO-DATE
 > Task :libs:shizuku:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:shizuku:processDebugJavaRes UP-TO-DATE
 > Task :xsettings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :accessibility:generateDebugUnitTestStubRFile
 > Task :xsettings:compileKotlin UP-TO-DATE
 > Task :xsettings:compileJava NO-SOURCE
 > Task :xsettings:processResources NO-SOURCE
 > Task :xsettings:classes UP-TO-DATE
 > Task :xsettings:jar UP-TO-DATE
-> Task :accessibility:generateDebugUnitTestStubRFile
 > Task :agent-runtime:extractDebugPythonBuildPackages UP-TO-DATE
 > Task :agent-runtime:installDebugPythonRequirements UP-TO-DATE
 > Task :agent-runtime:mergeDebugPythonSources UP-TO-DATE
@@ -212,7 +212,6 @@ Solutions:
 > Task :libs:okia:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:okia:processDebugJavaRes UP-TO-DATE
 > Task :autonomy:core:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :autonomy:core:compileKotlin UP-TO-DATE
 > Task :autonomy:core:compileJava NO-SOURCE
 > Task :autonomy:core:processResources NO-SOURCE
@@ -221,6 +220,7 @@ Solutions:
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :app:compileDebugAidl NO-SOURCE
+> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :app:generateDebugBuildConfig UP-TO-DATE
 > Task :app:generateDebugResources UP-TO-DATE
 > Task :app:packageDebugResources UP-TO-DATE
@@ -452,16 +452,16 @@ Solutions:
 > Task :app:processDebugResources UP-TO-DATE
 > Task :app:bundleDebugClassesToRuntimeJar
 > Task :app:preDebugUnitTestBuild UP-TO-DATE
-> Task :app:bundleDebugClassesToCompileJar
 > Task :app:javaPreCompileDebugUnitTest
+> Task :accessibility:generateDebugAssets UP-TO-DATE
+> Task :accessibility:mergeDebugAssets UP-TO-DATE
+> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :agent-runtime:generateDebugPythonMiscAssets UP-TO-DATE
 > Task :accessibility:compileDebugUnitTestKotlin
 > Task :accessibility:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :accessibility:processDebugUnitTestJavaRes
 > Task :accessibility:testDebugUnitTest
-> Task :accessibility:generateDebugAssets UP-TO-DATE
-> Task :accessibility:mergeDebugAssets UP-TO-DATE
-> Task :agent-runtime:generateDebugAssets UP-TO-DATE
-> Task :agent-runtime:generateDebugPythonMiscAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonRequirementsAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonSourceAssets UP-TO-DATE
 > Task :agent-runtime:generateDebugPythonBuildAssets UP-TO-DATE
@@ -509,8 +509,8 @@ Solutions:
 > Task :app:packageDebugUnitTestForUnitTest
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest14364919380613874919.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest14364919380613874919.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest7933463164581070100.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest7933463164581070100.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:generateDebugUnitTestConfig
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -541,8 +541,8 @@ Solutions:
 > Task :store:javaPreCompileDebugUnitTest
 > Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :store:processDebugUnitTestJavaRes
-> Task :app:kspDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestKotlin
+> Task :app:kspDebugUnitTestKotlin
 > Task :store:testDebugUnitTest
 > Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -556,5 +556,3 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/za
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:147:19 Java type mismatch: inferred type is 'File?', but 'File' was expected.
 
 > Task :agent-runtime:testDebugUnitTest
-> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :app:processDebugUnitTestJavaRes

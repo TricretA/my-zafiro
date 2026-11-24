@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: only 584 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: only 59 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45397693077
-- GITHUB_SHA: c58c0346e991993086e1c5db0a0b9eb40ae1ae5e
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45399096068
+- GITHUB_SHA: 5b91cfc463abde8e4f4f8cc055a98f433461657d
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
@@ -13,6 +13,6 @@
 | unit_tests | cancelled |
 | lint | skipped |
 
-Unit tests: 584 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 59 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
 
