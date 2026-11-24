@@ -1,59 +1,62 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: assembleDebug failed; only 904 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/43732346997
-- GITHUB_SHA: c87bec86a4ed56d4b2ad20c377dd6ebe61979f3b
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45389944619
+- GITHUB_SHA: e7cf6bf8e6dac49256d3a18b61022da80757052b
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
+| assemble | failure |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2021 run, 6 failed (6 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 904 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## Known upstream failures (also fail on pristine upstream)
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
+## assemble: key error lines
+```
+> Task :agent-runtime:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:15:53 Unresolved reference 'LaunchAppBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:27:53 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:66:17 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:67:17 Unresolved reference 'LaunchAppBuiltin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
+BUILD FAILED in 3m 35s
+```
 ## unit_tests: key error lines
 ```
-ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
-TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
-> Task :app:testDebugUnitTest FAILED
+> Task :agent-runtime:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:15:53 Unresolved reference 'LaunchAppBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:27:53 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:66:17 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:67:17 Unresolved reference 'LaunchAppBuiltin'.
 * What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m
+Execution failed for task ':agent-runtime:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
+BUILD FAILED in 2m
 ```
 ## lint: key error lines
 ```
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:15:53 Unresolved reference 'LaunchAppBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:27:53 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:66:17 Unresolved reference 'OpenUriBuiltin'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/buildin/BuiltinToolRegistry.kt:67:17 Unresolved reference 'LaunchAppBuiltin'.
+> Task :agent-runtime:compileDebugKotlin FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
-> Task :agent-runtime:lintDebug FAILED
-> Task :app:lintDebug FAILED
+* What went wrong:
+Execution failed for task ':agent-runtime:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugKotlin'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
 * What went wrong:
 Execution failed for task ':business:notification:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 50s
+BUILD FAILED in 2m 32s
 ```
