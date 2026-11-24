@@ -1,1 +1,1 @@
-FAIL: 15 NEW test failure(s)
+FAIL: only 584 tests ran (minimum 1860) - a module probably failed to compile
