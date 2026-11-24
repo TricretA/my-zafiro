@@ -62,7 +62,7 @@ class ShizukuVirtualDisplayService : IShizukuVirtualDisplayService.Stub() {
             createDisplay(surface, width, height, dpi, trusted = false)
         } catch (error: Exception) { // githooks:ignore bare-catch 保护跨进程服务不因未知图形异常崩溃
             Logger.e(TAG, "Virtual display fallback rejected", error)
-            -1
+            createMinimal(surface, width, height, dpi)
         }
     }
 
@@ -147,6 +147,21 @@ class ShizukuVirtualDisplayService : IShizukuVirtualDisplayService.Stub() {
         displays[id] = display
         setImePolicy(id)
         return id
+    }
+
+    private fun createMinimal(surface: Surface, width: Int, height: Int, dpi: Int): Int {
+        return try {
+            val flags = (1 shl 0) or (1 shl 3) or (1 shl 6)
+            val display = displayManager.createVirtualDisplay(DISPLAY_NAME, width, height, dpi, surface, flags)
+                ?: return -1
+            val id = display.display.displayId
+            displays[id] = display
+            setImePolicy(id)
+            id
+        } catch (error: Exception) { // githooks:ignore bare-catch 保护跨进程服务不因未知图形异常崩溃
+            Logger.e(TAG, "Minimal virtual display rejected", error)
+            -1
+        }
     }
 
     private fun setImePolicy(displayId: Int) {

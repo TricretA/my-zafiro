@@ -29,7 +29,7 @@ internal class RealShizukuClient(
 
     @Suppress("DEPRECATION")
     override val isInstalled: Boolean
-        get() = runCatchingCancellable {
+        get() = isBinderAlive || runCatchingCancellable {
             val ctx = context ?: findApplicationContext()
             if (ctx != null) {
                 ctx.packageManager.getPackageInfo(ShizukuProvider.MANAGER_APPLICATION_ID, 0)

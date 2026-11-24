@@ -47,7 +47,15 @@ internal fun VirtualDisplayPageRoute(
             when (effect) {
                 VirtualDisplayEffect.CreatedAndClose -> onBack()
                 is VirtualDisplayEffect.Failed -> {
-                    ZafiroToast.show(R.string.ui_virtual_display_create_failed)
+                    ZafiroToast.show(
+                        when (effect.code) {
+                            "SHIZUKU_UNAVAILABLE" -> R.string.ui_virtual_display_err_shizuku
+                            "ACCESSIBILITY_UNAVAILABLE", "SERVICE_NOT_CONNECTED" ->
+                                R.string.ui_virtual_display_err_accessibility
+                            "DISPLAY_FAILED" -> R.string.ui_virtual_display_err_display
+                            else -> R.string.ui_virtual_display_create_failed
+                        }
+                    )
                 }
             }
         }

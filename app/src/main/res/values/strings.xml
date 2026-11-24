@@ -55,6 +55,9 @@
     <string name="ui_virtual_display_recent_apps">Recently used</string>
     <string name="ui_virtual_display_all_apps">All apps</string>
     <string name="ui_virtual_display_create_failed">Failed to create virtual display. Check permissions.</string>
+    <string name="ui_virtual_display_err_shizuku">Shizuku is not running or Zafiro has no Shizuku permission. Start Shizuku (wireless debugging), grant Zafiro access, then retry.</string>
+    <string name="ui_virtual_display_err_accessibility">Enable the Zafiro accessibility service (Settings > Accessibility) and the overlay permission, then retry.</string>
+    <string name="ui_virtual_display_err_display">Android refused to create the virtual display. Retry once; if it persists, restart Shizuku.</string>
     <string name="ui_virtual_display_app_in_use_on_main">This app is currently open on the main screen</string>
     <string name="ui_virtual_display_app_launch_failed">Failed to launch app on virtual display</string>
     <string name="ui_virtual_display_pick_app">Choose an app</string>
