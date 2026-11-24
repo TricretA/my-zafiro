@@ -1,18 +1,61 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; only 0 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45402150098
-- GITHUB_SHA: 1f4b5a23f8d4f3c531e9de570a2d1bac4b93a504
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45402337278
+- GITHUB_SHA: 947aab910ab0560efaf9b4effd9a5d507695536b
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | cancelled |
-| unit_tests | skipped |
-| lint | skipped |
+| assemble | success |
+| unit_tests | failure |
+| lint | failure |
 
-Unit tests: 0 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2159 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
+## unit_tests: key error lines
+```
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
+> Task :app:testDebugUnitTest FAILED
+* What went wrong:
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 9m 1s
+```
+## lint: key error lines
+```
+> Task :store:lintDebug FAILED
+> Task :business:notification:lintDebug FAILED
+> Task :agent-runtime:lintDebug FAILED
+> Task :app:lintDebug FAILED
+* What went wrong:
+Execution failed for task ':store:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
+* What went wrong:
+Execution failed for task ':business:notification:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':business:notification:lintDebug'.
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
+Execution failed for task ':app:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+BUILD FAILED in 3m 2s
+```
