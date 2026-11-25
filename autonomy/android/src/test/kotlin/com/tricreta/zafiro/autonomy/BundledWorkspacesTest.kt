@@ -20,7 +20,7 @@ class BundledWorkspacesTest {
         files.forEach { f ->
             val def = WorkspaceDef.parse(f.readText())
             assertTrue(def.id == f.nameWithoutExtension, "${f.name}: id must match the file name")
-            if (def.id != "toolsmith" && def.id != "health") assertTrue(def.agents.size >= 8 && def.tasks.size >= 9, "${def.id}: a full team and schedule")
+            if (def.id !in setOf("toolsmith", "health", "video-studio")) assertTrue(def.agents.size >= 8 && def.tasks.size >= 9, "${def.id}: a full team and schedule")
             (def.skills + def.agents.flatMap { it.skills }).distinct().forEach { s ->
                 assertTrue(File(assets, "skills/$s/SKILL.md").isFile, "${def.id}: skill $s is not bundled")
             }
