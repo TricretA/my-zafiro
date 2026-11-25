@@ -32,14 +32,16 @@ data class RoutineResult(
  */
 class RoutineEngine(
     private val screen: Screen,
-    private val pollMs: Long = 600,
-    private val settleMs: Long = 700,
+    private val pollMs: Long = 300,
+    private val settleMs: Long = 350,
+    private val changeWaitMs: Long = 1800,
+    private val changePollMs: Long = 150,
     private val sleep: suspend (Long) -> Unit = { delay(it) },
 ) {
     private class StepFailed(val reason: String) : Exception(reason)
 
     suspend fun run(id: String, steps: List<RoutineStep>, params: Map<String, String>): RoutineResult {
-        val startYaml = runCatching { screen.snapshot().yaml }.getOrDefault("")
+        val startSig = runCatching { ScreenCompact.signature(screen.snapshot()) }.getOrDefault("")
         var done = 0
         val collected = LinkedHashSet<String>()
         for ((i, raw) in steps.withIndex()) {
@@ -49,15 +51,15 @@ class RoutineEngine(
                 done++
             } catch (e: StepFailed) {
                 if (step.optional) { done++; continue }
-                return finish(id, false, done, steps.size, i + 1, "Step ${i + 1} (${step.op}${step.labels.firstOrNull()?.let { " \"$it\"" }.orEmpty()}): ${e.reason}", startYaml, collected)
+                return finish(id, false, done, steps.size, i + 1, "Step ${i + 1} (${step.op}${step.labels.firstOrNull()?.let { " \"$it\"" }.orEmpty()}): ${e.reason}", startSig, collected)
             }
         }
-        return finish(id, true, done, steps.size, null, "", startYaml, collected)
+        return finish(id, true, done, steps.size, null, "", startSig, collected)
     }
 
-    private suspend fun finish(id: String, ok: Boolean, done: Int, total: Int, failed: Int?, reason: String, startYaml: String, collected: Set<String>): RoutineResult {
+    private suspend fun finish(id: String, ok: Boolean, done: Int, total: Int, failed: Int?, reason: String, startSig: String, collected: Set<String>): RoutineResult {
         val snap = runCatching { screen.snapshot() }.getOrNull()
-        return RoutineResult(ok, id, done, total, failed, reason, snap != null && snap.yaml != startYaml, snap?.let { texts(it).take(EVIDENCE_LINES) }.orEmpty(), collected.toList().take(MAX_COLLECTED))
+        return RoutineResult(ok, id, done, total, failed, reason, snap != null && ScreenCompact.signature(snap) != startSig, snap?.let { texts(it).take(EVIDENCE_LINES) }.orEmpty(), collected.toList().take(MAX_COLLECTED))
     }
 
     private fun RoutineStep.substitute(p: Map<String, String>): RoutineStep {
@@ -102,24 +104,37 @@ class RoutineEngine(
             sleep(settleMs)
             val seen = screen.snapshot()
             val probe = s.text.trim().take(PROBE_LEN)
-            if (probe.isEmpty() || seen.yaml.contains(probe)) { expect(s); return }
+            if (probe.isEmpty() || flatten(seen.nodes).any { it.text.contains(probe) }) { expect(s); return }
             if (attempt == 1) throw StepFailed("typed text did not appear in the field (${(r as? ActResult.Failed)?.code ?: "no error"})")
         }
     }
 
-    /** Tap, then require the screen to change; one retry on a fresh tree; then a clear failure. */
+    /**
+     * Tap, then require the screen to CONTENT-change (node text/flags, not the per-read version); one retry on a fresh tree; then a clear failure.
+     * The tap's own result already carries the new screen, so a normal tap costs no extra read; we only poll when it looks unchanged.
+     */
     private suspend fun verifiedAct(first: Found) {
         var target = first
         repeat(2) { attempt ->
-            val before = screen.snapshot().yaml
+            val beforeSig = ScreenCompact.signature(target.snapshot)
             val r = act(ScreenAction.Tap(target.target()))
             if (r is ActResult.Failed && attempt == 1) throw StepFailed("tap failed: ${r.code}")
-            sleep(settleMs)
-            val after = screen.snapshot()
-            if (after.yaml != before) return
+            if (r is ActResult.Done && ScreenCompact.signature(r.snapshot) != beforeSig) return
+            if (awaitChange(beforeSig)) return
             if (attempt == 1) throw StepFailed("the screen did not change after tapping \"${target.label}\" (tried twice)")
             target = locate(listOf(target.label), editable = false) ?: throw StepFailed("\"${target.label}\" disappeared")
         }
+    }
+
+    /** Polls quickly (not a fixed sleep) until the screen content differs from [beforeSig] or the wait runs out. */
+    private suspend fun awaitChange(beforeSig: String): Boolean {
+        val tries = (changeWaitMs / changePollMs).toInt().coerceAtLeast(1)
+        repeat(tries) {
+            sleep(changePollMs)
+            val snap = runCatching { screen.snapshot() }.getOrNull() ?: return@repeat
+            if (ScreenCompact.signature(snap) != beforeSig) return true
+        }
+        return false
     }
 
     private suspend fun expect(s: RoutineStep) {

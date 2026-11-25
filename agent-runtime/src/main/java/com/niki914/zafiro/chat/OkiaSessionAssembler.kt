@@ -28,6 +28,7 @@ import com.niki914.zafiro.chat.agentic.python.PyRuntime
 import com.niki914.zafiro.chat.agentic.shell.SessionRegistry
 import com.niki914.zafiro.chat.agentic.shell.TerminalSessionPool
 import com.niki914.zafiro.chat.compaction.ContextPruner
+import com.niki914.zafiro.chat.compaction.HistoryScrubber
 import com.niki914.zafiro.envcontext.DeviceStateProvider
 import com.niki914.zafiro.envcontext.DeviceStateSnapshot
 import com.niki914.zafiro.envcontext.EnvContextInjectionHook
@@ -98,6 +99,10 @@ internal class OkiaSessionAssembler(
                         LOG_TAG,
                         "compactPruningHook pruned: ${request.history.size} -> ${outcome.messages.size} (dropped ${outcome.prunedCount})"
                     )
+                }
+                val lean = HistoryScrubber.scrub(request.history)
+                if (lean !== request.history) {
+                    request.write(request.snapshot, lean, "history_scrub")
                 }
             }
         }

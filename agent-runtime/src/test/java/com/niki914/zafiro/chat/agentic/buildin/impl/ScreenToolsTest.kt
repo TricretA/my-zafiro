@@ -44,6 +44,7 @@ class ScreenToolsTest {
 
     @Before
     fun setUp() {
+        ScreenVersions.clear()
         ServiceRegistry.clearForTest()
         ContextProvider.clearForTest()
         screen = RecordingScreen(phone, listOf(node(3, "微信"), node(4, "设置")))
@@ -58,12 +59,15 @@ class ScreenToolsTest {
     }
 
     @Test
-    fun readReturnsThatScreensYaml() = runTest {
+    fun readReturnsCompactScreenAndFullOnRequest() = runTest {
         val result = invokeOperation("""{"screen":"phone","operation":"read"}""")
 
         assertEquals(TextToolResult.Status.Success, result.status)
-        assertEquals("tree", result.payload)
-        assertEquals(1, screen.snapshots)
+        assertTrue(result.payload.startsWith("app:"))
+        assertTrue(result.payload.contains("[3]"))
+        val full = invokeOperation("""{"screen":"phone","operation":"read","format":"full"}""")
+        assertEquals("tree", full.payload)
+        assertEquals(2, screen.snapshots)
         assertNull(screen.action)
     }
 

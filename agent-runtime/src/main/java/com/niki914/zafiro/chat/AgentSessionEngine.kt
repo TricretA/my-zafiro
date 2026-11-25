@@ -173,8 +173,9 @@ class AgentSessionEngine {
         if (restore == null) {
             sessionAssembler.validateLlmConfig(llmConfig)
         }
-        contextWindowFlow.value = llmConfig.contextWindowTokens
-        compactor.thresholdRatio = llmConfig.compactionThresholdPercent / 100f
+        // A 1M-token window means a run can drag hundreds of thousands of tokens of history through every step. Cap what we use.
+        contextWindowFlow.value = minOf(llmConfig.contextWindowTokens, Compactor.EFFECTIVE_WINDOW_CAP)
+        compactor.thresholdRatio = minOf(llmConfig.compactionThresholdPercent, Compactor.MAX_THRESHOLD_PERCENT) / 100f
         Logger.i(
             LOG_TAG,
             "config read provider=${llmConfig.provider} model=${llmConfig.model} " +

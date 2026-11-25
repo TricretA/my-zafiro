@@ -38,6 +38,12 @@ class Compactor(
         /** 默认自动压缩触发阈值（窗口占用的 70%）。 */
         const val DEFAULT_THRESHOLD_RATIO = 0.70f
 
+        /** Largest context window we ever plan against (tokens). Providers advertise 1M; sending that much history every step is the main cost driver. */
+        const val EFFECTIVE_WINDOW_CAP = 200_000L
+
+        /** Highest compaction trigger (percent of the effective window). 60% of 200k = compact at ~120k. */
+        const val MAX_THRESHOLD_PERCENT = 60
+
         /** 默认保留的最近活跃轮次数。 */
         const val DEFAULT_KEEP_TURNS = 2
 

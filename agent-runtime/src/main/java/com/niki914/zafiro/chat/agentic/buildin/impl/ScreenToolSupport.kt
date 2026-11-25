@@ -4,6 +4,7 @@ import com.niki914.zafiro.api.screen.ActResult
 import com.niki914.zafiro.api.screen.Screen
 import com.niki914.zafiro.api.screen.ScreenId
 import com.niki914.zafiro.api.screen.ScreenSnapshot
+import com.niki914.zafiro.chat.agentic.routine.ScreenCompact
 import com.niki914.zafiro.api.screen.Screens
 import com.niki914.zafiro.api.screen.SemanticToken
 import com.niki914.zafiro.api.screen.ShowResult
@@ -133,7 +134,7 @@ internal fun actToText(result: ActResult): TextToolResult {
         is ActResult.Failed -> TextToolResult.failure(
             code = result.code,
             message = result.code,
-            payload = result.snapshot?.yaml.orEmpty(),
+            payload = result.snapshot?.let { renderSnapshot(it) }.orEmpty(),
         )
     }
 }
@@ -159,12 +160,38 @@ internal fun showToText(result: ShowResult): TextToolResult {
     }
 }
 
+/** Last snapshot version handed to the model per screen, so a bare node number in `token` can be resolved. */
+internal object ScreenVersions {
+    private val versions = java.util.concurrent.ConcurrentHashMap<String, String>()
+    private val signatures = java.util.concurrent.ConcurrentHashMap<String, String>()
+    fun remember(screen: String, version: String) { versions[screen] = version }
+    fun current(screen: String): String? = versions[screen]
+
+    /** True when the screen content is identical to what the model was last shown for this screen. */
+    fun unchanged(screen: String, signature: String): Boolean {
+        val prev = signatures.put(screen, signature)
+        return prev != null && prev == signature
+    }
+
+    fun clear() { versions.clear(); signatures.clear() }
+}
+
+internal fun renderSnapshot(snapshot: ScreenSnapshot, full: Boolean = false): String {
+    ScreenVersions.remember(snapshot.screen.value, snapshot.version)
+    val sig = ScreenCompact.signature(snapshot)
+    val same = ScreenVersions.unchanged(snapshot.screen.value, sig)
+    if (full) return snapshot.yaml
+    val body = ScreenCompact.format(snapshot)
+    return if (same) "(screen content unchanged since your last view; tokens: use index with this version)\n$body" else body
+}
+
 private fun payload(snapshot: ScreenSnapshot, tabs: List<TabInfo>?): String {
-    if (tabs == null) return snapshot.yaml
+    val head = renderSnapshot(snapshot)
+    if (tabs == null) return head
     val lines = tabs.joinToString("\n") { tab ->
         "${tab.tabId}\t${tab.active}\t${tab.url}\t${tab.title}"
     }
-    return snapshot.yaml + "\n---\n" + lines
+    return head + "\n---\n" + lines
 }
 
 private fun JsonElement?.asText(): String? {

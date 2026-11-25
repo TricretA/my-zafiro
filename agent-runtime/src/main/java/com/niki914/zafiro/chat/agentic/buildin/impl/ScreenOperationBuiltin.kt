@@ -40,7 +40,7 @@ class ScreenOperationBuiltin : TextResultBuiltinTool() {
         val callerConvId = currentAgentConversationId()
         val (screen, failure) = resolveScreenOrFailure(screens, id, callerConvId)
         if (failure != null || screen == null) return failure ?: unknownScreen(id)
-        return dispatch(screen, operation, args)
+        return dispatch(screen, operation, withResolvedToken(args, id.value))
     }
 
     private suspend fun dispatch(
@@ -49,7 +49,7 @@ class ScreenOperationBuiltin : TextResultBuiltinTool() {
         args: JsonObject,
     ): TextToolResult {
         return when (operation) {
-            "read" -> read(screen)
+            "read" -> read(screen, args.text("format") == "full")
             "search" -> search(screen, args)
             "tap" -> actOnTarget(screen, args) { ScreenAction.Tap(it) }
             "long_click" -> actOnTarget(screen, args) { ScreenAction.LongClick(it) }
@@ -113,7 +113,15 @@ class ScreenOperationBuiltin : TextResultBuiltinTool() {
         return actToText(screen.act(build(tabId)))
     }
 
-    private suspend fun read(screen: Screen): TextToolResult {
+    /** A bare node number ("12") means "node 12 of the screen version you were last shown". */
+    private fun withResolvedToken(args: JsonObject, screenId: String): JsonObject {
+        val raw = args.text("token") ?: return args
+        if (!raw.all { it.isDigit() }) return args
+        val version = ScreenVersions.current(screenId) ?: return args
+        return JsonObject(args + ("token" to kotlinx.serialization.json.JsonPrimitive("${version}_$raw")))
+    }
+
+    private suspend fun read(screen: Screen, full: Boolean = false): TextToolResult {
         val snapshot = try {
             screen.snapshot()
         } catch (error: CancellationException) {
@@ -121,7 +129,7 @@ class ScreenOperationBuiltin : TextResultBuiltinTool() {
         } catch (error: ScreenTreeUnavailable) {
             return captureFailure(error)
         }
-        return TextToolResult.success(snapshot.yaml)
+        return TextToolResult.success(renderSnapshot(snapshot, full))
     }
 
     private suspend fun search(screen: Screen, args: JsonObject): TextToolResult {
@@ -163,7 +171,11 @@ class ScreenOperationBuiltin : TextResultBuiltinTool() {
                 },
                 "token": {
                   "type": "string",
-                  "description": "Target node token '{version}_{index}' from the latest read snapshot (e.g. 'a3f2_42'). Required for set_text; preferred for tap, long_click, scroll_*."
+                  "description": "Target node: the number in [brackets] from the latest screen text (e.g. '12'), or the long form '{version}_{index}'. Required for set_text; preferred for tap, long_click, scroll_*. After any tap/type the result already contains the NEW screen: do not call read again."
+                },
+                "format": {
+                  "type": "string",
+                  "description": "read only: 'full' returns the verbose tree with bounds. Default is the compact list; use full only if compact hides what you need."
                 },
                 "x": {
                   "type": "number",
@@ -252,6 +264,7 @@ internal fun filterNodes(
 }
 
 internal fun searchPayload(snapshot: ScreenSnapshot, hits: List<NodeInfo>): String {
+    ScreenVersions.remember(snapshot.screen.value, snapshot.version)
     val body = hits.joinToString("\n") { node -> "${node.index}\t${node.text}" }
     return "version: ${snapshot.version}\nscreen: ${snapshot.screen.value}\n$body"
 }
