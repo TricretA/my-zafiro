@@ -108,10 +108,10 @@ Solutions:
 > Task :accessibility:preDebugUnitTestBuild UP-TO-DATE
 > Task :accessibility:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-libsu:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:processDebugJavaRes UP-TO-DATE
+> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-ssh:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug UP-TO-DATE
@@ -121,12 +121,12 @@ Solutions:
 > Task :libs:shizuku:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:shizuku:processDebugJavaRes UP-TO-DATE
 > Task :xsettings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :accessibility:generateDebugUnitTestStubRFile
 > Task :xsettings:compileKotlin UP-TO-DATE
 > Task :xsettings:compileJava NO-SOURCE
 > Task :xsettings:processResources NO-SOURCE
 > Task :xsettings:classes UP-TO-DATE
 > Task :xsettings:jar UP-TO-DATE
-> Task :accessibility:generateDebugUnitTestStubRFile
 > Task :agent-runtime:extractDebugPythonBuildPackages UP-TO-DATE
 > Task :agent-runtime:installDebugPythonRequirements UP-TO-DATE
 > Task :agent-runtime:mergeDebugPythonSources UP-TO-DATE
@@ -505,8 +505,8 @@ Solutions:
 > Task :app:packageDebugUnitTestForUnitTest
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest13552628603708989776.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest13552628603708989776.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest11405730001740033327.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest11405730001740033327.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:generateDebugUnitTestConfig
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -530,32 +530,33 @@ Solutions:
 > Task :business:remote:processDebugJavaRes UP-TO-DATE
 > Task :remote-view:preDebugUnitTestBuild UP-TO-DATE
 > Task :remote-view:generateDebugUnitTestStubRFile
+> Task :remote-view:compileDebugUnitTestKotlin
+> Task :remote-view:javaPreCompileDebugUnitTest
+> Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :accessibility:compileDebugUnitTestKotlin
+> Task :remote-view:processDebugUnitTestJavaRes
 > Task :accessibility:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :accessibility:processDebugUnitTestJavaRes
-> Task :remote-view:compileDebugUnitTestKotlin
 > Task :accessibility:testDebugUnitTest
-> Task :remote-view:javaPreCompileDebugUnitTest
-> Task :remote-view:processDebugUnitTestJavaRes
-> Task :remote-view:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:kspDebugUnitTestKotlin
 > Task :remote-view:testDebugUnitTest
 > Task :store:preDebugUnitTestBuild UP-TO-DATE
 > Task :store:javaPreCompileDebugUnitTest
 > Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
 > Task :store:generateDebugUnitTestStubRFile
 > Task :ui-kit:generateDebugUnitTestStubRFile
+> Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :ui-kit:compileDebugUnitTestKotlin
 > Task :ui-kit:javaPreCompileDebugUnitTest
 > Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :ui-kit:processDebugUnitTestJavaRes
-> Task :ui-kit:testDebugUnitTest
-> Task :voice:preDebugUnitTestBuild UP-TO-DATE
-> Task :voice:generateDebugUnitTestStubRFile
 > Task :store:compileDebugUnitTestKotlin
+> Task :ui-kit:testDebugUnitTest
 > Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :store:processDebugUnitTestJavaRes
-> Task :app:kspDebugUnitTestKotlin
 > Task :store:testDebugUnitTest
+> Task :voice:preDebugUnitTestBuild UP-TO-DATE
+> Task :voice:generateDebugUnitTestStubRFile
 > Task :voice:javaPreCompileDebugUnitTest
 > Task :xposed-api:preDebugUnitTestBuild UP-TO-DATE
 > Task :xposed-api:generateDebugUnitTestStubRFile
@@ -572,38 +573,37 @@ Solutions:
 > Task :xposed-runtime:processDebugUnitTestJavaRes NO-SOURCE
 > Task :xposed-runtime:testDebugUnitTest NO-SOURCE
 > Task :autonomy:android:preDebugUnitTestBuild UP-TO-DATE
-> Task :voice:compileDebugUnitTestKotlin
-> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :autonomy:android:checkDebugUnitTestAarMetadata
-> Task :voice:processDebugUnitTestJavaRes
-> Task :voice:testDebugUnitTest
 > Task :autonomy:android:mapDebugUnitTestSourceSetPaths
 > Task :autonomy:android:generateDebugUnitTestResources
+> Task :autonomy:android:mergeDebugUnitTestResources
 > Task :autonomy:android:processDebugUnitTestManifest
+> Task :autonomy:android:processDebugUnitTestResources
+> Task :voice:compileDebugUnitTestKotlin
+> Task :voice:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :voice:processDebugUnitTestJavaRes
+> Task :autonomy:android:kspDebugUnitTestKotlin
+> Task :voice:testDebugUnitTest
 > Task :autonomy:android:javaPreCompileDebugUnitTest
 > Task :autonomy:android:generateDebugUnitTestAssets UP-TO-DATE
 > Task :autonomy:android:mergeDebugUnitTestAssets
-> Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
-> Task :autonomy:android:mergeDebugUnitTestResources
-> Task :business:agent:generateDebugUnitTestStubRFile
-> Task :autonomy:android:processDebugUnitTestResources
-> Task :agent-runtime:compileDebugUnitTestKotlin
-> Task :autonomy:android:kspDebugUnitTestKotlin
-> Task :business:agent:compileDebugUnitTestKotlin
 > Task :autonomy:android:packageDebugUnitTestForUnitTest
 > Task :autonomy:android:generateDebugUnitTestConfig
-> Task :business:agent:javaPreCompileDebugUnitTest
-> Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:agent:processDebugUnitTestJavaRes
+> Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:agent:generateDebugUnitTestStubRFile
 > Task :autonomy:android:compileDebugUnitTestKotlin
+> Task :autonomy:android:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :autonomy:android:processDebugUnitTestJavaRes
+> Task :business:agent:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestKotlin
+> Task :autonomy:android:testDebugUnitTest
+> Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :agent-runtime:processDebugUnitTestJavaRes
 
 > Task :app:compileDebugUnitTestKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:142:24 Java type mismatch: inferred type is 'String?', but 'String' was expected.
 w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/app/util/PermissionEntryGuardTest.kt:147:19 Java type mismatch: inferred type is 'File?', but 'File' was expected.
 
-> Task :business:agent:testDebugUnitTest
-> Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :agent-runtime:processDebugUnitTestJavaRes
 > Task :agent-runtime:testDebugUnitTest
 > Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :app:processDebugUnitTestJavaRes
@@ -634,9 +634,10 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 667 tests completed, 7 failed
 
 > Task :app:testDebugUnitTest FAILED
-> Task :autonomy:android:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :autonomy:android:processDebugUnitTestJavaRes
-> Task :autonomy:android:testDebugUnitTest
+> Task :business:agent:javaPreCompileDebugUnitTest
+> Task :business:agent:processDebugUnitTestJavaRes
+> Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :business:agent:testDebugUnitTest
 > Task :business:application:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:files:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:javaPreCompileDebugUnitTest
@@ -648,12 +649,12 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 > Task :business:application:testDebugUnitTest NO-SOURCE
 > Task :business:notification:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:files:javaPreCompileDebugUnitTest
-> Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:notification:generateDebugUnitTestStubRFile
 > Task :business:notification:javaPreCompileDebugUnitTest
+> Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:permission:generateDebugUnitTestStubRFile
 > Task :business:permission:javaPreCompileDebugUnitTest
 > Task :business:remote:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:permission:generateDebugUnitTestStubRFile
-> Task :business:notification:generateDebugUnitTestStubRFile
 > Task :business:remote:generateDebugUnitTestStubRFile
 > Task :business:files:compileDebugUnitTestKotlin
 > Task :business:files:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -663,43 +664,43 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 > Task :business:files:testDebugUnitTest
 > Task :business:notification:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:notification:processDebugUnitTestJavaRes
+> Task :business:notification:testDebugUnitTest
+> Task :business:permission:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :business:permission:processDebugUnitTestJavaRes
 
 > Task :business:remote:compileDebugUnitTestKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:93:51 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:99:43 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
 
-> Task :business:notification:testDebugUnitTest
-> Task :business:permission:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:permission:processDebugUnitTestJavaRes
 > Task :business:permission:testDebugUnitTest
 > Task :business:remote:javaPreCompileDebugUnitTest
 > Task :business:remote:processDebugUnitTestJavaRes
 > Task :business:remote:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:remote:testDebugUnitTest
 > Task :libs:libterm-backend-libsu:preDebugUnitTestBuild UP-TO-DATE
+> Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-libsu:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-libsu:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
+> Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:javaPreCompileDebugUnitTest
-> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-ssh:javaPreCompileDebugUnitTest
 > Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
+> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-runtime:generateDebugUnitTestStubRFile
-> Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
-> Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestKotlin
-> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
-> Task :libs:libterm-runtime:compileDebugUnitTestKotlin
-> Task :libs:libterm-backend-ssh:testDebugUnitTest
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
+> Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
+> Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
+> Task :libs:libterm-runtime:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-libsu:testDebugUnitTest
 > Task :libs:libterm-backend-shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-shizuku:processDebugUnitTestJavaRes
 > Task :libs:libterm-backend-shizuku:testDebugUnitTest
+> Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
+> Task :libs:libterm-backend-ssh:testDebugUnitTest
 > Task :libs:libterm-runtime:javaPreCompileDebugUnitTest
 > Task :libs:libterm-runtime:processDebugUnitTestJavaRes
 > Task :libs:libterm-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -714,8 +715,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/
 > Task :libs:shizuku:compileDebugUnitTestKotlin
 > Task :libs:shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:shizuku:processDebugUnitTestJavaRes
-> Task :libs:shizuku:testDebugUnitTest
 > Task :autonomy:core:compileTestKotlin
+> Task :libs:shizuku:testDebugUnitTest
 > Task :autonomy:core:compileTestJava NO-SOURCE
 > Task :autonomy:core:testClasses UP-TO-DATE
 > Task :autonomy:core:test
@@ -734,7 +735,7 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki
 > Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:okia:processDebugUnitTestJavaRes
 > Task :libs:okia:testDebugUnitTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795596119290.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795598328587.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
 
@@ -888,5 +889,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 9m 2s
+BUILD FAILED in 9m 36s
 507 actionable tasks: 117 executed, 390 up-to-date
