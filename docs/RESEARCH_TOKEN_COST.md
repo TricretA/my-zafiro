@@ -80,6 +80,50 @@ history trimming. Honest reading: **nobody has a published, independent, apples-
 (2) *not re-sending old snapshots* / writing reusable code. Scores are roughly tied, so cost and speed are the
 differentiators, exactly your three criteria.
 
+### 3.6 Google Artemis (github.com/google/artemis) — the most relevant find [PRIMARY: README + config/artemis.jsonc]
+Exists, Apache-2.0, ~18.1k stars, Python 3.12+, Android only. **Runs on a PC over ADB; on-device is only a roadmap item.**
+- **See:** its own *Accessibility Helper* app (accessibility service, local-only) -> indexed `[n]` element list; UIAutomator2 fallback;
+  OCR + vision model for Canvas/Compose/Flutter screens; screenshots only where needed. **Act:** ADB; consecutive taps batched
+  into one `click_sequence`. This is essentially our architecture (a11y tree + indices), run from a PC.
+- **Two profiles:** *Flash* = one model, observe-think-act, "~3–5 s/step", no turn cap; *Pro* = Planner/Operator/Checker
+  multi-agent with pre-action safety net and final verification, "~15–40 s/step" (README figures, unmeasured by me).
+- **Token control (this is the part we lack), from `config/artemis.jsonc`:**
+  - total context budget **80,000 tokens** (ours: 1,000,000); compression starts at 35% of budget, soft 70%, hard 90%;
+  - `xml_scrub_depth: 1` — **older UI element lists are dropped as soon as a newer observation exists** (exactly Tier-1 item 2);
+  - `image_scrub_depth: 3` — old screenshots replaced *in place* by short visual summaries, never restored;
+  - completed steps compressed into searchable **history chunks** (~2,000 source tokens each, max 8) with `search_history`
+    and `replay_steps` recall tools; step summaries written by a **separate cheap model** (`gemini-3.5-flash-lite`);
+  - a perceptual-hash "screen looks unchanged" hint so the agent doesn't act on a stale screen.
+- **Cost reality:** no dollar or tokens-per-task figures published; has a `token_meter` service. The "99%+ on AndroidWorld"
+  claim gives no model, step cap or run count in the README — treat as unverified. (Minitap's `mobile-use`, Apache-2.0, claims
+  100% on AndroidWorld via multi-agent task decomposition, arXiv 2602.07787; Artemis credits portions of it. Google's
+  attribution dispute could not be confirmed from the pages I read; open issue #113 says its NOTICE file is missing.)
+- **No cross-run reuse:** replay is within a session only; no skill library or recorded-routine feature is documented.
+  So the "scripts that run for free" idea (3.4) is something Artemis does **not** do — it would be our differentiator.
+- **Verdict:** best reference design for *context hygiene*. Not adoptable as-is for us: it is a PC-side Python tool, we run on
+  the phone, unattended. License is permissive, so **ideas and config values can be copied (Apache-2.0, with NOTICE)**.
+  Copyable now: the scrub-depth policy, the 80k budget with soft/hard thresholds, chunked history + recall tools, the cheap
+  summarizer model, click batching, stale-screen hint.
+
+### 3.7 Verification of the list from Google's AI answer (each repo fetched; none taken on trust)
+All 10 repos it named exist, **but its summary is partly misleading**:
+| Repo | Reality [PRIMARY] |
+|---|---|
+| bytedance/UI-TARS-desktop | exists, **archived 2026-11-09** (read-only); screenshot + VLM; desktop only |
+| bytebot-ai/bytebot | exists, **archived 2026-03-07**; Docker Ubuntu desktop; screenshots; desktop only |
+| microsoft/Hybrid-Computer-Use | exists, 72★, MIT; **desktop only** (not phones); AX tree + screenshots hybrid; reports **~46–59% lower cost vs a screenshot baseline** on OSWorld/WindowsAgentArena (relative, authors' own benchmark) — useful evidence that hybrid beats screenshots-only |
+| suitedaces/computer-agent | exists, desktop only, screenshots, needs Anthropic key |
+| vercel-labs/agent-desktop | exists, Rust, Apache-2.0, 26.6k★; **desktop only**; a11y tree JSON with refs, no model inside |
+| droidrun/mobilerun | exists (see 3.1); the only one in this list that runs real Android with tree+vision |
+| Tencent/AppAgent | exists (see 3.1) |
+| Core-Mate/OpenGUI | exists, 1.8k★, Kotlin Android agent (AccessibilityService + screenshots) — **license BUSL-1.1: not open source until 2030; commercial use needs a paid licence. Do not copy code** |
+| JosssphZhou/poki | exists, iPhone only, **AGPL-3.0** |
+| phoneuse-official/phoneuse | exists, 123★, iPhone over USB (WebDriverAgent), experimental |
+| askui/vision-agent | exists (renamed `python-sdk`), vision-first, MIT |
+| sagerpascal/computer-control-agents | **deprecated** awesome-list of papers, not an agent |
+Its general claims (tree vs screenshot vs hybrid; ADB / accessibility / WDA) match what we found. It says nothing about token cost
+or history trimming, which is the thing that matters to you.
+
 ### 3.3 "Give the agent eyes" and Agent-Reach (read-only) [PRIMARY]
 Agent-Reach (MIT) is a CLI/skill wrapping existing tools (yt-dlp, Jina Reader, Exa, bili-cli, OpenCLI…).
 Channels: GitHub, YouTube, web, V2EX, Bilibili (default); Reddit, LinkedIn, Xiaohongshu… (login); Twitter/X, Facebook,
@@ -119,9 +163,9 @@ Ordered by money saved per effort. Tiers are tried top to bottom, cheapest first
 counts usage; add a per-step trace in the run view). Run the 4-platform post once and look. Without this every number
 above is a guess.
 
-**Tier 1 — Stop the bleeding (small, mostly config/prompt):**
+**Tier 1 — Stop the bleeding (small, mostly config/prompt). Artemis's published config validates this tier: it keeps only the newest UI element list, replaces old screenshots with summaries, and runs on an 80k-token budget:**
 1. Make `read` return a *compact* tree: interactive/text nodes only, short refs (`@12`), no pixel bounds, truncate text; add `read` modes `interactive` / `changed` (delta since last read). [ESTIMATE 3–6x smaller]
-2. **Clear stale tool results**: keep only the latest screen dump in context (Anthropic's documented "tool-result clearing" pattern). Biggest single win: converts quadratic growth to ~linear. Must be done carefully to keep the prompt cache prefix stable.
+2. **Clear stale tool results** (Artemis: `xml_scrub_depth: 1`): keep only the latest screen dump in context (Anthropic's documented "tool-result clearing" pattern). Biggest single win: converts quadratic growth to ~linear. Must be done carefully to keep the prompt cache prefix stable.
 3. Effective context cap for *scheduled runs* ~100–150k with compaction at ~60% (our setting `contextWindowTokens` is a per-config value; scheduled agents should not inherit 1M).
 4. Return the new screen (or a changed-nodes summary) from `act` so no extra `read` is needed.
 5. Allow **batched actions** in one call (list of taps/typing) to cut round-trips (this is the main fix for the 46 minutes).
@@ -159,7 +203,7 @@ bypassing platform audits or running accounts in ways that violate platform rule
 - Any independent benchmark of phone agents' token use; all published scores are self-reported.
 - Anthropic's exact current per-model prices and cache-read multipliers (sources conflict; check the pricing page).
 - Details of Mobilerun's tree format and Agent-Reach's per-channel tool mapping/output format.
-- The "Artemis" Google agent you mentioned — I found no such Google product; the closest are Project Mariner (Chrome) and Gemini 2.5 Computer Use. If you have a link, send it.
+- ~~"Artemis"~~ — **I was wrong earlier**: `github.com/google/artemis` exists (verified, section 3.6). My first search simply missed it.
 - The browser repo that "gives agents eyes": best match is browser-use `browser-harness` / `agent-browser`; confirm if you meant another.
 - Whether platform ToS tolerate this kind of automation (they generally restrict it; account bans are a real risk).
 
