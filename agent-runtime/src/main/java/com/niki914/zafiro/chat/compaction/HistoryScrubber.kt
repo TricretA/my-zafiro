@@ -45,7 +45,7 @@ object HistoryScrubber {
                 content = "[older screen omitted] " + content.lineSequence().firstOrNull().orEmpty().take(120)
             } else if (r.toolName == "load_skill" && i !in keepSkills) {
                 if (content.length > SKILL_STUB_CHARS) content = content.take(SKILL_STUB_CHARS) + "\n...[skill text trimmed; call load_skill again if you need it]"
-            } else if (i < recentFrom && content.length > OLD_RESULT_MAX_CHARS && r.toolName !in SCREEN_TOOLS) {
+            } else if (i < recentFrom && content.length > OLD_RESULT_MAX_CHARS && r.toolName !in SCREEN_TOOLS && r.toolName != "load_skill") {
                 content = content.take(OLD_RESULT_HEAD_CHARS) + "\n...[${content.length - OLD_RESULT_HEAD_CHARS} chars trimmed from an old result]"
             }
             if (images.isNotEmpty() && i != lastImageResult) images = emptyList()
