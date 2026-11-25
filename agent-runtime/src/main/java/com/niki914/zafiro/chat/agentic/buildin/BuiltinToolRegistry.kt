@@ -19,6 +19,7 @@ import com.niki914.zafiro.chat.agentic.buildin.impl.AgentBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ClipboardBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.LockScreenBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ComposeMessageBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.ShareFileBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.HttpRequestBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.TakeOverBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.DeviceInfoBuiltin
@@ -63,6 +64,7 @@ class BuiltinToolRegistry(
                 ExamplesBuiltin(),
                 LockScreenBuiltin(),
                 ComposeMessageBuiltin(),
+                ShareFileBuiltin(),
                 OpenUriBuiltin(),
                 LaunchAppBuiltin(),
                 LoadSkillBuiltin(),

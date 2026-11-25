@@ -43,6 +43,7 @@ class BuiltinToolTest {
                 "screen_routine",
                 "screens",
                 "screenshot",
+                "share_file",
                 "shell",
                 "ssh",
                 "take_over",
