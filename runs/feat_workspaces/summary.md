@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: PASS**
+**Gate: FAIL: 1 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45707412013
-- GITHUB_SHA: 64a67dc602e0b3cd3df68af6045f63ee637531fa
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45710923971
+- GITHUB_SHA: 8901a46ce36b99c430d52419ea2d13f2f1eccffc
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
@@ -13,8 +13,10 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2172 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2172 run, 8 failed (7 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
 
+## NEW failing tests
+- `com.tricreta.zafiro.autonomy.BundledWorkspacesTest.everyBundledWorkspaceParsesAndReferencesRealSkills` — java.lang.AssertionError: video-studio: a full team and schedule
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
@@ -34,10 +36,15 @@ TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification 
 TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
 SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 > Task :app:testDebugUnitTest FAILED
+BundledWorkspacesTest > everyBundledWorkspaceParsesAndReferencesRealSkills FAILED
+> Task :autonomy:android:testDebugUnitTest FAILED
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 24s
+* What went wrong:
+Execution failed for task ':autonomy:android:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:testDebugUnitTest'.
+BUILD FAILED in 9m 18s
 ```
 ## lint: key error lines
 ```
@@ -61,5 +68,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 4m 7s
+BUILD FAILED in 4m 15s
 ```
