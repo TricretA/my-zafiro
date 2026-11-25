@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: 14 NEW test failure(s)**
+**Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45713611182
-- GITHUB_SHA: 3fe6213339939ed9b0971c4438f733f118e3a9e3
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45715166437
+- GITHUB_SHA: 554716cad938013d835ca4158eede066f330a505
 - GITHUB_REF_NAME: feat/workspaces
 
 | step | outcome |
@@ -13,52 +13,31 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2036 run, 15 failed (1 known upstream, 0 flaky upstream, 14 NEW), 0 skipped
+Unit tests: 2172 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.tricreta.zafiro.autonomy.BundledWorkspacesTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.tricreta.zafiro.autonomy.MigrationTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.tricreta.zafiro.autonomy.AutonomyRepositoryTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.tricreta.zafiro.autonomy.WorkspaceTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.tricreta.zafiro.autonomy.TeamServiceTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.ui.model.home.HomeChatViewModelTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationMigrationTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.runtime.service.PreemptPreviousTurnTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationSearchRepoTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.notification.ResidentNotificationBuilderTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationRepoTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.repo.XRepoTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
 ## unit_tests: key error lines
 ```
-AutonomyRepositoryTest > classMethod FAILED
-BundledWorkspacesTest > classMethod FAILED
-MigrationTest > classMethod FAILED
-TeamServiceTest > classMethod FAILED
-WorkspaceTest > classMethod FAILED
-> Task :autonomy:android:testDebugUnitTest FAILED
-ConversationMigrationTest > classMethod FAILED
-ConversationPersisterTest > classMethod FAILED
-ConversationRepoTest > classMethod FAILED
-ConversationSearchRepoTest > classMethod FAILED
-ResidentNotificationBuilderTest > classMethod FAILED
-TurnNotificationManagerTest > classMethod FAILED
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
 SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
-HomeChatViewModelTest > classMethod FAILED
-XRepoTest > classMethod FAILED
-PreemptPreviousTurnTest > classMethod FAILED
 > Task :app:testDebugUnitTest FAILED
-* What went wrong:
-Execution failed for task ':autonomy:android:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:testDebugUnitTest'.
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 3m 39s
+BUILD FAILED in 9m 26s
 ```
 ## lint: key error lines
 ```
@@ -82,5 +61,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 5s
+BUILD FAILED in 3m 58s
 ```

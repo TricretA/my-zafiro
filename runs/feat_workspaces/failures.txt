@@ -1,73 +1,3 @@
-=== com.tricreta.zafiro.autonomy.BundledWorkspacesTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
-
-=== com.tricreta.zafiro.autonomy.MigrationTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
-
-=== com.tricreta.zafiro.autonomy.AutonomyRepositoryTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
-
-=== com.tricreta.zafiro.autonomy.WorkspaceTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
-
-=== com.tricreta.zafiro.autonomy.TeamServiceTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
-
 === com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords
 java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
 java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
@@ -87,129 +17,106 @@ java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
 	at org.jun
 
-=== com.niki914.zafiro.app.ui.model.home.HomeChatViewModelTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
 
-=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
 
-=== com.niki914.zafiro.app.conversation.ConversationMigrationTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
 
-=== com.niki914.zafiro.runtime.service.PreemptPreviousTurnTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
 
-=== com.niki914.zafiro.app.conversation.ConversationPersisterTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
 
-=== com.niki914.zafiro.app.conversation.ConversationSearchRepoTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
 
-=== com.niki914.zafiro.app.notification.ResidentNotificationBuilderTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
 
-=== com.niki914.zafiro.app.conversation.ConversationRepoTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
 
-=== com.niki914.zafiro.repo.XRepoTest.classMethod
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-	at org.robolectric.internal.dependency.MavenArtifactFetcher.fetchArtifact(MavenArtifactFetcher.java:129)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.lambda$getLocalArtifactUrls$0(MavenDependencyResolver.java:87)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.whileLocked(MavenDependencyResolver.java:107)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrls(MavenDependencyResolver.java:82)
-	at org.robolectric.internal.dependency.MavenDependencyResolver.getLocalArtifactUrl(MavenDependencyResolver.java:123)
-	at org.robolectric.plugins.LegacyDependencyResolver.getLocalArtifactUrl(LegacyDependencyResolver.java:95)
-	at org.robolectric.plugins.DefaultSdkProvider$DefaultSdk.getJarPath(DefaultSdkProvider.java:143)
-	at org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader.<init>(AndroidSandbox.java:128)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccess
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd
+java.lang.AssertionError: expected:<2> but was:<1>
+java.lang.AssertionError: expected:<2> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.conversation.ConversationPersisterTest$trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd$1.invokeSuspend(ConversationPersisterTest.kt:183)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:233)
+	at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:152)
+	at kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:58)
+	at kotli
 
