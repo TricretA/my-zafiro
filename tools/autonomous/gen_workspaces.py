@@ -19,6 +19,7 @@ def skill(sid, desc, body):
 skill("team-protocol", "How the agent team works together: board, handoffs, status lines, evidence. Load first in every team run.", """
 # Team protocol
 You belong to a workspace team. Work is passed on the shared board, never by memory or guesswork.
+0. Pick your skills first: load `skill-router` if unsure, then `load_skill` the 1-3 skills that fit this job (see your SKILL MAP). Work fast: for any screen work load `fast-screen`. Do not improvise what a skill already explains.
 1. Start: `board op=resume` (re-opens work a dead run left half done), then `board op=next owner=<your name>`; if nothing is waiting, check `board op=list open_only=true`.
 2. Items created by `owner` are replies or instructions from the owner: do them FIRST, exactly as written, and record the result. Hand work on with `board op=add` (title, detail, owner = the next agent, workspace, depth). Give the full context in `detail`: the next agent has not seen your conversation.
 3. Finish every item you touch: `board op=update id=<id> status=DONE|FAILED|BLOCKED result=<what happened and where the output is>`. A result is required. Never leave an item DOING.
@@ -38,7 +39,7 @@ skill("toolbox", "Which tool to use for what: web, files, dates, images, schedul
 - **Files the owner can open:** `save_file` (save, append, read, delete, list). Always show the returned link. Plans and reports: Markdown or HTML.
 - **Images:** `make_card` makes a quote/announcement card PNG (square 1080x1080, portrait 1080x1350, pin 1000x1500). Photos and video need an MCP such as Higgsfield or fal.ai if the owner switched one on.
 - **Scheduling:** `schedule` creates follow-ups and recurring jobs (min 15 minutes) with a self-contained prompt; `board` is for handoffs between agents, `schedule` is for later.
-- **Phone:** `screen_routine` first, `screen_operation` for one-offs, `open`/`open_uri`/`launch_app` to start apps, `notify` to tell the owner, `take_over` when a human is needed.
+- **Post media fast:** `share_file` opens another app's share screen with the video/image and caption ready (skill `video-publish`). **Phone:** `screen_routine` first, `screen_operation` for one-offs, `open`/`open_uri`/`launch_app` to start apps, `notify` to tell the owner, `take_over` when a human is needed.
 - **Data and code:** `http_request` for APIs, `execute_python` for calculations and file processing, `memory` for lasting lessons.
 - **Skills:** `load_skill` only when needed; `create_skill` to save a repeatable method.
 Prefer the cheapest tool that gives evidence. Report what you actually saw.
@@ -96,6 +97,65 @@ Goal: a skill is a short, specific instruction file the agent loads only when ne
 5. Tell the owner the skill id and how to switch it on (Skills page). Do not enable skills that you did not test.
 """)
 
+skill("skill-router", "Pick the right skills before any job: a map from job type to the bundled skills that do it best. Load when you start work or when unsure which skill fits.", """
+# Skill router
+Skills are expert method files: using one is faster and better than working from memory. At the START of every job do this (30 seconds):
+1. Name the job in a few words (write a hook, plan a week, find trends, reply to a comment, make a thumbnail, edit a video...).
+2. Find the matching row below, or scan `<available_skills>` for the closest description. Load the 1-3 best skills with `load_skill` and follow their steps. Do not load more than you need; do not skip loading because you "know how".
+3. If no skill fits, say so in one line and continue. If you keep repeating a method that no skill covers, save it with `create_skill`.
+| Job | Load |
+|---|---|
+| write a caption / post / note | caption-writer, hook-writer, writing-style-and-tone, stop-slop, then the platform writer skill (tiktok-script, reels-script, linkedin-post-writer, thread-writer, text-post-and-microblog, email-and-newsletter, carousel-writer, youtube-shorts) |
+| first line / hook / title | hook-writer, viral-reverse-engineering, trend-jacking |
+| script a short video | short-form-video-script, scripting-and-storyboarding, tiktok-script / reels-script / youtube-shorts |
+| make or edit a video / image | capcut, descript, opus-clip, captions-and-clipping, ai-video, veo-3, kling, runway, luma, heygen, synthesia, ai-voiceover, ai-music-and-sound, nano-banana, flux, ideogram, image-prompt, canva, design-and-templates, thumbnail-design, quote-cards-and-text-graphics, infographic-and-data-viz, ai-image-editing |
+| publish / schedule | tiktok-video-publishing, instagram-reels-publishing, youtube-publishing-and-metadata, scheduling-and-queue, platform-specs-and-validation, video-publish |
+| plan strategy / calendar / pillars | social-strategy, content-pillars, content-calendar, batch-content-plan, campaign-and-launch-planning, goals-and-kpis, idea-generation-and-ideation |
+| research audience / competitors / trends | audience-research, competitor-analysis, content-research-and-sourcing, deep-research, viral-reverse-engineering, mkt-competitor-profiling |
+| reply / comment / community | reply-and-comment-writer, engagement-routine, community-management, collabs-and-cross-promotion, crisis-and-moderation, ugc-and-influencer |
+| search visibility | social-seo, instagram-seo, pinterest-seo, ai-search-optimization, hashtag-strategy, mkt-seo-audit |
+| analytics / experiments | analytics-and-reporting, mkt-analytics, experimentation-and-ab-testing, content-audit, data-statistical-analysis, data-create-viz |
+| grow an account on one platform | tiktok-growth, instagram-growth, x-growth, linkedin-growth, threads-growth, pinterest-growth, reddit-marketing, facebook-strategy, facebook-groups, youtube-long-form |
+| outreach / sales / DMs | social-selling-and-dm, mkt-cold-email, mkt-prospecting, draft-outreach style skills, mkt-sales-enablement |
+| monetise | creator-monetization, lead-magnets-and-funnels, link-in-bio-and-traffic, mkt-offers, mkt-pricing |
+| brand voice | brand-profile, voice-builder, writing-style-and-tone, smc-voice-builder, smc-newsletter-voice |
+| operate the phone | fast-screen, screen-routines, human-pacing, phone-use |
+| build a plan or check your own work | sp-writing-plans, sp-executing-plans, sp-verification-before-completion, sp-systematic-debugging |
+| make a new skill from a repo or doc | skill-from-source, install-skill-from-github, skill-creator |
+Also check any MCP tools that are switched on (their names appear in your tool list): an MCP that does the job (search, scrape, image/video generation, scheduling, CRM) is better than doing it by hand on the screen.
+""")
+
+skill("fast-screen", "Speed rules for driving the phone screen: compact reads, bare-number taps, no re-reads, routines, share_file. Load before any screen work.", """
+# Fast screen work
+Every screen step costs time and money, and old steps are re-billed on every later step. Work like this:
+1. **One call, one change.** Each `screen_operation` tap/type/scroll already returns the NEW screen. Never call `read` right after an action. `read` only for the first look.
+2. **Tap by number.** Use the number in [brackets] as `token` (`token:"12"`). Lines look like `[12]btn "Post" tap`. A line ending `edit` is a text field (use `set_text`). `format:"full"` exists but costs 5x more: only if the compact list hides what you need.
+3. **Long screens:** if it says "N more nodes hidden", use `operation:"search"` with keywords, or scroll. Do not read the same screen twice.
+4. **If the result says "screen content unchanged"** your action did nothing: do not repeat it; try another element, scroll, wait 1-2 s, or report.
+5. **Routines first.** `screen_routine routine=list`. A routine does 5-30 steps in one call and verifies each tap. For a new multi-step job write the steps once with `screen_routine steps=[...] save_as="<platform>.<job>" params={...}`: if it succeeds it is saved and next time costs almost nothing.
+6. **Media goes by sharing, not by browsing.** To post a video or image use `share_file` (opens the target app's share screen with the file and caption ready), then only tap Next/Post. Never scroll a gallery to find a file.
+7. **Open apps directly** with `open`/`launch_app`/`open_uri` (deep links such as whatsapp://send?phone=..&text=..). Never navigate the launcher.
+8. **Do not screenshot** unless the compact list is empty or the screen is a canvas/game. Screenshots are expensive; the tree is enough.
+9. **Wait smartly.** Use a routine `wait` op with labels (returns as soon as the label appears) instead of fixed sleeps.
+10. **Stop loops.** The same failing action twice means change approach; three failed attempts means report FAILED with the screen text.
+""")
+
+skill("video-publish", "Post a video (or image) with a caption to TikTok, Instagram, YouTube, Facebook, Reddit and others fast: prepare once, share_file, finish with a routine, verify. Use for any 'post this video' job.", """
+# Publish a video fast
+Goal: one finished video + per-platform captions posted to several apps in minutes, with minimal tokens.
+**Prepare once (no screen):**
+1. The video must be a file under Zafiro's files folder, e.g. `outputs/clip.mp4` (save or download it first). If you also need a thumbnail or cover, make it now (`make_card`).
+2. Write each platform's caption separately (load `caption-writer`, `hashtag-strategy`, `platform-specs-and-validation`). Save them as `outputs/captions.json` so they survive a failure. Keep them native: different hook, length, tags per platform; Reddit needs a title and a subreddit that allows the post (read its rules first with `web_fetch` on r.jina.ai).
+3. `engage op=plan` for each post (action `post`). Respect the answer (AUTO / DENIED / NEEDS_APPROVAL).
+**For each platform (one at a time, the screen is shared):**
+4. `share_file package=<app package> path=outputs/clip.mp4 text=<that platform's caption>`. The app opens on its share/create screen with the video attached and the caption copied to the clipboard.
+5. `screen_routine routine=<platform>.finish_share params={text:<caption>}` taps Next/Continue until the caption screen, puts the caption in the caption field (paste or type), and taps Post/Share. If the routine does not exist or fails, read the screen ONCE and continue by hand with fast-screen rules, then save what worked with `save_as`.
+6. Verify from the result's `on_screen_now`: a success banner, the post in the profile, or "posting"/"uploading" progress. If it says uploading, `wait` for completion before leaving the app. Then `engage op=done id=<id> note=<evidence>`.
+7. Pace: `engage op=pace`, then the next platform.
+**App packages:** TikTok `com.zhiliaoapp.musically` (some regions `com.ss.android.ugc.trill`), Instagram `com.instagram.android`, YouTube `com.google.android.youtube`, Facebook `com.facebook.katana`, Reddit `com.reddit.frontpage`, X `com.twitter.android`, LinkedIn `com.linkedin.android`, Threads `com.instagram.barcelona`, Pinterest `com.pinterest`.
+**Honest limits:** not every app accepts a shared video straight into its composer (Instagram asks Reel/Story/Feed; Reddit asks for a community and title; Substack's app has no video share, so for Substack post text with a link to the video). The routine labels are best-effort guesses for the English UI and need a first-run fix. Say plainly what actually appeared on screen. Never report a post as done without seeing it.
+""")
+
 # ------------------------------------------------------------------ platform data
 ROLES = ["director", "researcher", "strategist", "writer", "reviewer", "engager", "executor", "analyst"]
 ROLE_TITLE = dict(director="Director", researcher="Researcher", strategist="Strategist", writer="Writer", reviewer="Reviewer", engager="Engager", executor="Executor", analyst="Analyst")
@@ -106,11 +166,11 @@ SUBSTACK_IDS = dict(director=("growth_director", "Growth Director"), researcher=
 TOOLS = dict(
     director="agent,board,engage,examples,save_file,memory,load_skill,notify,device_info,wait,execute_python,http_request,datetime,schedule,web_search",
     researcher="web_search,web_fetch,rss_read,datetime,http_request,load_skill,memory,board,save_file,execute_python",
-    strategist="load_skill,memory,board,save_file,examples,datetime,web_search,web_fetch,rss_read",
-    writer="load_skill,board,save_file,examples,memory,make_card,datetime",
-    reviewer="examples,engage,board,load_skill,memory",
-    engager="screen_routine,load_skill,engage,board,agent,memory,wait,web_search,web_fetch",
-    executor="screen_routine,screen_operation,screenshot,open,screens,engage,board,wait,take_over,device_info,clipboard,load_skill,open_uri,launch_app",
+    strategist="load_skill,memory,board,save_file,examples,datetime,web_search,web_fetch,rss_read,http_request,execute_python",
+    writer="load_skill,board,save_file,examples,memory,make_card,datetime,web_search,web_fetch",
+    reviewer="examples,engage,board,load_skill,memory,web_fetch,save_file",
+    engager="screen_routine,screen_operation,load_skill,engage,board,agent,memory,wait,web_search,web_fetch",
+    executor="screen_routine,screen_operation,share_file,screenshot,open,screens,engage,board,wait,take_over,device_info,clipboard,load_skill,open_uri,launch_app,save_file,http_request,execute_python",
     analyst="screen_routine,save_file,memory,board,load_skill,execute_python,notify,engage,web_fetch,datetime",
 )
 
@@ -136,7 +196,7 @@ P = [
  dict(id="instagram", name="Instagram", app="com.instagram.android", kind="reels, carousels, stories and comments", can_post=False, off=19, enabled_default=True,
       quotas="post=1,comment=15,reply=30,like=30,follow=8,dm=4",
       skills=["instagram-growth", "instagram-reels-publishing", "instagram-seo", "reels-script", "carousel-writer", "caption-writer", "hashtag-strategy", "reply-and-comment-writer", "canva", "capcut", "engagement-routine"],
-      facts="Instagram growth comes from Reels (reach), carousels (saves and shares), consistent Stories, and real comments on accounts in the niche. Posting media through screen taps is fragile: the team prepares the media, caption and hashtags as files, and the owner (or a verified routine, once proven) publishes. Comments and replies run through the engagement loop.",
+      facts="Instagram growth comes from Reels (reach), carousels (saves and shares), consistent Stories, and real comments on accounts in the niche. Publishing: prepare the video, caption and hashtags as files, then use share_file (skill video-publish) to open Instagram's share screen with the video attached and finish with the instagram.finish_share routine (its labels may need a first-run fix: look at the screen once and correct the routine file). Instagram asks Reel/Story/Feed after sharing: pick Reel for video. Comments and replies run through the engagement loop.",
       look="Instagram",
       labels=dict(home=["Home"], notes=["Home"], compose=["Create", "New post", "+"], field=["Write a caption", "Add a caption"], post=["Share", "Post"], comment=["Comment", "Add a comment"], send=["Post", "Send"], like=["Like"], restack=["Share"], activity=["Activity", "Notifications"], profile=["Profile"])),
  dict(id="facebook", name="Facebook", app="com.facebook.katana", kind="page posts, group posts and comments", can_post=True, off=25, enabled_default=True,
@@ -148,7 +208,7 @@ P = [
  dict(id="tiktok", name="TikTok", app="com.zhiliaoapp.musically", kind="videos and comments", can_post=False, off=31, enabled_default=True,
       quotas="post=1,comment=15,reply=25,like=30,follow=8",
       skills=["tiktok-growth", "tiktok-script", "tiktok-video-publishing", "tiktok-photo-mode", "short-form-video-script", "hook-writer", "capcut", "hashtag-strategy", "trend-jacking", "engagement-routine"],
-      facts="TikTok growth depends on the first 2 seconds, watch-through rate and trend/sound fit. The team writes scripts, shot lists, captions and hashtags and queues them as files; video creation uses the owner's tools (CapCut, generators) and the final upload is the owner's tap until a publish routine is verified. Some regions use the package com.ss.android.ugc.trill.",
+      facts="TikTok growth depends on the first 2 seconds, watch-through rate and trend/sound fit. The team writes scripts, shot lists, captions and hashtags and queues them as files; video creation uses the owner's tools (CapCut, generators); publish with share_file (skill video-publish) and the tiktok.finish_share routine (labels may need a first-run fix). Never claim a post went live without seeing it on screen. Some regions use the package com.ss.android.ugc.trill.",
       look="TikTok",
       labels=dict(home=["Home"], notes=["For You", "Following"], compose=["Create", "+"], field=["Describe your post", "Add description"], post=["Post"], comment=["Add comment", "Comment"], send=["Post", "Send"], like=["Like"], restack=["Share"], activity=["Inbox", "Activity"], profile=["Profile"])),
  dict(id="youtube", name="YouTube", app="com.google.android.youtube", kind="shorts, videos and comment replies", can_post=False, off=37, enabled_default=True,
@@ -195,6 +255,51 @@ P = [
       labels=dict(home=["Inbox"], notes=["Inbox"], compose=["Compose"], field=["Compose email", "Subject"], post=["Send"], comment=["Reply"], send=["Send"], like=["Star"], restack=["Forward"], activity=["Inbox"], profile=["Search in mail"])),
 ]
 
+
+BASE_MAP = dict(
+    director=[("plan the day or week", "social-strategy,content-calendar,batch-content-plan,goals-and-kpis"), ("before you say a day is done", "sp-verification-before-completion")],
+    researcher=[("trends, competitors, audience", "audience-research,competitor-analysis,content-research-and-sourcing,deep-research,viral-reverse-engineering")],
+    strategist=[("pillars, calendar, experiments", "content-pillars,content-calendar,social-strategy,experimentation-and-ab-testing,campaign-and-launch-planning,idea-generation-and-ideation")],
+    writer=[("any caption, post or script", "caption-writer,hook-writer,writing-style-and-tone,stop-slop,voice-builder"), ("video or image copy", "short-form-video-script,scripting-and-storyboarding,thumbnail-design,quote-cards-and-text-graphics")],
+    reviewer=[("every review", "reviewer-rubric,stop-slop,platform-specs-and-validation")],
+    engager=[("every loop", "engagement-loop,reply-and-comment-writer,community-management,human-pacing"), ("hostile or tricky comments", "crisis-and-moderation")],
+    executor=[("any screen job", "fast-screen,screen-routines,human-pacing"), ("post a video or image", "video-publish,platform-specs-and-validation")],
+    analyst=[("numbers and reporting", "analytics-and-reporting,goals-and-kpis,mkt-analytics"), ("experiments", "experimentation-and-ab-testing,content-audit")],
+)
+PLATFORM_KEYS = dict(
+    writer=("writer", "script", "caption", "carousel", "thread", "hook", "story", "newsletter", "microblog", "post", "copy", "email-and"),
+    strategist=("growth", "strategy", "seo", "calendar", "pillars", "trend", "audience", "profile"),
+    researcher=("seo", "trend", "competitor", "audience", "research"),
+    engager=("comment", "reply", "community", "engagement", "groups", "dm", "selling", "support"),
+    executor=("publishing", "scheduling", "specs", "capcut", "canva", "photo"),
+    director=("growth", "strategy"),
+)
+
+def skill_exists(sid):
+    return os.path.isdir(f"{A}/skills/{sid}")
+
+def skill_map(p, role):
+    rows = []
+    for job, ids in BASE_MAP.get(role, []):
+        rows.append((job, [i for i in ids.split(",") if skill_exists(i)]))
+    keys = PLATFORM_KEYS.get(role, ())
+    extra = [i for i in p["skills"] if any(k in i for k in keys) and skill_exists(i)]
+    if extra:
+        rows.append((f"{p['name'].split(' (')[0]} specifics", extra))
+    return rows
+
+def map_ids(p):
+    out = set()
+    for role in ROLES:
+        for _, ids in skill_map(p, role):
+            out.update(ids)
+    return out
+
+def render_map(p, role):
+    rows = skill_map(p, role)
+    lines = "\n".join(f"- {job}: {', '.join(ids)}" for job, ids in rows if ids)
+    return ("SKILL MAP. Before each job, `load_skill` the matching ones (1-3, do not skip, do not improvise what a skill explains; use skill-router for anything not listed):\n" + lines) if lines else ""
+
 # ------------------------------------------------------------------ roles
 def instr(p, role, ids):
     n, app, kind = p["name"], p["app"], p["kind"]
@@ -214,7 +319,7 @@ def instr(p, role, ids):
     )[role]
     persist = (" PERSISTENCE: do not stop after one job. When an item is done, immediately take the next one (`board op=next`). When the board is empty, create the next three highest-value items toward today's targets (the daily caps in the playbook are your targets: work toward filling them with GOOD work, never with filler), then do them. "
                "You are judged on outcomes per day (posts that landed, real conversations, results measured), not on the number of steps. If you are blocked, switch to another useful job instead of waiting, and report the block once. Keep a one-line progress note on the board item every few steps so the owner can watch you.")
-    return common + persist + "\n" + d
+    return common + persist + "\n" + d + "\n" + render_map(p, role) + "\nSPEED: act fast. Prefer routines and share_file over step-by-step taps; never re-read a screen after an action (the action already returns it); use the cheapest tool that gives evidence."
 
 def tasks_for(p, ids):
     ws, n, off = p["id"], p["name"], p["off"]
@@ -270,6 +375,23 @@ PLATFORM_TOOLS = {
  "jobhunt": "Research: web_search for remote roles, r.jina.ai for job pages; log every application in applications/tracker.csv with save_file append.",
 }
 
+
+VIDEO = {"tiktok": "com.zhiliaoapp.musically", "instagram": "com.instagram.android", "youtube": "com.google.android.youtube", "facebook": "com.facebook.katana",
+         "reddit": "com.reddit.frontpage", "x": "com.twitter.android", "linkedin": "com.linkedin.android", "threads": "com.instagram.barcelona", "pinterest": "com.pinterest"}
+
+# Heuristics from public creator guidance, NOT guarantees. The analyst checks them against the owner's own numbers.
+ENGAGE_MORE = {
+ "tiktok": "Hook inside the first 2 seconds; vertical 9:16; short caption with 3-5 specific tags. After posting, spend 15 minutes replying to every comment (a video reply to a good question is a second post) and leave useful comments on 10 niche videos. Comment on fresh videos (under 2 hours old) where the creator replies.",
+ "instagram": "Reels drive reach; carousels drive saves and shares. First caption line is the hook. 3-5 relevant tags. After posting, reply to every comment in the first hour and leave real comments on 10 accounts in the niche. Add the Reel to Stories.",
+ "youtube": "Shorts: vertical, hook in the first second, keyword in the title. Long form: title and thumbnail promise one clear outcome, deliver in the first 30 seconds. Pin a comment with a question, reply to every comment in the first day, and comment on videos of channels in the niche.",
+ "reddit": "Read the subreddit rules before anything. Give value first: comment helpfully for days before posting. Reddit punishes self-promotion and obvious automation: low caps, no links in first comments, never the same text twice, no cross-posting spam. Titles carry the post.",
+ "linkedin": "A clear opening line, short paragraphs, one point of view. Comment thoughtfully on 5-10 posts from people in the niche within the first hour of your post; links work better in the first comment than in the body (heuristic: test it).",
+ "facebook": "Native video beats links. In groups follow each group's rules and admin approval; one genuinely helpful comment beats a link drop. Reply to every comment on your posts.",
+ "pinterest": "Vertical 2:3 pins (1000x1500), keyword-rich title and description, pin to the right board, steady daily volume beats bursts.",
+ "threads": "Short conversational posts and real replies; it rewards back-and-forth. Reply to accounts in the niche and to every reply you get.",
+ "x": "Short posts, threads for depth, replies to larger accounts in the niche are the main lever. (Account suspended: keep off until restored.)",
+}
+
 PLAYBOOK_ENGAGE = {
  "substack": "Notes first: 3-6 Notes a day max. Comments on larger writers' posts in the niche are the best discovery lever: add one specific insight, no pitch. Reply to every comment on the owner's posts. Restack a few good notes with a line of your own.",
 }
@@ -278,17 +400,18 @@ for p in P:
     ws = p["id"]
     ids = SUBSTACK_IDS if ws == "substack" else {r: (f"{ws}-{r}", f"{p['name'].split(' (')[0]} {ROLE_TITLE[r]}") for r in ROLES}
     agents = [dict(id=ids[r][0], name=ids[r][1], instructions=instr(p, r, ids), tools=TOOLS[r].split(","),
-                   skills=["team-protocol", "toolbox", f"{ws}-playbook"] + {"engager": ["engagement-loop", "human-pacing"], "executor": ["screen-routines", "human-pacing"], "reviewer": ["reviewer-rubric"], "director": ["owner-corrections"]}.get(r, []),
+                   skills=["team-protocol", "skill-router", f"{ws}-playbook"] + {"engager": ["engagement-loop", "human-pacing", "fast-screen"], "executor": ["fast-screen", "screen-routines", "human-pacing"] + (["video-publish"] if ws in VIDEO else []), "reviewer": ["reviewer-rubric"], "director": ["owner-corrections"], "writer": ["toolbox"], "analyst": ["toolbox"]}.get(r, []),
                    usesScreen=r in ("executor",)) for r in ROLES]
     # engager also reads the screen for scan routines -> serialised with the executor via usesScreen
     for a in agents:
         if a["id"] == ids["engager"][0]: a["usesScreen"] = False
-    skills = ["team-protocol", "toolbox", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + p["skills"]
+    skills = ["team-protocol", "toolbox", "skill-router", "fast-screen", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + (["video-publish"] if ws in VIDEO else []) + p["skills"] + sorted(map_ids(p))
     d = dict(id=ws, version=1, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
              quotas=p["quotas"], agents=agents, tasks=tasks_for(p, ids), skills=sorted(set(skills)), mcps=[], memory=[p["facts"]])
     w(f"{A}/workspaces/{ws}.json", json.dumps(d, indent=1, ensure_ascii=False) + "\n")
 
-    ENGAGE_TEXT = PLAYBOOK_ENGAGE.get(ws, "Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.")
+    ENGAGE_TEXT = PLAYBOOK_ENGAGE.get(ws) or ENGAGE_MORE.get(ws) or ("Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.")
+    if ws in ENGAGE_MORE and ws in PLAYBOOK_ENGAGE: ENGAGE_TEXT += " " + ENGAGE_MORE[ws]
     skill(f"{ws}-playbook", f"{p['name']} operating playbook: platform facts, formats, engagement tactics, caps and routines. Load when working on {p['name']}.", f"""
 # {p['name']} playbook
 App package: `{p['app']}`. Area: {p['kind']}.
@@ -306,7 +429,7 @@ App package: `{p['app']}`. Area: {p['kind']}.
 {PLATFORM_TOOLS.get(ws, 'web_search and web_fetch.')}
 
 ## Screen routines (`screen_routine routine=list`)
-`{ws}.open_home`, `{ws}.read_activity`, `{ws}.scan_feed`, `{ws}.comment`, `{ws}.like`""" + (f", `{ws}.post_text`" if p["can_post"] or ws == "substack" else "") + f""".
+`{ws}.open_home`, `{ws}.read_activity`, `{ws}.scan_feed`, `{ws}.comment`, `{ws}.like`""" + (f", `{ws}.post_text`" if p["can_post"] or ws == "substack" else "") + (f", `{ws}.finish_share` (after `share_file package={VIDEO[ws]}`)" if ws in VIDEO else "") + f""".
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/{ws}.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never
@@ -330,6 +453,13 @@ Invent facts or results, post ads, spam, bypass locks/CAPTCHAs/verification, exc
     if p["can_post"] or ws == "substack":
         R("post_text", f"Create and publish a text post in {p['name']}. Only after an engage gate of AUTO or owner approval.", [dict(name="text", required=True)],
           [openapp, home, dict(op="tap", labels=L["compose"], timeout_s=6), dict(op="type", labels=L["field"], text="{text}"), dict(op="tap", labels=L["post"], timeout_s=8)])
+    if ws in VIDEO:
+        R("finish_share", f"After share_file opened {p['name']} with a video attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.", [dict(name="text", required=True)],
+          [dict(op="wait", labels=["Next", "Post", "Share", "Upload", "Continue", "Publish", "Create"], timeout_s=15),
+           dict(op="tap", labels=["Next", "Continue"], optional=True, timeout_s=3),
+           dict(op="tap", labels=["Next", "Continue"], optional=True, timeout_s=3),
+           dict(op="type", labels=L["field"] + ["Caption", "Description", "Add a caption", "Write a caption", "Title"], text="{text}", optional=True),
+           dict(op="tap", labels=L["post"] + ["Share", "Publish", "Upload", "Post"], timeout_s=10)])
     if ws == "substack":
         R("reply_in_thread", "Reply to the note or comment currently open in Substack.", [dict(name="text", required=True)],
           [dict(op="tap", labels=["Reply"], timeout_s=6), dict(op="type", labels=["Reply", "Write a reply", "Add a reply"], text="{text}"), dict(op="tap", labels=["Post", "Send", "Reply"], timeout_s=8)])

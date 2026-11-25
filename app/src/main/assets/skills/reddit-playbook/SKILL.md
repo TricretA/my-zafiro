@@ -14,13 +14,13 @@ Reddit punishes self-promotion. Contribute first (answers, insight), follow each
 post=1, comment=8, reply=15, like=20
 
 ## Engagement tactics
-Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.
+Read the subreddit rules before anything. Give value first: comment helpfully for days before posting. Reddit punishes self-promotion and obvious automation: low caps, no links in first comments, never the same text twice, no cross-posting spam. Titles carry the post.
 
 ## Research and tools for this platform
 Research: subreddit rules via web_fetch on https://r.jina.ai/https://www.reddit.com/r/<sub>/about/rules ; top posts via the app routines.
 
 ## Screen routines (`screen_routine routine=list`)
-`reddit.open_home`, `reddit.read_activity`, `reddit.scan_feed`, `reddit.comment`, `reddit.like`, `reddit.post_text`.
+`reddit.open_home`, `reddit.read_activity`, `reddit.scan_feed`, `reddit.comment`, `reddit.like`, `reddit.post_text`, `reddit.finish_share` (after `share_file package=com.reddit.frontpage`).
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/reddit.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never

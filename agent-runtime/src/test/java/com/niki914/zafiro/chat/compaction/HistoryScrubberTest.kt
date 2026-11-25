@@ -35,16 +35,16 @@ class HistoryScrubberTest {
     }
 
     @Test
-    fun keepsLastThreeSkillsInFullAndStubsOlderOnes() {
+    fun keepsLastSixSkillsInFullAndStubsOlderOnes() {
         val skill = "# skill\n" + "line\n".repeat(400)
         val h = mutableListOf<Message>(user("go"))
-        repeat(5) { h += asst(); h += result("load_skill", skill, "s$it") }
+        repeat(8) { h += asst(); h += result("load_skill", skill, "s$it") }
         val out = HistoryScrubber.scrub(h)
         val skills = out.filterIsInstance<Message.ToolResult>()
         assertTrue(text(skills[0]).contains("trimmed"))
         assertTrue(text(skills[1]).contains("trimmed"))
         assertEquals(skill, text(skills[2]))
-        assertEquals(skill, text(skills[4]))
+        assertEquals(skill, text(skills[7]))
     }
 
     @Test

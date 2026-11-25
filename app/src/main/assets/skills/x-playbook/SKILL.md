@@ -14,13 +14,13 @@ WARNING: the owner's @tricreta account was permanently suspended (read-only bann
 post=4, comment=15, reply=30, like=30, follow=8, dm=3
 
 ## Engagement tactics
-Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.
+Short posts, threads for depth, replies to larger accounts in the niche are the main lever. (Account suspended: keep off until restored.)
 
 ## Research and tools for this platform
 Research: web_search; X is suspended for the owner, keep this workspace off until restored.
 
 ## Screen routines (`screen_routine routine=list`)
-`x.open_home`, `x.read_activity`, `x.scan_feed`, `x.comment`, `x.like`, `x.post_text`.
+`x.open_home`, `x.read_activity`, `x.scan_feed`, `x.comment`, `x.like`, `x.post_text`, `x.finish_share` (after `share_file package=com.twitter.android`).
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/x.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never

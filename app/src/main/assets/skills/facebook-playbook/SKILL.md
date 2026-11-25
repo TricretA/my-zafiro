@@ -14,13 +14,13 @@ Facebook rewards native posts, video, and active groups. Group posting must foll
 post=2, comment=10, reply=25, like=25, dm=3
 
 ## Engagement tactics
-Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.
+Native video beats links. In groups follow each group's rules and admin approval; one genuinely helpful comment beats a link drop. Reply to every comment on your posts.
 
 ## Research and tools for this platform
 Research: group rules via the app; Apify 'apify/facebook-posts-scraper' (if on) for page benchmarks.
 
 ## Screen routines (`screen_routine routine=list`)
-`facebook.open_home`, `facebook.read_activity`, `facebook.scan_feed`, `facebook.comment`, `facebook.like`, `facebook.post_text`.
+`facebook.open_home`, `facebook.read_activity`, `facebook.scan_feed`, `facebook.comment`, `facebook.like`, `facebook.post_text`, `facebook.finish_share` (after `share_file package=com.facebook.katana`).
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/facebook.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never

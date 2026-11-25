@@ -14,13 +14,13 @@ YouTube growth depends on titles, thumbnails and retention. The team plans topic
 post=1, comment=10, reply=30, like=20
 
 ## Engagement tactics
-Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.
+Shorts: vertical, hook in the first second, keyword in the title. Long form: title and thumbnail promise one clear outcome, deliver in the first 30 seconds. Pin a comment with a question, reply to every comment in the first day, and comment on videos of channels in the niche.
 
 ## Research and tools for this platform
 Research: web_search + web_fetch on youtube.com/results?search_query=..., r.jina.ai for a video page, Apify actor 'streamers/youtube-scraper' if the Apify MCP is on. Transcripts of competitors' videos show hooks that work. Publishing: YouTube Studio app via screen routines; thumbnails with make_card.
 
 ## Screen routines (`screen_routine routine=list`)
-`youtube.open_home`, `youtube.read_activity`, `youtube.scan_feed`, `youtube.comment`, `youtube.like`.
+`youtube.open_home`, `youtube.read_activity`, `youtube.scan_feed`, `youtube.comment`, `youtube.like`, `youtube.finish_share` (after `share_file package=com.google.android.youtube`).
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/youtube.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never

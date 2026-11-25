@@ -225,7 +225,7 @@ class PromptComposerTest {
         )
 
         assertTrue(result.finalSystemPrompt.contains("you MUST load it"))
-        assertTrue(result.finalSystemPrompt.contains("Err on the side of loading"))
+        assertTrue(result.finalSystemPrompt.contains("Load the 1-3 that best match"))
     }
 
     @Test

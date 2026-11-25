@@ -17,7 +17,7 @@ import com.niki914.okia.message.ToolCallOutcome
  * prompt cache keeps working for everything before the newest screen.
  */
 object HistoryScrubber {
-    const val KEEP_SKILLS = 3
+    const val KEEP_SKILLS = 6
     const val SKILL_STUB_CHARS = 600
     const val OLD_RESULT_MAX_CHARS = 1800
     const val OLD_RESULT_HEAD_CHARS = 1200

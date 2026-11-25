@@ -1,0 +1,70 @@
+{
+ "id": "threads.finish_share",
+ "version": 1,
+ "platform": "threads",
+ "description": "After share_file opened Threads with a video attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "wait",
+   "labels": [
+    "Next",
+    "Post",
+    "Share",
+    "Upload",
+    "Continue",
+    "Publish",
+    "Create"
+   ],
+   "timeout_s": 15
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "type",
+   "labels": [
+    "What's new",
+    "Start a thread",
+    "Caption",
+    "Description",
+    "Add a caption",
+    "Write a caption",
+    "Title"
+   ],
+   "text": "{text}",
+   "optional": true
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Post",
+    "Share",
+    "Publish",
+    "Upload",
+    "Post"
+   ],
+   "timeout_s": 10
+  }
+ ]
+}

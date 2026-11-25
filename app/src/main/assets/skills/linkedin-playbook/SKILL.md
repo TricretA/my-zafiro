@@ -14,13 +14,13 @@ LinkedIn rewards useful comments on other people's posts and consistent posting 
 post=1, comment=12, reply=25, like=25, follow=5, dm=5
 
 ## Engagement tactics
-Reply to every real reply on the owner's own content first, then add one specific, useful comment on a relevant post, then like a few genuinely good posts. Quality over volume; stop for the day at the caps.
+A clear opening line, short paragraphs, one point of view. Comment thoughtfully on 5-10 posts from people in the niche within the first hour of your post; links work better in the first comment than in the body (heuristic: test it).
 
 ## Research and tools for this platform
 Research: web_search 'site:linkedin.com/posts <topic>', r.jina.ai on public posts; screen routines for comments. Never use third-party automation tools.
 
 ## Screen routines (`screen_routine routine=list`)
-`linkedin.open_home`, `linkedin.read_activity`, `linkedin.scan_feed`, `linkedin.comment`, `linkedin.like`, `linkedin.post_text`.
+`linkedin.open_home`, `linkedin.read_activity`, `linkedin.scan_feed`, `linkedin.comment`, `linkedin.like`, `linkedin.post_text`, `linkedin.finish_share` (after `share_file package=com.linkedin.android`).
 The labels in these routines are best-effort guesses for the app's English UI. On the first run each routine may fail with a clear reason: read the screen once, add the real label to `files/routines/linkedin.<name>.json`, and record the fix as a lesson. Do not loop.
 
 ## Never

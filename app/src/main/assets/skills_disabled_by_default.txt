@@ -246,3 +246,6 @@ x-playbook
 youtube-playbook
 phone-health
 toolbox
+fast-screen
+skill-router
+video-publish

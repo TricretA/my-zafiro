@@ -23,8 +23,8 @@ android {
         applicationId = "com.niki914.zafiro.auto"
         minSdk = 26
         targetSdk = 34
-        versionName = "1.17.1"
-        versionCode = 27
+        versionName = "1.18.0"
+        versionCode = 28
         // Fork policy: no phone-home. A blank base URL makes every telemetry/remote-config path a no-op.
         buildConfigField("String", "TELEMETRY_BASE_URL", "\"\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

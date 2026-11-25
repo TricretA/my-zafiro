@@ -87,7 +87,7 @@ class PromptComposer {
                 val id = skill.id.trim()
                 if (id.isBlank()) return@mapNotNull null
                 val name = skill.name.trim().ifBlank { id }
-                val desc = skill.description.trim()
+                val desc = skill.description.trim().let { if (it.length > 160) it.take(160) + "…" else it }
                 val dir = skill.absoluteDir.trim()
                 buildString {
                     appendLine("  <skill>")
@@ -105,12 +105,10 @@ class PromptComposer {
             appendLine("## Skills (mandatory)")
             appendLine()
             appendLine(
-                "Before replying, scan the skills below. If a skill matches or is even partially " +
-                        "relevant to your task, you MUST load it with load_skill and follow its " +
-                        "instructions. Err on the side of loading — it is always better to have " +
-                        "context you don't need than to miss critical steps, pitfalls, or established " +
-                        "workflows. Skills contain specialized knowledge and proven approaches that " +
-                        "outperform general-purpose methods."
+                "Before each job, scan the skills below. Load the 1-3 that best match the job with " +
+                        "load_skill and follow them: skills hold proven methods that outperform working " +
+                        "from memory. Do not load more than you need (every loaded skill is re-sent with " +
+                        "every later step), and do not skip loading a clearly matching skill."
             )
             appendLine()
             appendLine("<available_skills>")
