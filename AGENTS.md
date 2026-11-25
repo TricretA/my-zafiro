@@ -315,3 +315,11 @@ Zafiro Agent 的对话功能是限定在主进程之内的，虽然有一个宿�
 - NEVER put screenshots or logs from the owner's phone in the repo without opening and checking each for personal data (a phone number, name and location were exposed once; history was purged). README has no images.
 - Force-pushing `release/**` branches triggers release.yml (publishes a release per push). Do not rewrite or force-push release branches without cancelling the runs it starts.
 - Open upstream PRs #404/#414 (our branches proposed to niki914/zafiro) must stay closed: we do not contribute to upstream.
+
+## v1.18.0 facts (2026-11-25) — speed/token engine; UNVERIFIED on device
+- Cost cause (from code): `act` and `read` both returned the full verbose tree; history re-sent every step; 1M window, compaction at 70%. Research: docs/RESEARCH_TOKEN_COST.md (Artemis config is the reference for context hygiene).
+- Screen text is now compact (`ScreenCompact`: `[12]btn "Post" tap`); tap by bare number (`ScreenVersions` remembers the last version per screen); `format:"full"` for the old tree. Never compare snapshot `.yaml` for change: it contains a fresh random version (the old routine "screen changed" check was vacuous; now `ScreenCompact.signature`).
+- `HistoryScrubber` (beforeSerialization hook) sends only the newest screen result, newest 6 skills, recent large results in full; stored history untouched. Effective window capped at 200k, compaction max 60% (`Compactor.EFFECTIVE_WINDOW_CAP`).
+- `share_file` tool (MediaStore + ACTION_SEND to a package, caption on clipboard) + `<platform>.finish_share` routines + skill `video-publish`; `screen_routine steps=[..] save_as=<id> params={..}` records a successful sequence as a zero-model routine. Labels are guesses: calibrate on the phone.
+- Workspaces: every agent has a role+platform SKILL MAP (generated), skills fast-screen / skill-router / video-publish; tool lists widened. Regenerate with tools/autonomous/gen_workspaces.py.
+- NOT done: USD per-run cap, cheap model for tap-level steps, API-first posting (TikTok audit / Instagram review needed), delta reads, MCP auto-enable.
