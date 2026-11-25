@@ -7,6 +7,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -125,12 +126,24 @@ fun SkillsSettingsContent(
         )
     }
 
+    ZafiroConfirmationDialog(
+        visible = uiState.deleteConfirmation != null,
+        onDismissRequest = { viewModel.sendIntent(SkillSettingsIntent.DismissDeleteConfirmation) },
+        title = stringResource(R.string.skill_delete_dialog_title),
+        text = stringResource(R.string.skill_delete_dialog_text, uiState.deleteConfirmation?.title.orEmpty()),
+        negativeButtonText = stringResource(R.string.delete_dialog_cancel),
+        positiveButtonText = stringResource(R.string.delete_dialog_confirm),
+        onNegativeClick = { viewModel.sendIntent(SkillSettingsIntent.DismissDeleteConfirmation) },
+        onPositiveClick = { viewModel.sendIntent(SkillSettingsIntent.ConfirmDelete) },
+    )
+
     SkillsSettingsContentBody(
         uiState = uiState,
         onOpenSkillDetail = onOpenSkillDetail,
         onEnabledChange = { id, enabled ->
             viewModel.sendIntent(SkillSettingsIntent.ToggleEnabled(id, enabled))
         },
+        onDelete = { id, title -> viewModel.sendIntent(SkillSettingsIntent.RequestDeleteFor(id, title)) },
     )
 }
 
@@ -142,6 +155,7 @@ private fun SkillsSettingsContentBody(
     uiState: SkillSettingsUiState,
     onOpenSkillDetail: (String, String) -> Unit,
     onEnabledChange: (String, Boolean) -> Unit,
+    onDelete: (String, String) -> Unit = { _, _ -> },
 ) {
     var query by androidx.compose.runtime.saveable.rememberSaveable { androidx.compose.runtime.mutableStateOf("") }
     val shown = androidx.compose.runtime.remember(uiState.items, query) {
@@ -165,6 +179,9 @@ private fun SkillsSettingsContentBody(
                     androidx.compose.foundation.layout.Column(androidx.compose.ui.Modifier.weight(1f).padding(end = 12.dp)) {
                         androidx.compose.material3.Text(item.title, style = androidx.compose.material3.MaterialTheme.typography.titleSmall, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                         androidx.compose.material3.Text(item.summary.orEmpty(), style = androidx.compose.material3.MaterialTheme.typography.bodySmall, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis, color = androidx.compose.material3.MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    androidx.compose.material3.IconButton(onClick = { onDelete(item.id, item.title) }, enabled = !uiState.isSaving) {
+                        androidx.compose.material3.Icon(Icons.Default.Delete, contentDescription = "Delete skill")
                     }
                     androidx.compose.material3.Switch(checked = item.enabled, onCheckedChange = { onEnabledChange(item.id, it) }, enabled = !uiState.isSaving)
                 }

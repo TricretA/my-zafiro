@@ -39,7 +39,15 @@ import com.tricreta.zafiro.autonomy.AutonomyGraph
 import com.tricreta.zafiro.autonomy.workspace.WorkspaceDef
 import kotlinx.coroutines.launch
 
-/** One card per platform: its icon, a switch, and a bin. Nothing to read. */
+private val DEPARTMENT_GROUPS = listOf(
+    "Careers and income" to setOf("jobhunt"),
+    "Content" to setOf("video-studio", "substack", "youtube", "tiktok", "instagram", "pinterest", "threads", "facebook"),
+    "Networks" to setOf("linkedin", "x", "reddit"),
+    "Communication" to setOf("email", "whatsapp"),
+    "Tools and upkeep" to setOf("toolsmith", "health"),
+)
+
+/** One card per department, grouped by purpose: its icon, a switch, and a bin. Nothing to read. */
 @Composable
 fun WorkspacesVisualContent() {
     val context = LocalContext.current
@@ -52,8 +60,14 @@ fun WorkspacesVisualContent() {
     var confirm by remember { mutableStateOf<WorkspaceDef?>(null) }
 
     LazyColumn(Modifier.fillMaxSize(), contentPadding = androidx.compose.foundation.layout.PaddingValues(start = 16.dp, end = 16.dp, top = topChromePadding(), bottom = 24.dp + bottomChromePadding()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        item { Text("${on.size} on", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary) }
-        items(defs, key = { it.id }) { d ->
+        item { Text("${on.size} of ${defs.size} departments on", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary) }
+        val grouped = DEPARTMENT_GROUPS.map { (title, ids) -> title to defs.filter { it.id in ids } } +
+            listOf("Other" to defs.filter { d -> DEPARTMENT_GROUPS.none { d.id in it.second } })
+        grouped.filter { it.second.isNotEmpty() }.forEach { (title, list) ->
+            item(key = "hdr-$title") {
+                Text("$title · ${list.count { it.id in on }}/${list.size} on", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
+            }
+            items(list, key = { it.id }) { d ->
             val isOn = d.id in on
             Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = if (isOn) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))) {
                 Row(Modifier.padding(12.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -70,6 +84,7 @@ fun WorkspacesVisualContent() {
                         }
                     })
                 }
+            }
             }
         }
         if (deleted.isNotEmpty()) item {

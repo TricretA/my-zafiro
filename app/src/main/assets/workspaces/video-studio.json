@@ -1,0 +1,109 @@
+{
+ "id": "video-studio",
+ "version": 1,
+ "name": "Video Studio",
+ "platform": "video-studio",
+ "app": "",
+ "summary": "Produces short videos, reels and ads: brief, script, storyboard, voice, render on GitHub Actions, QA gates, delivery. Built from the owner's own studio skills.",
+ "quotas": "",
+ "agents": [
+  {
+   "id": "video-producer",
+   "name": "Video Producer",
+   "tools": [
+    "board",
+    "save_file",
+    "execute_python",
+    "http_request",
+    "web_fetch",
+    "web_search",
+    "load_skill",
+    "memory",
+    "datetime",
+    "make_card",
+    "agent",
+    "notify",
+    "wait"
+   ],
+   "skills": [
+    "studio-director",
+    "studio-actions-render",
+    "skill-router"
+   ],
+   "usesScreen": false,
+   "instructions": "You are the Video Producer: executive producer of a one-person studio. Load studio-director first and follow its role chain and standing rules (graphics first, a new visual event every 1.5-2.5 s, hook in 2 s, plain language, real assets, honesty). For code-rendered video load studio-actions-render and render on GitHub Actions; for typographic or kinetic stories use studio-canvas-motion-engine; for real footage see studio-editing-rules. Run every script and caption through the humanizer skill. After rendering apply the studio-qa-gates checks and fix failures before delivering. Save deliverables (mp4, cover, caption text, hashtags) under outputs/video/<project>/ and report the paths. Never post: hand finished items to the Media Operator. Save a lesson with memory after each delivered video. If the render repo, token or voice file is missing, ask the owner with a board item (owner set) and continue with other work."
+  },
+  {
+   "id": "video-media-operator",
+   "name": "Media Operator",
+   "tools": [
+    "screen_routine",
+    "screen_operation",
+    "share_file",
+    "launch_app",
+    "open_uri",
+    "screenshot",
+    "wait",
+    "take_over",
+    "shell",
+    "save_file",
+    "board",
+    "load_skill",
+    "clipboard",
+    "execute_python"
+   ],
+   "skills": [
+    "content-factory-screen",
+    "fast-screen",
+    "video-publish"
+   ],
+   "usesScreen": true,
+   "instructions": "You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."
+  }
+ ],
+ "tasks": [
+  {
+   "key": "heartbeat",
+   "name": "Video Studio: heartbeat",
+   "agent": "video-producer",
+   "trigger": "INTERVAL",
+   "intervalMinutes": 60,
+   "maxSteps": 60,
+   "maxMinutes": 30,
+   "prompt": "Workspace video-studio. Run board op=resume, then do every open board item (owner items first). If a video brief is waiting, produce it with the studio-director role chain. If nothing is waiting, do nothing and say STATUS: DONE.",
+   "criteria": "Open board items were advanced, or the board was empty."
+  }
+ ],
+ "skills": [
+  "studio-director",
+  "studio-motion-craft",
+  "studio-shortform-playbook",
+  "studio-graphics-toolkit",
+  "studio-style-bank",
+  "studio-reference-analyst",
+  "studio-canvas-motion-engine",
+  "studio-qa-gates",
+  "studio-editing-rules",
+  "studio-editing-styles",
+  "studio-shorts-clipper",
+  "humanizer",
+  "studio-actions-render",
+  "content-factory-screen",
+  "video-publish",
+  "fast-screen",
+  "skill-router",
+  "caption-writer",
+  "hook-writer",
+  "short-form-video-script",
+  "platform-specs-and-validation",
+  "capcut",
+  "ai-voiceover",
+  "thumbnail-design",
+  "team-protocol",
+  "toolbox"
+ ],
+ "mcps": [],
+ "memory": [
+  "The studio skills come from the owner's own video repo. Standing rules: graphics first (80% graphics or real footage), a new visual event every 1.5-2.5 s, hook in 2 s, plain language, honest facts only. ElevenLabs Free is non-commercial."
+ ]
+}

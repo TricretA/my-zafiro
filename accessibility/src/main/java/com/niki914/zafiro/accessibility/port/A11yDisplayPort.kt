@@ -111,31 +111,18 @@ open class A11yDisplayPort(
         if (initialDwell > 0) {
             delay(initialDwell)
         }
-
-        var previousHash: Int? = computeTreeHash()
-        var previousSampleTime = uptime()
-
         while (true) {
             val now = uptime()
             if (now - startTime >= timeoutMs) {
                 Logger.d(TAG, "settle reached timeout (${timeoutMs}ms) on displayId=$displayId")
                 break
             }
-            delay(SETTLE_SAMPLE_INTERVAL_MS)
-            val currentHash = computeTreeHash()
-            val sampleTime = uptime()
             val lastEventTime = driver.getLastUiEventTime(displayId)
-
-            if (currentHash != null && currentHash == previousHash &&
-                lastEventTime <= previousSampleTime &&
-                sampleTime - lastEventTime >= EVENT_QUIET_PERIOD_MS
-            ) {
-                Logger.d(TAG, "settle achieved on displayId=$displayId in ${sampleTime - startTime}ms")
+            if (now - lastEventTime >= EVENT_QUIET_PERIOD_MS) {
+                Logger.d(TAG, "settle quiet on displayId=$displayId after ${now - startTime}ms")
                 break
             }
-
-            previousHash = currentHash
-            previousSampleTime = sampleTime
+            delay(SETTLE_SAMPLE_INTERVAL_MS)
         }
     }
 
@@ -356,10 +343,10 @@ open class A11yDisplayPort(
 
     companion object {
         private const val TAG = "niki914_zafiro_A11yDisplayPort"
-        const val DEFAULT_SETTLE_TIMEOUT_MS = 2_000L
-        const val INITIAL_DWELL_MS = 200L
-        const val SETTLE_SAMPLE_INTERVAL_MS = 50L
-        const val EVENT_QUIET_PERIOD_MS = 300L
+        const val DEFAULT_SETTLE_TIMEOUT_MS = 1_500L
+        const val INITIAL_DWELL_MS = 80L
+        const val SETTLE_SAMPLE_INTERVAL_MS = 40L
+        const val EVENT_QUIET_PERIOD_MS = 150L
 
         /**
          * 针对副屏/虚拟屏幕做 Fast-Fail 拦截的系统全局按键黑名单。

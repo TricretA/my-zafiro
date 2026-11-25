@@ -2,7 +2,7 @@
  "id": "jobhunt.comment",
  "version": 1,
  "platform": "jobhunt",
- "description": "On the post currently open in Job hunt, write a comment and send it. Only after an engage gate of AUTO or owner approval.",
+ "description": "On the post currently open in Careers (Kenya-first), write a comment and send it. Only after an engage gate of AUTO or owner approval.",
  "params": [
   {
    "name": "text",

@@ -2,7 +2,7 @@
  "id": "jobhunt.read_activity",
  "version": 1,
  "platform": "jobhunt",
- "description": "Open Job hunt notifications/activity and return what is shown (replies, likes, mentions).",
+ "description": "Open Careers (Kenya-first) notifications/activity and return what is shown (replies, likes, mentions).",
  "params": [],
  "steps": [
   {

@@ -100,6 +100,7 @@ sealed interface SkillSettingsIntent {
     data class ContentChanged(val value: String) : SkillSettingsIntent
     data object Save : SkillSettingsIntent
     data object RequestDelete : SkillSettingsIntent
+    data class RequestDeleteFor(val id: String, val title: String) : SkillSettingsIntent
     data object DismissDeleteConfirmation : SkillSettingsIntent
     data object ConfirmDelete : SkillSettingsIntent
     data class Import(val sourceDir: File) : SkillSettingsIntent
@@ -144,6 +145,9 @@ class SkillSettingsViewModel(
             is SkillSettingsIntent.ContentChanged -> contentChanged(intent.value)
             SkillSettingsIntent.Save -> save()
             SkillSettingsIntent.RequestDelete -> requestDelete()
+            is SkillSettingsIntent.RequestDeleteFor -> updateState {
+                copy(deleteConfirmation = SkillDeleteConfirmationState(skillId = intent.id, title = intent.title), inlineError = null)
+            }
             SkillSettingsIntent.DismissDeleteConfirmation -> updateState {
                 copy(deleteConfirmation = null)
             }
@@ -419,6 +423,7 @@ class SkillSettingsViewModel(
                     inlineError = null,
                 )
             }
+            load()
             sendEffect(SkillSettingsEffect.ExitDetail)
         }.onFailure { throwable ->
             Logger.w(

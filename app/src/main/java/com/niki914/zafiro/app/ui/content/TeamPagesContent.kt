@@ -186,6 +186,10 @@ fun FileViewPageContent(relative: String, onDeleted: () -> Unit) {
         return
     }
     val ext = file.extension.lowercase()
+    val editable = ext in EDITABLE_EXT || (isTextLike(file.name) && ext !in MEDIA_EXT && ext !in OFFICE_EXT && ext !in ARCHIVE_EXT)
+    val editing = remember(file) { androidx.compose.runtime.mutableStateOf(false) }
+    val draft = remember(file) { androidx.compose.runtime.mutableStateOf("") }
+    val saves = remember(file) { androidx.compose.runtime.mutableStateOf(0) }
     val uri = remember(file) { FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file) }
     val mime = remember(file) { com.niki914.zafiro.chat.agentic.buildin.impl.OutputPaths.mime(file.name) }
 
@@ -198,6 +202,13 @@ fun FileViewPageContent(relative: String, onDeleted: () -> Unit) {
     Column(Modifier.fillMaxSize()) {
         Text(file.name, style = androidx.compose.material3.MaterialTheme.typography.titleMedium, maxLines = 1, modifier = Modifier.padding(start = 76.dp, end = 16.dp, top = topChromePadding() - 56.dp, bottom = 8.dp))
         Column(Modifier.weight(1f).fillMaxSize()) {
+            if (editing.value) {
+                androidx.compose.material3.OutlinedTextField(
+                    value = draft.value, onValueChange = { draft.value = it },
+                    modifier = Modifier.fillMaxSize().padding(12.dp),
+                    textStyle = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                )
+            } else androidx.compose.runtime.key(saves.value) {
             when {
                 ext == "html" || ext == "htm" -> WebBlock(file.readText())
                 ext == "svg" -> WebBlock("<html><body style='margin:0;background:#fff'>" + file.readText() + "</body></html>")
@@ -212,9 +223,24 @@ fun FileViewPageContent(relative: String, onDeleted: () -> Unit) {
                 isTextLike(file.name) -> TextBlock(file.readText().take(200_000))
                 else -> TextBlock(FileText.bytesPreview(file))
             }
+            }
         }
         androidx.compose.material3.Surface(tonalElevation = 3.dp) {
             Row(Modifier.fillMaxWidth().padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 12.dp + bottomChromePadding()), horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(10.dp)) {
+                if (editing.value) {
+                    Button(modifier = Modifier.weight(1f).height(52.dp), onClick = {
+                        if (runCatching { file.writeText(draft.value) }.isSuccess) {
+                            editing.value = false; saves.value += 1
+                            Toast.makeText(context, "Saved. Agents read this version next time.", Toast.LENGTH_SHORT).show()
+                        } else Toast.makeText(context, "Could not save the file.", Toast.LENGTH_SHORT).show()
+                    }) { Text("Save") }
+                    OutlinedButton(modifier = Modifier.weight(1f).height(52.dp), onClick = { editing.value = false }) { Text("Cancel") }
+                    return@Row
+                }
+                if (editable) OutlinedButton(modifier = Modifier.weight(1f).height(52.dp), onClick = {
+                    draft.value = runCatching { file.readText() }.getOrDefault("")
+                    editing.value = true
+                }) { Text("Edit") }
                 Button(modifier = Modifier.weight(1f).height(52.dp), onClick = {
                     context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType(mime).putExtra(Intent.EXTRA_STREAM, uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION), "Share"))
                 }) { Text("Share") }
@@ -229,6 +255,7 @@ fun FileViewPageContent(relative: String, onDeleted: () -> Unit) {
 }
 
 
+private val EDITABLE_EXT = setOf("md", "markdown", "txt", "json", "csv", "tsv", "html", "htm", "yaml", "yml", "xml", "log", "srt", "ass")
 private val AUDIO_EXT = setOf("mp3", "m4a", "wav", "ogg", "aac", "flac", "opus")
 private val MEDIA_EXT = AUDIO_EXT + setOf("mp4", "3gp", "webm", "mkv", "mov")
 private val OFFICE_EXT = setOf("docx", "xlsx", "pptx", "odt", "ods", "odp")

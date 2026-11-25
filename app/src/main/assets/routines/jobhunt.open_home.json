@@ -2,7 +2,7 @@
  "id": "jobhunt.open_home",
  "version": 1,
  "platform": "jobhunt",
- "description": "Open Job hunt and go to the home screen.",
+ "description": "Open Careers (Kenya-first) and go to the home screen.",
  "params": [],
  "steps": [
   {

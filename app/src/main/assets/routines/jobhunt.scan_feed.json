@@ -2,7 +2,7 @@
  "id": "jobhunt.scan_feed",
  "version": 1,
  "platform": "jobhunt",
- "description": "Scroll the Job hunt feed and collect post texts to judge for engagement.",
+ "description": "Scroll the Careers (Kenya-first) feed and collect post texts to judge for engagement.",
  "params": [],
  "steps": [
   {

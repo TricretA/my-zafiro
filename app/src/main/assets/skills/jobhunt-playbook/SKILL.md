@@ -1,14 +1,14 @@
 ---
 name: jobhunt-playbook
-description: Job hunt operating playbook: platform facts, formats, engagement tactics, caps and routines. Load when working on Job hunt.
+description: Careers (Kenya-first) operating playbook: platform facts, formats, engagement tactics, caps and routines. Load when working on Careers (Kenya-first).
 license: MIT
 ---
 
-# Job hunt playbook
+# Careers (Kenya-first) playbook
 App package: `com.google.android.gm`. Area: applications, outreach drafts and the tracker.
 
 ## What to know
-Mission: remote and contract work for an Android developer who also does full-stack web and AI automation. Target 15 applications a day Monday to Friday (5 full-stack, 5 automation, 5 mobile) plus outreach drafts. NEVER fabricate experience, clients, metrics or credentials; use only the owner's approved resumes (Drive: Career Search > Resumes). Label project status honestly. Log every application in the tracker (applications/tracker.csv). Applications and outreach go out only as the owner has pre-authorised; otherwise they are drafts.
+Mission: remote and contract work, and Kenyan employers, for an Android developer who also does full-stack web and AI automation, based in Nairobi (UTC+3). Only channels that genuinely hire Kenyans (skill job-sources-kenya). EVERY job passes the eligibility gate BEFORE a draft is written (skill job-eligibility-gate): remote boards overstate who can apply (a RemoteOK sample was 64% US-only). Realistic yield is a few genuinely eligible roles a day: scan continuously, apply fast to every eligible match, spend the rest of the effort on high-touch applications; never pad with ineligible ones. NEVER auto-submit: drafts queue to the owner (first applications and anything for a Tier A employer need approval). NEVER fabricate experience, clients, metrics or credentials; use only the owner's approved profile file. Any fee, processing payment, M-Pesa registration, WhatsApp-only task or cheque offer is a scam: hard fail. Log every source, eligibility verdict and outcome in applications/tracker.csv so real response rates exist after a month.
 
 ## Daily caps (owner-adjustable in the workspace; `engage op=today` shows live counts)
 post=15, dm=10, reply=20
