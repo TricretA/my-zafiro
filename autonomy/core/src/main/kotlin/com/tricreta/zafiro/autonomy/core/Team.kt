@@ -32,7 +32,9 @@ data class Quotas(val limits: Map<String, Int>) {
     }
 
     fun check(action: String, doneToday: Int): Verdict {
-        val cap = limits[action.lowercase()] ?: return Verdict.Allowed(Int.MAX_VALUE)
+        val key = action.lowercase()
+        // A per-platform key ("instagram.comment") falls back to the generic key ("comment") when the platform has no cap of its own.
+        val cap = limits[key] ?: limits[key.substringAfterLast('.')] ?: return Verdict.Allowed(Int.MAX_VALUE)
         return if (doneToday >= cap) Verdict.Denied("Daily cap for \"$action\" reached ($doneToday of $cap). Try again tomorrow.")
         else Verdict.Allowed(cap - doneToday - 1)
     }
@@ -85,7 +87,7 @@ object Tiering {
      * wait for approval, until ten approvals in a row promote that type to AUTO. One rejection demotes it again.
      */
     fun gate(action: String, ownThread: Boolean, s: State, serious: Boolean = false): Gate {
-        val a = action.lowercase()
+        val a = action.lowercase().substringAfterLast('.')
         if (ownThread && (a == "reply" || a == "like")) return Gate.AUTO
         if (s.auto) return Gate.AUTO
         return if (serious || a in SERIOUS) Gate.NEEDS_APPROVAL else Gate.AUTO

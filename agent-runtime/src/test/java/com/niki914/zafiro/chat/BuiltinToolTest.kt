@@ -48,6 +48,7 @@ class BuiltinToolTest {
                 "screenshot",
                 "share_file",
                 "shell",
+                "signals",
                 "ssh",
                 "take_over",
                 "view_image",

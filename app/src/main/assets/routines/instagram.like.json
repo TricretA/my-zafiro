@@ -2,7 +2,7 @@
  "id": "instagram.like",
  "version": 1,
  "platform": "instagram",
- "description": "Like the post currently open in Instagram.",
+ "description": "Like or react to the post currently open in Instagram.",
  "params": [],
  "steps": [
   {

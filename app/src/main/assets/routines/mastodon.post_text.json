@@ -1,0 +1,51 @@
+{
+ "id": "mastodon.post_text",
+ "version": 1,
+ "platform": "mastodon",
+ "description": "Create and publish a text post in Mastodon. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "org.joinmastodon.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "New post",
+    "Compose",
+    "+"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "What's on your mind",
+    "Type or paste what's on your mind"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Publish",
+    "Post"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

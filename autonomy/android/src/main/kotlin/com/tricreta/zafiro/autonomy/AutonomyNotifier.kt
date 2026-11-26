@@ -40,6 +40,19 @@ class AutonomyNotifier(private val context: Context) {
             .setContentIntent(openApp())
             .build()
 
+    /** A one-off informational notification (e.g. "paused everything on your WhatsApp command"). */
+    fun postInfo(key: Int, title: String, text: String) {
+        val n = NotificationCompat.Builder(context, CH_RESULTS)
+            .setSmallIcon(R.drawable.ic_autonomy)
+            .setContentTitle(title)
+            .setContentText(text.take(120))
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text.take(1000)))
+            .setAutoCancel(true)
+            .setContentIntent(openApp())
+            .build()
+        safeNotify(INFO_BASE + (key and 0xFF), n)
+    }
+
     fun updateRunning(text: String) = safeNotify(RUNNING_ID, runningNotification(text))
 
     fun postResult(runId: Long, taskName: String, state: RunState, text: String) {
@@ -105,6 +118,7 @@ class AutonomyNotifier(private val context: Context) {
     companion object {
         const val RUNNING_ID = 71001
         private const val RESULT_BASE = 72000
+        private const val INFO_BASE = 74000
         const val CH_RUNNING = "autonomy_running"
         const val CH_RESULTS = "autonomy_results"
         const val CH_APPROVALS = "autonomy_approvals"

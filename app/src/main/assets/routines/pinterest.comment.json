@@ -2,7 +2,7 @@
  "id": "pinterest.comment",
  "version": 1,
  "platform": "pinterest",
- "description": "On the post currently open in Pinterest, write a comment and send it. Only after an engage gate of AUTO or owner approval.",
+ "description": "On the post (or chat) currently open in Pinterest, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
  "params": [
   {
    "name": "text",
@@ -13,6 +13,7 @@
   {
    "op": "tap",
    "labels": [
+    "Comment",
     "Add a comment"
    ],
    "timeout_s": 6

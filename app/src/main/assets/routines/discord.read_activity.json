@@ -1,0 +1,29 @@
+{
+ "id": "discord.read_activity",
+ "version": 1,
+ "platform": "discord",
+ "description": "Open Discord notifications/activity and return what is shown (replies, likes, mentions).",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.discord"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Notifications",
+    "Mentions"
+   ],
+   "optional": true
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "collect",
+   "count": 3
+  }
+ ]
+}

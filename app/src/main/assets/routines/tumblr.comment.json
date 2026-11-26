@@ -1,0 +1,38 @@
+{
+ "id": "tumblr.comment",
+ "version": 1,
+ "platform": "tumblr",
+ "description": "On the post (or chat) currently open in Tumblr, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Reply",
+    "Comment"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Add a title",
+    "Go ahead, put something"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Reply",
+    "Post"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

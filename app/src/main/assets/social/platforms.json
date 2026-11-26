@@ -1,0 +1,389 @@
+{
+ "version": 1,
+ "metricoolFreeLimit": 20,
+ "warmupDays": 28,
+ "fallbackCaps": "post=3,comment=15,reply=30,like=30,follow=8,dm=3,note=6,restack=10",
+ "platforms": [
+  {
+   "id": "facebook",
+   "name": "Facebook",
+   "app": "com.facebook.katana",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=2,comment=10,reply=25,like=25,dm=3",
+   "skills": [
+    "facebook-playbook",
+    "facebook-strategy",
+    "facebook-groups",
+    "caption-writer",
+    "reply-and-comment-writer",
+    "community-management",
+    "engagement-routine",
+    "short-form-video-script",
+    "social-strategy"
+   ]
+  },
+  {
+   "id": "instagram",
+   "name": "Instagram",
+   "app": "com.instagram.android",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=1,comment=15,reply=30,like=30,follow=8,dm=4",
+   "skills": [
+    "instagram-playbook",
+    "instagram-growth",
+    "instagram-reels-publishing",
+    "instagram-seo",
+    "reels-script",
+    "carousel-writer",
+    "caption-writer",
+    "hashtag-strategy",
+    "reply-and-comment-writer",
+    "canva",
+    "capcut",
+    "engagement-routine",
+    "smc-post-writer"
+   ]
+  },
+  {
+   "id": "tiktok",
+   "name": "TikTok",
+   "app": "com.zhiliaoapp.musically",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=1,comment=15,reply=25,like=30,follow=8",
+   "skills": [
+    "tiktok-playbook",
+    "tiktok-growth",
+    "tiktok-script",
+    "tiktok-video-publishing",
+    "tiktok-photo-mode",
+    "short-form-video-script",
+    "hook-writer",
+    "capcut",
+    "hashtag-strategy",
+    "trend-jacking",
+    "engagement-routine",
+    "viral-reverse-engineering"
+   ]
+  },
+  {
+   "id": "youtube",
+   "name": "YouTube",
+   "app": "com.google.android.youtube",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=1,comment=10,reply=30,like=20",
+   "skills": [
+    "youtube-playbook",
+    "youtube-long-form",
+    "youtube-shorts",
+    "youtube-publishing-and-metadata",
+    "thumbnail-design",
+    "scripting-and-storyboarding",
+    "reply-and-comment-writer",
+    "community-management",
+    "social-seo",
+    "smc-youtube-thumbnail"
+   ]
+  },
+  {
+   "id": "snapchat",
+   "name": "Snapchat",
+   "app": "com.snapchat.android",
+   "optional": false,
+   "metricool": "none",
+   "caps": "post=3,reply=20,dm=3,follow=5",
+   "skills": [
+    "snapchat-playbook",
+    "short-form-video-script",
+    "hook-writer",
+    "capcut",
+    "caption-writer",
+    "reply-and-comment-writer",
+    "community-management",
+    "trend-jacking",
+    "social-strategy"
+   ]
+  },
+  {
+   "id": "pinterest",
+   "name": "Pinterest",
+   "app": "com.pinterest",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=5,like=20,follow=10",
+   "skills": [
+    "pinterest-playbook",
+    "pinterest-growth",
+    "pinterest-pin-design",
+    "pinterest-seo",
+    "canva",
+    "caption-writer",
+    "social-seo",
+    "link-in-bio-and-traffic"
+   ]
+  },
+  {
+   "id": "linkedin",
+   "name": "LinkedIn",
+   "app": "com.linkedin.android",
+   "optional": false,
+   "metricool": "paid",
+   "caps": "post=1,comment=12,reply=25,like=25,follow=5,dm=5",
+   "skills": [
+    "linkedin-playbook",
+    "linkedin-growth",
+    "linkedin-post-writer",
+    "linkedin-company-pages",
+    "profile-optimization",
+    "reply-and-comment-writer",
+    "social-selling-and-dm",
+    "engagement-routine",
+    "social-strategy",
+    "smc-post-writer"
+   ]
+  },
+  {
+   "id": "whatsapp",
+   "name": "WhatsApp",
+   "app": "com.whatsapp.w4b",
+   "optional": false,
+   "metricool": "none",
+   "caps": "post=2,reply=20,dm=10",
+   "skills": [
+    "whatsapp-playbook",
+    "social-selling-and-dm",
+    "customer-support-draft-response",
+    "community-management",
+    "caption-writer"
+   ]
+  },
+  {
+   "id": "messenger",
+   "name": "Messenger",
+   "app": "com.facebook.orca",
+   "optional": false,
+   "metricool": "none",
+   "caps": "reply=30,dm=5",
+   "skills": [
+    "messenger-playbook",
+    "customer-support-draft-response",
+    "social-selling-and-dm",
+    "community-management",
+    "reply-and-comment-writer"
+   ]
+  },
+  {
+   "id": "telegram",
+   "name": "Telegram",
+   "app": "org.telegram.messenger",
+   "optional": false,
+   "metricool": "none",
+   "caps": "post=3,reply=30,dm=3",
+   "skills": [
+    "telegram-playbook",
+    "community-management",
+    "reply-and-comment-writer",
+    "caption-writer",
+    "text-post-and-microblog",
+    "social-selling-and-dm"
+   ]
+  },
+  {
+   "id": "discord",
+   "name": "Discord",
+   "app": "com.discord",
+   "optional": false,
+   "metricool": "none",
+   "caps": "post=3,reply=30,dm=2",
+   "skills": [
+    "discord-playbook",
+    "community-management",
+    "reply-and-comment-writer",
+    "text-post-and-microblog",
+    "crisis-and-moderation",
+    "social-strategy"
+   ]
+  },
+  {
+   "id": "x",
+   "name": "X (Twitter)",
+   "app": "com.twitter.android",
+   "optional": false,
+   "metricool": "paid",
+   "caps": "post=4,comment=15,reply=30,like=30,follow=8,dm=3",
+   "skills": [
+    "x-playbook",
+    "x-growth",
+    "thread-writer",
+    "reply-and-comment-writer",
+    "engagement-routine",
+    "hook-writer",
+    "trend-jacking",
+    "social-strategy",
+    "writing-style-and-tone",
+    "text-post-and-microblog"
+   ]
+  },
+  {
+   "id": "threads",
+   "name": "Threads",
+   "app": "com.instagram.barcelona",
+   "optional": false,
+   "metricool": "free",
+   "caps": "post=4,comment=15,reply=30,like=30,follow=8",
+   "skills": [
+    "threads-playbook",
+    "threads-growth",
+    "threads-post",
+    "text-post-and-microblog",
+    "reply-and-comment-writer",
+    "engagement-routine",
+    "hook-writer"
+   ]
+  },
+  {
+   "id": "reddit",
+   "name": "Reddit",
+   "app": "com.reddit.frontpage",
+   "optional": false,
+   "metricool": "none",
+   "caps": "post=1,comment=8,reply=15,like=20",
+   "skills": [
+    "reddit-playbook",
+    "reddit-marketing",
+    "reply-and-comment-writer",
+    "community-management",
+    "engagement-routine",
+    "audience-research"
+   ]
+  },
+  {
+   "id": "twitch",
+   "name": "Twitch",
+   "app": "tv.twitch.android.app",
+   "optional": false,
+   "metricool": "paid",
+   "caps": "post=1,reply=40",
+   "skills": [
+    "twitch-playbook",
+    "livestream-and-realtime",
+    "community-management",
+    "short-form-video-script",
+    "captions-and-clipping",
+    "opus-clip",
+    "social-strategy",
+    "reply-and-comment-writer"
+   ]
+  },
+  {
+   "id": "substack",
+   "name": "Substack",
+   "app": "com.substack.app",
+   "optional": false,
+   "metricool": "none",
+   "caps": "note=6,post=1,comment=15,reply=40,like=30,restack=10,follow=10,dm=5",
+   "skills": [
+    "substack-playbook",
+    "social-strategy",
+    "reply-and-comment-writer",
+    "engagement-routine",
+    "email-and-newsletter",
+    "text-post-and-microblog",
+    "content-pillars",
+    "content-calendar",
+    "audience-research",
+    "competitor-analysis",
+    "writing-style-and-tone",
+    "voice-builder",
+    "stop-slop"
+   ]
+  },
+  {
+   "id": "bluesky",
+   "name": "Bluesky",
+   "app": "xyz.blueskyweb.app",
+   "optional": true,
+   "metricool": "free",
+   "caps": "post=4,comment=15,reply=30,like=30,follow=10,dm=3",
+   "skills": [
+    "bluesky-playbook",
+    "text-post-and-microblog",
+    "thread-writer",
+    "reply-and-comment-writer",
+    "engagement-routine",
+    "hook-writer",
+    "community-management"
+   ]
+  },
+  {
+   "id": "mastodon",
+   "name": "Mastodon",
+   "app": "org.joinmastodon.android",
+   "optional": true,
+   "metricool": "none",
+   "caps": "post=4,comment=10,reply=25,like=30,follow=10",
+   "skills": [
+    "mastodon-playbook",
+    "text-post-and-microblog",
+    "reply-and-comment-writer",
+    "community-management",
+    "engagement-routine",
+    "hashtag-strategy"
+   ]
+  },
+  {
+   "id": "quora",
+   "name": "Quora",
+   "app": "com.quora.android",
+   "optional": true,
+   "metricool": "none",
+   "caps": "post=2,comment=5,reply=10",
+   "skills": [
+    "quora-playbook",
+    "reply-and-comment-writer",
+    "social-seo",
+    "audience-research",
+    "educational-content-and-how-to",
+    "ai-search-optimization",
+    "stop-slop"
+   ]
+  },
+  {
+   "id": "tumblr",
+   "name": "Tumblr",
+   "app": "com.tumblr",
+   "optional": true,
+   "metricool": "none",
+   "caps": "post=3,comment=8,like=30,follow=10,restack=10",
+   "skills": [
+    "tumblr-playbook",
+    "text-post-and-microblog",
+    "meme-and-culture",
+    "hashtag-strategy",
+    "caption-writer",
+    "community-management"
+   ]
+  },
+  {
+   "id": "medium",
+   "name": "Medium",
+   "app": "com.medium.reader",
+   "optional": true,
+   "metricool": "none",
+   "caps": "post=1,comment=5,like=20,follow=5",
+   "skills": [
+    "medium-playbook",
+    "email-and-newsletter",
+    "writing-style-and-tone",
+    "voice-builder",
+    "stop-slop",
+    "social-seo",
+    "educational-content-and-how-to",
+    "storytelling-and-narrative"
+   ]
+  }
+ ]
+}

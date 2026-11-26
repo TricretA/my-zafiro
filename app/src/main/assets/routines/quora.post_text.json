@@ -1,0 +1,51 @@
+{
+ "id": "quora.post_text",
+ "version": 1,
+ "platform": "quora",
+ "description": "Create and publish a text post in Quora. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.quora.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Answer",
+    "Add Question",
+    "+"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Write your answer",
+    "Write an answer"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Post",
+    "Submit"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

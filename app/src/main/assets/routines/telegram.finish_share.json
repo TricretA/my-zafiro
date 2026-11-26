@@ -1,0 +1,72 @@
+{
+ "id": "telegram.finish_share",
+ "version": 1,
+ "platform": "telegram",
+ "description": "After share_file opened Telegram with a video or image attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "wait",
+   "labels": [
+    "Next",
+    "Post",
+    "Share",
+    "Send",
+    "Upload",
+    "Continue",
+    "Publish",
+    "Create"
+   ],
+   "timeout_s": 15
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Message",
+    "Write a message",
+    "Caption",
+    "Description",
+    "Add a caption",
+    "Write a caption",
+    "Title"
+   ],
+   "text": "{text}",
+   "optional": true
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Send",
+    "Share",
+    "Publish",
+    "Upload",
+    "Post",
+    "Send"
+   ],
+   "timeout_s": 10
+  }
+ ]
+}

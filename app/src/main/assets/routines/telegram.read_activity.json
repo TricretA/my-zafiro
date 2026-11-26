@@ -1,0 +1,28 @@
+{
+ "id": "telegram.read_activity",
+ "version": 1,
+ "platform": "telegram",
+ "description": "Open Telegram notifications/activity and return what is shown (replies, likes, mentions).",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "org.telegram.messenger"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Chats"
+   ],
+   "optional": true
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "collect",
+   "count": 3
+  }
+ ]
+}

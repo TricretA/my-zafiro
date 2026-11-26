@@ -6,6 +6,8 @@ import com.tricreta.zafiro.autonomy.core.BoardRules
 import com.tricreta.zafiro.autonomy.core.Pacing
 import com.tricreta.zafiro.autonomy.core.Quotas
 import com.tricreta.zafiro.autonomy.core.Tiering
+import com.tricreta.zafiro.autonomy.core.signals.SignalStore
+import com.tricreta.zafiro.autonomy.signals.SignalsTool
 import com.tricreta.zafiro.autonomy.data.ActionLogEntity
 import com.tricreta.zafiro.autonomy.data.AutonomyDao
 import com.tricreta.zafiro.autonomy.data.BoardItemEntity
@@ -28,6 +30,7 @@ class TeamServiceImpl(
     private val quotasOverride: (suspend (workspace: String) -> Quotas)? = null,
     private val random: () -> Double = { Random.nextDouble() },
     private val onSchedulesChanged: suspend () -> Unit = {},
+    private val signals: SignalStore? = null,
 ) : TeamService {
 
     private suspend fun quotas(ws: String): Quotas = quotasOverride?.invoke(ws)
@@ -39,6 +42,7 @@ class TeamServiceImpl(
             "engage" -> engage(args)
             "examples" -> examples(args)
             "schedule" -> schedule(args)
+            "signals" -> SignalsTool(signals, nowMs, zone).run(args)
             else -> TeamResult(false, "Unknown team tool '$tool'.")
         }
     } catch (e: IllegalArgumentException) {
