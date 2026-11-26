@@ -32,7 +32,7 @@ class StudioRenderBuiltinTest {
 
         val dispatch = tool.invoke(BuiltinToolRequest("studio_render", """{"op":"dispatch","job_path":"jobs/a.json"}"""))
         assertFalse(dispatch.ok)
-        assertEquals("TOKEN_MISSING", dispatch.error?.code)
+        assertEquals("TOKEN_MISSING", dispatch.code)
     }
 
     @Test
