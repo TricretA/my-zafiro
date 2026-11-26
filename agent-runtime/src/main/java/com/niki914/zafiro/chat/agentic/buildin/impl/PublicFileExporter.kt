@@ -26,6 +26,13 @@ object PublicFileExporter {
 
     private val BAD_CHARS = Regex("[*?\"<>|:\\x00-\\x1F]")
 
+    private const val DIR_DOWNLOAD = "Download"
+    private const val DIR_MOVIES = "Movies"
+    private const val DIR_PICTURES = "Pictures"
+    private const val DIR_DCIM = "DCIM"
+    private const val DIR_MUSIC = "Music"
+    private const val DIR_DOCUMENTS = "Documents"
+
     /** Pure folder normalizer (unit-tested). Accepts e.g. `Download/Zafiro`, `/sdcard/Movies/Reels`, `downloads`. */
     fun normalizeFolder(rawFolder: String?, fallback: String = StudioConfig.DEFAULT_OUTPUT_FOLDER): String {
         val cleaned = rawFolder.orEmpty()
@@ -40,12 +47,12 @@ object PublicFileExporter {
             return fallback
         }
         val first = when (parts.first().lowercase()) {
-            "download", "downloads" -> Environment.DIRECTORY_DOWNLOADS
-            "movies", "movie" -> Environment.DIRECTORY_MOVIES
-            "pictures", "picture" -> Environment.DIRECTORY_PICTURES
-            "dcim" -> Environment.DIRECTORY_DCIM
-            "music" -> Environment.DIRECTORY_MUSIC
-            "documents", "document" -> Environment.DIRECTORY_DOCUMENTS
+            "download", "downloads" -> DIR_DOWNLOAD
+            "movies", "movie" -> DIR_MOVIES
+            "pictures", "picture" -> DIR_PICTURES
+            "dcim" -> DIR_DCIM
+            "music" -> DIR_MUSIC
+            "documents", "document" -> DIR_DOCUMENTS
             else -> parts.first()
         }
         return (listOf(first) + parts.drop(1)).joinToString("/")
@@ -113,19 +120,19 @@ object PublicFileExporter {
     private fun mediaStoreCollection(rootSegment: String, mime: String): Uri? {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return null
         return when (rootSegment) {
-            Environment.DIRECTORY_DOWNLOADS -> MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-            Environment.DIRECTORY_MOVIES, Environment.DIRECTORY_DCIM -> when {
+            DIR_DOWNLOAD -> MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+            DIR_MOVIES, DIR_DCIM -> when {
                 mime.startsWith("image/") -> MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
                 mime.startsWith("video/") -> MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
                 else -> MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             }
-            Environment.DIRECTORY_PICTURES -> when {
+            DIR_PICTURES -> when {
                 mime.startsWith("image/") -> MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
                 mime.startsWith("video/") -> MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
                 else -> MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             }
-            Environment.DIRECTORY_MUSIC -> MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-            Environment.DIRECTORY_DOCUMENTS -> MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+            DIR_MUSIC -> MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+            DIR_DOCUMENTS -> MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             else -> null
         }
     }
