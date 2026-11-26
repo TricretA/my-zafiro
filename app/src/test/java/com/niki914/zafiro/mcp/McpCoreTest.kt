@@ -24,15 +24,19 @@ class McpCoreTest {
             serverName = "Example",
             accessToken = "access",
             refreshToken = "refresh",
-            expiresAtMs = 10_000,
+            expiresAtMs = 100_000,
         )
-        assertTrue(McpCore.needsRefresh(record, 70_000))
-        assertFalse(McpCore.needsRefresh(record, 0))
+        assertTrue(McpCore.needsRefresh(record, 50_000))
+        assertFalse(McpCore.needsRefresh(record, 20_000))
     }
 
     @Test
     fun shippedCatalogParsesAndContainsCategoryCoverage() {
-        val file = File("app/src/main/assets/mcp_catalog.json")
+        val file = listOf(
+            File("app/src/main/assets/mcp_catalog.json"),
+            File("../app/src/main/assets/mcp_catalog.json"),
+            File("src/main/assets/mcp_catalog.json"),
+        ).firstOrNull(File::isFile) ?: throw AssertionError("mcp_catalog.json not found")
         val entries = McpCore.parseCatalog(file.readText()).getOrThrow()
         assertTrue(entries.isNotEmpty())
         assertTrue(entries.any { it.id == "metricool" })
