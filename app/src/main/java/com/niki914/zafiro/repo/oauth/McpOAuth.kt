@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.niki914.logging.Logger
+import com.niki914.zafiro.api.util.runCatchingCancellable
 import com.niki914.zafiro.repo.XRepo
 import com.niki914.zafiro.mcp.AndroidMcpSecretStore
 import com.niki914.zafiro.mcp.McpCore
@@ -12,6 +13,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.json.Json
@@ -31,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap
  * Authorization header. Tokens are refreshed in the background before they expire.
  */
 object McpOAuth {
-    private const val TAG = "McpOAuth"
+    private const val TAG = "niki914_zafiro_McpOAuth"
     private val waiting = ConcurrentHashMap<String, CompletableDeferred<String>>()
     private val refreshLocks = ConcurrentHashMap<String, Mutex>()
 
@@ -56,7 +58,7 @@ object McpOAuth {
         } finally { c.disconnect() }
     }
 
-    private fun getOrNull(url: String): String? = runCatching { http("GET", url).takeIf { it.code in 200..299 }?.body }.getOrNull()
+    private fun getOrNull(url: String): String? = runCatchingCancellable { http("GET", url).takeIf { it.code in 200..299 }?.body }.getOrNull()
 
     /** Full sign-in. Returns a message for the owner; throws with a plain reason when it cannot finish. */
     suspend fun signIn(context: Context, serverName: String, serverUrl: String): String = withContext(Dispatchers.IO) {
@@ -77,7 +79,7 @@ object McpOAuth {
             withContext(Dispatchers.Main) {
                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }
-            val callback = try { withTimeout(5 * 60_000L) { waiter.await() } } catch (e: kotlinx.coroutines.TimeoutCancellationException) { error("Sign-in was not completed within 5 minutes.") }
+            val callback = try { withTimeout(5 * 60_000L) { waiter.await() } } catch (e: TimeoutCancellationException) { error("Sign-in was not completed within 5 minutes.") }
             val code = McpOAuthLogic.parseCallback(callback, state).getOrThrow()
             val t = http("POST", endpoints.token, McpOAuthLogic.tokenForm(code, verifier, clientId, serverUrl), "application/x-www-form-urlencoded")
             val tokens = McpOAuthLogic.parseTokens(t.body) ?: error("The server did not return a token (HTTP ${t.code}). ${t.body.take(160)}")
@@ -109,7 +111,7 @@ object McpOAuth {
             lock.withLock {
                 val latest = store.load(record.serverName) ?: return@withLock
                 if (!McpCore.needsRefresh(latest, System.currentTimeMillis(), 60)) return@withLock
-                runCatching {
+                runCatchingCancellable {
                     val t = http("POST", latest.tokenEndpoint,
                         McpOAuthLogic.refreshForm(latest.refreshToken!!, latest.clientId, latest.resource),
                         "application/x-www-form-urlencoded")
@@ -117,7 +119,7 @@ object McpOAuth {
                         store.save(latest.serverName, latest.copy(status = "NEEDS_REAUTH"))
                         XRepo.setMcpAuthorization(latest.serverName, null)
                         Logger.w(TAG, "MCP server ${latest.serverName} needs re-authentication")
-                        return@runCatching
+                        return@runCatchingCancellable
                     }
                     val tokens = McpOAuthLogic.parseTokens(t.body)
                         ?: error("refresh refused (HTTP ${t.code})")

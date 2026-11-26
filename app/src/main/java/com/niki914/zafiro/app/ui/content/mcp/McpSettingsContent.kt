@@ -76,7 +76,7 @@ fun McpSettingsContent(
 
     SettingsSpecPageContent(spec = spec) { action ->
         when (action) {
-            is SettingsRowAction.Action -> {
+            is SettingsRowAction.Click -> {
                 if (action.id == MCP_IMPORT_ROW_ID) showImport = true
             }
             is SettingsRowAction.Navigate -> {
@@ -139,28 +139,28 @@ private fun mcpSettingsSpec(
     pageDescription: String,
     loadingText: String,
 ): SettingsPageSpec {
-    val sections = mutableListOf(
-        SettingsSectionSpec(
-            layout = SettingsSectionLayout.GroupedCard,
-            rows = listOf(
-                SettingsRowSpec.Action(
-                    id = MCP_IMPORT_ROW_ID,
-                    title = "Import mcpServers JSON",
-                    summary = "Paste Claude or Cursor MCP configuration",
-                )
-            ),
-        )
+    val importSection = SettingsSectionSpec(
+        layout = SettingsSectionLayout.GroupedCard,
+        rows = listOf(
+            SettingsRowSpec.Action(
+                id = MCP_IMPORT_ROW_ID,
+                title = "Import mcpServers JSON",
+                summary = "Paste Claude or Cursor MCP configuration",
+            )
+        ),
     )
-    when {
-        uiState.isLoading -> listOf(
+    val sections: List<SettingsSectionSpec> = if (uiState.isLoading) {
+        listOf(
+            importSection,
             SettingsSectionSpec(
                 layout = SettingsSectionLayout.GroupedCard,
                 rows = listOf(SettingsRowSpec.Message(title = loadingText)),
-            )
-        ).let(sections::addAll)
-
-        uiState.items.isNotEmpty() -> listOf(
-            SettingsSectionSpec(
+            ),
+        )
+    } else if (uiState.items.isNotEmpty()) {
+        listOf(
+            importSection,
+        SettingsSectionSpec(
                 layout = SettingsSectionLayout.CardList,
                 rows = uiState.items.mapIndexed { index, item ->
                     SettingsRowSpec.ToggleNavigation(
@@ -169,11 +169,11 @@ private fun mcpSettingsSpec(
                         checked = item.enabled,
                         enabled = !uiState.isSaving,
                     )
-                }
-            )
-        ).let(sections::addAll)
-
-        else -> emptyList()
+                },
+            ),
+        )
+    } else {
+        listOf(importSection)
     }
 
     return SettingsPageSpec(

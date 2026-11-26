@@ -2,10 +2,10 @@
 package com.niki914.zafiro.mcp
 
 import java.io.File
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class McpCoreTest {
     @Test
@@ -24,15 +24,19 @@ class McpCoreTest {
             serverName = "Example",
             accessToken = "access",
             refreshToken = "refresh",
-            expiresAtMs = 10_000,
+            expiresAtMs = 100_000,
         )
-        assertTrue(McpCore.needsRefresh(record, 70_000))
-        assertFalse(McpCore.needsRefresh(record, 0))
+        assertTrue(McpCore.needsRefresh(record, 50_000))
+        assertFalse(McpCore.needsRefresh(record, 20_000))
     }
 
     @Test
     fun shippedCatalogParsesAndContainsCategoryCoverage() {
-        val file = File("app/src/main/assets/mcp_catalog.json")
+        val file = listOf(
+            File("app/src/main/assets/mcp_catalog.json"),
+            File("../app/src/main/assets/mcp_catalog.json"),
+            File("src/main/assets/mcp_catalog.json"),
+        ).firstOrNull(File::isFile) ?: throw AssertionError("mcp_catalog.json not found")
         val entries = McpCore.parseCatalog(file.readText()).getOrThrow()
         assertTrue(entries.isNotEmpty())
         assertTrue(entries.any { it.id == "metricool" })
