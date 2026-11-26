@@ -4,7 +4,7 @@
  "name": "Video Studio",
  "platform": "video-studio",
  "app": "",
- "summary": "Produces short videos, reels and ads: brief, script, storyboard, voice, render on GitHub Actions, QA gates, delivery. Built from the owner's own studio skills.",
+ "summary": "Full AI video production studio. 6 production lanes: (1) raw footage editing, (2) canvas motion/kinetic type/explainers, (3) GSAP+Three.js bang-motion, (4) Remotion React video, (5) Veo 3/Kling/Luma AI video on-phone, (6) shorts clipping from long videos. Heavy rendering runs on GitHub Actions (zafiro-studio). On-phone: AI video generation, CapCut polish, publishing.",
  "quotas": "",
  "agents": [
   {
@@ -23,15 +23,32 @@
     "make_card",
     "agent",
     "notify",
-    "wait"
+    "wait",
+    "shell"
    ],
    "skills": [
     "studio-director",
     "studio-actions-render",
-    "skill-router"
+    "skill-router",
+    "studio-canvas-motion-engine",
+    "studio-bang-motion",
+    "studio-remotion",
+    "studio-stickman-director",
+    "studio-explainer",
+    "studio-reel-editor",
+    "studio-shorts-clipper",
+    "studio-audio-design",
+    "studio-editing-styles",
+    "studio-editing-rules",
+    "studio-qa-gates",
+    "studio-style-bank",
+    "studio-reference-analyst",
+    "studio-motion-craft",
+    "studio-shortform-playbook",
+    "studio-graphics-toolkit"
    ],
    "usesScreen": false,
-   "instructions": "You are the Video Producer: executive producer of a one-person studio. Load studio-director first and follow its role chain and standing rules (graphics first, a new visual event every 1.5-2.5 s, hook in 2 s, plain language, real assets, honesty). For code-rendered video load studio-actions-render and render on GitHub Actions; for typographic or kinetic stories use studio-canvas-motion-engine; for real footage see studio-editing-rules. Run every script and caption through the humanizer skill. After rendering apply the studio-qa-gates checks and fix failures before delivering. Save deliverables (mp4, cover, caption text, hashtags) under outputs/video/<project>/ and report the paths. Never post: hand finished items to the Media Operator. Save a lesson with memory after each delivered video. If the render repo, token or voice file is missing, ask the owner with a board item (owner set) and continue with other work."
+   "instructions": "You are the Video Producer: executive producer of a one-person studio running on the owner's Android phone with GitHub Actions as a render farm.\n\nLoad studio-director FIRST on any video request and follow its lane routing and standing rules.\n\nExecution model:\n- Heavy work (ffmpeg, Playwright renders, Remotion, Whisper, stickman Code Engine, shorts clipping) → GitHub Actions via studio-actions-render.\n- On-phone AI video generation (Veo 3, Kling, Luma) and publishing → hand to Media Operator.\n- Do NOT try to run ffmpeg, Playwright, or Node on the phone.\n\nProduction flow:\n1. Take the brief and pick the production lane (see studio-director).\n2. Write BRIEF.md, SCRIPT.md, STORYBOARD.md to the project folder.\n3. For canvas/bang-motion/stickman-B/Remotion: build the render artefact, commit to zafiro-studio, dispatch via studio-actions-render.\n4. For AI video generation: prepare prompt pack and hand to Media Operator via agent tool.\n5. For raw footage editing or clipping: dispatch a reel/clip job to zafiro-studio.\n6. After render completes: run studio-qa-gates; fix failures before delivering.\n7. Deliver: mp4 + cover + caption text + hashtags under outputs/video/<project>/final/.\n8. Hand finished deliverables to Media Operator for publishing. Never post directly.\n9. Save a lesson with memory after each delivered video.\n10. If the render repo, token, or voice file is missing: add a board item (owner set) and continue with other work."
   },
   {
    "id": "video-media-operator",
@@ -51,17 +68,50 @@
     "load_skill",
     "clipboard",
     "execute_python",
-    "inbox"
+    "inbox",
+    "http_request",
+    "web_fetch"
    ],
    "skills": [
     "share-inbox",
     "content-factory-screen",
     "fast-screen",
     "agent-browser",
-    "video-publish"
+    "video-publish",
+    "studio-veo-kling",
+    "capcut",
+    "ai-video",
+    "ai-voiceover",
+    "platform-specs-and-validation"
    ],
    "usesScreen": true,
-   "instructions": "You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."
+   "instructions": "You operate apps on the phone for the Video Studio. Two kinds of jobs:\n\n(A) AI VIDEO GENERATION — Veo 3 (Gemini app), Kling (kling.ai), Luma (lumalabs.ai), Runway (runwayml.com). Load studio-veo-kling and follow its routing. Download each clip to Zafiro filesystem at outputs/video/<project>/clips/. Report the saved path and verify file exists before saying done.\n\n(B) PUBLISHING — After Video Producer hands you a finished mp4: load video-publish, open the right platform app, post with the provided caption and hashtags. Load content-factory-screen and fast-screen for all screen work.\n\n(C) CAPCUT POLISH — Import a clip, add trending sound if requested, export, report path.\n\n(D) ON-PHONE VOICEOVER — If no GitHub Actions token: open Gemini app or ElevenLabs web, generate voice from script, download MP3, report path.\n\nRules:\n- One job per call.\n- Load content-factory-screen and fast-screen first for any screen work.\n- Obey ToS rules in those skills.\n- Stop with take_over on any CAPTCHA, login, or consent screen.\n- Never generate real people's faces without explicit owner instruction.\n- Never post without a finished verified mp4 from Video Producer."
+  },
+  {
+   "id": "video-clip-scout",
+   "name": "Clip Scout",
+   "tools": [
+    "web_search",
+    "web_fetch",
+    "http_request",
+    "save_file",
+    "board",
+    "load_skill",
+    "memory",
+    "datetime",
+    "execute_python",
+    "notify"
+   ],
+   "skills": [
+    "studio-shorts-clipper",
+    "studio-actions-render",
+    "studio-qa-gates",
+    "viral-reverse-engineering",
+    "hook-writer",
+    "platform-specs-and-validation"
+   ],
+   "usesScreen": false,
+   "instructions": "You are the Clip Scout: you watch for new long-form content from the owner's tracked channels, extract the top 3–5 viral clips using studio-shorts-clipper, and hand them to the Video Producer for QA and to the Media Operator for publishing.\n\nFor each dispatched clip job via studio-actions-render:\n1. Download the clip after render.\n2. Write hook variants (3–4 options per clip) using hook-writer.\n3. Write platform captions and hashtags per platform-specs-and-validation.\n4. Add a board item for the Video Producer: clip path, hook options, captions.\n\nOnly process content the owner has explicitly whitelisted. Never process third-party content without owner approval."
   }
  ],
  "tasks": [
@@ -73,8 +123,19 @@
    "intervalMinutes": 60,
    "maxSteps": 60,
    "maxMinutes": 30,
-   "prompt": "Workspace video-studio. Run board op=resume, then do every open board item (owner items first). If a video brief is waiting, produce it with the studio-director role chain. If nothing is waiting, do nothing and say STATUS: DONE.",
+   "prompt": "Workspace video-studio. Run board op=resume, then do every open board item (owner items first). If a video brief is waiting, produce it with the studio-director lane routing. If a render job has completed on GitHub Actions, download it, run QA, and hand to Media Operator. If nothing is waiting, say STATUS: DONE.",
    "criteria": "Open board items were advanced, or the board was empty."
+  },
+  {
+   "key": "clip-scout",
+   "name": "Video Studio: clip scout",
+   "agent": "video-clip-scout",
+   "trigger": "INTERVAL",
+   "intervalMinutes": 360,
+   "maxSteps": 40,
+   "maxMinutes": 20,
+   "prompt": "Workspace video-studio. Check the board for any whitelisted long-form content to clip. If a source URL is on the board (owner set), dispatch a clip job via studio-actions-render, write hooks, write captions, add deliverable board item for Video Producer. If nothing is pending, say STATUS: DONE.",
+   "criteria": "Clip jobs were dispatched or no pending sources were found."
   }
  ],
  "skills": [
@@ -89,8 +150,15 @@
   "studio-editing-rules",
   "studio-editing-styles",
   "studio-shorts-clipper",
-  "humanizer",
   "studio-actions-render",
+  "studio-bang-motion",
+  "studio-remotion",
+  "studio-stickman-director",
+  "studio-explainer",
+  "studio-reel-editor",
+  "studio-veo-kling",
+  "studio-audio-design",
+  "humanizer",
   "share-inbox",
   "content-factory-screen",
   "video-publish",
@@ -102,13 +170,20 @@
   "short-form-video-script",
   "platform-specs-and-validation",
   "capcut",
+  "ai-video",
   "ai-voiceover",
   "thumbnail-design",
   "team-protocol",
-  "toolbox"
+  "toolbox",
+  "viral-reverse-engineering"
  ],
  "mcps": [],
  "memory": [
-  "The studio skills come from the owner's own video repo. Standing rules: graphics first (80% graphics or real footage), a new visual event every 1.5-2.5 s, hook in 2 s, plain language, honest facts only. ElevenLabs Free is non-commercial."
+  "The studio has 6 production lanes. Heavy rendering (ffmpeg, canvas HTML, Remotion, stickman Code Engine, Whisper clipping) runs on GitHub Actions via zafiro-studio (https://github.com/TricretA/zafiro-studio). On-phone: Veo 3 in Gemini app, Kling/Luma/Runway via web apps, CapCut for polish, platform apps for publishing.",
+  "Standing rules: graphics first (80% graphics or real footage), new visual event every 1.5-2.5 s, hook in 2 s, plain language, honest facts only. ElevenLabs Free is non-commercial.",
+  "Brands: Tricid (#16181B graphite, #2BB673 green, Outfit font) and BingwaOne (#ff632a orange, #0f151c navy, #fff2ed cream, #009c4c green, Poppins). Never mix brands in one video unless asked.",
+  "Editing styles S1-S12 are catalogued in studio-editing-styles. 16 stickman styles (A1-A8 Model Engine for phone, B1-B8 Code Engine for GitHub Actions) in studio-stickman-director.",
+  "Hook multipliers: Number promise 2.46x, Shock fact 1.68x, Relatable 1.48x, Withheld 1.41x, Question 1.24x. Never use vague teasers (0.67x) or bare labels (0.88x).",
+  "QA gates: G0 render, G1 readable, G2 no dead frames (motion median >= 1.0, longest flat <= 0.5 s), G3 ending (<= 1.4 s end hold), G4 one hero, G5 no slop, audio -14 +-1 LUFS."
  ]
 }
