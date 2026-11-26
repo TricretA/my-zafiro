@@ -41,7 +41,7 @@ internal object McpSettingsCodec {
                     enabled = enabledForAgent(obj[ENABLED_FOR_AGENTS_KEY], agentId) == true,
                     transport = obj.stringNonBlankOrNull(TRANSPORT_KEY) ?: "streamable-http",
                     authMode = obj.stringNonBlankOrNull(AUTH_MODE_KEY) ?: "none",
-                    disabledTools = (obj[DISABLED_TOOLS_KEY] as? JsonObject)?.keys ?: emptySet(),
+                    disabledTools = (obj[DISABLED_TOOLS_KEY] as? JsonObject)?.keys?.toSet() ?: emptySet(),
                     status = obj.stringNonBlankOrNull(STATUS_KEY) ?: "UNKNOWN",
                     lastError = obj.stringNonBlankOrNull(LAST_ERROR_KEY).orEmpty(),
                     toolCount = (obj[TOOL_COUNT_KEY] as? JsonPrimitive)?.longOrNull?.toInt() ?: 0,

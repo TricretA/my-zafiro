@@ -43,7 +43,7 @@ import com.niki914.zafiro.settings.model.RuntimeTakeoverRule as TakeoverRule
 import com.niki914.zafiro.settings.model.RuntimeTakeoverRuleValidation as TakeoverRuleValidation
 import com.niki914.zafiro.settings.model.RuntimeToolValidation as ToolValidation
 import com.niki914.zafiro.settings.model.RuntimeToolValidationOrigin as ToolValidationOrigin
-import com.niki914.zafiro.mcp.AndroidMcpSecretStore as ToolValidationOrigin
+import com.niki914.zafiro.mcp.AndroidMcpSecretStore
 
 object XRepo {
     private const val LOG_TAG = "niki914_zafiro_XRepo"

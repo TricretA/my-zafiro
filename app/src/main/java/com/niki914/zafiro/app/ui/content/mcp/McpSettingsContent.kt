@@ -76,7 +76,7 @@ fun McpSettingsContent(
 
     SettingsSpecPageContent(spec = spec) { action ->
         when (action) {
-            is SettingsRowAction.Action -> {
+            is SettingsRowAction.Click -> {
                 if (action.id == MCP_IMPORT_ROW_ID) showImport = true
             }
             is SettingsRowAction.Navigate -> {
@@ -152,7 +152,7 @@ private fun mcpSettingsSpec(
         )
     )
     when {
-        uiState.isLoading -> listOf(
+        uiState.isLoading -> listOf<SettingsSectionSpec>(
             SettingsSectionSpec(
                 layout = SettingsSectionLayout.GroupedCard,
                 rows = listOf(SettingsRowSpec.Message(title = loadingText)),
