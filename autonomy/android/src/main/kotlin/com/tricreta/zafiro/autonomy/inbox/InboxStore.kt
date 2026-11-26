@@ -109,8 +109,9 @@ class InboxStore(
 
     /** A folder (ends with '/' or exists) keeps the file name; otherwise the last segment is the new name. Never leaves [filesDir]. */
     private fun resolveTarget(to: String, name: String): File? {
+        if (File(to).isAbsolute) return null
         val base = filesDir.canonicalFile
-        val raw = File(base, to.trimStart('/'))
+        val raw = File(base, to)
         val f = if (to.endsWith("/") || raw.isDirectory) File(raw, name) else raw
         val c = f.canonicalFile
         return if (c.path.startsWith(base.path + File.separator)) c else null
