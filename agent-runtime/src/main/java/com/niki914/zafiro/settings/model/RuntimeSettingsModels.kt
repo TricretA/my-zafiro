@@ -112,6 +112,13 @@ data class RuntimeMcpServer(
     val url: String,
     val enabled: Boolean = true,
     val headers: Map<String, String> = emptyMap(),
+    val transport: String = "streamable-http",
+    val authMode: String = "none",
+    val disabledTools: Set<String> = emptySet(),
+    val status: String = "UNKNOWN",
+    val lastError: String = "",
+    val toolCount: Int = 0,
+    val tokenExpiresAtMs: Long? = null,
 )
 
 /**

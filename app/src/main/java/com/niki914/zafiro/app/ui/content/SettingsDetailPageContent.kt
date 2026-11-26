@@ -11,6 +11,7 @@ import com.niki914.zafiro.app.ui.nav.BuiltinToolGroupDetailPage
 import com.niki914.zafiro.app.ui.nav.ExecutionRuleDetailPage
 import com.niki914.zafiro.app.ui.nav.MaskingRuleDetailPage
 import com.niki914.zafiro.app.ui.nav.McpServerDetailPage
+import com.niki914.zafiro.app.ui.content.McpMarketplaceContent
 import com.niki914.zafiro.app.ui.nav.EnvContextVariableDetailPage
 import com.niki914.zafiro.app.ui.nav.PromptEditPage
 import com.niki914.zafiro.app.ui.nav.QuickPromptDetailPage
@@ -84,6 +85,11 @@ fun SettingsDetailPageContent(
                 onPush(McpServerDetailPage(name, index, isCreating))
             },
         )
+        return
+    }
+
+    if (group == ZafiroSettingsGroup.McpMarketplace) {
+        McpMarketplaceContent(onBack = onBack)
         return
     }
 

@@ -422,6 +422,8 @@
 
     <string name="mcp_page_description">Configure connection and authentication for MCP. After saving, Zafiro will automatically discover available tools at runtime.</string>
     <string name="mcp_page_empty_description">Tap the top right to add your first MCP server.</string>
+    <string name="mcp_marketplace_title">MCP Marketplace</string>
+    <string name="mcp_marketplace_summary">Browse MCP servers, skills and workspaces</string>
     <string name="mcp_loading">Loading saved MCP servers...</string>
     <string name="mcp_editor_title_create">New MCP Server</string>
     <string name="mcp_field_name">Name</string>

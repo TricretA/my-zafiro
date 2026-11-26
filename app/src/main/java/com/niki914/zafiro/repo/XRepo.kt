@@ -43,6 +43,7 @@ import com.niki914.zafiro.settings.model.RuntimeTakeoverRule as TakeoverRule
 import com.niki914.zafiro.settings.model.RuntimeTakeoverRuleValidation as TakeoverRuleValidation
 import com.niki914.zafiro.settings.model.RuntimeToolValidation as ToolValidation
 import com.niki914.zafiro.settings.model.RuntimeToolValidationOrigin as ToolValidationOrigin
+import com.niki914.zafiro.mcp.AndroidMcpSecretStore as ToolValidationOrigin
 
 object XRepo {
     private const val LOG_TAG = "niki914_zafiro_XRepo"
@@ -300,12 +301,16 @@ object XRepo {
 
     /** Stores (or removes, when [bearer] is null) the Authorization header of one MCP server; used by OAuth sign-in and token refresh. */
     suspend fun setMcpAuthorization(serverName: String, bearer: String?) {
+        val store = AndroidMcpSecretStore(context())
+        val existing = store.loadHeaders(serverName)
+        val headers = if (bearer == null) existing - "Authorization" else existing + ("Authorization" to "Bearer $bearer")
+        store.saveHeader(serverName, headers)
         updateJsonOrFalse(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
             val servers = McpSettingsCodec.parseServers(json)
             if (servers.none { it.name == serverName }) null
             else McpSettingsCodec.encodeServers(servers.map {
                 if (it.name != serverName) it
-                else it.copy(headers = if (bearer == null) it.headers - "Authorization" else it.headers + ("Authorization" to "Bearer $bearer"))
+                else it.copy(headers = emptyMap())
             })
         }
     }
@@ -1544,7 +1549,23 @@ class McpApi internal constructor(
     private val repo: XRepo,
 ) {
     suspend fun list(): List<McpServer> {
-        return McpSettingsCodec.parseServers(repo.readJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID))
+        val servers = McpSettingsCodec.parseServers(repo.readJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID))
+        val secretStore = AndroidMcpSecretStore(repo.context())
+        return servers.map { server ->
+            val plaintextHeaders = server.headers
+            val storedHeaders = secretStore.loadHeaders(server.name)
+            val merged = if (plaintextHeaders.isNotEmpty()) {
+                secretStore.saveHeader(server.name, plaintextHeaders)
+                plaintextHeaders
+            } else {
+                storedHeaders
+            }
+            val record = secretStore.load(server.name)
+            val oauthHeader = record?.accessToken?.takeIf { it.isNotBlank() }?.let {
+                mapOf("Authorization" to "Bearer $it")
+            }.orEmpty()
+            server.copy(headers = merged + oauthHeader)
+        }
     }
 
     suspend fun get(name: String): McpServer? {
@@ -1552,6 +1573,7 @@ class McpApi internal constructor(
     }
 
     suspend fun save(server: McpServer) {
+        AndroidMcpSecretStore(repo.context()).saveHeader(server.name, server.headers)
         repo.updateJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
             val servers = McpSettingsCodec.parseServers(json)
             val updated = if (servers.any { it.name == server.name }) {
@@ -1559,11 +1581,15 @@ class McpApi internal constructor(
             } else {
                 servers + server
             }
-            McpSettingsCodec.encodeServers(updated)
+            McpSettingsCodec.encodeServers(updated.map { it.copy(headers = emptyMap()) })
         }
     }
 
     suspend fun replace(previousName: String?, server: McpServer) {
+        if (previousName != null && previousName != server.name) {
+            AndroidMcpSecretStore(repo.context()).delete(previousName)
+        }
+        AndroidMcpSecretStore(repo.context()).saveHeader(server.name, server.headers)
         repo.updateJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
             val servers = McpSettingsCodec.parseServers(json)
             val withoutPrevious = if (previousName != null && previousName != server.name) {
@@ -1576,11 +1602,12 @@ class McpApi internal constructor(
             } else {
                 withoutPrevious + server
             }
-            McpSettingsCodec.encodeServers(updated)
+            McpSettingsCodec.encodeServers(updated.map { it.copy(headers = emptyMap()) })
         }
     }
 
     suspend fun delete(name: String) {
+        AndroidMcpSecretStore(repo.context()).delete(name)
         repo.updateJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
             McpSettingsCodec.encodeServers(
                 McpSettingsCodec.parseServers(json).filterNot { it.name == name })
@@ -1591,7 +1618,7 @@ class McpApi internal constructor(
         repo.updateJson(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
             McpSettingsCodec.encodeServers(
                 McpSettingsCodec.parseServers(json).map { server ->
-                    if (server.name == name) server.copy(enabled = enabled) else server
+                    if (server.name == name) server.copy(enabled = enabled, headers = emptyMap()) else server.copy(headers = emptyMap())
                 },
             )
         }

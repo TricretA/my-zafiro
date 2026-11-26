@@ -174,6 +174,14 @@ data class SettingsDetailPage(
     override val titleMode: TitleBarMode = TitleBarMode.Collapsible
 }
 
+data object McpMarketplacePage : ZafiroPage {
+    override val routeKey: String = "mcp-marketplace"
+    override val titleSpec: PageTitleSpec = ResTitle(R.string.mcp_marketplace_title)
+    override val leftAction: TopBarActionSpec =
+        TopBarActionSpec(icon = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button")
+    override val rightAction: TopBarActionSpec? = null
+}
+
 data class McpServerDetailPage(
     val serverName: String,
     val serverIndex: Int,

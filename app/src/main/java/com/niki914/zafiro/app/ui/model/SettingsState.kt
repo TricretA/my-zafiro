@@ -87,6 +87,7 @@ private fun settingsSections(): List<SettingsSectionDefinition> {
                 ZafiroSettingsGroup.QuickPrompts,
                 ZafiroSettingsGroup.Actions,
                 ZafiroSettingsGroup.Mcp,
+                ZafiroSettingsGroup.McpMarketplace,
                 ZafiroSettingsGroup.McpService,
             ),
         ),

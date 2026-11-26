@@ -5,6 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import com.niki914.logging.Logger
 import com.niki914.zafiro.repo.XRepo
+import com.niki914.zafiro.mcp.AndroidMcpSecretStore
+import com.niki914.zafiro.mcp.McpCore
+import com.niki914.zafiro.mcp.McpOAuthRecord
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,6 +33,7 @@ import java.util.concurrent.ConcurrentHashMap
 object McpOAuth {
     private const val TAG = "McpOAuth"
     private val waiting = ConcurrentHashMap<String, CompletableDeferred<String>>()
+    private val refreshLocks = ConcurrentHashMap<String, Mutex>()
 
     /** Called by MainActivity for zafiro-mcp:// links. @return true when the link was ours. */
     fun onCallback(uri: Uri?): Boolean {
@@ -36,28 +42,6 @@ object McpOAuth {
         val waiter = state?.let { waiting[it] } ?: waiting.values.firstOrNull()
         waiter?.complete(uri.toString())
         return true
-    }
-
-    private data class Saved(val clientId: String, val tokenEndpoint: String, val resource: String, val refresh: String?, val expiresAtMs: Long?)
-
-    private fun storeFile(context: Context) = File(context.filesDir, "settings/mcp_oauth.json")
-
-    private fun readStore(context: Context): Map<String, Saved> = runCatching {
-        Json.parseToJsonElement(storeFile(context).readText()).jsonObject.mapValues { (_, v) ->
-            val o = v.jsonObject
-            fun s(k: String) = (o[k] as? JsonPrimitive)?.contentOrNull
-            Saved(s("client_id").orEmpty(), s("token_endpoint").orEmpty(), s("resource").orEmpty(), s("refresh"), s("expires_at")?.toLongOrNull())
-        }
-    }.getOrDefault(emptyMap())
-
-    private fun writeStore(context: Context, m: Map<String, Saved>) {
-        val f = storeFile(context).also { it.parentFile?.mkdirs() }
-        f.writeText(JsonObject(m.mapValues { (_, s) ->
-            JsonObject(buildMap {
-                put("client_id", JsonPrimitive(s.clientId)); put("token_endpoint", JsonPrimitive(s.tokenEndpoint)); put("resource", JsonPrimitive(s.resource))
-                s.refresh?.let { put("refresh", JsonPrimitive(it)) }; s.expiresAtMs?.let { put("expires_at", JsonPrimitive(it.toString())) }
-            })
-        }).toString())
     }
 
     private data class Http(val code: Int, val body: String)
@@ -98,27 +82,58 @@ object McpOAuth {
             val t = http("POST", endpoints.token, McpOAuthLogic.tokenForm(code, verifier, clientId, serverUrl), "application/x-www-form-urlencoded")
             val tokens = McpOAuthLogic.parseTokens(t.body) ?: error("The server did not return a token (HTTP ${t.code}). ${t.body.take(160)}")
             val expiresAt = tokens.expiresInSec?.let { System.currentTimeMillis() + it * 1000 }
-            writeStore(context, readStore(context) + (serverName to Saved(clientId, endpoints.token, serverUrl, tokens.refresh, expiresAt)))
+            AndroidMcpSecretStore(context).save(serverName, McpOAuthRecord(
+                serverName = serverName,
+                accessToken = tokens.access,
+                refreshToken = tokens.refresh,
+                expiresAtMs = expiresAt,
+                clientId = clientId,
+                issuer = McpOAuthLogic.authorizationServer(null, McpOAuthLogic.origin(serverUrl)),
+                authorizationEndpoint = endpoints.authorize,
+                tokenEndpoint = endpoints.token,
+                registrationEndpoint = endpoints.register,
+                resource = serverUrl,
+                redirectUri = McpOAuthLogic.REDIRECT_URI,
+                status = "AUTHORIZED",
+            ))
             XRepo.setMcpAuthorization(serverName, tokens.access)
             "Signed in to $serverName." + if (tokens.refresh == null) " (This server gave no refresh token, so you will need to sign in again when it expires.)" else ""
         } finally { waiting.remove(state) }
     }
 
-    /** Refreshes tokens that expire soon. Cheap to call often; failures are logged and retried next time. */
+    /** Refreshes tokens lazily with one single-flight mutex per MCP server. */
     suspend fun refreshDue(context: Context) = withContext(Dispatchers.IO) {
-        val store = readStore(context)
-        var changed = store
-        store.forEach { (name, s) ->
-            if (s.refresh == null || !McpOAuthLogic.needsRefresh(s.expiresAtMs, System.currentTimeMillis())) return@forEach
-            runCatching {
-                val t = http("POST", s.tokenEndpoint, McpOAuthLogic.refreshForm(s.refresh, s.clientId, s.resource), "application/x-www-form-urlencoded")
-                val tokens = McpOAuthLogic.parseTokens(t.body) ?: error("refresh refused (HTTP ${t.code})")
-                changed = changed + (name to s.copy(refresh = tokens.refresh ?: s.refresh, expiresAtMs = tokens.expiresInSec?.let { System.currentTimeMillis() + it * 1000 }))
-                XRepo.setMcpAuthorization(name, tokens.access)
-            }.onFailure { Logger.w(TAG, "refresh failed for $name: ${it.message}") }
+        val store = AndroidMcpSecretStore(context)
+        store.list().filter { it.refreshToken != null }.forEach { record ->
+            val lock = refreshLocks.getOrPut(record.serverName) { Mutex() }
+            lock.withLock {
+                val latest = store.load(record.serverName) ?: return@withLock
+                if (!McpCore.needsRefresh(latest, System.currentTimeMillis(), 60)) return@withLock
+                runCatching {
+                    val t = http("POST", latest.tokenEndpoint,
+                        McpOAuthLogic.refreshForm(latest.refreshToken!!, latest.clientId, latest.resource),
+                        "application/x-www-form-urlencoded")
+                    if (McpCore.parseInvalidGrant(t.body)) {
+                        store.save(latest.serverName, latest.copy(status = "NEEDS_REAUTH"))
+                        XRepo.setMcpAuthorization(latest.serverName, null)
+                        Logger.w(TAG, "MCP server ${latest.serverName} needs re-authentication")
+                        return@runCatching
+                    }
+                    val tokens = McpOAuthLogic.parseTokens(t.body)
+                        ?: error("refresh refused (HTTP ${t.code})")
+                    val updated = latest.copy(
+                        accessToken = tokens.access,
+                        refreshToken = tokens.refresh ?: latest.refreshToken,
+                        expiresAtMs = tokens.expiresInSec?.let { System.currentTimeMillis() + it * 1000 },
+                        status = "AUTHORIZED",
+                    )
+                    store.save(updated.serverName, updated)
+                    XRepo.setMcpAuthorization(updated.serverName, tokens.access)
+                }.onFailure { Logger.w(TAG, "refresh failed for ${latest.serverName}: ${it.message}") }
+            }
         }
-        if (changed !== store) writeStore(context, changed)
     }
 
-    fun isSignedIn(context: Context, serverName: String) = serverName in readStore(context)
+    fun isSignedIn(context: Context, serverName: String) =
+        AndroidMcpSecretStore(context).load(serverName)?.status == "AUTHORIZED"
 }
