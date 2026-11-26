@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.Public
 import android.text.format.DateUtils
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
@@ -377,6 +378,7 @@ private fun ConversationHistoryListContent(
                             MenuTileSpec(Icons.Default.SmartToy, "Agents", onOpenAgents),
                             MenuTileSpec(Icons.Default.Schedule, "Tasks", onOpenTasks),
                             MenuTileSpec(Icons.Default.Folder, "Files") { onOpenFeature("files") },
+                            MenuTileSpec(Icons.Default.Public, "Browser") { onOpenFeature("browser") },
                             MenuTileSpec(Icons.Default.Settings, "Settings", onOpenSettings),
                         ),
                     )

@@ -120,6 +120,7 @@ Skills are expert method files: using one is faster and better than working from
 | monetise | creator-monetization, lead-magnets-and-funnels, link-in-bio-and-traffic, mkt-offers, mkt-pricing |
 | brand voice | brand-profile, voice-builder, writing-style-and-tone, smc-voice-builder, smc-newsletter-voice |
 | operate the phone | fast-screen, screen-routines, human-pacing, phone-use |
+| use a website (forms, logins, JavaScript pages) | agent-browser |
 | build a plan or check your own work | sp-writing-plans, sp-executing-plans, sp-verification-before-completion, sp-systematic-debugging |
 | make a new skill from a repo or doc | skill-from-source, install-skill-from-github, skill-creator |
 Also check any MCP tools that are switched on (their names appear in your tool list): an MCP that does the job (search, scrape, image/video generation, scheduling, CRM) is better than doing it by hand on the screen.
@@ -135,7 +136,7 @@ Every screen step costs time and money, and old steps are re-billed on every lat
 5. **Routines first.** `screen_routine routine=list`. A routine does 5-30 steps in one call and verifies each tap. For a new multi-step job write the steps once with `screen_routine steps=[...] save_as="<platform>.<job>" params={...}`: if it succeeds it is saved and next time costs almost nothing.
 6. **Media goes by sharing, not by browsing.** To post a video or image use `share_file` (opens the target app's share screen with the file and caption ready), then only tap Next/Post. Never scroll a gallery to find a file.
 7. **Open apps directly** with `open`/`launch_app`/`open_uri` (deep links such as whatsapp://send?phone=..&text=..). Never navigate the launcher.
-8. **Do not screenshot** unless the compact list is empty or the screen is a canvas/game. Screenshots are expensive; the tree is enough.
+8. **Websites:** for forms, logins and JavaScript pages use the in-app browser (skill `agent-browser`): it does not need the phone screen. **Do not screenshot** unless the compact list is empty or the screen is a canvas/game. Screenshots are expensive; the tree is enough.
 9. **Wait smartly.** Use a routine `wait` op with labels (returns as soon as the label appears) instead of fixed sleeps.
 10. **Stop loops.** The same failing action twice means change approach; three failed attempts means report FAILED with the screen text.
 """)
@@ -156,6 +157,26 @@ Goal: one finished video + per-platform captions posted to several apps in minut
 **Honest limits:** not every app accepts a shared video straight into its composer (Instagram asks Reel/Story/Feed; Reddit asks for a community and title; Substack's app has no video share, so for Substack post text with a link to the video). The routine labels are best-effort guesses for the English UI and need a first-run fix. Say plainly what actually appeared on screen. Never report a post as done without seeing it.
 """)
 
+skill("agent-browser", "Use Zafiro's own in-app web browser (screens kind=browser): when to pick it over the phone screen or http_request, one-time logins, compact reading, limits. Load before any website work.", """
+# Agent browser
+A real browser inside Zafiro (Android WebView) with its own saved logins, separate from Chrome. It runs without taking over the phone, so it is the fast lane for websites.
+**Pick the right lane**
+- `http_request` / `web_fetch`: public pages and APIs with no login and no JavaScript. Cheapest. Try first.
+- **Agent browser:** sites that need JavaScript, a login you can do once, or a form: job application forms, ATS pages, Metricool, GitHub, dashboards, directories.
+- **Phone screen + the real Chrome app:** Google sign-in, sites behind Cloudflare/bot checks, and anything an app does better.
+**Honest limits:** Google blocks sign-in inside embedded browsers (`disallowed_useragent`), so never try Google login here; Cloudflare-protected sites may show a challenge: do not fight it, switch to Chrome on the phone screen or report NEEDS_HUMAN. CAPTCHAs, 2FA and consent screens always go to `take_over`. File upload and downloads are blocked; popups open in the same tab; non-web links (intent:, market:, tel:) are blocked.
+**Use**
+1. `screens operation=open kind=browser` returns an id such as `web-1` (one per conversation; reopening returns the same). If it fails with `BROWSER_DISABLED` the owner switched it off: use another lane. `BROWSER_LIMIT` or `TAB_LIMIT`: close a tab or screen first.
+2. Load a page: `open kind=global screen=web-1 uri=https://...` (or `screen_operation operation=new_tab url=...`). Bare words are searched.
+3. Read with `screen_operation screen=web-1 operation=read`. Lines look like `[12]link "Pricing" tap`, `[13]in "Email" edit`, `[14]h "Welcome"`. The `url:` and `page:` lines show the address and scroll position ("more below" means scroll). `[1]list "page" scroll` is the page itself.
+4. Act by number: `tap token:"12"`, `set_text token:"13" text:"..."` (for a dropdown pass the option text), `scroll_forward token:"1"`, `key code:66` (Enter submits a form), `key code:4` or `history_back` to go back. Every action returns the NEW page: never call read straight after it.
+5. Only what is on screen is listed (about 300 nodes). Scroll to see more. Long text is cut in the compact view: use `format:"full"` once when you must read a whole passage.
+6. Tabs: `tabs`, `new_tab`, `switch_tab`, `close_tab` (max 3 per screen, 4 in the whole app). Close tabs you do not need.
+7. `screenshot screen=web-1` returns a picture when text is not enough (charts, canvas).
+**Logging in once:** you cannot type the owner's passwords from memory. Ask the owner (`take_over` / NEEDS_HUMAN) to open Zafiro > Browser, sign in to the site, then retry: the cookies stay saved. If a page shows a login wall, say which site needs it.
+**Costs and safety:** same as the phone: one change per call, no re-reads, stop after two identical failures. Close the screen when the job is done (`screens operation=close screen=web-1`).
+""")
+
 # ------------------------------------------------------------------ platform data
 ROLES = ["director", "researcher", "strategist", "writer", "reviewer", "engager", "executor", "analyst"]
 ROLE_TITLE = dict(director="Director", researcher="Researcher", strategist="Strategist", writer="Writer", reviewer="Reviewer", engager="Engager", executor="Executor", analyst="Analyst")
@@ -165,7 +186,7 @@ SUBSTACK_IDS = dict(director=("growth_director", "Growth Director"), researcher=
 
 TOOLS = dict(
     director="agent,board,engage,examples,save_file,memory,load_skill,notify,device_info,wait,execute_python,http_request,datetime,schedule,web_search",
-    researcher="web_search,web_fetch,rss_read,datetime,http_request,load_skill,memory,board,save_file,execute_python",
+    researcher="web_search,web_fetch,rss_read,datetime,http_request,load_skill,memory,board,save_file,execute_python,screens,screen_operation,open",
     strategist="load_skill,memory,board,save_file,examples,datetime,web_search,web_fetch,rss_read,http_request,execute_python",
     writer="load_skill,board,save_file,examples,memory,make_card,datetime,web_search,web_fetch",
     reviewer="examples,engage,board,load_skill,memory,web_fetch,save_file",
@@ -263,7 +284,7 @@ BASE_MAP = dict(
     writer=[("any caption, post or script", "caption-writer,hook-writer,writing-style-and-tone,stop-slop,voice-builder"), ("video or image copy", "short-form-video-script,scripting-and-storyboarding,thumbnail-design,quote-cards-and-text-graphics")],
     reviewer=[("every review", "reviewer-rubric,stop-slop,platform-specs-and-validation")],
     engager=[("every loop", "engagement-loop,reply-and-comment-writer,community-management,human-pacing"), ("hostile or tricky comments", "crisis-and-moderation")],
-    executor=[("any screen job", "fast-screen,screen-routines,human-pacing"), ("post a video or image", "video-publish,platform-specs-and-validation")],
+    executor=[("any screen job", "fast-screen,screen-routines,human-pacing"), ("a website: forms, logins, JavaScript pages", "agent-browser"), ("post a video or image", "video-publish,platform-specs-and-validation")],
     analyst=[("numbers and reporting", "analytics-and-reporting,goals-and-kpis,mkt-analytics"), ("experiments", "experimentation-and-ab-testing,content-audit")],
 )
 PLATFORM_KEYS = dict(
@@ -400,12 +421,12 @@ for p in P:
     ws = p["id"]
     ids = SUBSTACK_IDS if ws == "substack" else {r: (f"{ws}-{r}", f"{p['name'].split(' (')[0]} {ROLE_TITLE[r]}") for r in ROLES}
     agents = [dict(id=ids[r][0], name=ids[r][1], instructions=instr(p, r, ids), tools=TOOLS[r].split(","),
-                   skills=["team-protocol", "skill-router", f"{ws}-playbook"] + {"engager": ["engagement-loop", "human-pacing", "fast-screen"], "executor": ["fast-screen", "screen-routines", "human-pacing"] + (["video-publish"] if ws in VIDEO else []), "reviewer": ["reviewer-rubric"], "director": ["owner-corrections"], "writer": ["toolbox"], "analyst": ["toolbox"]}.get(r, []),
+                   skills=["team-protocol", "skill-router", f"{ws}-playbook"] + {"engager": ["engagement-loop", "human-pacing", "fast-screen"], "executor": ["fast-screen", "agent-browser", "screen-routines", "human-pacing"] + (["video-publish"] if ws in VIDEO else []), "reviewer": ["reviewer-rubric"], "director": ["owner-corrections"], "writer": ["toolbox"], "analyst": ["toolbox"], "researcher": ["agent-browser"]}.get(r, []),
                    usesScreen=r in ("executor",)) for r in ROLES]
     # engager also reads the screen for scan routines -> serialised with the executor via usesScreen
     for a in agents:
         if a["id"] == ids["engager"][0]: a["usesScreen"] = False
-    skills = ["team-protocol", "toolbox", "skill-router", "fast-screen", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + (["video-publish"] if ws in VIDEO else []) + p["skills"] + sorted(map_ids(p))
+    skills = ["team-protocol", "toolbox", "skill-router", "fast-screen", "agent-browser", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + (["video-publish"] if ws in VIDEO else []) + p["skills"] + sorted(map_ids(p))
     d = dict(id=ws, version=1, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
              quotas=p["quotas"], agents=agents, tasks=tasks_for(p, ids), skills=sorted(set(skills)), mcps=[], memory=[p["facts"]])
     w(f"{A}/workspaces/{ws}.json", json.dumps(d, indent=1, ensure_ascii=False) + "\n")
@@ -565,13 +586,13 @@ skill("content-factory-screen", "Make voice, images and AI video through apps an
 STUDIO = ["studio-director","studio-motion-craft","studio-shortform-playbook","studio-graphics-toolkit","studio-style-bank","studio-reference-analyst","studio-canvas-motion-engine","studio-qa-gates","studio-editing-rules","studio-editing-styles","studio-shorts-clipper"]
 for sid in STUDIO + ["humanizer"]:
     DISABLED.append(sid)
-vs_skills = STUDIO + ["humanizer", "studio-actions-render", "content-factory-screen", "video-publish", "fast-screen", "skill-router", "caption-writer", "hook-writer", "short-form-video-script", "platform-specs-and-validation", "capcut", "ai-voiceover", "thumbnail-design", "team-protocol", "toolbox"]
+vs_skills = STUDIO + ["humanizer", "studio-actions-render", "content-factory-screen", "video-publish", "fast-screen", "agent-browser", "skill-router", "caption-writer", "hook-writer", "short-form-video-script", "platform-specs-and-validation", "capcut", "ai-voiceover", "thumbnail-design", "team-protocol", "toolbox"]
 w(f"{A}/workspaces/video-studio.json", json.dumps(dict(
     id="video-studio", version=1, name="Video Studio", platform="video-studio", app="", summary="Produces short videos, reels and ads: brief, script, storyboard, voice, render on GitHub Actions, QA gates, delivery. Built from the owner's own studio skills.", quotas="",
     agents=[
         dict(id="video-producer", name="Video Producer", tools=["board","save_file","execute_python","http_request","web_fetch","web_search","load_skill","memory","datetime","make_card","agent","notify","wait"], skills=["studio-director","studio-actions-render","skill-router"], usesScreen=False,
              instructions="You are the Video Producer: executive producer of a one-person studio. Load studio-director first and follow its role chain and standing rules (graphics first, a new visual event every 1.5-2.5 s, hook in 2 s, plain language, real assets, honesty). For code-rendered video load studio-actions-render and render on GitHub Actions; for typographic or kinetic stories use studio-canvas-motion-engine; for real footage see studio-editing-rules. Run every script and caption through the humanizer skill. After rendering apply the studio-qa-gates checks and fix failures before delivering. Save deliverables (mp4, cover, caption text, hashtags) under outputs/video/<project>/ and report the paths. Never post: hand finished items to the Media Operator. Save a lesson with memory after each delivered video. If the render repo, token or voice file is missing, ask the owner with a board item (owner set) and continue with other work."),
-        dict(id="video-media-operator", name="Media Operator", tools=["screen_routine","screen_operation","share_file","launch_app","open_uri","screenshot","wait","take_over","shell","save_file","board","load_skill","clipboard","execute_python"], skills=["content-factory-screen","fast-screen","video-publish"], usesScreen=True,
+        dict(id="video-media-operator", name="Media Operator", tools=["screen_routine","screen_operation","share_file","launch_app","open_uri","screenshot","wait","take_over","shell","save_file","board","load_skill","clipboard","execute_python"], skills=["content-factory-screen","fast-screen","agent-browser","video-publish"], usesScreen=True,
              instructions="You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."),
     ],
     tasks=[

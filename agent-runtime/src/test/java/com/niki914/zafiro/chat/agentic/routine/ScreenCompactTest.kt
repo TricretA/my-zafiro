@@ -81,4 +81,23 @@ class ScreenCompactTest {
         }
         assertTrue(compact.length < verbose.length * 0.7)
     }
+
+    // 保护：浏览器屏的地址和滚动位置必须出现在模型看到的文本里，链接/标题有自己的类型码；手机屏（无 url）输出不变。
+    @Test
+    fun browserSnapshotShowsUrlPageLineLinksAndHeadings() {
+        val nodes = listOf(
+            node(1, "Pricing", SemanticType.HEADING),
+            node(2, "Sign in", SemanticType.LINK, clickable = true),
+        )
+        val web = ScreenSnapshot(
+            ScreenId("web-1"), "v", 360, 640, "https://a.com/x", nodes,
+            "app: a.com\npage: Pricing | scroll 0/2000 (more below)",
+        )
+        val out = ScreenCompact.format(web)
+        assertTrue(out.startsWith("app:a.com 360x640\nurl:https://a.com/x\npage:Pricing | scroll 0/2000 (more below)\n"))
+        assertTrue(out.contains("[1]h \"Pricing\""))
+        assertTrue(out.contains("[2]link \"Sign in\" tap"))
+        assertFalse(ScreenCompact.format(snap("a1", nodes)).contains("url:"))
+    }
 }
+

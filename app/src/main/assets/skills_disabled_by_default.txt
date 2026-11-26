@@ -284,3 +284,4 @@ youtube-long-form
 youtube-playbook
 youtube-publishing-and-metadata
 youtube-shorts
+agent-browser

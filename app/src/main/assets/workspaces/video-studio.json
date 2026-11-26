@@ -55,6 +55,7 @@
    "skills": [
     "content-factory-screen",
     "fast-screen",
+    "agent-browser",
     "video-publish"
    ],
    "usesScreen": true,
@@ -91,6 +92,7 @@
   "content-factory-screen",
   "video-publish",
   "fast-screen",
+  "agent-browser",
   "skill-router",
   "caption-writer",
   "hook-writer",

@@ -450,6 +450,25 @@ data object FilesPage : ZafiroPage {
     override val titleMode: TitleBarMode = TitleBarMode.Collapsible
 }
 
+/** Settings of the agent browser (toggle, desktop mode, tabs, clear data). */
+data object AgentBrowserSettingsPage : ZafiroPage {
+    override val routeKey: String = "browser-settings"
+    override val titleSpec: PageTitleSpec = ResTitle(R.string.browser_settings_title)
+    override val leftAction: TopBarActionSpec =
+        TopBarActionSpec(icon = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button")
+    override val rightAction: TopBarActionSpec? = null
+    override val titleMode: TitleBarMode = TitleBarMode.Collapsible
+}
+
+/** The agent browser itself, for the owner to see and use. */
+data object AgentBrowserPage : ZafiroPage {
+    override val routeKey: String = "browser"
+    override val titleSpec: PageTitleSpec = ResTitle(R.string.browser_page_title)
+    override val leftAction: TopBarActionSpec =
+        TopBarActionSpec(icon = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button")
+    override val rightAction: TopBarActionSpec? = null
+}
+
 /** One saved file ([path] is relative to files/outputs). */
 data class FileViewPage(val path: String) : ZafiroPage {
     override val routeKey: String = "file:$path"
