@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: 1 NEW test failure(s)**
+**Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45852256436
-- GITHUB_SHA: a9d5ecb111a06fba6b8fe563fa1230709829b334
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45856311539
+- GITHUB_SHA: 720cc16e6dc476c0c037c6724e3c37da7074680b
 - GITHUB_REF_NAME: feat/social-workspace-control
 
 | step | outcome |
@@ -13,10 +13,8 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2303 run, 8 failed (7 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
+Unit tests: 2303 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.niki914.zafiro.chat.agentic.buildin.impl.StudioRenderBuiltinTest.normalizeFolder_mapsUserAliasesAndRejectsTraversal` — org.junit.ComparisonFailure: expected:<[Download]/MyReels> but was:<[null]/MyReels>
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
 - `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
@@ -28,8 +26,6 @@ Unit tests: 2303 run, 8 failed (7 known upstream, 0 flaky upstream, 1 NEW), 0 sk
 
 ## unit_tests: key error lines
 ```
-StudioRenderBuiltinTest > normalizeFolder_mapsUserAliasesAndRejectsTraversal FAILED
-> Task :agent-runtime:testDebugUnitTest FAILED
 ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
 TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
 TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
@@ -39,12 +35,9 @@ TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotificat
 SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 > Task :app:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':agent-runtime:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:testDebugUnitTest'.
-* What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 47s
+BUILD FAILED in 8m 59s
 ```
 ## lint: key error lines
 ```
@@ -68,5 +61,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 4m 31s
+BUILD FAILED in 3m 1s
 ```
