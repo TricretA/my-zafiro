@@ -14,7 +14,7 @@ import org.junit.rules.TemporaryFolder
 class SaveFileBuiltinTest {
     @get:Rule val tmp = TemporaryFolder()
 
-    private fun tool() = SaveFileBuiltin { java.io.File(tmp.root, "outputs") }
+    private fun tool() = SaveFileBuiltin(rootProvider = { java.io.File(tmp.root, "outputs") })
     private fun call(json: String) = kotlinx.coroutines.runBlocking { tool().invoke(BuiltinToolRequest("save_file", json)) }
 
     @Test fun savesTextAndReturnsAnOpenableLink() {
