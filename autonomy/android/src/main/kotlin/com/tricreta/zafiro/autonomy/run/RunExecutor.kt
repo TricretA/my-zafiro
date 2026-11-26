@@ -14,7 +14,9 @@ import com.tricreta.zafiro.autonomy.core.AgentBrief
 import com.tricreta.zafiro.autonomy.core.Breach
 import com.tricreta.zafiro.autonomy.core.PastRun
 import com.tricreta.zafiro.autonomy.core.Reflection
+import com.tricreta.zafiro.autonomy.core.RunContext
 import com.tricreta.zafiro.autonomy.core.RunHistory
+import com.tricreta.zafiro.autonomy.learn.LearnServiceImpl
 import com.tricreta.zafiro.autonomy.core.BudgetTracker
 import com.tricreta.zafiro.autonomy.core.Decision
 import com.tricreta.zafiro.autonomy.core.RecoveryConfig
@@ -136,7 +138,8 @@ class RunExecutor(
                 }
 
                 try {
-                    val history = RunHistory.format(
+                    val lessons = RunContext.lessonsBlock(LearnServiceImpl(repo.learnDao()).provider(), task.workspaceId, System.currentTimeMillis())
+                    val history = RunContext.combine(lessons = lessons, history = RunHistory.format(
                         repo.recentRuns(task.id, 6).filter { it.id != run.id && it.state != RunState.MISSED.name && it.finishedAtMs != null }.map {
                             PastRun(
                                 whenText = java.time.Instant.ofEpochMilli(it.finishedAtMs ?: it.createdAtMs).atZone(java.time.ZoneId.systemDefault())
@@ -144,7 +147,7 @@ class RunExecutor(
                                 state = it.state, summary = it.summary, error = it.error,
                             )
                         },
-                    )
+                    ))
                     val base = buildPrompt(task, history)
                     var prompt = if (profile == null) base else AgentBrief.compose(
                         profile.name, profile.instructions,

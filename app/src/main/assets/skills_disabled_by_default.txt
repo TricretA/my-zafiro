@@ -284,6 +284,8 @@ youtube-long-form
 youtube-playbook
 youtube-publishing-and-metadata
 youtube-shorts
+learning-loop
+share-inbox
 bluesky-playbook
 discord-playbook
 mastodon-playbook
@@ -299,3 +301,5 @@ telegram-playbook
 tumblr-playbook
 twitch-playbook
 realtime-signals
+learning-loop
+share-inbox

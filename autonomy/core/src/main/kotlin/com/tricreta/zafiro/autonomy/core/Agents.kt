@@ -31,6 +31,7 @@ object AgentBrief {
         delegated: Boolean,
         history: String = "",
         depth: Int = 0,
+        lessons: String = "",
     ): String = buildString {
         appendLine("You are the agent \"$agentName\".")
         appendLine(instructions.trim())
@@ -52,6 +53,10 @@ object AgentBrief {
         if (history.isNotBlank()) {
             appendLine()
             appendLine(history.trim())
+        }
+        if (lessons.isNotBlank()) {
+            appendLine()
+            appendLine(lessons.trim())
         }
         appendLine()
         appendLine("TASK:")
@@ -77,6 +82,24 @@ object RunHistory {
             }
         }.trimEnd()
     }
+}
+
+/** Joins what earlier runs and the lessons store tell this run, so both reach the prompt through the same `history` slot. */
+object RunContext {
+    fun combine(history: String, lessons: String): String = listOf(history, lessons).map { it.trim() }.filter { it.isNotEmpty() }.joinToString("\n\n")
+
+    /** Lessons block for a task of [workspaceId] (blank workspace = only global lessons). Empty when nothing is active. */
+    suspend fun lessonsBlock(provider: LessonProvider?, workspaceId: String, nowMs: Long): String =
+        if (provider == null) "" else LessonsPrompt.format(
+            try {
+                provider.activeLessons()
+            } catch (e: kotlin.coroutines.cancellation.CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                emptyList()
+            },
+            workspaceId, nowMs,
+        )
 }
 
 object Reflection {

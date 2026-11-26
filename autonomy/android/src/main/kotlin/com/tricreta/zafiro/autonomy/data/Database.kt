@@ -12,12 +12,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
     entities = [
         TaskEntity::class, RunEntity::class, CursorEntity::class, RunEventEntity::class, AgentProfileEntity::class,
         WorkspaceEntity::class, BoardItemEntity::class, ActionLogEntity::class, ExampleEntity::class, TierEntity::class,
+        OutcomeEntity::class, LessonEntity::class,
     ],
-    version = 4,
+    version = 5,
     exportSchema = true,
 )
 abstract class AutonomyDatabase : RoomDatabase() {
     abstract fun dao(): AutonomyDao
+    abstract fun learnDao(): LearnDao
 
     companion object {
         const val NAME = "autonomy.db"
@@ -26,7 +28,27 @@ abstract class AutonomyDatabase : RoomDatabase() {
             builder(context).build()
 
         fun builder(context: Context): RoomDatabase.Builder<AutonomyDatabase> =
-            Room.databaseBuilder(context.applicationContext, AutonomyDatabase::class.java, NAME).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+            Room.databaseBuilder(context.applicationContext, AutonomyDatabase::class.java, NAME).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+
+        /** v5: measured outcomes and the lessons store (learning loop). New tables only: nothing existing is touched. */
+        val MIGRATION_4_5: Migration = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `outcome` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `workspaceId` TEXT NOT NULL, `platform` TEXT NOT NULL, " +
+                        "`artifactId` TEXT NOT NULL, `artifactKind` TEXT NOT NULL, `hookType` TEXT NOT NULL, `format` TEXT NOT NULL, `lengthBucket` TEXT NOT NULL, " +
+                        "`timeBucket` TEXT NOT NULL, `topic` TEXT NOT NULL, `metric` TEXT NOT NULL, `value` REAL NOT NULL, `observedAtMs` INTEGER NOT NULL, " +
+                        "`lagLabel` TEXT NOT NULL, `evidence` TEXT NOT NULL)",
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_outcome_platform` ON `outcome` (`platform`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_outcome_observedAtMs` ON `outcome` (`observedAtMs`)")
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `lesson` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `scope` TEXT NOT NULL, `claim` TEXT NOT NULL, " +
+                        "`evidenceIds` TEXT NOT NULL, `helpful` INTEGER NOT NULL, `harmful` INTEGER NOT NULL, `ttlDays` INTEGER NOT NULL, `status` TEXT NOT NULL, " +
+                        "`createdAtMs` INTEGER NOT NULL, `lastConfirmedMs` INTEGER NOT NULL)",
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_lesson_status` ON `lesson` (`status`)")
+            }
+        }
 
         /** v4: workspaces, shared task board, action log, review examples, tiered autonomy. */
         val MIGRATION_3_4: Migration = object : Migration(3, 4) {

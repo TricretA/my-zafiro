@@ -171,6 +171,7 @@ fun ZafiroPageContent(
                     "dashboard" -> onPush(DashboardPage)
                     "workspaces" -> onPush(WorkspacesPage)
                     "files" -> onPush(FilesPage)
+                    "learning" -> onPush(com.niki914.zafiro.app.ui.nav.LearningPage)
                     "manage" -> onPush(ManagePage)
                 }
             },
@@ -254,6 +255,8 @@ fun ZafiroPageContent(
         )
 
         DashboardPage -> com.niki914.zafiro.app.ui.content.DashboardVisualContent(onOpenFiles = { onPush(FilesPage) }, onOpenWorkspaces = { onPush(WorkspacesPage) })
+
+        com.niki914.zafiro.app.ui.nav.LearningPage -> com.niki914.zafiro.app.ui.content.LearningPageContent()
 
         ManagePage -> com.niki914.zafiro.app.ui.content.ManagePageContent()
 

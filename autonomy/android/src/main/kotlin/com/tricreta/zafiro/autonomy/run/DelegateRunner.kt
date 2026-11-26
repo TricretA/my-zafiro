@@ -16,6 +16,8 @@ import com.niki914.zafiro.api.model.TurnBlock
 import com.niki914.zafiro.api.model.isRunning
 import com.niki914.zafiro.service.requireService
 import com.tricreta.zafiro.autonomy.core.AgentBrief
+import com.tricreta.zafiro.autonomy.core.RunContext
+import com.tricreta.zafiro.autonomy.learn.LearnServiceImpl
 import com.tricreta.zafiro.autonomy.core.AgentNames
 import com.tricreta.zafiro.autonomy.core.BoardRules
 import com.tricreta.zafiro.autonomy.core.Breach
@@ -117,6 +119,7 @@ class DelegateRunner(
                 profile.name, profile.instructions,
                 profile.tools.split(',').filter { it.isNotBlank() }, profile.skills.split(',').filter { it.isNotBlank() },
                 task, delegated = true, depth = depth,
+                lessons = RunContext.lessonsBlock(LearnServiceImpl(repo.learnDao()).provider(), profile.workspaceId, System.currentTimeMillis()),
             )
             coroutineScope {
                 val watchdog = launch {

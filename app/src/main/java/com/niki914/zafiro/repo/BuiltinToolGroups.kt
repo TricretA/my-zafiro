@@ -34,6 +34,13 @@ object BuiltinToolGroups {
             members = listOf("shell", "ssh", "execute_python", "py_meta_tools"),
         ),
         BuiltinToolGroup(
+            id = "learning",
+            titleRes = R.string.tool_group_learning,
+            summaryRes = R.string.tool_group_learning_summary,
+            mode = BuiltinToolGroupMode.PER_TOOL,
+            members = listOf("inbox", "lessons", "outcomes"),
+        ),
+        BuiltinToolGroup(
             id = "android_native",
             titleRes = R.string.tool_group_android_native,
             summaryRes = R.string.tool_group_android_native_summary,
