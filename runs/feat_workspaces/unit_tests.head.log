@@ -110,11 +110,11 @@ Solutions:
 > Task :libs:libterm-backend-libsu:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-libsu:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-backend-shizuku:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-backend-ssh:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:libterm-backend-ssh:processDebugJavaRes UP-TO-DATE
 > Task :libs:libterm-runtime:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :accessibility:javaPreCompileDebugUnitTest
 > Task :libs:libterm-runtime:processDebugJavaRes UP-TO-DATE
 > Task :libs:logging:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
 > Task :libs:logging:processAndroidMainJavaRes UP-TO-DATE
@@ -208,7 +208,6 @@ Solutions:
 > Task :business:notification:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :business:notification:processDebugJavaRes UP-TO-DATE
 > Task :business:permission:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :business:permission:processDebugJavaRes UP-TO-DATE
 > Task :libs:okia:bundleLibRuntimeToJarDebug UP-TO-DATE
 > Task :libs:okia:processDebugJavaRes UP-TO-DATE
@@ -250,6 +249,7 @@ Solutions:
 > Task :business:files:processDebugNavigationResources UP-TO-DATE
 > Task :business:remote:preBuild UP-TO-DATE
 > Task :business:remote:preDebugBuild UP-TO-DATE
+> Task :agent-runtime:generateDebugUnitTestStubRFile
 > Task :business:remote:processDebugNavigationResources UP-TO-DATE
 > Task :libs:logging:generateAndroidMainEmptyResourceFiles UP-TO-DATE
 > Task :app:processDebugNavigationResources UP-TO-DATE
@@ -505,8 +505,8 @@ Solutions:
 > Task :app:packageDebugUnitTestForUnitTest
 
 > Task :app:processDebugUnitTestManifest
-/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest12379769252830196656.xml:51:9-80:20 Warning:
-	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest12379769252830196656.xml:51 to replace other declarations but no other declaration present
+/home/runner/work/my-zafiro/my-zafiro/app/build/intermediates/tmp/manifest/test/debug/tempFile2ProcessTestManifest1883792801618609585.xml:51:9-80:20 Warning:
+	activity#com.niki914.zafiro.app.trigger.TextActionActivity@android:label was tagged at tempFile2ProcessTestManifest1883792801618609585.xml:51 to replace other declarations but no other declaration present
 
 > Task :app:generateDebugUnitTestConfig
 > Task :app:processDebugJavaRes UP-TO-DATE
@@ -544,8 +544,8 @@ Solutions:
 > Task :ui-kit:preDebugUnitTestBuild UP-TO-DATE
 > Task :store:generateDebugUnitTestStubRFile
 > Task :ui-kit:generateDebugUnitTestStubRFile
-> Task :app:kspDebugUnitTestKotlin
 > Task :ui-kit:compileDebugUnitTestKotlin
+> Task :app:kspDebugUnitTestKotlin
 > Task :ui-kit:javaPreCompileDebugUnitTest
 > Task :ui-kit:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :ui-kit:processDebugUnitTestJavaRes
@@ -553,7 +553,6 @@ Solutions:
 > Task :ui-kit:testDebugUnitTest
 > Task :store:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :store:processDebugUnitTestJavaRes
-> Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :store:testDebugUnitTest
 > Task :voice:preDebugUnitTestBuild UP-TO-DATE
 > Task :voice:javaPreCompileDebugUnitTest
@@ -591,11 +590,11 @@ Solutions:
 > Task :autonomy:android:generateDebugUnitTestConfig
 > Task :business:agent:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:agent:generateDebugUnitTestStubRFile
+> Task :agent-runtime:compileDebugUnitTestKotlin
 > Task :autonomy:android:compileDebugUnitTestKotlin
 > Task :autonomy:android:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :autonomy:android:processDebugUnitTestJavaRes
 > Task :business:agent:compileDebugUnitTestKotlin
-> Task :app:compileDebugUnitTestKotlin
 > Task :autonomy:android:testDebugUnitTest
 > Task :agent-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :agent-runtime:processDebugUnitTestJavaRes
@@ -639,22 +638,22 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 > Task :business:agent:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:agent:testDebugUnitTest
 > Task :business:application:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:javaPreCompileDebugUnitTest
+> Task :business:files:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:application:generateDebugUnitTestStubRFile
 > Task :business:application:compileDebugUnitTestKotlin NO-SOURCE
-> Task :business:files:generateDebugUnitTestStubRFile
 > Task :business:application:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :business:application:processDebugUnitTestJavaRes NO-SOURCE
+> Task :business:files:generateDebugUnitTestStubRFile
 > Task :business:application:testDebugUnitTest NO-SOURCE
 > Task :business:notification:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:files:javaPreCompileDebugUnitTest
+> Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
 > Task :business:notification:generateDebugUnitTestStubRFile
 > Task :business:notification:javaPreCompileDebugUnitTest
-> Task :business:permission:preDebugUnitTestBuild UP-TO-DATE
+> Task :business:permission:generateDebugUnitTestStubRFile
 > Task :business:permission:javaPreCompileDebugUnitTest
 > Task :business:remote:preDebugUnitTestBuild UP-TO-DATE
-> Task :business:permission:generateDebugUnitTestStubRFile
 > Task :business:remote:generateDebugUnitTestStubRFile
 > Task :business:files:compileDebugUnitTestKotlin
 > Task :business:files:compileDebugUnitTestJavaWithJavac NO-SOURCE
@@ -673,28 +672,28 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/
 w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/com/niki914/zafiro/business/remote/profile/DeviceProfileReaderTest.kt:99:43 'constructor(p0: String!, p1: String!): Locale' is deprecated. Deprecated in Java.
 
 > Task :business:permission:testDebugUnitTest
-> Task :business:remote:javaPreCompileDebugUnitTest
 > Task :business:remote:processDebugUnitTestJavaRes
-> Task :business:remote:compileDebugUnitTestJavaWithJavac NO-SOURCE
-> Task :business:remote:testDebugUnitTest
 > Task :libs:libterm-backend-libsu:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-libsu:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-libsu:javaPreCompileDebugUnitTest
+> Task :libs:libterm-backend-libsu:generateDebugUnitTestStubRFile
+> Task :business:remote:javaPreCompileDebugUnitTest
+> Task :business:remote:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-shizuku:generateDebugUnitTestStubRFile
+> Task :business:remote:testDebugUnitTest
 > Task :libs:libterm-backend-ssh:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:libterm-backend-shizuku:javaPreCompileDebugUnitTest
+> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-ssh:javaPreCompileDebugUnitTest
 > Task :libs:libterm-runtime:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:libterm-backend-ssh:generateDebugUnitTestStubRFile
 > Task :libs:libterm-runtime:generateDebugUnitTestStubRFile
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-ssh:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-ssh:processDebugUnitTestJavaRes
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-shizuku:compileDebugUnitTestKotlin
-> Task :libs:libterm-runtime:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-ssh:testDebugUnitTest
+> Task :libs:libterm-runtime:compileDebugUnitTestKotlin
 > Task :libs:libterm-backend-libsu:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-libsu:processDebugUnitTestJavaRes
 > Task :libs:libterm-backend-libsu:testDebugUnitTest
@@ -706,17 +705,17 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/test/kotlin/
 > Task :libs:libterm-runtime:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:libterm-runtime:testDebugUnitTest
 > Task :libs:okia:preDebugUnitTestBuild UP-TO-DATE
-> Task :libs:shizuku:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:okia:generateDebugUnitTestStubRFile
 > Task :libs:okia:javaPreCompileDebugUnitTest
+> Task :libs:shizuku:preDebugUnitTestBuild UP-TO-DATE
 > Task :libs:shizuku:generateDebugUnitTestStubRFile
 > Task :libs:shizuku:javaPreCompileDebugUnitTest
 > Task :autonomy:core:processTestResources NO-SOURCE
 > Task :libs:shizuku:compileDebugUnitTestKotlin
 > Task :libs:shizuku:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:shizuku:processDebugUnitTestJavaRes
-> Task :libs:shizuku:testDebugUnitTest
 > Task :autonomy:core:compileTestKotlin
+> Task :libs:shizuku:testDebugUnitTest
 > Task :autonomy:core:compileTestJava NO-SOURCE
 > Task :autonomy:core:testClasses UP-TO-DATE
 > Task :autonomy:core:test
@@ -735,7 +734,7 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/test/java/com/niki
 > Task :libs:okia:compileDebugUnitTestJavaWithJavac NO-SOURCE
 > Task :libs:okia:processDebugUnitTestJavaRes
 > Task :libs:okia:testDebugUnitTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795648919803.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/unit_tests-1795671393004.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
 
@@ -781,37 +780,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:tes
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:276)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:187)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:187)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/my-zafiro/my-zafiro/app/build/reports/tests/testDebugUnitTest/index.html
@@ -911,7 +879,7 @@ Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
+	... 30 more
 
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
@@ -920,5 +888,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 9m 40s
+BUILD FAILED in 9m 1s
 507 actionable tasks: 117 executed, 390 up-to-date
