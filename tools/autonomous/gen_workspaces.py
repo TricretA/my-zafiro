@@ -428,7 +428,7 @@ for p in P:
     for a in agents:
         if a["id"] == ids["engager"][0]: a["usesScreen"] = False
     skills = ["team-protocol", "toolbox", "skill-router", "realtime-signals", "fast-screen", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + (["video-publish"] if ws in VIDEO else []) + p["skills"] + sorted(map_ids(p))
-    d = dict(id=ws, version=1, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
+    d = dict(id=ws, version=2, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
              quotas=p["quotas"], agents=agents, tasks=tasks_for(p, ids), skills=sorted(set(skills)), mcps=[], memory=[p["facts"]])
     w(f"{A}/workspaces/{ws}.json", json.dumps(d, indent=1, ensure_ascii=False) + "\n")
 

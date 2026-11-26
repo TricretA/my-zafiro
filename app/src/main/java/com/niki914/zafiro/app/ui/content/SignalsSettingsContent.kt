@@ -40,6 +40,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DateFormat
 import java.util.Date
+import kotlin.random.Random
 
 private const val ENABLED_ROW = "signals.enabled"
 private const val OPEN_ACCESS_ROW = "signals.open_access"
@@ -229,10 +230,14 @@ private fun loadUi(context: Context): SignalsUi {
     )
 }
 
-/** Captured text is third-party data: shown as plain text, one line, never interpreted. */
-private fun displayText(s: Signal): String =
-    listOf(s.sender, s.title.takeIf { it != s.sender }.orEmpty(), s.text, s.subText).filter { it.isNotBlank() }
-        .joinToString(" | ").let { SignalFormat.clean(it, 240) }
+/** Captured text is third-party data: shown as one fenced plain-text line, never interpreted. */
+private fun displayText(s: Signal): String {
+    val boundary = SignalFormat.newBoundary(Random.Default)
+    val body = listOf(s.sender, s.title.takeIf { it != s.sender }.orEmpty(), s.text, s.subText)
+        .filter { it.isNotBlank() }
+        .joinToString(" | ")
+    return SignalFormat.fence(boundary, body, 240)
+}
 
 private fun openAccessSettings(context: Context) {
     val detail = Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS)

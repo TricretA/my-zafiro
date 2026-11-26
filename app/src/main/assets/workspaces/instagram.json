@@ -1,6 +1,6 @@
 {
  "id": "instagram",
- "version": 1,
+ "version": 2,
  "name": "Instagram",
  "platform": "instagram",
  "app": "com.instagram.android",

@@ -1,6 +1,6 @@
 {
  "id": "substack",
- "version": 1,
+ "version": 2,
  "name": "Substack",
  "platform": "substack",
  "app": "com.substack.app",

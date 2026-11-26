@@ -1,6 +1,6 @@
 {
  "id": "email",
- "version": 1,
+ "version": 2,
  "name": "Email (Gmail)",
  "platform": "email",
  "app": "com.google.android.gm",

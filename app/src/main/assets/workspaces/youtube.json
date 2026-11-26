@@ -1,6 +1,6 @@
 {
  "id": "youtube",
- "version": 1,
+ "version": 2,
  "name": "YouTube",
  "platform": "youtube",
  "app": "com.google.android.youtube",

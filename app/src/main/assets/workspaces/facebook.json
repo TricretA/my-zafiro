@@ -1,6 +1,6 @@
 {
  "id": "facebook",
- "version": 1,
+ "version": 2,
  "name": "Facebook",
  "platform": "facebook",
  "app": "com.facebook.katana",

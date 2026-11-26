@@ -1,6 +1,6 @@
 {
  "id": "linkedin",
- "version": 1,
+ "version": 2,
  "name": "LinkedIn",
  "platform": "linkedin",
  "app": "com.linkedin.android",

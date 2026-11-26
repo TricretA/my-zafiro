@@ -48,6 +48,5 @@ notification -> listener (skips own app, group summaries, ongoing; only allow-li
 ## Not done / UNVERIFIED
 * Not tried on any phone, including the Tecno BF7. Notification text formats (WhatsApp MessagingStyle, Substack, Instagram) are assumptions from Android docs.
 * No "grant through Shizuku" button: `cmd notification allow_listener` would go through the permission layer and `PermissionEntryGuardTest`; left out.
-* Existing installed workspaces do not get the new agent instructions/tools: `WorkspaceInstaller.install` skips a workspace whose `installedVersion >= version`, and the bundled `version` is still 1. Bump `version` in the generator (it overwrites agent edits) or re-install a workspace to pick them up.
 * No new-signal trigger for ENGAGEMENT beyond the board item: a team sees it at its next heartbeat (every 30 minutes), not instantly. Only owner messages start a heartbeat at once.
 * The keyword table is English only. Engagement keyword and owner lists are editable in the page; keywords only through config.json.

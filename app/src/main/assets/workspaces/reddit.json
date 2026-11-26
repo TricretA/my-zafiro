@@ -1,6 +1,6 @@
 {
  "id": "reddit",
- "version": 1,
+ "version": 2,
  "name": "Reddit",
  "platform": "reddit",
  "app": "com.reddit.frontpage",
