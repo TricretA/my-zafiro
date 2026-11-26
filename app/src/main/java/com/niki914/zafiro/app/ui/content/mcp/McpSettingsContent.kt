@@ -139,7 +139,7 @@ private fun mcpSettingsSpec(
     pageDescription: String,
     loadingText: String,
 ): SettingsPageSpec {
-    val sections = mutableListOf(
+    val sections = mutableListOf<SettingsSectionSpec>(
         SettingsSectionSpec(
             layout = SettingsSectionLayout.GroupedCard,
             rows = listOf(
