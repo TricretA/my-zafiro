@@ -36,18 +36,18 @@ Solutions:
 > Task :libs:libterm-runtime:preBuild UP-TO-DATE
 > Task :libs:libterm-runtime:preDebugBuild UP-TO-DATE
 > Task :libs:libterm-backend-ssh:writeDebugAarMetadata
+> Task :libs:libterm-backend-shizuku:writeDebugAarMetadata
 > Task :libs:libterm-backend-libsu:writeDebugAarMetadata
 > Task :libs:libterm-runtime:writeDebugAarMetadata
-> Task :libs:libterm-backend-shizuku:writeDebugAarMetadata
 > Task :libs:logging:androidPreBuild UP-TO-DATE
 > Task :libs:logging:preAndroidMainBuild UP-TO-DATE
 > Task :libs:shizuku:preBuild UP-TO-DATE
-> Task :libs:shizuku:preDebugBuild UP-TO-DATE
 > Task :libs:logging:writeAndroidMainAarMetadata
+> Task :libs:shizuku:preDebugBuild UP-TO-DATE
 > Task :libs:shizuku:writeDebugAarMetadata
-> Task :accessibility:checkDebugAarMetadata
 > Task :accessibility:mergeDebugJniLibFolders
 > Task :accessibility:mergeDebugNativeLibs NO-SOURCE
+> Task :accessibility:checkDebugAarMetadata
 > Task :accessibility:stripDebugDebugSymbols NO-SOURCE
 > Task :business:screen:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :accessibility:copyDebugJniLibsProjectAndLocalJars
@@ -78,8 +78,8 @@ Solutions:
 > Task :libs:logging:compileAndroidMain
 > Task :libs:logging:bundleAndroidMainClassesToCompileJar
 > Task :libs:shizuku:generateDebugResources
-> Task :libs:libterm-core:compileKotlin
 > Task :business:screen:compileKotlin
+> Task :libs:libterm-core:compileKotlin
 > Task :business:api:compileKotlin
 > Task :libs:shizuku:packageDebugResources
 > Task :business:screen:compileJava NO-SOURCE
@@ -91,9 +91,6 @@ Solutions:
 > Task :libs:libterm-core:compileJava NO-SOURCE
 > Task :libs:libterm-core:classes UP-TO-DATE
 > Task :libs:libterm-core:jar
-> Task :libs:libterm-backend-libsu:compileDebugKotlin
-> Task :libs:libterm-backend-libsu:compileDebugJavaWithJavac NO-SOURCE
-> Task :libs:libterm-backend-libsu:bundleLibCompileToJarDebug
 > Task :libs:shizuku:processDebugNavigationResources
 > Task :libs:shizuku:parseDebugLocalResources
 > Task :libs:shizuku:generateDebugRFile
@@ -103,17 +100,20 @@ Solutions:
 > Task :libs:libterm-backend-ssh:packageDebugResources
 > Task :libs:libterm-backend-ssh:processDebugNavigationResources
 > Task :libs:libterm-backend-ssh:javaPreCompileDebug
-> Task :libs:libterm-backend-ssh:parseDebugLocalResources
 > Task :libs:libterm-runtime:generateDebugResources
-> Task :libs:libterm-backend-ssh:generateDebugRFile
+> Task :libs:libterm-backend-ssh:parseDebugLocalResources
 > Task :libs:libterm-runtime:packageDebugResources
 > Task :libs:libterm-runtime:processDebugNavigationResources
+> Task :libs:libterm-backend-ssh:generateDebugRFile
+> Task :libs:libterm-runtime:parseDebugLocalResources
+> Task :libs:libterm-backend-libsu:compileDebugKotlin
+> Task :libs:libterm-backend-libsu:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:libterm-backend-libsu:bundleLibCompileToJarDebug
+> Task :libs:libterm-runtime:generateDebugRFile
 > Task :libs:libterm-runtime:javaPreCompileDebug
 > Task :accessibility:extractDeepLinksForAarDebug
 > Task :accessibility:generateDebugAssets UP-TO-DATE
-> Task :libs:libterm-runtime:parseDebugLocalResources
 > Task :accessibility:mergeDebugAssets
-> Task :libs:libterm-runtime:generateDebugRFile
 > Task :accessibility:javaPreCompileDebug
 > Task :accessibility:prepareDebugArtProfile
 > Task :accessibility:prepareLintJarForPublish
@@ -143,8 +143,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/libterm/libterm-backend-ssh
 > Task :libs:shizuku:compileDebugKotlin
 > Task :agent-runtime:checkDebugAarMetadata
 > Task :libs:shizuku:compileDebugJavaWithJavac
-> Task :libs:libterm-backend-ssh:compileDebugJavaWithJavac NO-SOURCE
 > Task :libs:shizuku:bundleLibCompileToJarDebug
+> Task :libs:libterm-backend-ssh:compileDebugJavaWithJavac NO-SOURCE
 > Task :libs:libterm-backend-ssh:bundleLibCompileToJarDebug
 > Task :agent-runtime:generateDebugPythonJniLibs
 > Task :agent-runtime:mergeDebugJniLibFolders
@@ -172,12 +172,12 @@ Collecting requests==2.34.2
   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
 Collecting beautifulsoup4==4.15.0
   Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
-Collecting charset_normalizer<4,>=2 (from requests==2.34.2)
-  Downloading charset_normalizer-3.5.3-py3-none-any.whl.metadata (43 kB)
 
 > Task :libs:libterm-runtime:compileDebugKotlin
 
 > Task :agent-runtime:installDebugPythonRequirements
+Collecting charset_normalizer<4,>=2 (from requests==2.34.2)
+  Downloading charset_normalizer-3.5.3-py3-none-any.whl.metadata (43 kB)
 Collecting idna<4,>=2.5 (from requests==2.34.2)
   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
 Collecting urllib3<3,>=1.26 (from requests==2.34.2)
@@ -209,21 +209,21 @@ Successfully installed beautifulsoup4-4.15.0 certifi-2026.11.20 charset_normaliz
 > Task :agent-runtime:packageDebugResources
 > Task :agent-runtime:processDebugNavigationResources
 > Task :xposed-api:generateDebugResources
-> Task :xposed-api:packageDebugResources
 > Task :agent-runtime:parseDebugLocalResources
-> Task :xposed-api:processDebugNavigationResources
+> Task :xposed-api:packageDebugResources
 > Task :agent-runtime:generateDebugRFile
-> Task :xposed-api:javaPreCompileDebug
+> Task :xposed-api:processDebugNavigationResources
 > Task :business:notification:generateDebugResources
+> Task :xposed-api:javaPreCompileDebug
+> Task :xposed-api:parseDebugLocalResources
 > Task :business:notification:packageDebugResources
 > Task :business:notification:processDebugNavigationResources
-> Task :xposed-api:parseDebugLocalResources
-> Task :business:application:generateDebugResources
 > Task :xposed-api:generateDebugRFile
 > Task :business:notification:parseDebugLocalResources
+> Task :business:application:generateDebugResources
+> Task :business:notification:generateDebugRFile
 > Task :business:application:packageDebugResources
 > Task :business:application:processDebugNavigationResources
-> Task :business:notification:generateDebugRFile
 > Task :business:application:javaPreCompileDebug
 > Task :business:application:parseDebugLocalResources
 > Task :business:permission:generateDebugResources
@@ -235,35 +235,32 @@ Successfully installed beautifulsoup4-4.15.0 certifi-2026.11.20 charset_normaliz
 > Task :business:permission:javaPreCompileDebug
 > Task :business:notification:javaPreCompileDebug
 > Task :libs:okia:generateDebugResources
-> Task :libs:okia:packageDebugResources
-> Task :libs:okia:processDebugNavigationResources
 > Task :xposed-api:compileDebugKotlin
-> Task :business:application:compileDebugKotlin
+> Task :libs:okia:packageDebugResources
 > Task :xposed-api:compileDebugJavaWithJavac NO-SOURCE
-> Task :libs:okia:parseDebugLocalResources
 > Task :xposed-api:bundleLibCompileToJarDebug
-> Task :business:application:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:application:bundleLibCompileToJarDebug
-> Task :libs:okia:generateDebugRFile
+> Task :libs:okia:processDebugNavigationResources
 
 > Task :accessibility:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/accessibility/src/main/java/com/niki914/zafiro/accessibility/tree/DisplayNodeExtractor.kt:197:30 'var isChecked: Boolean' is deprecated. Deprecated in Java.
 
+> Task :business:application:compileDebugKotlin
 > Task :accessibility:compileDebugJavaWithJavac NO-SOURCE
+> Task :libs:okia:parseDebugLocalResources
 > Task :accessibility:mergeDebugGeneratedProguardFiles
 > Task :accessibility:mergeDebugConsumerProguardFiles
 > Task :accessibility:processDebugJavaRes
-> Task :libs:okia:javaPreCompileDebug
-> Task :agent-runtime:extractDeepLinksForAarDebug
-> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :business:application:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:application:bundleLibCompileToJarDebug
+> Task :libs:okia:generateDebugRFile
 > Task :accessibility:mergeDebugJavaResource
-> Task :agent-runtime:generateDebugPythonMiscAssets
-> Task :business:permission:compileDebugKotlin
 > Task :accessibility:syncDebugLibJars
 > Task :accessibility:bundleDebugAar
 > Task :accessibility:assembleDebug
-> Task :business:permission:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:permission:bundleLibCompileToJarDebug
+> Task :agent-runtime:extractDeepLinksForAarDebug
+> Task :agent-runtime:generateDebugAssets UP-TO-DATE
+> Task :libs:okia:javaPreCompileDebug
+> Task :agent-runtime:generateDebugPythonMiscAssets
 > Task :agent-runtime:generateDebugPythonRequirementsAssets
 > Task :agent-runtime:generateDebugPythonSourceAssets
 > Task :agent-runtime:generateDebugPythonBuildAssets
@@ -286,19 +283,16 @@ ADB forward successful.
 > Task :accessibility:bundleLibCompileToJarDebug
 > Task :app:compileDebugAidl NO-SOURCE
 > Task :app:generateDebugBuildConfig
+> Task :business:permission:compileDebugKotlin
 > Task :app:generateDebugResources
-
-> Task :business:notification:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:69:51 'static field USAGE_NOTIFICATION_COMMUNICATION_INSTANT: Int' is deprecated. Deprecated in Java.
-
+> Task :business:permission:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:permission:bundleLibCompileToJarDebug
 > Task :app:packageDebugResources
-> Task :business:notification:compileDebugJavaWithJavac NO-SOURCE
 > Task :remote-view:preBuild UP-TO-DATE
 > Task :remote-view:preDebugBuild UP-TO-DATE
 > Task :remote-view:processDebugNavigationResources
 > Task :store:preBuild UP-TO-DATE
 > Task :store:preDebugBuild UP-TO-DATE
-> Task :business:notification:bundleLibCompileToJarDebug
 > Task :store:processDebugNavigationResources
 > Task :ui-kit:preBuild UP-TO-DATE
 > Task :ui-kit:preDebugBuild UP-TO-DATE
@@ -322,6 +316,10 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/k
 > Task :business:remote:preDebugBuild UP-TO-DATE
 > Task :business:remote:processDebugNavigationResources
 > Task :libs:logging:generateAndroidMainEmptyResourceFiles
+
+> Task :business:notification:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/notification/src/main/kotlin/com/niki914/zafiro/business/notification/NotificationChannelManagerImpl.kt:69:51 'static field USAGE_NOTIFICATION_COMMUNICATION_INSTANT: Int' is deprecated. Deprecated in Java.
+
 > Task :autonomy:core:compileKotlin
 
 > Task :libs:okia:compileDebugKotlin
@@ -329,7 +327,9 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki
 w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki914/okia/transport/OkHttpEngine.kt:93:30 The corresponding parameter in the supertype 'RequestBody' is named 'sink'. This may cause problems when calling this function with named arguments.
 
 > Task :app:processDebugNavigationResources
+> Task :business:notification:compileDebugJavaWithJavac NO-SOURCE
 > Task :libs:okia:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:notification:bundleLibCompileToJarDebug
 > Task :autonomy:core:compileJava NO-SOURCE
 > Task :autonomy:core:classes UP-TO-DATE
 > Task :libs:okia:bundleLibCompileToJarDebug
@@ -337,40 +337,40 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki
 > Task :agent-runtime:extractDebugAnnotations
 > Task :remote-view:generateDebugResources
 > Task :remote-view:packageDebugResources
-> Task :ui-kit:generateDebugResources
 > Task :app:parseDebugLocalResources
+> Task :ui-kit:generateDebugResources
 > Task :remote-view:parseDebugLocalResources
-> Task :ui-kit:packageDebugResources
 > Task :remote-view:generateDebugRFile
+> Task :ui-kit:packageDebugResources
+> Task :app:generateDebugRFile
 > Task :ui-kit:javaPreCompileDebug
 > Task :remote-view:javaPreCompileDebug
 > Task :ui-kit:parseDebugLocalResources
 > Task :store:generateDebugBuildConfig
-> Task :app:generateDebugRFile
-> Task :ui-kit:generateDebugRFile
 > Task :store:generateDebugResources
+> Task :ui-kit:generateDebugRFile
 > Task :store:packageDebugResources
 > Task :store:javaPreCompileDebug
-> Task :voice:generateDebugResources
 > Task :store:parseDebugLocalResources
-> Task :voice:packageDebugResources
+> Task :voice:generateDebugResources
 > Task :store:generateDebugRFile
+> Task :voice:packageDebugResources
 > Task :voice:parseDebugLocalResources
 > Task :voice:generateDebugRFile
-> Task :store:compileDebugKotlin
 > Task :voice:compileDebugKotlin
-> Task :store:compileDebugJavaWithJavac
-> Task :store:bundleLibCompileToJarDebug
 > Task :voice:javaPreCompileDebug
-> Task :xposed-runtime:generateDebugResources
 > Task :voice:compileDebugJavaWithJavac NO-SOURCE
 > Task :voice:bundleLibCompileToJarDebug
+> Task :xposed-runtime:generateDebugResources
 > Task :xposed-runtime:packageDebugResources
+> Task :xposed-runtime:parseDebugLocalResources
+> Task :store:compileDebugKotlin
+> Task :xposed-runtime:generateDebugRFile
+> Task :store:compileDebugJavaWithJavac
+> Task :store:bundleLibCompileToJarDebug
 > Task :xposed-runtime:javaPreCompileDebug
 > Task :autonomy:android:generateDebugResources
-> Task :xposed-runtime:parseDebugLocalResources
 > Task :autonomy:android:packageDebugResources
-> Task :xposed-runtime:generateDebugRFile
 > Task :autonomy:android:parseDebugLocalResources
 > Task :autonomy:android:generateDebugRFile
 > Task :xposed-runtime:compileDebugKotlin
@@ -386,36 +386,32 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/libs/okia/src/main/java/com/niki
 > Task :business:files:packageDebugResources
 > Task :business:files:parseDebugLocalResources
 > Task :business:files:generateDebugRFile
+
+> Task :agent-runtime:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/device/AppInfoCache.kt:217:13 'constructor(p0: String!): Locale' is deprecated. Deprecated in Java.
+
 > Task :business:files:compileDebugKotlin
 > Task :business:files:javaPreCompileDebug
 > Task :business:files:compileDebugJavaWithJavac NO-SOURCE
 > Task :business:files:bundleLibCompileToJarDebug
 > Task :business:remote:generateDebugResources
 > Task :business:remote:packageDebugResources
-> Task :business:remote:parseDebugLocalResources
-> Task :business:remote:generateDebugRFile
-
-> Task :agent-runtime:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/main/java/com/niki914/zafiro/chat/agentic/device/AppInfoCache.kt:217:13 'constructor(p0: String!): Locale' is deprecated. Deprecated in Java.
-
 > Task :agent-runtime:compileDebugJavaWithJavac NO-SOURCE
 > Task :agent-runtime:mergeDebugGeneratedProguardFiles
 > Task :agent-runtime:mergeDebugConsumerProguardFiles
 > Task :agent-runtime:processDebugJavaRes
 > Task :agent-runtime:mergeDebugJavaResource
+> Task :agent-runtime:bundleLibCompileToJarDebug
 > Task :agent-runtime:syncDebugLibJars
+> Task :ui-kit:compileDebugKotlin
 > Task :agent-runtime:bundleDebugAar
 > Task :agent-runtime:assembleDebug
-> Task :ui-kit:compileDebugKotlin
-> Task :agent-runtime:bundleLibCompileToJarDebug
-
-> Task :business:remote:compileDebugKotlin
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
-w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:108:40 'fun getInstallerPackageName(p0: String): String?' is deprecated. Deprecated in Java.
-
+> Task :business:remote:parseDebugLocalResources
+> Task :business:remote:generateDebugRFile
+> Task :business:agent:compileDebugKotlin
+> Task :business:agent:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:agent:bundleLibCompileToJarDebug
 > Task :business:remote:javaPreCompileDebug
-> Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:remote:bundleLibCompileToJarDebug
 > Task :app:javaPreCompileDebug
 > Task :app:generateDebugAssets UP-TO-DATE
 > Task :remote-view:generateDebugAssets UP-TO-DATE
@@ -456,20 +452,23 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/
 > Task :libs:okia:mergeDebugAssets
 > Task :libs:shizuku:generateDebugAssets UP-TO-DATE
 > Task :libs:shizuku:mergeDebugAssets
-> Task :business:agent:compileDebugKotlin
 > Task :app:mergeDebugAssets
-> Task :business:agent:compileDebugJavaWithJavac NO-SOURCE
-> Task :business:agent:bundleLibCompileToJarDebug
 
 > Task :ui-kit:compileDebugKotlin
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:163:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:165:24 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
 w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914/uikit/base/BaseTheme.kt:168:24 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
 
-> Task :ui-kit:compileDebugJavaWithJavac NO-SOURCE
-> Task :ui-kit:bundleLibCompileToJarDebug
-> Task :business:agent:bundleLibRuntimeToJarDebug
+> Task :business:remote:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:75:35 'field versionCode: Int' is deprecated. Deprecated in Java.
+w: file:///home/runner/work/my-zafiro/my-zafiro/business/remote/src/main/kotlin/com/niki914/zafiro/business/remote/TelemetryImpl.kt:108:40 'fun getInstallerPackageName(p0: String): String?' is deprecated. Deprecated in Java.
+
+> Task :business:remote:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:remote:bundleLibCompileToJarDebug
 > Task :app:compressDebugAssets
+> Task :ui-kit:compileDebugJavaWithJavac NO-SOURCE
+> Task :business:agent:bundleLibRuntimeToJarDebug
+> Task :ui-kit:bundleLibCompileToJarDebug
 > Task :agent-runtime:bundleLibRuntimeToJarDebug
 > Task :business:files:bundleLibRuntimeToJarDebug
 > Task :business:notification:bundleLibRuntimeToJarDebug
@@ -484,9 +483,9 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :business:application:bundleLibRuntimeToJarDebug
 > Task :business:remote:bundleLibRuntimeToJarDebug
 > Task :remote-view:bundleLibRuntimeToJarDebug
+> Task :autonomy:android:kspDebugKotlin
 > Task :ui-kit:bundleLibRuntimeToJarDebug
 > Task :xposed-runtime:bundleLibRuntimeToJarDebug
-> Task :autonomy:android:kspDebugKotlin
 > Task :store:bundleLibRuntimeToJarDebug
 > Task :voice:bundleLibRuntimeToJarDebug
 > Task :xposed-api:bundleLibRuntimeToJarDebug
@@ -508,45 +507,45 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :business:agent:writeDebugAarMetadata
 > Task :business:files:writeDebugAarMetadata
 > Task :business:remote:writeDebugAarMetadata
-> Task :app:checkDebugAarMetadata
 > Task :app:mapDebugSourceSetPaths
+> Task :app:checkDebugAarMetadata
 > Task :app:compileDebugNavigationResources
 > Task :app:createDebugCompatibleScreenManifests
 > Task :accessibility:extractDeepLinksDebug
 > Task :agent-runtime:extractDeepLinksDebug
 > Task :app:extractDeepLinksDebug
 > Task :remote-view:extractDeepLinksDebug
-> Task :remote-view:processDebugManifest
 > Task :store:extractDeepLinksDebug
+> Task :remote-view:processDebugManifest
 > Task :store:processDebugManifest
+> Task :app:mergeDebugResources
 > Task :ui-kit:extractDeepLinksDebug
-> Task :ui-kit:processDebugManifest
 > Task :voice:extractDeepLinksDebug
+> Task :ui-kit:processDebugManifest
 > Task :voice:processDebugManifest
 > Task :xposed-api:extractDeepLinksDebug
 > Task :xposed-api:processDebugManifest
 > Task :xposed-runtime:extractDeepLinksDebug
-> Task :app:mergeDebugResources
-> Task :autonomy:android:extractDeepLinksDebug
 > Task :xposed-runtime:processDebugManifest
+> Task :autonomy:android:extractDeepLinksDebug
 > Task :business:agent:extractDeepLinksDebug
 > Task :business:application:extractDeepLinksDebug
 > Task :business:agent:processDebugManifest
+> Task :autonomy:android:processDebugManifest
 > Task :business:application:processDebugManifest
 > Task :business:files:extractDeepLinksDebug
-> Task :autonomy:android:processDebugManifest
 > Task :business:files:processDebugManifest
 > Task :business:notification:extractDeepLinksDebug
 > Task :business:permission:extractDeepLinksDebug
 > Task :business:notification:processDebugManifest
 > Task :business:remote:extractDeepLinksDebug
 > Task :business:permission:processDebugManifest
-> Task :libs:libterm-backend-libsu:extractDeepLinksDebug
-> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
 > Task :business:remote:processDebugManifest
+> Task :libs:libterm-backend-libsu:extractDeepLinksDebug
 > Task :libs:libterm-backend-libsu:processDebugManifest
-> Task :libs:libterm-backend-ssh:extractDeepLinksDebug
+> Task :libs:libterm-backend-shizuku:extractDeepLinksDebug
 > Task :libs:libterm-backend-shizuku:processDebugManifest
+> Task :libs:libterm-backend-ssh:extractDeepLinksDebug
 > Task :libs:libterm-runtime:extractDeepLinksDebug
 > Task :libs:libterm-backend-ssh:processDebugManifest
 > Task :libs:libterm-runtime:processDebugManifest
@@ -556,13 +555,13 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :libs:okia:processDebugManifest
 > Task :remote-view:mapDebugSourceSetPaths
 > Task :libs:shizuku:processDebugManifest
-> Task :store:mapDebugSourceSetPaths
 > Task :remote-view:compileDebugLibraryResources
 > Task :app:processDebugMainManifest
 > Task :app:processDebugManifest
+> Task :store:mapDebugSourceSetPaths
 > Task :store:compileDebugLibraryResources
-> Task :ui-kit:mapDebugSourceSetPaths
 > Task :app:processDebugManifestForPackage
+> Task :ui-kit:mapDebugSourceSetPaths
 > Task :ui-kit:compileDebugLibraryResources
 > Task :voice:mapDebugSourceSetPaths
 > Task :voice:compileDebugLibraryResources
@@ -589,8 +588,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :libs:libterm-backend-shizuku:mapDebugSourceSetPaths
 > Task :libs:libterm-backend-shizuku:compileDebugLibraryResources
 > Task :libs:libterm-backend-ssh:mapDebugSourceSetPaths
-> Task :libs:libterm-runtime:mapDebugSourceSetPaths
 > Task :libs:libterm-backend-ssh:compileDebugLibraryResources
+> Task :libs:libterm-runtime:mapDebugSourceSetPaths
 > Task :libs:libterm-runtime:compileDebugLibraryResources
 > Task :libs:okia:mapDebugSourceSetPaths
 > Task :libs:okia:compileDebugLibraryResources
@@ -622,10 +621,10 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :autonomy:android:compileDebugKotlin
 > Task :app:mergeExtDexDebug
 > Task :autonomy:android:compileDebugJavaWithJavac NO-SOURCE
-> Task :autonomy:android:bundleLibCompileToJarDebug
-> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :autonomy:android:processDebugJavaRes
+> Task :autonomy:android:bundleLibCompileToJarDebug
 > Task :business:files:bundleLibRuntimeToDirDebug
+> Task :autonomy:android:bundleLibRuntimeToJarDebug
 > Task :business:notification:bundleLibRuntimeToDirDebug
 > Task :autonomy:android:bundleLibRuntimeToDirDebug
 > Task :business:permission:bundleLibRuntimeToDirDebug
@@ -636,8 +635,8 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :business:application:bundleLibRuntimeToDirDebug
 > Task :business:remote:bundleLibRuntimeToDirDebug
 > Task :remote-view:bundleLibRuntimeToDirDebug
-> Task :xposed-runtime:bundleLibRuntimeToDirDebug
 > Task :ui-kit:bundleLibRuntimeToDirDebug
+> Task :xposed-runtime:bundleLibRuntimeToDirDebug
 > Task :store:bundleLibRuntimeToDirDebug
 > Task :voice:bundleLibRuntimeToDirDebug
 > Task :xposed-api:bundleLibRuntimeToDirDebug
@@ -711,15 +710,15 @@ w: file:///home/runner/work/my-zafiro/my-zafiro/ui-kit/src/main/java/com/niki914
 > Task :app:mergeDebugNativeLibs
 > Task :app:mergeLibDexDebug
 > Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
 
 > Task :app:stripDebugDebugSymbols
 Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libchaquopy_java.so, libcrypto_chaquopy.so, libcrypto_python.so, libdexkit.so, libjnidispatch.so, libpython3.11.so, libresvg_core.so, libsqlite3_chaquopy.so, libsqlite3_python.so, libssl_chaquopy.so, libssl_python.so. Run with --info option to learn more.
 
-> Task :app:writeDebugAppMetadata
 > Task :app:writeDebugSigningConfigVersions
 > Task :remote-view:stripDebugDebugSymbols NO-SOURCE
-> Task :remote-view:checkDebugAarMetadata
 > Task :remote-view:copyDebugJniLibsProjectAndLocalJars
+> Task :remote-view:checkDebugAarMetadata
 > Task :remote-view:extractDebugAnnotations
 > Task :remote-view:extractDeepLinksForAarDebug
 > Task :remote-view:mergeDebugGeneratedProguardFiles
@@ -755,10 +754,10 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :ui-kit:prepareLintJarForPublish
 > Task :ui-kit:mergeDebugJavaResource
 > Task :voice:checkDebugAarMetadata
+> Task :voice:stripDebugDebugSymbols NO-SOURCE
 > Task :ui-kit:syncDebugLibJars
 > Task :ui-kit:bundleDebugAar
 > Task :ui-kit:assembleDebug
-> Task :voice:stripDebugDebugSymbols NO-SOURCE
 > Task :voice:copyDebugJniLibsProjectAndLocalJars
 > Task :voice:extractDebugAnnotations
 > Task :voice:extractDeepLinksForAarDebug
@@ -766,13 +765,13 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :voice:mergeDebugConsumerProguardFiles
 > Task :voice:prepareDebugArtProfile
 > Task :voice:prepareLintJarForPublish
-> Task :voice:mergeDebugJavaResource
+> Task :xposed-api:stripDebugDebugSymbols NO-SOURCE
 > Task :xposed-api:checkDebugAarMetadata
+> Task :voice:mergeDebugJavaResource
+> Task :xposed-api:copyDebugJniLibsProjectAndLocalJars
 > Task :voice:syncDebugLibJars
 > Task :voice:bundleDebugAar
 > Task :voice:assembleDebug
-> Task :xposed-api:stripDebugDebugSymbols NO-SOURCE
-> Task :xposed-api:copyDebugJniLibsProjectAndLocalJars
 > Task :xposed-api:extractDebugAnnotations
 > Task :xposed-api:extractDeepLinksForAarDebug
 > Task :xposed-api:mergeDebugGeneratedProguardFiles
@@ -830,8 +829,8 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :business:application:mergeDebugGeneratedProguardFiles
 > Task :business:application:mergeDebugConsumerProguardFiles
 > Task :business:application:prepareDebugArtProfile
-> Task :business:application:mergeDebugJavaResource
 > Task :business:application:prepareLintJarForPublish
+> Task :business:application:mergeDebugJavaResource
 > Task :business:files:checkDebugAarMetadata
 > Task :business:application:syncDebugLibJars
 > Task :business:application:bundleDebugAar
@@ -858,12 +857,12 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :business:notification:prepareDebugArtProfile
 > Task :business:notification:prepareLintJarForPublish
 > Task :business:notification:mergeDebugJavaResource
-> Task :business:permission:checkDebugAarMetadata
 > Task :business:notification:syncDebugLibJars
 > Task :business:notification:bundleDebugAar
 > Task :business:notification:assembleDebug
 > Task :business:permission:stripDebugDebugSymbols NO-SOURCE
 > Task :business:permission:copyDebugJniLibsProjectAndLocalJars
+> Task :business:permission:checkDebugAarMetadata
 > Task :business:permission:extractDebugAnnotations
 > Task :business:permission:extractDeepLinksForAarDebug
 > Task :business:permission:mergeDebugGeneratedProguardFiles
@@ -883,13 +882,13 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :business:remote:mergeDebugConsumerProguardFiles
 > Task :business:remote:prepareDebugArtProfile
 > Task :business:remote:prepareLintJarForPublish
+> Task :libs:libterm-backend-libsu:stripDebugDebugSymbols NO-SOURCE
 > Task :business:remote:mergeDebugJavaResource
 > Task :libs:libterm-backend-libsu:checkDebugAarMetadata
+> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectAndLocalJars
 > Task :business:remote:syncDebugLibJars
 > Task :business:remote:bundleDebugAar
 > Task :business:remote:assembleDebug
-> Task :libs:libterm-backend-libsu:stripDebugDebugSymbols NO-SOURCE
-> Task :libs:libterm-backend-libsu:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:libterm-backend-libsu:extractDebugAnnotations
 > Task :libs:libterm-backend-libsu:extractDeepLinksForAarDebug
 > Task :libs:libterm-backend-libsu:mergeDebugGeneratedProguardFiles
@@ -898,10 +897,10 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :libs:libterm-backend-libsu:prepareLintJarForPublish
 > Task :libs:libterm-backend-libsu:mergeDebugJavaResource
 > Task :libs:libterm-backend-shizuku:checkDebugAarMetadata
-> Task :libs:libterm-backend-shizuku:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:libterm-backend-libsu:syncDebugLibJars
 > Task :libs:libterm-backend-libsu:bundleDebugAar
 > Task :libs:libterm-backend-libsu:assembleDebug
+> Task :libs:libterm-backend-shizuku:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:libterm-backend-shizuku:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:libterm-backend-shizuku:extractDebugAnnotations
 > Task :libs:libterm-backend-shizuku:extractDeepLinksForAarDebug
@@ -909,14 +908,14 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :libs:libterm-backend-shizuku:mergeDebugConsumerProguardFiles
 > Task :libs:libterm-backend-shizuku:prepareDebugArtProfile
 > Task :libs:libterm-backend-shizuku:prepareLintJarForPublish
-> Task :libs:libterm-backend-ssh:stripDebugDebugSymbols NO-SOURCE
-> Task :libs:libterm-backend-ssh:checkDebugAarMetadata
-> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:libterm-backend-shizuku:mergeDebugJavaResource
-> Task :libs:libterm-backend-ssh:extractDebugAnnotations
+> Task :libs:libterm-backend-ssh:checkDebugAarMetadata
 > Task :libs:libterm-backend-shizuku:syncDebugLibJars
 > Task :libs:libterm-backend-shizuku:bundleDebugAar
 > Task :libs:libterm-backend-shizuku:assembleDebug
+> Task :libs:libterm-backend-ssh:stripDebugDebugSymbols NO-SOURCE
+> Task :libs:libterm-backend-ssh:copyDebugJniLibsProjectAndLocalJars
+> Task :libs:libterm-backend-ssh:extractDebugAnnotations
 > Task :libs:libterm-backend-ssh:extractDeepLinksForAarDebug
 > Task :libs:libterm-backend-ssh:mergeDebugGeneratedProguardFiles
 > Task :libs:libterm-backend-ssh:mergeDebugConsumerProguardFiles
@@ -937,10 +936,10 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :libs:libterm-runtime:prepareLintJarForPublish
 > Task :libs:libterm-runtime:mergeDebugJavaResource
 > Task :libs:okia:checkDebugAarMetadata
+> Task :libs:okia:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:libterm-runtime:syncDebugLibJars
 > Task :libs:libterm-runtime:bundleDebugAar
 > Task :libs:libterm-runtime:assembleDebug
-> Task :libs:okia:stripDebugDebugSymbols NO-SOURCE
 > Task :libs:okia:copyDebugJniLibsProjectAndLocalJars
 > Task :libs:okia:extractDebugAnnotations
 > Task :libs:okia:extractDeepLinksForAarDebug
@@ -965,230 +964,243 @@ Unable to strip the following libraries, packaging them as they are: libandroidx
 > Task :libs:shizuku:syncDebugLibJars
 > Task :libs:shizuku:bundleDebugAar
 > Task :libs:shizuku:assembleDebug
+> Task :app:compileDebugKotlin
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/build/generated/ksp/debug/kotlin/com/niki914/zafiro/app/conversation/ConversationDao_Impl.kt:1074:31 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/conversation/ConversationDatabase.kt:31:10 'fun fallbackToDestructiveMigrationOnDowngrade(): RoomDatabase.Builder<ConversationDatabase>' is deprecated. Replace by overloaded version with parameter to indicate if all tables should be dropped or not.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/conversation/ConversationRepo.kt:397:15 'suspend fun updateDraft(conversationId: String, draftText: String): Int' is deprecated. Dead method: draft has migrated to XRepo global storage.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/chat/composable/text/ToolResultText.kt:37:38 'val Fling: NestedScrollSource' is deprecated. This has been replaced by SideEffect.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/ManagePageContent.kt:57:9 'fun ScrollableTabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., edgePadding: Dp = ..., indicator: @Composable() ComposableFunction1<@ParameterName(...) List<TabPosition>, Unit> = ..., divider: @Composable() ComposableFunction0<Unit> = ..., tabs: @Composable() ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryScrollableTabRow and SecondaryScrollableTabRow tab variants.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/SelectionPageContent.kt:57:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
 
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/mcp/McpSettingsContent.kt:176:17 Cannot infer type for this parameter. Specify it explicitly.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/mcp/McpSettingsContent.kt:176:17 Not enough information to infer type argument for 'T'.
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/assemble-1795678767791.json
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/TeamPagesContent.kt:220:58 Redundant creation of Json format. Creating instances for each usage can be slow.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:20:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:22:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/AboutSettingsState.kt:48:9 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:106:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:109:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/CustomPyToolSettingsState.kt:112:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:85:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:88:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ExecutionRulesSettingsState.kt:91:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:92:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:93:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/McpSettingsState.kt:94:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:34:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:37:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/MemorySettingsState.kt:40:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/OnboardingPreferencesViewModel.kt:55:26 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:35:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:36:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:37:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:38:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:40:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/ProviderSpec.kt:41:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/QuickPromptsSettingsState.kt:74:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/QuickPromptsSettingsState.kt:77:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/QuickPromptsSettingsState.kt:80:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SettingsState.kt:10:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SettingsState.kt:42:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:86:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:89:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:92:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/SkillSettingsState.kt:114:59 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/StorageSettingsState.kt:15:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/StorageSettingsState.kt:16:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:80:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:83:49 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/TextActionSettingsState.kt:86:51 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/model/backup/BackupSettingsState.kt:74:26 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroPages.kt:19:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroSettingsGroup.kt:7:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/nav/ZafiroSettingsGroup.kt:8:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/BuiltinToolGroups.kt:17:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/BuiltinToolGroups.kt:18:5 This annotation is currently applied to the value parameter only, but in the future it will also be applied to field.
+- To opt in to applying to both value parameter and field, add '-Xannotation-default-target=param-property' to your compiler arguments.
+- To keep applying to the value parameter only, use the '@param:' annotation target.
+
+See https://youtrack.jetbrains.com/issue/KT-73255 for more details.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/runtime/service/AgentRuntimeService.kt:340:59 Condition is always 'true'.
+w: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/runtime/service/AgentRuntimeService.kt:372:69 Condition is always 'true'.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:processDebugJavaRes
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/assemble-1795679803582.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/my-zafiro/my-zafiro/build/reports/problems/problems-report.html
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-   > Compilation error. See log for more details
-
-* Try:
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights from a Build Scan (powered by Develocity).
-> Get more help at https://help.gradle.org.
-
-* Exception is:
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
-	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
-	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
-	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
-	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
-	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
-	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
-	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
-	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
-	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
-	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
-	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$10(DefaultBuildLifecycleController.java:313)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:276)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$8(StateTransitionController.java:187)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:187)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
-Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-	at org.gradle.workers.internal.DefaultWorkerExecutor$WorkItemExecution.waitForCompletion(DefaultWorkerExecutor.java:289)
-	at org.gradle.internal.work.DefaultAsyncWorkTracker.lambda$waitForItemsAndGatherFailures$2(DefaultAsyncWorkTracker.java:130)
-	at org.gradle.internal.Factories$1.create(Factories.java:30)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withoutLocks$2(DefaultWorkerLeaseService.java:344)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:342)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:326)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLock(DefaultWorkerLeaseService.java:331)
-	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:126)
-	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForItemsAndGatherFailures(DefaultAsyncWorkTracker.java:92)
-	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForAll(DefaultAsyncWorkTracker.java:78)
-	at org.gradle.internal.work.DefaultAsyncWorkTracker.waitForCompletion(DefaultAsyncWorkTracker.java:66)
-	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:267)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
-	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:244)
-	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:227)
-	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:210)
-	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:176)
-	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:110)
-	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:47)
-	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:64)
-	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:61)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:61)
-	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:47)
-	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
-	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
-	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
-	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:51)
-	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:29)
-	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:70)
-	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.executeMutable(RemovePreviousOutputsStep.java:40)
-	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
-	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:62)
-	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:27)
-	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
-	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
-	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:39)
-	at org.gradle.internal.execution.steps.ResolveInputChangesStep.executeMutable(ResolveInputChangesStep.java:28)
-	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
-	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:192)
-	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:76)
-	at org.gradle.internal.Either$Right.fold(Either.java:176)
-	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:74)
-	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:49)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
-	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
-	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
-	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
-	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:63)
-	at org.gradle.internal.execution.steps.ResolveChangesStep.executeMutable(ResolveChangesStep.java:34)
-	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:64)
-	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:42)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:77)
-	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:46)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:133)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:64)
-	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
-	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
-	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
-	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:77)
-	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.executeMutable(HandleStaleOutputsStep.java:43)
-	at org.gradle.internal.execution.steps.MutableStep.execute(MutableStep.java:25)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
-	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:305)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
-	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
-	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
-	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
-	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
-	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
-	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
-	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
-	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
-	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
-Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
-	at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
-	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:119)
-	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:74)
-	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:68)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:64)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:61)
-	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:102)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:61)
-	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
-	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:58)
-	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:176)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
-	at org.gradle.internal.Factories$1.create(Factories.java:30)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
-	... 2 more
-
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
 
@@ -1196,5 +1208,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 6m 15s
-700 actionable tasks: 700 executed
+BUILD SUCCESSFUL in 7m 13s
+708 actionable tasks: 708 executed
