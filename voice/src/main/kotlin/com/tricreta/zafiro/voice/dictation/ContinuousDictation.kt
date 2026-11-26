@@ -71,7 +71,6 @@ class ContinuousDictation(
     private var engineBusy = false
     private var userStopped = false
     private var released = false
-    private var lastError: SpeechEngine.Listener? = null
     private var lastFaultCode: Int? = null
     private var lastFaultMessage: String? = null
     private var lastEmitted: String? = null
@@ -133,12 +132,15 @@ class ContinuousDictation(
 
             override fun onResult(text: String) {
                 if (gen != generation) return
+                // Invalidate this segment immediately so any trailing onError/onResult from Android for the same session is ignored.
+                generation++
                 engineBusy = false
                 act(s.onFinalResult(text))
             }
 
             override fun onError(fault: Fault, code: Int, message: String) {
                 if (gen != generation) return
+                generation++
                 engineBusy = false
                 lastFaultCode = code
                 lastFaultMessage = message
@@ -148,6 +150,7 @@ class ContinuousDictation(
         try {
             engine.listen(languageTag, listener)
         } catch (t: Throwable) {
+            generation++
             engineBusy = false
             lastFaultMessage = "Voice input could not start: ${t.message ?: t::class.java.simpleName}"
             act(s.onFault(Fault.TRANSIENT))
@@ -157,7 +160,8 @@ class ContinuousDictation(
     private fun act(action: Action) {
         when (action) {
             is Action.Restart -> {
-                engine.cancel()
+                // Do not call engine.cancel() here: the previous segment already ended cleanly, and calling cancel() triggers
+                // extra stop chimes and ERROR_CLIENT / ERROR_RECOGNIZER_BUSY on Android SpeechRecognizer.
                 val gen = generation
                 restartTimer = timer.postDelayed(action.delayMs) { if (gen == generation) beginSegment() }
             }

@@ -50,6 +50,7 @@ class BuiltinToolTest {
                 "shell",
                 "signals",
                 "ssh",
+                "studio_render",
                 "take_over",
                 "view_image",
                 "wait",

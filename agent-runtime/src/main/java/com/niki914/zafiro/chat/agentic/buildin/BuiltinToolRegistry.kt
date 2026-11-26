@@ -39,6 +39,7 @@ import com.niki914.zafiro.chat.agentic.buildin.impl.ScreensBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ScreenshotBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ShellBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.SshBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.StudioRenderBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ViewImageBuiltin
 
 class BuiltinToolRegistry(
@@ -80,6 +81,7 @@ class BuiltinToolRegistry(
                 FindInstalledAppsBuiltin(),
                 ScreenRoutineBuiltin(),
                 SaveFileBuiltin(),
+                StudioRenderBuiltin(),
                 CreateSkillBuiltin(),
                 WebFetchBuiltin(),
                 WebSearchBuiltin(),

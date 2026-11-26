@@ -64,7 +64,12 @@ Music & SFX: CC0 library in zafiro-studio `audio/library/`. Mix at −14 LUFS vi
 6. **ElevenLabs Free is non-commercial.** Alert owner before using for a commercial post.
 7. After every delivered video: save a lesson with memory skill.
 
-## Project folder convention
+## Delivery & Storage Rules
+- **GitHub token & render repo**: stored encrypted in **Settings → General → Video Studio & GitHub**. Never ask for the token in chat; use `studio_render`.
+- **Large raw videos (>20 MB)**: stage via `studio_render(op="upload_input", id=..., local_path=...)` before dispatching.
+- **Public output folder**: always save finished videos to user-visible shared storage via `studio_render(op="download", ...)` or `save_file(op="export", ...)` — default `Download/Zafiro`, or any folder the owner asks for (e.g. `Movies/Reels`, `Download/ClientA`). Never leave final videos trapped inside `Android/data`. Finished renders also stay on GitHub under release `job-<id>`.
+
+## Project folder convention (working files & scripts)
 ```
 outputs/video/<project-slug>/
   BRIEF.md
@@ -74,7 +79,6 @@ outputs/video/<project-slug>/
   audio/words.json
   build/   (HTML, job files, EDL)
   qa/      (sheet.jpg, NOTE.md)
-  final/   (video.mp4, cover.jpg, captions.srt, hashtags.txt)
 ```
 
 ## Role chain (run in order, do not skip gates)

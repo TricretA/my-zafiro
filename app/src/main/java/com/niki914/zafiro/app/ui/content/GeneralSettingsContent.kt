@@ -40,6 +40,7 @@ import com.niki914.zafiro.app.ui.nav.ZafiroPage
 private const val MANAGE_ROW_ID = "general.manage"
 private const val SIGNALS_ROW_ID = "general.signals"
 private const val VOICE_ROW_ID = "general.voice"
+private const val STUDIO_ROW_ID = "general.studio"
 private const val FLOATING_BALL_NAV_ROW_ID = "general.floating_ball_nav"
 private const val RESIDENT_NOTIFICATION_ROW_ID = "general.resident_notification"
 private const val TURN_NOTIFICATION_ROW_ID = "general.turn_notification"
@@ -70,6 +71,10 @@ fun GeneralSettingsContent(
     var voiceTick by remember { mutableStateOf(0) }
     if (showVoice) VoiceSettingsDialog(context) { showVoice = false; voiceTick++ }
 
+    var showStudio by remember { mutableStateOf(false) }
+    var studioTick by remember { mutableStateOf(0) }
+    if (showStudio) StudioSettingsDialog(context) { showStudio = false; studioTick++ }
+
     LaunchedEffect(Unit) {
         viewModel.sendIntent(GeneralSettingsIntent.Load)
     }
@@ -97,6 +102,12 @@ fun GeneralSettingsContent(
                         title = "Voice input",
                         summary = "Phone's free recogniser, or Groq/OpenAI Whisper with your key",
                         currentState = voiceSummary(context) + if (voiceTick >= 0) "" else "",
+                    ),
+                    SettingsRowSpec.Navigation(
+                        id = STUDIO_ROW_ID,
+                        title = "Video Studio & GitHub",
+                        summary = "GitHub token, render repo, default video output folder",
+                        currentState = studioSummary(context) + if (studioTick >= 0) "" else "",
                     ),
                     SettingsRowSpec.Navigation(
                         id = FLOATING_BALL_NAV_ROW_ID,
@@ -170,6 +181,7 @@ fun GeneralSettingsContent(
                     when (action.id) {
                         FLOATING_BALL_NAV_ROW_ID -> onPush(FloatingBallSettingsPage)
                         VOICE_ROW_ID -> showVoice = true
+                        STUDIO_ROW_ID -> showStudio = true
                         MANAGE_ROW_ID -> onPush(com.niki914.zafiro.app.ui.nav.ManagePage)
                         SIGNALS_ROW_ID -> onPush(com.niki914.zafiro.app.ui.nav.SignalsPage)
                         DEVICE_ADMIN_ROW_ID -> {

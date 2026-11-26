@@ -22,6 +22,7 @@ class VoiceInput(context: Context, private val cloud: () -> CloudSttConfig? = { 
     private var cloudEnd: ((EndReason) -> Unit)? = null
     private var cloudTranscript: ((String) -> Unit)? = null
     private var cloudActive = false
+    private val cloudMaxStopRunnable = Runnable { if (cloudActive) stop() }
     private val engine = AndroidSpeechEngine(context.applicationContext)
     private val handler = Handler(Looper.getMainLooper())
     private val _listening = MutableStateFlow(false)
@@ -66,10 +67,12 @@ class VoiceInput(context: Context, private val cloud: () -> CloudSttConfig? = { 
         cloudActive = true; cloudEnd = onEnd; cloudTranscript = onTranscript
         _listening.value = true
         // Safety stop so a forgotten recording does not run (and upload) forever.
-        handler.postDelayed({ if (cloudActive) stop() }, MAX_RECORD_MS)
+        handler.removeCallbacks(cloudMaxStopRunnable)
+        handler.postDelayed(cloudMaxStopRunnable, MAX_RECORD_MS)
     }
 
     private fun finishCloud(cfg: CloudSttConfig?) {
+        handler.removeCallbacks(cloudMaxStopRunnable)
         val onEnd = cloudEnd; val onText = cloudTranscript
         cloudActive = false; cloudEnd = null; cloudTranscript = null
         _listening.value = false
@@ -91,6 +94,7 @@ class VoiceInput(context: Context, private val cloud: () -> CloudSttConfig? = { 
     }
 
     fun release() {
+        handler.removeCallbacks(cloudMaxStopRunnable)
         if (cloudActive) { cloudActive = false; recorder.cancel() }
         dictation?.release()
         dictation = null
