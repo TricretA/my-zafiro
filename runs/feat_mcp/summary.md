@@ -2,8 +2,8 @@
 
 **Gate: FAIL: assembleDebug failed; only 1609 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45774823832
-- GITHUB_SHA: db18d9e38fcb0d480e5ac22a8a54cb012a524aeb
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45776901657
+- GITHUB_SHA: 27abcac6701e3d660cfb74289fe31abe26e52b5d
 - GITHUB_REF_NAME: feat/mcp
 
 | step | outcome |
@@ -24,7 +24,7 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/za
 * What went wrong:
 Execution failed for task ':app:compileDebugKotlin'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 5m 47s
+BUILD FAILED in 6m 15s
 ```
 ## unit_tests: key error lines
 ```
@@ -34,7 +34,7 @@ e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/za
 * What went wrong:
 Execution failed for task ':app:compileDebugKotlin'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 4m 26s
+BUILD FAILED in 4m 29s
 ```
 ## lint: key error lines
 ```
@@ -60,5 +60,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 * What went wrong:
 Execution failed for task ':libs:shizuku:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':libs:shizuku:lintDebug'.
-BUILD FAILED in 2m 58s
+BUILD FAILED in 3m 23s
 ```
