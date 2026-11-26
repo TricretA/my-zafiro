@@ -1,5 +1,6 @@
 package com.niki914.zafiro.mcp
 
+import com.niki914.zafiro.api.util.runCatchingCancellable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
@@ -69,9 +70,9 @@ data class McpCatalogEntry(
 object McpCore {
     private val json = Json { ignoreUnknownKeys = true }
 
-    fun parseMcpServersJson(text: String): Result<List<McpServerJson>> = runCatching {
+    fun parseMcpServersJson(text: String): Result<List<McpServerJson>> = runCatchingCancellable {
         val root = json.parseToJsonElement(text).jsonObject
-        val servers = root["mcpServers"]?.jsonObject?.let { it } ?: return@runCatching emptyList()
+        val servers = root["mcpServers"]?.jsonObject?.let { it } ?: return@runCatchingCancellable emptyList()
         servers.mapNotNull { (name, raw) ->
             val obj = raw as? JsonObject ?: return@mapNotNull null
             val url = (obj["url"] as? JsonPrimitive)?.contentOrNull
@@ -90,7 +91,7 @@ object McpCore {
         }
     }
 
-    fun parseCatalog(text: String): Result<List<McpCatalogEntry>> = runCatching {
+    fun parseCatalog(text: String): Result<List<McpCatalogEntry>> = runCatchingCancellable {
         val root = json.parseToJsonElement(text)
         val arr = if (root is JsonArray) root else (root as JsonObject)["entries"] as? JsonArray
             ?: throw IllegalArgumentException("Catalog must contain an entries array")
@@ -150,12 +151,12 @@ object McpCore {
         overrideUrl?.takeIf { it.isNotBlank() }
             ?: issuer.trimEnd('/').takeIf { it.isNotBlank() }?.let { "$it/.well-known/oauth-authorization-server" }
 
-    fun protectedResourceMetadataUrl(serverUrl: String): String? = runCatching {
+    fun protectedResourceMetadataUrl(serverUrl: String): String? = runCatchingCancellable {
         val u = URI(serverUrl)
         "${u.scheme}://${u.authority}/.well-known/oauth-protected-resource"
     }.getOrNull()
 
-    fun githubSkillUrl(raw: String): Result<String> = runCatching {
+    fun githubSkillUrl(raw: String): Result<String> = runCatchingCancellable {
         val u = URI(raw.trim())
         require(u.scheme == "https" && u.host.equals("github.com", ignoreCase = true)) {
             "Only https://github.com URLs are allowed"

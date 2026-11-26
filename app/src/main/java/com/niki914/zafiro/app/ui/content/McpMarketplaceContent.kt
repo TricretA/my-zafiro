@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,11 +21,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.niki914.uikit.infra.component.SettingsGroupCard
 import com.niki914.uikit.infra.component.SettingsListItem
-import com.niki914.zafiro.app.R
+import com.niki914.zafiro.api.util.runCatchingCancellable
 import com.niki914.zafiro.mcp.McpCatalogEntry
 import com.niki914.zafiro.mcp.McpCore
 import com.niki914.zafiro.repo.XRepo
@@ -39,7 +37,7 @@ fun McpMarketplaceContent(onBack: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val catalog = remember {
-        runCatching {
+        runCatchingCancellable {
             context.assets.open("mcp_catalog.json").bufferedReader().use { it.readText() }
         }.getOrDefault("""{"entries":[]}""")
             .let { McpCore.parseCatalog(it).getOrDefault(emptyList()) }

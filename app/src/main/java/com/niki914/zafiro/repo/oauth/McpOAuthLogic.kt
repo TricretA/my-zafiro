@@ -1,6 +1,8 @@
 package com.niki914.zafiro.repo.oauth
 
+import com.niki914.zafiro.api.util.runCatchingCancellable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
@@ -8,6 +10,7 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import java.net.URI
+import java.net.URLDecoder
 import java.net.URLEncoder
 import java.security.MessageDigest
 import java.security.SecureRandom
@@ -39,7 +42,7 @@ object McpOAuthLogic {
 
     /** Authorization server from RFC 9728 protected-resource metadata; falls back to the server's own origin. */
     fun authorizationServer(protectedResourceJson: String?, fallbackOrigin: String): String {
-        val first = runCatching {
+        val first = runCatchingCancellable {
             Json.parseToJsonElement(protectedResourceJson.orEmpty()).jsonObject["authorization_servers"]?.jsonArray?.firstOrNull()?.jsonPrimitive?.contentOrNull
         }.getOrNull()
         return (first ?: fallbackOrigin).trimEnd('/')
@@ -47,7 +50,7 @@ object McpOAuthLogic {
 
     /** RFC 8414 metadata, or the MCP spec's default endpoint paths when the server publishes none. */
     fun endpoints(metadataJson: String?, authServer: String): Endpoints {
-        val o = runCatching { Json.parseToJsonElement(metadataJson.orEmpty()) as? JsonObject }.getOrNull()
+        val o = runCatchingCancellable { Json.parseToJsonElement(metadataJson.orEmpty()) as? JsonObject }.getOrNull()
         fun s(k: String) = (o?.get(k) as? JsonPrimitive)?.contentOrNull?.takeIf { it.isNotBlank() }
         val base = authServer.trimEnd('/')
         return Endpoints(
@@ -60,15 +63,15 @@ object McpOAuthLogic {
     fun registrationBody(clientName: String = "Zafiro"): String = JsonObject(
         mapOf(
             "client_name" to JsonPrimitive(clientName),
-            "redirect_uris" to kotlinx.serialization.json.JsonArray(listOf(JsonPrimitive(REDIRECT_URI))),
-            "grant_types" to kotlinx.serialization.json.JsonArray(listOf(JsonPrimitive("authorization_code"), JsonPrimitive("refresh_token"))),
-            "response_types" to kotlinx.serialization.json.JsonArray(listOf(JsonPrimitive("code"))),
+            "redirect_uris" to JsonArray(listOf(JsonPrimitive(REDIRECT_URI))),
+            "grant_types" to JsonArray(listOf(JsonPrimitive("authorization_code"), JsonPrimitive("refresh_token"))),
+            "response_types" to JsonArray(listOf(JsonPrimitive("code"))),
             "token_endpoint_auth_method" to JsonPrimitive("none"),
         ),
     ).toString()
 
     fun clientIdFrom(registrationResponse: String): String? =
-        runCatching { Json.parseToJsonElement(registrationResponse).jsonObject["client_id"]?.jsonPrimitive?.contentOrNull }.getOrNull()?.takeIf { it.isNotBlank() }
+        runCatchingCancellable { Json.parseToJsonElement(registrationResponse).jsonObject["client_id"]?.jsonPrimitive?.contentOrNull }.getOrNull()?.takeIf { it.isNotBlank() }
 
     private fun enc(s: String) = URLEncoder.encode(s, "UTF-8")
 
@@ -86,15 +89,15 @@ object McpOAuthLogic {
         "grant_type=refresh_token&refresh_token=${enc(refreshToken)}&client_id=${enc(clientId)}&resource=${enc(resource)}"
 
     fun parseTokens(json: String): Tokens? {
-        val o = runCatching { Json.parseToJsonElement(json).jsonObject }.getOrNull() ?: return null
+        val o = runCatchingCancellable { Json.parseToJsonElement(json).jsonObject }.getOrNull() ?: return null
         val access = (o["access_token"] as? JsonPrimitive)?.contentOrNull?.takeIf { it.isNotBlank() } ?: return null
         return Tokens(access, (o["refresh_token"] as? JsonPrimitive)?.contentOrNull, (o["expires_in"] as? JsonPrimitive)?.contentOrNull?.toDoubleOrNull()?.toLong())
     }
 
     /** Callback result: the authorization code, or an error message. The state must match the one we sent. */
     fun parseCallback(callback: String, expectedState: String): Result<String> {
-        val q = runCatching { URI(callback).rawQuery.orEmpty() }.getOrDefault("")
-        val params = q.split('&').filter { it.contains('=') }.associate { it.substringBefore('=') to java.net.URLDecoder.decode(it.substringAfter('='), "UTF-8") }
+        val q = runCatchingCancellable { URI(callback).rawQuery.orEmpty() }.getOrDefault("")
+        val params = q.split('&').filter { it.contains('=') }.associate { it.substringBefore('=') to URLDecoder.decode(it.substringAfter('='), "UTF-8") }
         params["error"]?.let { return Result.failure(IllegalStateException("The server refused sign-in: $it ${params["error_description"].orEmpty()}".trim())) }
         if (params["state"] != expectedState) return Result.failure(IllegalStateException("Sign-in response did not match this request (state mismatch)."))
         return params["code"]?.let { Result.success(it) } ?: Result.failure(IllegalStateException("Sign-in finished without a code."))

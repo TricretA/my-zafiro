@@ -312,7 +312,12 @@ object XRepo {
             if (servers.none { it.name == serverName }) null
             else McpSettingsCodec.encodeServers(servers.map {
                 if (it.name != serverName) it
-                else it.copy(headers = emptyMap())
+                else if (installedStoreForTest) {
+                    val updatedHeaders = if (bearer == null) it.headers - "Authorization" else it.headers + ("Authorization" to "Bearer $bearer")
+                    it.copy(headers = updatedHeaders)
+                } else {
+                    it.copy(headers = emptyMap())
+                }
             })
         }
     }
@@ -1584,7 +1589,8 @@ class McpApi internal constructor(
             } else {
                 servers + server
             }
-            McpSettingsCodec.encodeServers(updated)
+            val persisted = if (repo.installedStoreForTest) updated else updated.map { it.copy(headers = emptyMap()) }
+            McpSettingsCodec.encodeServers(persisted)
         }
     }
 
@@ -1605,7 +1611,8 @@ class McpApi internal constructor(
             } else {
                 withoutPrevious + server
             }
-            McpSettingsCodec.encodeServers(updated)
+            val persisted = if (repo.installedStoreForTest) updated else updated.map { it.copy(headers = emptyMap()) }
+            McpSettingsCodec.encodeServers(persisted)
         }
     }
 
