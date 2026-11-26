@@ -1,9 +1,12 @@
 package com.niki914.zafiro.chat.agentic.buildin.impl
 
 import com.niki914.xposed.api.util.ContextProvider
+import com.niki914.zafiro.api.StudioConfig
+import com.niki914.zafiro.api.StudioConfigProvider
 import com.niki914.zafiro.chat.agentic.buildin.BuiltinTool
 import com.niki914.zafiro.chat.agentic.buildin.BuiltinToolRequest
 import com.niki914.zafiro.chat.agentic.buildin.BuiltinToolResult
+import com.niki914.zafiro.service.findService
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -43,7 +46,12 @@ object OutputPaths {
         "gif" -> "image/gif"
         "svg" -> "image/svg+xml"
         "pdf" -> "application/pdf"
-        "mp4" -> "video/mp4"
+        "mp4", "m4v" -> "video/mp4"
+        "mov" -> "video/quicktime"
+        "webm" -> "video/webm"
+        "mp3" -> "audio/mpeg"
+        "wav" -> "audio/wav"
+        "m4a", "aac" -> "audio/mp4"
         else -> "application/octet-stream"
     }
 }
@@ -51,16 +59,26 @@ object OutputPaths {
 /**
  * Lets an agent produce a file the owner can open: Markdown plans, HTML reports, images, CSV... It is saved in the app's
  * outputs folder, shown on the Files page, and returned as a link the chat opens in the in-app viewer.
+ * `op=export` copies any saved or local file into user-visible shared storage (default `Download/Zafiro`, or any folder requested).
  */
-class SaveFileBuiltin(private val rootProvider: suspend () -> File = { File(ContextProvider.await().applicationContext.filesDir, OutputPaths.ROOT_NAME) }) : BuiltinTool() {
+class SaveFileBuiltin(
+    private val rootProvider: suspend () -> File = { File(ContextProvider.await().applicationContext.filesDir, OutputPaths.ROOT_NAME) },
+    private val exporter: suspend (source: File, folder: String?, filename: String?) -> Result<PublicExportResult> = { source, folder, filename ->
+        val ctx = ContextProvider.await().applicationContext
+        val defaultFolder = findService<StudioConfigProvider>()?.get()?.outputFolder ?: StudioConfig.DEFAULT_OUTPUT_FOLDER
+        PublicFileExporter.exportFile(ctx, source, folder ?: defaultFolder, filename)
+    },
+) : BuiltinTool() {
     override val name: String = "save_file"
     override val defaultEnabled: Boolean = true
     override val description: String =
         "Save a file the owner can open from the Files page or from your reply. op=save (path, content) writes text (Markdown, HTML, CSV, JSON...); " +
-            "for binary files pass content_base64 instead. path is relative, like plans/week-47.md. op=append (path, content) adds to the end of a text file (creates it if missing). op=read (path) returns a saved text file. op=delete (path) removes one. op=list (dir) lists saved files. " +
-            "After saving, put the returned link in your reply exactly as given so the owner can tap it. Saving to an existing path replaces it."
+            "for binary files pass content_base64 instead. path is relative, like plans/week-47.md. op=append (path, content) adds to the end of a text file (creates it if missing). " +
+            "op=read (path) returns a saved text file. op=delete (path) removes one. op=list (dir) lists saved files. " +
+            "op=export (path, folder?, filename?) copies any saved or local file into user-visible shared storage (defaults to Download/Zafiro or the configured studio folder, or pass folder like 'Download/MyReels' or 'Movies/Studio'). " +
+            "After saving, put the returned link or path in your reply exactly as given."
     override val inputSchemaJson: String =
-        """{"type":"object","properties":{"op":{"type":"string","enum":["save","append","read","delete","list"]},"path":{"type":"string"},"content":{"type":"string"},"content_base64":{"type":"string"},"dir":{"type":"string"}},"required":["op"]}"""
+        """{"type":"object","properties":{"op":{"type":"string","enum":["save","append","read","delete","list","export"]},"path":{"type":"string"},"content":{"type":"string"},"content_base64":{"type":"string"},"dir":{"type":"string"},"folder":{"type":"string"},"filename":{"type":"string"}},"required":["op"]}"""
 
     override suspend fun invoke(request: BuiltinToolRequest): BuiltinToolResult {
         val args = parseScreenObject(request.argumentsJson)
@@ -72,8 +90,32 @@ class SaveFileBuiltin(private val rootProvider: suspend () -> File = { File(Cont
             "read" -> read(root, args)
             "delete" -> delete(root, args)
             "list" -> list(root, args.text("dir").orEmpty())
-            else -> BuiltinToolResult.failure(code = "INVALID_ARGUMENTS", message = "op must be save or list.")
+            "export" -> export(root, args)
+            else -> BuiltinToolResult.failure(code = "INVALID_ARGUMENTS", message = "op must be save, append, read, delete, list, or export.")
         }
+    }
+
+    private suspend fun export(root: File, args: kotlinx.serialization.json.JsonObject): BuiltinToolResult {
+        val rawPath = args.text("path") ?: return BuiltinToolResult.failure(code = "INVALID_ARGUMENTS", message = "path is required.")
+        val source = if (rawPath.startsWith("/")) {
+            File(rawPath).takeIf { it.isFile }
+        } else {
+            OutputPaths.resolve(root, rawPath)?.takeIf { it.isFile }
+        } ?: return BuiltinToolResult.failure(code = "NOT_FOUND", message = "No readable file at $rawPath.")
+        val folder = args.text("folder")
+        val filename = args.text("filename")
+        val result = exporter(source, folder, filename).getOrElse {
+            return BuiltinToolResult.failure(code = "EXPORT_FAILED", message = it.message ?: "Export failed.")
+        }
+        return BuiltinToolResult.success(
+            message = "Exported ${source.name} (${result.bytes} bytes) to ${result.displayPath}",
+            data = buildJsonObject {
+                put("relative_path", result.relativePath)
+                put("display_path", result.displayPath)
+                result.contentUri?.let { put("content_uri", it) }
+                put("bytes", result.bytes)
+            },
+        )
     }
 
     private fun save(root: File, args: kotlinx.serialization.json.JsonObject): BuiltinToolResult {

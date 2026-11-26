@@ -1,15 +1,89 @@
 ---
 name: studio-actions-render
-description: How to render a video on GitHub Actions from a job file: commit job JSON, dispatch the workflow, poll, download the release asset. Use for every code-rendered video.
+description: How to render a video on GitHub Actions from a job file using the studio_render builtin tool: upload raw input videos (up to 2 GB) as release assets, commit job JSON, dispatch the workflow, poll, and download the finished MP4 directly into Downloads (or any user-requested folder). Uses the encrypted GitHub token from Settings > General > Video Studio & GitHub.
 license: MIT
 ---
 
 # Render on GitHub Actions (zafiro-studio repo)
-Prerequisites (owner-provided, never invent them): a repo named `zafiro-studio` with `.github/workflows/render.yml` (trigger `workflow_dispatch`, input `job`), the studio tools (render script, ffmpeg, Node 22, Chromium/Playwright), and a fine-grained token stored in the app's secrets with Actions:write and Contents:write on that one repo only. If any is missing, say so and stop with NEEDS_HUMAN.
-1. Build the job file (scenes, script text, asset URLs or committed asset paths, voice file path, caption .srt/.ass, aspect ratio 9:16 1080x1920, fps 30) and save it locally with save_file.
-2. Commit it: `PUT https://api.github.com/repos/<owner>/zafiro-studio/contents/jobs/<id>.json` (base64 content). Do not run several Contents writes at once.
-3. Dispatch: `POST https://api.github.com/repos/<owner>/zafiro-studio/actions/workflows/render.yml/dispatches` body `{"ref":"main","inputs":{"job":"jobs/<id>.json"}}`. Keep the run id from the response if present, otherwise list runs and match the run name.
-4. Poll `GET /repos/<owner>/zafiro-studio/actions/runs/<run_id>` every 15-20 s (use `wait`) until status=completed; on failure read the run summary and either fix the job file once or report.
-5. Download the mp4 from the release the workflow publishes (`GET /repos/<owner>/zafiro-studio/releases/tags/job-<id>` then the asset with `Accept: application/octet-stream`) into outputs/.
-6. Verify before use: duration near target, 1080x1920, audio present, file size under the platform limit. Never post a render that failed these.
-Rules: modest daily volume (this repo exists to build and publish video templates; not a generic render farm), no secrets in job files or logs (public repos expose logs). Files up to about 20 MB can go in the Contents API; larger inputs should be URLs.
+
+Prerequisites:
+- The owner has configured their GitHub fine-grained token (Contents:write + Actions:write on `TricretA/zafiro-studio`) in **Settings → General → Video Studio & GitHub**.
+- NEVER ask the owner to paste a token into chat, and NEVER put tokens into job JSON files or logs.
+- Use the `studio_render` builtin tool — it reads the encrypted token automatically.
+- First call `studio_render` with `op="status"`. If `configured=false`, tell the owner to enter their GitHub token in **Settings → General → Video Studio & GitHub** and stop with `NEEDS_HUMAN`.
+
+## Job types
+
+| type | What it does | Tools used on Actions |
+|---|---|---|
+| `canvas` | Render a self-contained canvas HTML film | Playwright + ffmpeg |
+| `slideshow` | Still images + voice + captions → 1080×1920 video | ffmpeg only |
+| `reel` | Edit raw footage with EDL (or reframe to 9:16) | ffmpeg + Whisper |
+| `clip` | Extract viral clips from long video | Whisper + ffmpeg + scoring |
+| `remotion` | Render a React/Remotion composition | Node + Remotion CLI |
+| `stickman` | Render a stickman Code Engine film | Node + canvas |
+| `bang-motion` | Render GSAP+Three.js HTML motion graphic | Playwright + ffmpeg |
+
+## Universal render steps (via `studio_render`)
+
+1. **Check status**: `studio_render(op="status")` → confirms `repo` and `default_output_folder` (default `Download/Zafiro`).
+2. **Upload large raw media (if any)** — videos/audio on the phone (even >20 MB, up to 2 GB):
+   `studio_render(op="upload_input", id="<job-id>", local_path="<path on phone or outputs/...>")`
+   Use the returned `api_asset_url` (works for both private and public repos!) or `download_url` as `"source"` / `"voice"` in the job JSON.
+3. **Commit engine files (if needed)** — HTML films, EDLs, Remotion files under `engines/` or `jobs/`:
+   `studio_render(op="commit_file", repo_path="engines/canvas/<id>.html", content="...")`
+4. **Build and commit the job file**:
+   Save locally if useful, then `studio_render(op="commit_file", repo_path="jobs/<id>.json", content="{...}")`.
+5. **Dispatch**:
+   `studio_render(op="dispatch", job_path="jobs/<id>.json")` → returns `run_id`.
+6. **Poll**:
+   Use `wait` (20 s) + `studio_render(op="poll", run_id=<run_id>)` until `status == "completed"`. If `conclusion != "success"`, report `html_url` and inspect/fix once.
+7. **Download straight to Downloads (or user-requested folder)**:
+   `studio_render(op="download", id="<job-id>", folder="<user folder if specified, else omit to use Settings default>")`
+   - Always saves to user-visible storage (default `Download/Zafiro`), NEVER hidden in internal `Android/data`!
+   - If the owner asked for a specific folder (e.g. "put it in Movies/Reels" or "Download/ClientA"), pass `folder="Movies/Reels"` or `folder="Download/ClientA"`.
+   - The finished video ALSO remains on GitHub as release `job-<id>` (`release_url` is returned).
+8. **Verify before use**: check file size, report exact `display_path` and `release_url` to the owner.
+
+## Job schemas
+
+### Canvas / Bang Motion / Stickman
+```json
+{
+  "id": "my-canvas-film",
+  "type": "canvas",
+  "html": "engines/canvas/my-film.html",
+  "voice": "https://api.github.com/repos/TricretA/zafiro-studio/releases/assets/12345",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920
+}
+```
+
+### Reel edit (from phone raw video)
+```json
+{
+  "id": "my-reel",
+  "type": "reel",
+  "source": "https://api.github.com/repos/TricretA/zafiro-studio/releases/assets/12345",
+  "outputFormat": "9:16"
+}
+```
+
+### Clip (extract viral shorts)
+```json
+{
+  "id": "clip-podcast-ep12",
+  "type": "clip",
+  "source": "https://api.github.com/repos/TricretA/zafiro-studio/releases/assets/12345",
+  "maxClips": 5,
+  "maxDurationSeconds": 60,
+  "captionStyle": "bounce",
+  "reframe": "talking-head"
+}
+```
+
+## Rules
+- Modest daily volume — do not spam empty jobs.
+- Never put secrets in job files or logs.
+- If a file was generated on-phone (e.g. by Media Operator via Veo/Kling/CapCut), export it to public storage with `save_file(op="export", path="...", folder="...")` so the owner can access it in Downloads or their chosen folder.

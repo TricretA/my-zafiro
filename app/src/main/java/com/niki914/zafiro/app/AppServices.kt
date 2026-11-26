@@ -6,6 +6,7 @@ import com.niki914.xsettings.XSettings
 import com.niki914.zafiro.api.AgentControl
 import com.niki914.zafiro.api.AgentManager
 import com.niki914.zafiro.api.McpService
+import com.niki914.zafiro.api.StudioConfigProvider
 import com.niki914.zafiro.api.telemetry.Telemetry
 import com.niki914.zafiro.api.util.runCatchingCancellable
 import com.niki914.zafiro.app.conversation.RoomConversationStore_Tmp
@@ -28,6 +29,7 @@ import com.niki914.zafiro.mcp.service.McpServiceImpl
 import com.niki914.zafiro.mcp.service.McpToolAdapter
 import com.niki914.zafiro.mod.feat.ZafiroAccessibilityService
 import com.niki914.zafiro.repo.SharedHttp
+import com.niki914.zafiro.repo.StudioSettings
 import com.niki914.zafiro.repo.XRepo
 import com.niki914.zafiro.repo.XSettingsImpl
 import com.niki914.zafiro.service.installService
@@ -75,6 +77,9 @@ object AppServices {
 
         // 本地配置读取口：给 app 以外的模块按需取用
         installService<XSettings>(XSettingsImpl)
+        installService<StudioConfigProvider>(object : StudioConfigProvider {
+            override fun get() = StudioSettings.read(application)
+        })
 
         // 设备状态提供者：机型、电量、网络等环境信息
         installService<DeviceStateProvider>(AndroidDeviceStateProvider(application))

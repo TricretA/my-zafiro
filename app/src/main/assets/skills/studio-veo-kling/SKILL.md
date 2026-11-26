@@ -49,4 +49,4 @@ This job runs on the phone via the Media Operator. No GitHub Actions needed for 
 - Never generate real people's faces without explicit owner instruction.
 - Stop with take_over on any CAPTCHA, login wall, or age verification.
 - Download and verify each clip before assembly (not just the thumbnail).
-- Save clips to `outputs/video/<project>/clips/` on Zafiro filesystem.
+- Save working clips to `outputs/video/<project>/clips/` and export finished videos to user-visible shared storage (default `Download/Zafiro`, or any folder requested) with `save_file(op="export", path="...", folder="...")`.
