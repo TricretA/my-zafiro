@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: 7 NEW test failure(s)**
+**Gate: FAIL: only 1759 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45840758382
-- GITHUB_SHA: 00295754861f758b32036c9ca0eb9e8facefad23
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45847080677
+- GITHUB_SHA: b4690fb5f4af8398b2d642302dd7ea733230ee22
 - GITHUB_REF_NAME: feat/video-studio-v2
 
 | step | outcome |
@@ -13,34 +13,39 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2210 run, 8 failed (1 known upstream, 0 flaky upstream, 7 NEW), 0 skipped
+Unit tests: 1759 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.niki914.zafiro.app.conversation.ConversationMigrationTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.notification.ResidentNotificationBuilderTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationSearchRepoTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationRepoTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.ui.model.home.HomeChatViewModelTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.classMethod` — java.lang.AssertionError: Failed to fetch maven artifact org.robolectric:android-all-instrumented:14-robolectric-10818077-i7
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
 ## unit_tests: key error lines
 ```
-ConversationMigrationTest > classMethod FAILED
-ConversationPersisterTest > classMethod FAILED
-ConversationRepoTest > classMethod FAILED
-ConversationSearchRepoTest > classMethod FAILED
-ResidentNotificationBuilderTest > classMethod FAILED
-TurnNotificationManagerTest > classMethod FAILED
+> Task :agent-runtime:compileDebugUnitTestKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/test/java/com/niki914/zafiro/chat/agentic/buildin/impl/SaveFileBuiltinTest.kt:17:42 Argument type mismatch: actual type is 'SuspendFunction0<Result<PublicExportResult>>', but 'SuspendFunction3<@ParameterName(...) File, @ParameterName(...) String?, @ParameterName(...) String?, Result<PublicExportResult>>' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/test/java/com/niki914/zafiro/chat/agentic/buildin/impl/SaveFileBuiltinTest.kt:17:44 Return type mismatch: expected 'Result<PublicExportResult>', actual 'File'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/test/java/com/niki914/zafiro/chat/agentic/buildin/impl/SaveFileBuiltinTest.kt:17:44 Type mismatch: inferred type is 'File', but 'Result<PublicExportResult>' was expected.
+e: file:///home/runner/work/my-zafiro/my-zafiro/agent-runtime/src/test/java/com/niki914/zafiro/chat/agentic/buildin/impl/StudioRenderBuiltinTest.kt:35:48 Unresolved reference 'error'.
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
 SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
-HomeChatViewModelTest > classMethod FAILED
 > Task :app:testDebugUnitTest FAILED
+* What went wrong:
+Execution failed for task ':agent-runtime:compileDebugUnitTestKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:compileDebugUnitTestKotlin'.
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 4m
+BUILD FAILED in 7m 12s
 ```
 ## lint: key error lines
 ```
@@ -64,5 +69,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 3m 16s
+BUILD FAILED in 2m 56s
 ```
