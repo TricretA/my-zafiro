@@ -38,6 +38,8 @@ import com.niki914.zafiro.app.ui.nav.HomePage
 import com.niki914.zafiro.app.ui.nav.MarkdownScalePage
 import com.niki914.zafiro.app.ui.nav.ThemeStylesPage
 import com.niki914.zafiro.app.ui.nav.McpServerDetailPage
+import com.niki914.zafiro.app.ui.nav.McpMarketplacePage
+import com.niki914.zafiro.app.ui.content.McpMarketplaceContent
 import com.niki914.zafiro.app.ui.nav.OnboardingPreferencesPage
 import com.niki914.zafiro.app.ui.nav.OnboardingThemePage
 import com.niki914.zafiro.app.ui.nav.PromptEditPage
@@ -211,6 +213,8 @@ fun ZafiroPageContent(
             page = page,
             onBack = onPop,
         )
+        
+        McpMarketplacePage -> McpMarketplaceContent(onBack = onPop)
 
         is QuickPromptDetailPage -> QuickPromptDetailRoute(
             page = page,

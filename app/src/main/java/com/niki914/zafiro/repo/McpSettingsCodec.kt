@@ -10,6 +10,7 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.longOrNull
 import com.niki914.zafiro.settings.model.RuntimeMcpServer as McpServer
 
 internal object McpSettingsCodec {
@@ -38,6 +39,13 @@ internal object McpSettingsCodec {
                     name = name,
                     url = url,
                     enabled = enabledForAgent(obj[ENABLED_FOR_AGENTS_KEY], agentId) == true,
+                    transport = obj.stringNonBlankOrNull(TRANSPORT_KEY) ?: "streamable-http",
+                    authMode = obj.stringNonBlankOrNull(AUTH_MODE_KEY) ?: "none",
+                    disabledTools = (obj[DISABLED_TOOLS_KEY] as? JsonObject)?.keys ?: emptySet(),
+                    status = obj.stringNonBlankOrNull(STATUS_KEY) ?: "UNKNOWN",
+                    lastError = obj.stringNonBlankOrNull(LAST_ERROR_KEY).orEmpty(),
+                    toolCount = (obj[TOOL_COUNT_KEY] as? JsonPrimitive)?.longOrNull?.toInt() ?: 0,
+                    tokenExpiresAtMs = obj.stringNonBlankOrNull(TOKEN_EXPIRY_KEY)?.toLongOrNull(),
                     headers = obj.obj(HEADERS_KEY)
                         ?.mapNotNull { (key, value) ->
                             val primitive = value as? JsonPrimitive ?: return@mapNotNull null
@@ -69,6 +77,13 @@ internal object McpSettingsCodec {
                                 ENABLED_FOR_AGENTS_KEY to JsonArray(
                                     if (server.enabled) listOf(JsonPrimitive(agentId)) else emptyList()
                                 ),
+                                TRANSPORT_KEY to JsonPrimitive(server.transport),
+                                AUTH_MODE_KEY to JsonPrimitive(server.authMode),
+                                DISABLED_TOOLS_KEY to JsonObject(server.disabledTools.associateWith { JsonPrimitive(true) }),
+                                STATUS_KEY to JsonPrimitive(server.status),
+                                LAST_ERROR_KEY to JsonPrimitive(server.lastError),
+                                TOOL_COUNT_KEY to JsonPrimitive(server.toolCount),
+                                TOKEN_EXPIRY_KEY to (server.tokenExpiresAtMs?.let { JsonPrimitive(it.toString()) } ?: JsonPrimitive("")),
                             )
                         )
                     }
@@ -89,4 +104,11 @@ internal object McpSettingsCodec {
     private const val ENABLED_FOR_AGENTS_KEY = "enabled_for_agents"
     private const val DESCRIPTION_KEY = "description"
     private const val INPUT_SCHEMA_KEY = "input_schema"
+    private const val TRANSPORT_KEY = "transport"
+    private const val AUTH_MODE_KEY = "auth_mode"
+    private const val DISABLED_TOOLS_KEY = "disabled_tools"
+    private const val STATUS_KEY = "status"
+    private const val LAST_ERROR_KEY = "last_error"
+    private const val TOOL_COUNT_KEY = "tool_count"
+    private const val TOKEN_EXPIRY_KEY = "token_expires_at"
 }

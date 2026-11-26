@@ -136,9 +136,7 @@ private fun McpTab() {
     }
     SelectList(items, "Delete MCP servers", onDelete = { names ->
         scope.launch {
-            XRepo.updateJsonOrFalse(StoreDescriptorRegistry.TOOLS_MCP_SERVERS_ID) { json ->
-                com.niki914.zafiro.repo.McpSettingsCodec.encodeServers(com.niki914.zafiro.repo.McpSettingsCodec.parseServers(json).filter { it.name !in names })
-            }
+            names.forEach { name -> XRepo.mcp.delete(name) }
             refresh++
         }
     })

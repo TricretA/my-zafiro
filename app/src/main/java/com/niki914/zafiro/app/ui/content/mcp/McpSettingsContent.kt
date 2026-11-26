@@ -8,6 +8,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import com.niki914.uikit.infra.component.settings.SettingsPageSpec
 import com.niki914.uikit.infra.component.settings.SettingsRowAction
@@ -15,6 +19,7 @@ import com.niki914.uikit.infra.component.settings.SettingsRowSpec
 import com.niki914.uikit.infra.component.settings.SettingsSectionLayout
 import com.niki914.uikit.infra.component.settings.SettingsSectionSpec
 import com.niki914.uikit.infra.component.settings.SettingsSpecPageContent
+import com.niki914.uikit.dialog.ZafiroInputDialog
 import com.niki914.uikit.infra.nav.pageViewModel
 import com.niki914.zafiro.app.R
 import com.niki914.zafiro.app.ui.PageChromeContribution
@@ -23,8 +28,13 @@ import com.niki914.zafiro.app.ui.model.McpSettingsIntent
 import com.niki914.zafiro.app.ui.model.McpSettingsUiState
 import com.niki914.zafiro.app.ui.model.McpSettingsViewModel
 import com.niki914.zafiro.app.ui.nav.TopBarActionSpec
+import com.niki914.zafiro.mcp.McpCore
+import com.niki914.zafiro.repo.XRepo
+import com.niki914.zafiro.settings.model.RuntimeMcpServer
+import kotlinx.coroutines.launch
 
 private const val MCP_SERVER_ROW_ID_PREFIX = "mcp.server."
+private const val MCP_IMPORT_ROW_ID = "mcp.import-json"
 
 @Composable
 fun McpSettingsContent(
@@ -32,6 +42,9 @@ fun McpSettingsContent(
 ) {
     val viewModel = pageViewModel<McpSettingsViewModel>()
     val uiState by viewModel.uiStateFlow.collectAsState()
+    val scope = rememberCoroutineScope()
+    var showImport by rememberSaveable { mutableStateOf(false) }
+    var importJson by rememberSaveable { mutableStateOf("") }
     val createTitle = stringResource(R.string.mcp_editor_title_create)
     val latestOnOpenServerDetail by rememberUpdatedState(onOpenServerDetail)
     val pageChromeContribution = remember(createTitle) {
@@ -63,6 +76,9 @@ fun McpSettingsContent(
 
     SettingsSpecPageContent(spec = spec) { action ->
         when (action) {
+            is SettingsRowAction.Action -> {
+                if (action.id == MCP_IMPORT_ROW_ID) showImport = true
+            }
             is SettingsRowAction.Navigate -> {
                 val index = mcpServerIndexFromRowId(action.id) ?: return@SettingsSpecPageContent
                 val item = uiState.items.getOrNull(index) ?: return@SettingsSpecPageContent
@@ -82,6 +98,40 @@ fun McpSettingsContent(
             else -> Unit
         }
     }
+
+    ZafiroInputDialog(
+        visible = showImport,
+        onDismissRequest = { showImport = false },
+        title = "Import mcpServers JSON",
+        hint = "Paste Claude or Cursor mcpServers JSON",
+        value = importJson,
+        onValueChange = { importJson = it },
+        placeholder = """{"mcpServers":{"Example":{"url":"https://example.com/mcp"}}}""",
+        positiveButtonText = "Import",
+        positiveEnabled = importJson.trim().isNotBlank(),
+        onPositiveClick = {
+            val parsed = McpCore.parseMcpServersJson(importJson)
+            parsed.onSuccess { servers ->
+                scope.launch {
+                    servers.forEach { server ->
+                        XRepo.mcp.save(RuntimeMcpServer(
+                            name = server.name,
+                            url = server.url,
+                            enabled = false,
+                            headers = server.headers,
+                            transport = server.transport,
+                            authMode = server.auth,
+                        ))
+                    }
+                    showImport = false
+                    importJson = ""
+                    viewModel.sendIntent(McpSettingsIntent.Load)
+                }
+            }
+        },
+        negativeButtonText = "Cancel",
+        onNegativeClick = { showImport = false },
+    )
 }
 
 private fun mcpSettingsSpec(
@@ -89,13 +139,25 @@ private fun mcpSettingsSpec(
     pageDescription: String,
     loadingText: String,
 ): SettingsPageSpec {
-    val sections = when {
+    val sections = mutableListOf(
+        SettingsSectionSpec(
+            layout = SettingsSectionLayout.GroupedCard,
+            rows = listOf(
+                SettingsRowSpec.Action(
+                    id = MCP_IMPORT_ROW_ID,
+                    title = "Import mcpServers JSON",
+                    summary = "Paste Claude or Cursor MCP configuration",
+                )
+            ),
+        )
+    )
+    when {
         uiState.isLoading -> listOf(
             SettingsSectionSpec(
                 layout = SettingsSectionLayout.GroupedCard,
                 rows = listOf(SettingsRowSpec.Message(title = loadingText)),
             )
-        )
+        ).let(sections::addAll)
 
         uiState.items.isNotEmpty() -> listOf(
             SettingsSectionSpec(
@@ -109,7 +171,7 @@ private fun mcpSettingsSpec(
                     )
                 }
             )
-        )
+        ).let(sections::addAll)
 
         else -> emptyList()
     }
