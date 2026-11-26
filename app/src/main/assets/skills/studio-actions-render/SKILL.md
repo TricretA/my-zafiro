@@ -1,6 +1,6 @@
 ---
 name: studio-actions-render
-description: How to render a video on GitHub Actions from a job file using the studio_render builtin tool: upload raw input videos (up to 2 GB) as release assets, commit job JSON, dispatch the workflow, poll, and download the finished MP4 directly into Downloads (or any user-requested folder). Uses the encrypted GitHub token from Settings > General > Video Studio & GitHub.
+description: How to render a video on GitHub Actions from a job file using the studio_render builtin tool: upload raw input videos (up to 2 GB) as release assets, commit job JSON, dispatch the workflow, poll, and download the finished MP4 directly into Downloads (or any user-requested folder). Use for EVERY code-rendered video — canvas, bang-motion, stickman Code Engine, Remotion, reel editing, slideshow, shorts clipping. Uses the encrypted GitHub token from Settings > General > Video Studio & GitHub. zafiro-studio repo at https://github.com/TricretA/zafiro-studio.
 license: MIT
 ---
 
@@ -37,17 +37,17 @@ Prerequisites:
 5. **Dispatch**:
    `studio_render(op="dispatch", job_path="jobs/<id>.json")` → returns `run_id`.
 6. **Poll**:
-   Use `wait` (20 s) + `studio_render(op="poll", run_id=<run_id>)` until `status == "completed"`. If `conclusion != "success"`, report `html_url` and inspect/fix once.
+   Use `wait` (20 s) + `studio_render(op="poll", run_id=<run_id>)` until `status == "completed"`. If `conclusion != "success"`, report `html_url` and inspect/fix once. After 3 failures: stop and report.
 7. **Download straight to Downloads (or user-requested folder)**:
    `studio_render(op="download", id="<job-id>", folder="<user folder if specified, else omit to use Settings default>")`
    - Always saves to user-visible storage (default `Download/Zafiro`), NEVER hidden in internal `Android/data`!
    - If the owner asked for a specific folder (e.g. "put it in Movies/Reels" or "Download/ClientA"), pass `folder="Movies/Reels"` or `folder="Download/ClientA"`.
    - The finished video ALSO remains on GitHub as release `job-<id>` (`release_url` is returned).
-8. **Verify before use**: check file size, report exact `display_path` and `release_url` to the owner.
+8. **Verify before use**: duration near target, correct dimensions, audio present, file size under platform limit; check file size, report exact `display_path` and `release_url` to the owner. Never use a render that failed these.
 
 ## Job schemas
 
-### Canvas / Bang Motion / Stickman
+### Canvas job schema
 ```json
 {
   "id": "my-canvas-film",
@@ -70,7 +70,47 @@ Prerequisites:
 }
 ```
 
-### Clip (extract viral shorts)
+### Slideshow job schema
+```json
+{
+  "id": "my-slideshow",
+  "type": "slideshow",
+  "images": [
+    {"src": "https://url/image1.jpg", "seconds": 3},
+    {"src": "https://url/image2.jpg", "seconds": 4}
+  ],
+  "voice": "https://url/voice.mp3",
+  "captions": "https://url/captions.srt",
+  "music": "energetic"
+}
+```
+
+### Stickman B-Engine job schema
+```json
+{
+  "id": "my-stickman",
+  "type": "stickman",
+  "style": "B1",
+  "html": "engines/stickman/B1/my-film.html",
+  "voice": "https://url/voice.mp3",
+  "fps": 30
+}
+```
+
+### Remotion job schema
+```json
+{
+  "id": "my-remotion-video",
+  "type": "remotion",
+  "project": "engines/remotion/my-video",
+  "composition": "Main",
+  "fps": 30,
+  "durationInFrames": 300,
+  "voice": "https://url/voice.mp3"
+}
+```
+
+### Clip job schema (extract viral shorts)
 ```json
 {
   "id": "clip-podcast-ep12",
@@ -79,11 +119,14 @@ Prerequisites:
   "maxClips": 5,
   "maxDurationSeconds": 60,
   "captionStyle": "bounce",
+  "music": "energetic",
   "reframe": "talking-head"
 }
 ```
 
 ## Rules
-- Modest daily volume — do not spam empty jobs.
-- Never put secrets in job files or logs.
+- Modest daily volume — this repo exists to build and publish video templates, not a generic render farm; do not spam empty jobs.
+- Never put secrets or tokens in job files, commits or logs (this is a public repo and exposes logs); the encrypted token lives only in Settings and is read automatically by `studio_render`.
+- Files up to ~20 MB can go straight into a job JSON's `content`; anything larger (raw phone video/audio) must go through `studio_render(op="upload_input", ...)` first.
+- Never commit a rendered MP4 to the repo — download it from the release asset only.
 - If a file was generated on-phone (e.g. by Media Operator via Veo/Kling/CapCut), export it to public storage with `save_file(op="export", path="...", folder="...")` so the owner can access it in Downloads or their chosen folder.

@@ -79,6 +79,7 @@ outputs/video/<project-slug>/
   audio/words.json
   build/   (HTML, job files, EDL)
   qa/      (sheet.jpg, NOTE.md)
+  final/   (video.mp4, cover.jpg, captions.srt, hashtags.txt)
 ```
 
 ## Role chain (run in order, do not skip gates)
