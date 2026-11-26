@@ -1,0 +1,38 @@
+{
+ "id": "quora.comment",
+ "version": 1,
+ "platform": "quora",
+ "description": "On the post (or chat) currently open in Quora, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Comment",
+    "Add a comment"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Write your answer",
+    "Write an answer"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Post",
+    "Submit"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

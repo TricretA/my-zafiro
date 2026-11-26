@@ -1,0 +1,15 @@
+{
+ "id": "tumblr.like",
+ "version": 1,
+ "platform": "tumblr",
+ "description": "Like or react to the post currently open in Tumblr.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Like"
+   ]
+  }
+ ]
+}

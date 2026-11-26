@@ -1,0 +1,50 @@
+{
+ "id": "tumblr.post_text",
+ "version": 1,
+ "platform": "tumblr",
+ "description": "Create and publish a text post in Tumblr. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.tumblr"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Create",
+    "Post",
+    "+"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Add a title",
+    "Go ahead, put something"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Post"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

@@ -309,7 +309,7 @@
    "time": "21:06",
    "maxSteps": 50,
    "maxMinutes": 25,
-   "prompt": "Workspace \"email\". Load skill team-protocol and email-playbook. Write today's digest (what was posted or done, who got replies, what needs the owner, what was learned) as a file, notify the owner, and if the whatsapp workspace is on, send it using its recipe. If nothing happened, say so honestly.",
+   "prompt": "Workspace \"email\". Load skill team-protocol and email-playbook. Write today's digest (what was posted or done, who got replies, what needs the owner, what was learned) as a file, notify the owner, and if whatsapp is enabled in social/PLATFORMS.json, send it with the whatsapp-playbook digest recipe. If nothing happened, say so honestly.",
    "criteria": "A digest file exists and the owner was notified."
   },
   {

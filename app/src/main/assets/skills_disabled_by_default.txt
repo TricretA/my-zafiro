@@ -284,3 +284,17 @@ youtube-long-form
 youtube-playbook
 youtube-publishing-and-metadata
 youtube-shorts
+bluesky-playbook
+discord-playbook
+mastodon-playbook
+medium-playbook
+messenger-playbook
+metricool-posting
+quora-playbook
+snapchat-playbook
+social-account-safety
+social-ops
+social-voice-and-slop
+telegram-playbook
+tumblr-playbook
+twitch-playbook

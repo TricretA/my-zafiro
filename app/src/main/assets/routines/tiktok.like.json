@@ -2,7 +2,7 @@
  "id": "tiktok.like",
  "version": 1,
  "platform": "tiktok",
- "description": "Like the post currently open in TikTok.",
+ "description": "Like or react to the post currently open in TikTok.",
  "params": [],
  "steps": [
   {

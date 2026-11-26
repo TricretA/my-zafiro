@@ -1,0 +1,22 @@
+{
+ "id": "snapchat.open_home",
+ "version": 1,
+ "platform": "snapchat",
+ "description": "Open Snapchat and go to the home screen.",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.snapchat.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Camera",
+    "Chat"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  }
+ ]
+}

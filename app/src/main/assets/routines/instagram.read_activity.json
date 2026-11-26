@@ -12,8 +12,8 @@
   {
    "op": "tap",
    "labels": [
-    "Activity",
-    "Notifications"
+    "Notifications",
+    "Activity"
    ],
    "optional": true
   },

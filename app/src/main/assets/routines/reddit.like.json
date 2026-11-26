@@ -2,7 +2,7 @@
  "id": "reddit.like",
  "version": 1,
  "platform": "reddit",
- "description": "Like the post currently open in Reddit.",
+ "description": "Like or react to the post currently open in Reddit.",
  "params": [],
  "steps": [
   {

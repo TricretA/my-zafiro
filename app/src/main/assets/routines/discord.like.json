@@ -1,0 +1,16 @@
+{
+ "id": "discord.like",
+ "version": 1,
+ "platform": "discord",
+ "description": "Like or react to the post currently open in Discord.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Add Reaction",
+    "React"
+   ]
+  }
+ ]
+}
