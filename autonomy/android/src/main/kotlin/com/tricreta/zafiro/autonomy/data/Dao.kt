@@ -156,6 +156,10 @@ interface AutonomyDao {
     @Query("UPDATE board_item SET status = :status, result = :result, ownerAgent = CASE WHEN :owner = '' THEN ownerAgent ELSE :owner END, updatedAtMs = :now WHERE id = :id")
     suspend fun updateBoardItem(id: Long, status: String, result: String, owner: String, now: Long)
 
+    /** Rewrites the wording of an item that is still waiting (used to merge realtime signals into one board item). */
+    @Query("UPDATE board_item SET title = :title, detail = :detail, updatedAtMs = :now WHERE id = :id AND status = 'TODO'")
+    suspend fun amendTodoBoardItem(id: Long, title: String, detail: String, now: Long): Int
+
     @Query("SELECT * FROM board_item WHERE (:workspaceId = '' OR workspaceId = :workspaceId) ORDER BY updatedAtMs DESC, id DESC LIMIT :limit")
     suspend fun boardItems(workspaceId: String, limit: Int): List<BoardItemEntity>
 

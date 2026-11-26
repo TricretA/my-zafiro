@@ -8,6 +8,7 @@ import com.niki914.zafiro.chat.agentic.buildin.impl.DatetimeBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.MakeCardBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.RssReadBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ScheduleBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.SignalsBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.WebFetchBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.WebSearchBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ExecutePythonBuiltin
@@ -80,6 +81,7 @@ class BuiltinToolRegistry(
                 DatetimeBuiltin(),
                 MakeCardBuiltin(),
                 ScheduleBuiltin(),
+                SignalsBuiltin(),
                 ScreenOperationBuiltin(),
                 ScreenshotBuiltin(),
                 OpenBuiltin(),
