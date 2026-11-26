@@ -5,7 +5,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.niki914.uikit.infra.nav.pageViewModel
 import com.niki914.zafiro.app.ui.content.mcp.McpServiceSettingsContent
-import com.niki914.zafiro.app.ui.content.mcp.McpSettingsContent
 import com.niki914.zafiro.app.ui.model.SettingsViewModel
 import com.niki914.zafiro.app.ui.nav.BuiltinToolGroupDetailPage
 import com.niki914.zafiro.app.ui.nav.ExecutionRuleDetailPage
@@ -79,17 +78,13 @@ fun SettingsDetailPageContent(
         return
     }
 
-    if (group == ZafiroSettingsGroup.Mcp) {
-        McpSettingsContent(
+    if (group == ZafiroSettingsGroup.McpMarketplace) {
+        McpMarketplaceContent(
+            onBack = onBack,
             onOpenServerDetail = { name, index, isCreating ->
                 onPush(McpServerDetailPage(name, index, isCreating))
             },
         )
-        return
-    }
-
-    if (group == ZafiroSettingsGroup.McpMarketplace) {
-        McpMarketplaceContent(onBack = onBack)
         return
     }
 
