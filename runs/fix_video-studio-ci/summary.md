@@ -1,60 +1,51 @@
 # CI result
 
-**Gate: FAIL: assembleDebug failed; 1 NEW test failure(s); only 1616 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45858588278
-- GITHUB_SHA: 9b4fe2965fd6244d0c1752c14ccd3018f59fcba1
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45863647016
+- GITHUB_SHA: 0eb0c8e478601bfab110a5ecb3a5164bbc620983
 - GITHUB_REF_NAME: fix/video-studio-ci
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | failure |
+| assemble | success |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1616 run, 1 failed (0 known upstream, 0 flaky upstream, 1 NEW), 0 skipped
+Unit tests: 2303 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.tricreta.zafiro.autonomy.SocialPlatformsTest.quotasContainOnlyEnabledPlatformsAndOwnerOverridesWinOverDefaults` — java.lang.AssertionError: Expected value to be true.
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
-## assemble: key error lines
-```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/WorkspacesVisual.kt:11:43 Cannot access 'val RowColumnParentData?.weight: Float': it is internal in file.
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 6m 2s
-```
 ## unit_tests: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/WorkspacesVisual.kt:11:43 Cannot access 'val RowColumnParentData?.weight: Float': it is internal in file.
-SocialPlatformsTest > quotasContainOnlyEnabledPlatformsAndOwnerOverridesWinOverDefaults FAILED
-> Task :autonomy:android:testDebugUnitTest FAILED
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
+> Task :app:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-* What went wrong:
-Execution failed for task ':autonomy:android:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':autonomy:android:testDebugUnitTest'.
-BUILD FAILED in 4m 34s
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 9m 43s
 ```
 ## lint: key error lines
 ```
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/app/ui/content/WorkspacesVisual.kt:11:43 Cannot access 'val RowColumnParentData?.weight: Float': it is internal in file.
-> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
 > Task :libs:shizuku:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+> Task :agent-runtime:lintDebug FAILED
+> Task :app:lintDebug FAILED
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
@@ -64,5 +55,11 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 * What went wrong:
 Execution failed for task ':libs:shizuku:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':libs:shizuku:lintDebug'.
-BUILD FAILED in 3m 17s
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
+Execution failed for task ':app:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
+BUILD FAILED in 4m 28s
 ```
