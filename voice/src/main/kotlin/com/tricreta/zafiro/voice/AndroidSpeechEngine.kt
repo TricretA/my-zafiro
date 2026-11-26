@@ -2,7 +2,10 @@ package com.tricreta.zafiro.voice
 
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -11,15 +14,20 @@ import com.tricreta.zafiro.voice.dictation.DictationSession.Fault
 import com.tricreta.zafiro.voice.dictation.SpeechEngine
 
 /**
- * [SpeechEngine] over the system recogniser. ONE SpeechRecognizer instance is reused for every session (cancel + startListening
- * again), because destroying and recreating it on every pause is what makes some recogniser services answer BUSY or CLIENT
- * errors. It is recreated only after an error that suggests the service connection is unhealthy.
- * Main thread only (SpeechRecognizer requirement).
+ * [SpeechEngine] over the system recogniser. ONE SpeechRecognizer instance is reused for every session (recreated only on
+ * [Fault.FATAL] or consecutive [Fault.TRANSIENT] errors), because destroying and recreating it on every pause causes BUSY/CLIENT
+ * loops and repeated chimes. Briefly mutes the non-DND music stream around segment startup so Android's recognition beep does
+ * not interrupt dictation. Main thread only (SpeechRecognizer requirement).
  */
 class AndroidSpeechEngine(private val context: Context) : SpeechEngine {
 
     private var recognizer: SpeechRecognizer? = null
     private var recreateBeforeNextListen = false
+    private var consecutiveTransientErrors = 0
+    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
+    private val handler = Handler(Looper.getMainLooper())
+    private var mutedMusicForChime = false
+    private val unmuteRunnable = Runnable { unmuteChimeStream() }
 
     fun isAvailable(): Boolean = SpeechRecognizer.isRecognitionAvailable(context)
 
@@ -38,22 +46,47 @@ class AndroidSpeechEngine(private val context: Context) : SpeechEngine {
         val r = recognizer ?: SpeechRecognizer.createSpeechRecognizer(context).also { recognizer = it }
         r.setRecognitionListener(object : RecognitionListener {
             override fun onPartialResults(partialResults: Bundle?) {
-                bestText(partialResults).takeIf { it.isNotEmpty() }?.let(listener::onPartial)
+                val text = bestText(partialResults)
+                if (text.isNotEmpty()) {
+                    consecutiveTransientErrors = 0
+                    listener.onPartial(text)
+                }
             }
 
             override fun onResults(results: Bundle?) {
+                consecutiveTransientErrors = 0
+                unmuteChimeStream()
                 listener.onResult(bestText(results))
             }
 
             override fun onError(error: Int) {
+                unmuteChimeStream()
                 val mapped = SpeechErrors.map(error)
                 Logger.w(LOG_TAG, "recognition error code=$error fault=${mapped.fault}")
-                if (mapped.fault != Fault.NO_SPEECH) recreateBeforeNextListen = true
+                when (mapped.fault) {
+                    Fault.FATAL -> {
+                        consecutiveTransientErrors = 0
+                        recreateBeforeNextListen = true
+                    }
+                    Fault.TRANSIENT -> {
+                        if (++consecutiveTransientErrors >= 2) {
+                            recreateBeforeNextListen = true
+                        }
+                    }
+                    Fault.NO_SPEECH, Fault.BUSY -> consecutiveTransientErrors = 0
+                }
                 listener.onError(mapped.fault, error, mapped.message)
             }
 
-            override fun onReadyForSpeech(params: Bundle?) = Unit
-            override fun onBeginningOfSpeech() = Unit
+            override fun onReadyForSpeech(params: Bundle?) {
+                handler.postDelayed(unmuteRunnable, CHIME_UNMUTE_AFTER_READY_MS)
+            }
+
+            override fun onBeginningOfSpeech() {
+                consecutiveTransientErrors = 0
+                unmuteChimeStream()
+            }
+
             override fun onRmsChanged(rmsdB: Float) = Unit
             override fun onBufferReceived(buffer: ByteArray?) = Unit
             override fun onEndOfSpeech() = Unit
@@ -66,22 +99,53 @@ class AndroidSpeechEngine(private val context: Context) : SpeechEngine {
             putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, false)
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, context.packageName)
             // Hints only: many recognisers ignore them, which is why the restart loop exists.
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, MIN_SPEECH_HINT_MS)
             putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, SILENCE_HINT_MS)
-            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, SILENCE_HINT_MS)
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, POSSIBLY_COMPLETE_SILENCE_HINT_MS)
             languageTag?.let { putExtra(RecognizerIntent.EXTRA_LANGUAGE, it) }
         }
+        muteChimeStreamBriefly()
         r.startListening(intent)
     }
 
     override fun stop() {
+        muteChimeStreamBriefly()
         recognizer?.stopListening()
     }
 
     override fun cancel() {
+        unmuteChimeStream()
         runCatching { recognizer?.cancel() }
     }
 
-    override fun release() = destroy()
+    override fun release() {
+        unmuteChimeStream()
+        destroy()
+    }
+
+    private fun muteChimeStreamBriefly() {
+        val am = audioManager ?: return
+        handler.removeCallbacks(unmuteRunnable)
+        if (!mutedMusicForChime) {
+            val alreadyMuted = runCatching { am.isStreamMute(AudioManager.STREAM_MUSIC) }.getOrDefault(false)
+            if (!alreadyMuted && !am.isMusicActive) {
+                val muted = runCatching {
+                    am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0)
+                }.isSuccess
+                if (muted) mutedMusicForChime = true
+            }
+        }
+        handler.postDelayed(unmuteRunnable, CHIME_UNMUTE_FALLBACK_MS)
+    }
+
+    private fun unmuteChimeStream() {
+        handler.removeCallbacks(unmuteRunnable)
+        if (!mutedMusicForChime) return
+        mutedMusicForChime = false
+        runCatching {
+            audioManager?.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0)
+        }
+    }
 
     private fun destroy() {
         recognizer?.let {
@@ -97,6 +161,10 @@ class AndroidSpeechEngine(private val context: Context) : SpeechEngine {
 
     private companion object {
         const val LOG_TAG = "AndroidSpeechEngine"
-        const val SILENCE_HINT_MS = 7_000L
+        const val MIN_SPEECH_HINT_MS = 30_000L
+        const val SILENCE_HINT_MS = 5_000L
+        const val POSSIBLY_COMPLETE_SILENCE_HINT_MS = 3_500L
+        const val CHIME_UNMUTE_AFTER_READY_MS = 200L
+        const val CHIME_UNMUTE_FALLBACK_MS = 900L
     }
 }

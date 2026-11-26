@@ -12,14 +12,14 @@ class DictationSession(private val config: Config = Config()) {
 
     data class Config(
         /** Consecutive empty sessions (no speech heard) before dictation ends quietly. */
-        val maxConsecutiveSilent: Int = 8,
+        val maxConsecutiveSilent: Int = 15,
         /** Retries when the recogniser says it is busy (usually because we restarted too fast). */
-        val maxBusyRetries: Int = 4,
+        val maxBusyRetries: Int = 8,
         /** Retries for transient network/server faults before giving up. */
-        val maxTransientRetries: Int = 2,
-        val restartDelayMs: Long = 150,
-        val busyDelayMs: Long = 600,
-        val transientDelayMs: Long = 800,
+        val maxTransientRetries: Int = 6,
+        val restartDelayMs: Long = 280,
+        val busyDelayMs: Long = 650,
+        val transientDelayMs: Long = 900,
     )
 
     /** Platform-independent classification of a recogniser error (the Android layer maps its codes onto these). */
@@ -67,7 +67,13 @@ class DictationSession(private val config: Config = Config()) {
     /** Live partial result of the current recogniser session. Replaces the previous partial, never the committed text. */
     fun onPartial(text: String) {
         if (finished) return
-        partial = text.trim()
+        val trimmed = text.trim()
+        partial = trimmed
+        if (trimmed.isNotEmpty()) {
+            silentStreak = 0
+            busyRetries = 0
+            transientRetries = 0
+        }
     }
 
     /** A recogniser session delivered its final result. */
@@ -94,6 +100,8 @@ class DictationSession(private val config: Config = Config()) {
             committed = join(committed, partial)
             partial = ""
             silentStreak = 0
+            busyRetries = 0
+            transientRetries = 0
         }
         if (stopRequested) return finish()
         return when (fault) {

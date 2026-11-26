@@ -1,6 +1,8 @@
 package com.tricreta.zafiro.autonomy
 
 import com.tricreta.zafiro.autonomy.workspace.SocialCatalog
+import com.tricreta.zafiro.autonomy.workspace.SocialAccount
+import com.tricreta.zafiro.autonomy.workspace.SocialBrief
 import com.tricreta.zafiro.autonomy.workspace.SocialPlatforms
 import com.tricreta.zafiro.autonomy.workspace.SocialSettings
 import org.json.JSONObject
@@ -23,12 +25,16 @@ class SocialPlatformsTest {
         var s = SocialSettings()
         s = SocialPlatforms.setEnabled(catalog, s, "instagram", true, "2026-11-26")
         s = SocialPlatforms.setEnabled(catalog, s, "reddit", true, "2026-11-26")
+        s = s.copy(accounts = mapOf(
+            "instagram" to SocialAccount("@brand", "Grow the brand", "VERIFIED", setOf("draft", "post")),
+            "reddit" to SocialAccount("u/brand", "Help the community", "VERIFIED", setOf("draft", "comment")),
+        ))
         s = SocialPlatforms.withCaps(s, "instagram", mapOf("post" to 3, "comment" to 0))
         val q = SocialPlatforms.quotas(catalog, s).split(',')
         assertTrue("instagram.post=3" in q && "instagram.comment=0" in q)
         assertTrue("reddit.post=1" in q)
         assertTrue(q.none { it.startsWith("tiktok.") }, "a platform that is off has no keys")
-        assertTrue(q.any { it.startsWith("comment=") }, "generic fallback keys stay")
+        assertTrue("post=0" in q && "comment=0" in q, "a missing platform prefix cannot bypass account consent")
     }
 
     @Test fun overrideCannotInventActionsThePlatformDoesNotHave() {
@@ -65,5 +71,17 @@ class SocialPlatformsTest {
     @Test fun onlyOldWorkspacesThatWereOnMigrateToPlatforms() {
         assertEquals(listOf("instagram", "substack"), SocialPlatforms.migratedPlatforms(catalog, listOf("substack", "instagram", "email", "jobhunt")))
         assertTrue(SocialPlatforms.migratedPlatforms(catalog, emptyList()).isEmpty())
+    }
+
+    @Test fun socialCannotArmUntilTheOwnerDefinesItsBusinessAccountAndPlan() {
+        var settings = SocialPlatforms.setEnabled(catalog, SocialSettings(), "facebook", true, "2026-11-26")
+        assertTrue(SocialPlatforms.configurationIssue(catalog, settings) != null)
+
+        settings = settings.copy(
+            brief = SocialBrief("Bingwa", "Teach local businesses", "Kenyan founders"),
+            accounts = mapOf("facebook" to SocialAccount("Bingwa", "Build a founder community", "VERIFIED", setOf("draft", "post"))),
+            scheduledTaskKeys = setOf("produce"),
+        )
+        assertEquals(null, SocialPlatforms.configurationIssue(catalog, settings))
     }
 }

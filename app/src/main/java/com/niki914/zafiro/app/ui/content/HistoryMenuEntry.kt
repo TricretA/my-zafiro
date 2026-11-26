@@ -19,6 +19,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.niki914.uikit.infra.component.SettingsGroupCard
+import com.niki914.uikit.infra.component.SettingsListItem
 
 /** Top row of the History sidebar that opens the scheduled-tasks page (the ChatGPT-style "feature entry above the chats"). */
 @Composable
@@ -66,27 +68,26 @@ internal fun HistoryMenuEntry(icon: ImageVector, title: String, summary: String?
 
 internal data class MenuTileSpec(val icon: ImageVector, val label: String, val onClick: () -> Unit)
 
-/** Icon buttons in a grid (three per row) instead of long text rows. */
+/** Sidebar feature entries as a single connected list (icon, label, chevron) instead of an icon grid. */
 @Composable
 internal fun HistoryMenuTiles(tiles: List<MenuTileSpec>, modifier: Modifier = Modifier) {
-    androidx.compose.foundation.layout.Column(modifier.fillMaxWidth().padding(bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        tiles.chunked(3).forEach { row ->
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                row.forEach { t ->
-                    val shape = RoundedCornerShape(20.dp)
-                    Surface(
-                        modifier = Modifier.weight(1f).clip(shape).clickable(onClick = t.onClick),
-                        shape = shape,
-                        color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.55f),
-                    ) {
-                        androidx.compose.foundation.layout.Column(Modifier.padding(vertical = 16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Icon(t.icon, contentDescription = t.label, tint = MaterialTheme.colorScheme.onSecondaryContainer)
-                            Text(t.label, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSecondaryContainer, maxLines = 1)
-                        }
-                    }
-                }
-                repeat(3 - row.size) { androidx.compose.foundation.layout.Spacer(Modifier.weight(1f)) }
-            }
-        }
+    SettingsGroupCard(
+        items = tiles,
+        modifier = modifier.fillMaxWidth().padding(bottom = 8.dp),
+    ) { tile, shape, standalone, _ ->
+        SettingsListItem(
+            title = tile.label,
+            shape = shape,
+            isStandaloneCard = standalone,
+            showChevron = true,
+            leadingContent = {
+                Icon(
+                    imageVector = tile.icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+            },
+            onClick = tile.onClick,
+        )
     }
 }

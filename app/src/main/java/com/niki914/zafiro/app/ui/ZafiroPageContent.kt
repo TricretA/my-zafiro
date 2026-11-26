@@ -214,7 +214,12 @@ fun ZafiroPageContent(
             onBack = onPop,
         )
         
-        McpMarketplacePage -> McpMarketplaceContent(onBack = onPop)
+        McpMarketplacePage -> McpMarketplaceContent(
+            onBack = onPop,
+            onOpenServerDetail = { name, index, isCreating ->
+                onPush(McpServerDetailPage(name, index, isCreating))
+            },
+        )
 
         is QuickPromptDetailPage -> QuickPromptDetailRoute(
             page = page,

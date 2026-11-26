@@ -48,11 +48,6 @@ enum class ZafiroSettingsGroup(
         summaryRes = R.string.ui_settings_actions_summary,
         routeSuffix = "actions",
     ),
-    Mcp(
-        titleRes = R.string.ui_settings_mcp,
-        summaryRes = R.string.ui_settings_mcp_summary,
-        routeSuffix = "mcp",
-    ),
     McpMarketplace(
         titleRes = R.string.mcp_marketplace_title,
         summaryRes = R.string.mcp_marketplace_summary,

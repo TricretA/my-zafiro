@@ -17,7 +17,6 @@ class SettingsViewModelTest {
         val state = buildSettingsUiState(
             hiddenGroups = setOf(
                 ZafiroSettingsGroup.Memory,
-                ZafiroSettingsGroup.Mcp,
                 ZafiroSettingsGroup.McpMarketplace,
                 ZafiroSettingsGroup.McpService,
                 ZafiroSettingsGroup.About,

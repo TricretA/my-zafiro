@@ -8,10 +8,13 @@ import com.niki914.zafiro.business.notification.NotificationChannelManager
 import com.niki914.zafiro.service.requireService
 import com.tricreta.zafiro.autonomy.AutonomyGraph
 import com.tricreta.zafiro.autonomy.workspace.SocialCatalog
+import com.tricreta.zafiro.autonomy.workspace.SocialAccount
+import com.tricreta.zafiro.autonomy.workspace.SocialBrief
 import com.tricreta.zafiro.autonomy.workspace.SocialPlatforms
 import com.tricreta.zafiro.autonomy.workspace.SocialSettings
 import com.tricreta.zafiro.autonomy.workspace.WorkspaceDef
 import com.tricreta.zafiro.autonomy.workspace.WorkspaceInstaller
+import com.tricreta.zafiro.autonomy.data.BoardItemEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -84,25 +87,29 @@ object WorkspaceManager {
     suspend fun setEnabled(context: Context, def: WorkspaceDef, enabled: Boolean): String = withContext(Dispatchers.IO) {
         val graph = AutonomyGraph.require()
         val installer = WorkspaceInstaller(graph.repo.teamDao())
-        if (enabled && def.id == SocialPlatforms.WORKSPACE_ID && enabledPlatforms(context).isEmpty()) {
-            writePlatformsFile(context)
+        if (enabled && def.id == SocialPlatforms.WORKSPACE_ID) {
+            val issue = socialConfigurationIssue(context)
+            if (issue == null) Unit else {
+                writePlatformsFile(context)
             runCatching {
                 requireService<NotificationChannelManager>().post(AppNotificationChannel.Alerts, NO_PLATFORMS_NOTIFICATION_ID) {
                     setSmallIcon(context.applicationInfo.icon.takeIf { it != 0 } ?: android.R.drawable.ic_dialog_info)
-                    setContentTitle("Pick your platforms")
-                    setContentText("Open Workspaces > Social Media Manager and switch on the platforms you use.")
+                    setContentTitle("Finish Social Media Manager setup")
+                    setContentText(issue)
                     setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     setAutoCancel(true)
                 }
             }
-            return@withContext NO_PLATFORMS_MESSAGE
+                return@withContext "Finish setup before arming Social Media Manager: $issue"
+            }
         }
         if (enabled) {
             seedRoutines(context)
             ensureRulebook(context, def)
             val r = installer.install(def)
             if (def.id == SocialPlatforms.WORKSPACE_ID) applySocialConfig(context, switchSkills = true)
-            val scheduled = installer.setEnabled(def, true)
+            var scheduled = installer.setEnabled(def, true)
+            if (def.id == SocialPlatforms.WORKSPACE_ID) scheduled = applySocialTaskPlan(context)
             def.skills.forEach { id -> runCatching { XRepo.skills.setEnabled(id, true) } }
             graph.scheduler.reconcile("workspace_on")
             buildString {
@@ -119,7 +126,6 @@ object WorkspaceManager {
     // ---------------------------------------------------------------- social platforms
 
     private const val NO_PLATFORMS_NOTIFICATION_ID = 91401
-    private const val NO_PLATFORMS_MESSAGE = "Pick at least one platform first, then switch the Social Media Manager on."
     private fun socialSettingsFile(context: Context) = File(context.filesDir, "settings/social_platforms.json")
     private fun platformsFile(context: Context) = File(context.filesDir, "outputs/social/PLATFORMS.json")
     private fun migrationFlag(context: Context) = File(context.filesDir, "settings/social_migrated.flag")
@@ -129,6 +135,8 @@ object WorkspaceManager {
     @Volatile private var socialCatalogCache: SocialCatalog? = null
 
     fun socialSettings(context: Context): SocialSettings = SocialSettings.parse(runCatching { socialSettingsFile(context).readText() }.getOrNull())
+
+    fun socialConfigurationIssue(context: Context): String? = SocialPlatforms.configurationIssue(socialCatalog(context), socialSettings(context))
 
     private fun saveSocialSettings(context: Context, s: SocialSettings) {
         socialSettingsFile(context).also { it.parentFile?.mkdirs() }.writeText(s.toJson())
@@ -148,6 +156,93 @@ object WorkspaceManager {
         val dao = AutonomyGraph.require().repo.teamDao()
         dao.workspace(SocialPlatforms.WORKSPACE_ID)?.let { dao.upsertWorkspace(it.copy(quotas = SocialPlatforms.quotas(catalog, settings), updatedAtMs = System.currentTimeMillis())) }
         if (switchSkills) SocialPlatforms.enabledIds(catalog, settings).forEach { id -> SocialPlatforms.skillsOf(catalog, id).forEach { runCatching { XRepo.skills.setEnabled(it, true) } } }
+    }
+
+    /** The social schedule is owner-picked, unlike other bundled workspaces whose defaults can start together. */
+    private suspend fun applySocialTaskPlan(context: Context): Int {
+        val dao = AutonomyGraph.require().repo.teamDao()
+        val selected = socialSettings(context).scheduledTaskKeys
+        val now = System.currentTimeMillis()
+        dao.tasksOfWorkspace(SocialPlatforms.WORKSPACE_ID).forEach { task ->
+            val key = task.id.removePrefix("ws.${SocialPlatforms.WORKSPACE_ID}.")
+            dao.upsertTask(task.copy(enabled = key in selected, updatedAtMs = now))
+        }
+        return selected.size
+    }
+
+    /** Persists the social operating brief. If an active team becomes incomplete, pause it rather than guess. */
+    suspend fun saveSocialBrief(context: Context, brief: SocialBrief) = withContext(Dispatchers.IO) {
+        saveSocialSettings(context, socialSettings(context).copy(brief = brief))
+        refreshSocialSetup(context)
+    }
+
+    /** Records the visible account identity and permissions, never passwords or session secrets. */
+    suspend fun saveSocialAccount(context: Context, id: String, account: SocialAccount) = withContext(Dispatchers.IO) {
+        val catalog = socialCatalog(context)
+        if (catalog.platform(id) == null) return@withContext
+        saveSocialSettings(context, SocialPlatforms.withAccount(socialSettings(context), id, account))
+        refreshSocialSetup(context)
+    }
+
+    /** Adds or removes a named scheduled task from the explicit social work plan. */
+    suspend fun setSocialTaskScheduled(context: Context, taskKey: String, on: Boolean) = withContext(Dispatchers.IO) {
+        val valid = socialDef(context)?.tasks?.any { it.key == taskKey } == true
+        if (!valid) return@withContext
+        saveSocialSettings(context, SocialPlatforms.withSchedule(socialSettings(context), taskKey, on))
+        refreshSocialSetup(context)
+    }
+
+    private suspend fun refreshSocialSetup(context: Context) {
+        writePlatformsFile(context)
+        val dao = AutonomyGraph.require().repo.teamDao()
+        val on = dao.workspace(SocialPlatforms.WORKSPACE_ID)?.enabled == true
+        if (!on) return
+        if (socialConfigurationIssue(context) == null) {
+            applySocialConfig(context, switchSkills = false)
+            applySocialTaskPlan(context)
+        } else {
+            socialDef(context)?.let { WorkspaceInstaller(dao).setEnabled(it, false) }
+        }
+        AutonomyGraph.require().scheduler.reconcile("social_setup_changed")
+    }
+
+    /** Creates a durable production order Video Studio can pick up on its normal heartbeat. */
+    suspend fun requestSocialVideo(context: Context, title: String, brief: String): String = withContext(Dispatchers.IO) {
+        val issue = socialConfigurationIssue(context)
+        if (issue != null) return@withContext "Finish the Social Media Manager setup first: $issue"
+        if (title.isBlank() || brief.isBlank()) return@withContext "Add both a video title and a production brief."
+        val dao = AutonomyGraph.require().repo.teamDao()
+        val settings = socialSettings(context)
+        val platforms = enabledPlatforms(context).joinToString(", ")
+        val id = dao.insertBoardItem(
+            BoardItemEntity(
+                workspaceId = SocialPlatforms.VIDEO_STUDIO_ID,
+                parentId = null,
+                title = "Social video: ${title.trim()}".take(200),
+                detail = """SOCIAL VIDEO REQUEST
+Brand: ${settings.brief.brandName}
+Mission: ${settings.brief.mission}
+Audience: ${settings.brief.audience}
+Voice: ${settings.brief.voice.ifBlank { "Follow the brand brief." }}
+Target platforms: $platforms
+Production brief: ${brief.trim()}
+
+Return: verified file paths, cover, platform-ready caption and the QA result. Video Studio produces only; Social Media Manager decides if and where it is published.""".take(4000),
+                ownerAgent = "Video Producer",
+                createdBy = "Social Media Manager",
+                status = "TODO",
+                result = "",
+                depth = 0,
+                createdAtMs = System.currentTimeMillis(),
+                updatedAtMs = System.currentTimeMillis(),
+            ),
+        )
+        "Video request #$id is waiting for Video Studio."
+    }
+
+    suspend fun socialVideoRequests(context: Context): List<BoardItemEntity> = withContext(Dispatchers.IO) {
+        AutonomyGraph.require().repo.teamDao().boardItems(SocialPlatforms.VIDEO_STUDIO_ID, 60)
+            .filter { it.title.startsWith("Social video:") }
     }
 
     private fun socialDef(context: Context): WorkspaceDef? = allDefs(context).firstOrNull { it.id == SocialPlatforms.WORKSPACE_ID }
@@ -171,6 +266,11 @@ object WorkspaceManager {
         if (socialOn && enabledPlatforms(context).isEmpty()) {
             socialDef(context)?.let { setEnabled(context, it, false) }
             return@withContext "${platform.name} is off. No platform is left, so the Social Media Manager is paused."
+        }
+        if (socialOn && socialConfigurationIssue(context) != null) {
+            socialDef(context)?.let { WorkspaceInstaller(dao).setEnabled(it, false) }
+            AutonomyGraph.require().scheduler.reconcile("social_setup_incomplete")
+            return@withContext "${platform.name} is on. Configure its account before the Social Media Manager can run."
         }
         if (on) "${platform.name} is on." else "${platform.name} is off."
     }

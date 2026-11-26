@@ -62,4 +62,22 @@ class SaveFileBuiltinTest {
     @Test fun mimeByExtension() {
         assertEquals("text/html", OutputPaths.mime("r.HTML")); assertEquals("application/octet-stream", OutputPaths.mime("x"))
     }
+
+    @Test fun exportPassesRequestedFolderAndRejectsMissingFile() {
+        var capturedFolder: String? = null
+        val tool = SaveFileBuiltin(
+            rootProvider = { java.io.File(tmp.root, "outputs") },
+            exporter = { source, folder, filename ->
+                capturedFolder = folder
+                Result.success(PublicExportResult("${folder ?: "Download/Zafiro"}/${filename ?: source.name}", "/storage/emulated/0/x", null, source.length()))
+            },
+        )
+        kotlinx.coroutines.runBlocking {
+            assertFalse(tool.invoke(BuiltinToolRequest("save_file", """{"op":"export","path":"missing.mp4"}""")).ok)
+            tool.invoke(BuiltinToolRequest("save_file", """{"op":"save","path":"clip.mp4","content":"data"}"""))
+            val res = tool.invoke(BuiltinToolRequest("save_file", """{"op":"export","path":"clip.mp4","folder":"Movies/Reels"}"""))
+            assertTrue(res.ok)
+            assertEquals("Movies/Reels", capturedFolder)
+        }
+    }
 }

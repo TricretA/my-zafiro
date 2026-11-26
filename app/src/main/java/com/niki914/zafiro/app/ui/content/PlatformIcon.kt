@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
 
-/** Brand colour and glyph per platform. These are plain badges, not the official logos. */
+/** Brand colour and glyph used only when Android cannot supply the installed platform's actual app icon. */
 internal data class Badge(val color: Color, val glyph: String)
 
 internal fun badgeFor(platform: String): Badge = when (platform) {
@@ -39,6 +39,7 @@ internal fun badgeFor(platform: String): Badge = when (platform) {
     "whatsapp" -> Badge(Color(0xFF25D366), "W")
     "jobhunt" -> Badge(Color(0xFF6D4AFF), "💼")
     "social" -> Badge(Color(0xFF7C4DFF), "@")
+    "video-studio" -> Badge(Color(0xFF6750A4), "▶")
     "snapchat" -> Badge(Color(0xFFFFFC00), "S")
     "messenger" -> Badge(Color(0xFF0084FF), "m")
     "telegram" -> Badge(Color(0xFF229ED9), "T")
