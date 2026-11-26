@@ -27,7 +27,7 @@ class SocialPlatformsTest {
         s = SocialPlatforms.setEnabled(catalog, s, "reddit", true, "2026-11-26")
         s = s.copy(accounts = mapOf(
             "instagram" to SocialAccount("@brand", "Grow the brand", "VERIFIED", setOf("draft", "post")),
-            "reddit" to SocialAccount("u/brand", "Help the community", "VERIFIED", setOf("draft", "comment")),
+            "reddit" to SocialAccount("u/brand", "Help the community", "VERIFIED", setOf("draft", "post", "comment")),
         ))
         s = SocialPlatforms.withCaps(s, "instagram", mapOf("post" to 3, "comment" to 0))
         val q = SocialPlatforms.quotas(catalog, s).split(',')
