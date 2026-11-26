@@ -1,84 +1,65 @@
 # CI result
 
-**Gate: FAIL: 16 NEW test failure(s)**
+**Gate: FAIL: assembleDebug failed; only 1609 tests ran (minimum 1860) - a module probably failed to compile**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45781506139
-- GITHUB_SHA: f358a2e06ad761d9acb2d874ec638a2c33f45990
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45785504056
+- GITHUB_SHA: 2b269813271d72b6c9231c89b1ff8fecb4398883
 - GITHUB_REF_NAME: feat/mcp
 
 | step | outcome |
 |---|---|
 | python_check | success |
-| assemble | success |
+| assemble | failure |
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2296 run, 23 failed (7 known upstream, 0 flaky upstream, 16 NEW), 0 skipped
+Unit tests: 1609 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
-## NEW failing tests
-- `com.niki914.zafiro.repo.XRepoDomainSettingsTest.mcpSaveRecoversBrokenServersJsonAndKeepsDottedName` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.mcp.McpCoreTest.refreshUsesSixtySecondSkew` — java.lang.AssertionError
-- `com.niki914.zafiro.mcp.McpCoreTest.shippedCatalogParsesAndContainsCategoryCoverage` — java.io.FileNotFoundException: app/src/main/assets/mcp_catalog.json (No such file or directory)
-- `com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections` — java.lang.AssertionError: expected:<[Tools, Skills, QuickPrompts, Actions]> but was:<[Tools, Skills, QuickPrompts, Actions, McpMarketplace]>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.startEdit_formatsHeadersInputAsSortedMultilineJson` — org.junit.ComparisonFailure: expected:<[{   "Authorization": "Bearer xxx",   "X-Trace-Id": "trace-1" }]> but was:<[]>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_rejectsDuplicateName` — java.lang.AssertionError: expected:<1> but was:<0>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_refreshesOtherLoadedMcpSettingsViewModels` — java.lang.AssertionError: expected:<1> but was:<0>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.load_readsSavedServersIntoUiState` — java.lang.AssertionError: expected:<2> but was:<0>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_renameFailureDoesNotDeleteExistingServer` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withHeaders_persistsHeadersAndEmitsExitDetail` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.formState_comparesValidHeadersByNormalizedMap` — java.lang.AssertionError
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withBlankName_setsNameErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_persistsTrimmedServerAndUpdatesUiState` — java.lang.AssertionError: expected:<1> but was:<0>
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_deletesServerAndEmitsExitDetail` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
-## Known upstream failures (also fail on pristine upstream)
-- `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
-- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
-- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
+## assemble: key error lines
+```
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1555:18 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1579:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1592:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1595:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1613:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 6m 16s
+```
 ## unit_tests: key error lines
 ```
-ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
-TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
-TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
-SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
-McpSettingsViewModelTest > startEdit_formatsHeadersInputAsSortedMultilineJson FAILED
-McpSettingsViewModelTest > save_rejectsDuplicateName FAILED
-McpSettingsViewModelTest > requestDelete_refreshesOtherLoadedMcpSettingsViewModels FAILED
-McpSettingsViewModelTest > load_readsSavedServersIntoUiState FAILED
-McpSettingsViewModelTest > save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence FAILED
-McpSettingsViewModelTest > save_renameFailureDoesNotDeleteExistingServer FAILED
-McpSettingsViewModelTest > save_withHeaders_persistsHeadersAndEmitsExitDetail FAILED
-McpSettingsViewModelTest > formState_comparesValidHeadersByNormalizedMap FAILED
-McpSettingsViewModelTest > save_withBlankName_setsNameErrorAndSkipsPersistence FAILED
-McpSettingsViewModelTest > save_persistsTrimmedServerAndUpdatesUiState FAILED
-McpSettingsViewModelTest > save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence FAILED
-McpSettingsViewModelTest > requestDelete_deletesServerAndEmitsExitDetail FAILED
-SettingsViewModelTest > buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections FAILED
-McpCoreTest > refreshUsesSixtySecondSkew FAILED
-McpCoreTest > shippedCatalogParsesAndContainsCategoryCoverage FAILED
-XRepoDomainSettingsTest > mcpSaveRecoversBrokenServersJsonAndKeepsDottedName FAILED
-> Task :app:testDebugUnitTest FAILED
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1555:18 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1579:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1592:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1595:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1613:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
 * What went wrong:
-Execution failed for task ':app:testDebugUnitTest'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m 42s
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+BUILD FAILED in 4m 31s
 ```
 ## lint: key error lines
 ```
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1555:18 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1579:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1592:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1595:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/main/java/com/niki914/zafiro/repo/XRepo.kt:1613:19 Cannot access 'var installedStoreForTest: Boolean': it is private in 'com/niki914/zafiro/repo/XRepo'.
+> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
 > Task :libs:shizuku:lintDebug FAILED
-> Task :agent-runtime:lintDebug FAILED
-> Task :app:lintDebug FAILED
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+* What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
@@ -88,11 +69,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 * What went wrong:
 Execution failed for task ':libs:shizuku:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':libs:shizuku:lintDebug'.
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
-* What went wrong:
-Execution failed for task ':app:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 4m 21s
+BUILD FAILED in 3m 31s
 ```
