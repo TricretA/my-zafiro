@@ -2,8 +2,8 @@
 
 **Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45763448665
-- GITHUB_SHA: 3aaf58b32cea13863ecb094fe1db54cd0cda415e
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45769264479
+- GITHUB_SHA: 8d206f7cdd6620ed7134b6ee807e1c1a8b3075c4
 - GITHUB_REF_NAME: feat/social
 
 | step | outcome |
@@ -13,7 +13,7 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 2182 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2226 run, 7 failed (7 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
 
 ## Known upstream failures (also fail on pristine upstream)
 - `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
@@ -37,18 +37,15 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m
+BUILD FAILED in 9m 17s
 ```
 ## lint: key error lines
 ```
-> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
 > Task :libs:shizuku:lintDebug FAILED
+> Task :agent-runtime:lintDebug FAILED
 > Task :app:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
@@ -59,7 +56,10 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 Execution failed for task ':libs:shizuku:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':libs:shizuku:lintDebug'.
 * What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 39s
+BUILD FAILED in 3m 17s
 ```
