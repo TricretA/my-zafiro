@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.niki914.logging.Logger
 import com.tricreta.zafiro.autonomy.AutonomyGraph
 import com.tricreta.zafiro.autonomy.AutonomyNotifier
+import com.tricreta.zafiro.autonomy.signals.SignalWatchdog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -44,6 +45,8 @@ class ScheduledRunService : Service() {
             setReferenceCounted(false)
             acquire(WAKE_LOCK_MAX_MS)
         }
+        // Scheduler heartbeat: keep the realtime notification listener bound (Tecno/Samsung kill it).
+        SignalWatchdog.check(this, "scheduled_run")
         try {
             while (true) {
                 // Re-reconcile between runs: picks up anything that became due while a long run was executing.
