@@ -2,8 +2,8 @@
 
 **Gate: PASS**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45763685018
-- GITHUB_SHA: 1af12e57d2c304c94e142464c265e75995a74690
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45771693830
+- GITHUB_SHA: 8d5a8ba621456ccf0fff19c9160373bca9245d7e
 - GITHUB_REF_NAME: feat/signals
 
 | step | outcome |
@@ -37,18 +37,15 @@ SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
 * What went wrong:
 Execution failed for task ':app:testDebugUnitTest'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
-BUILD FAILED in 9m
+BUILD FAILED in 9m 11s
 ```
 ## lint: key error lines
 ```
-> Task :agent-runtime:lintDebug FAILED
 > Task :store:lintDebug FAILED
 > Task :business:notification:lintDebug FAILED
 > Task :libs:shizuku:lintDebug FAILED
+> Task :agent-runtime:lintDebug FAILED
 > Task :app:lintDebug FAILED
-* What went wrong:
-Execution failed for task ':agent-runtime:lintDebug'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
 * What went wrong:
 Execution failed for task ':store:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':store:lintDebug'.
@@ -59,7 +56,10 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':busines
 Execution failed for task ':libs:shizuku:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':libs:shizuku:lintDebug'.
 * What went wrong:
+Execution failed for task ':agent-runtime:lintDebug'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-runtime:lintDebug'.
+* What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 2m 51s
+BUILD FAILED in 3m 16s
 ```
