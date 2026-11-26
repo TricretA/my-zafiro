@@ -67,7 +67,7 @@ object XRepo {
 
     private val writeMutex = Mutex()
     private var appContext: Context? = null
-    private var installedStoreForTest = false
+    internal var installedStoreForTest = false
     internal var store: DomainSettingsStore = XIpcDomainSettingsStore(null)
         private set
 
