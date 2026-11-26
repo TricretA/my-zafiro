@@ -1,9 +1,9 @@
 # CI result
 
-**Gate: FAIL: only 1609 tests ran (minimum 1860) - a module probably failed to compile**
+**Gate: FAIL: 16 NEW test failure(s)**
 
-- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45779051864
-- GITHUB_SHA: 18a429d982830c36048f5e55ee34d1ba668db144
+- RUN_URL: https://github.com/TricretA/my-zafiro/actions/runs/45781506139
+- GITHUB_SHA: f358a2e06ad761d9acb2d874ec638a2c33f45990
 - GITHUB_REF_NAME: feat/mcp
 
 | step | outcome |
@@ -13,40 +13,64 @@
 | unit_tests | failure |
 | lint | failure |
 
-Unit tests: 1609 run, 0 failed (0 known upstream, 0 flaky upstream, 0 NEW), 0 skipped
+Unit tests: 2296 run, 23 failed (7 known upstream, 0 flaky upstream, 16 NEW), 0 skipped
 
+## NEW failing tests
+- `com.niki914.zafiro.repo.XRepoDomainSettingsTest.mcpSaveRecoversBrokenServersJsonAndKeepsDottedName` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.mcp.McpCoreTest.refreshUsesSixtySecondSkew` — java.lang.AssertionError
+- `com.niki914.zafiro.mcp.McpCoreTest.shippedCatalogParsesAndContainsCategoryCoverage` — java.io.FileNotFoundException: app/src/main/assets/mcp_catalog.json (No such file or directory)
+- `com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections` — java.lang.AssertionError: expected:<[Tools, Skills, QuickPrompts, Actions]> but was:<[Tools, Skills, QuickPrompts, Actions, McpMarketplace]>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.startEdit_formatsHeadersInputAsSortedMultilineJson` — org.junit.ComparisonFailure: expected:<[{   "Authorization": "Bearer xxx",   "X-Trace-Id": "trace-1" }]> but was:<[]>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_rejectsDuplicateName` — java.lang.AssertionError: expected:<1> but was:<0>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_refreshesOtherLoadedMcpSettingsViewModels` — java.lang.AssertionError: expected:<1> but was:<0>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.load_readsSavedServersIntoUiState` — java.lang.AssertionError: expected:<2> but was:<0>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_renameFailureDoesNotDeleteExistingServer` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withHeaders_persistsHeadersAndEmitsExitDetail` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.formState_comparesValidHeadersByNormalizedMap` — java.lang.AssertionError
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withBlankName_setsNameErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_persistsTrimmedServerAndUpdatesUiState` — java.lang.AssertionError: expected:<1> but was:<0>
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+- `com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_deletesServerAndEmitsExitDetail` — java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+## Known upstream failures (also fail on pristine upstream)
+- `com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification`
+- `com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification`
+- `com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd`
 
 ## unit_tests: key error lines
 ```
-> Task :app:compileDebugUnitTestKotlin FAILED
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:5:15 Unresolved reference 'test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:6:15 Unresolved reference 'test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:7:15 Unresolved reference 'test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:8:15 Unresolved reference 'test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:11:6 Unresolved reference 'Test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:16:9 Unresolved reference 'assertEquals'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:17:9 Unresolved reference 'assertEquals'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:18:9 Unresolved reference 'assertEquals'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:21:6 Unresolved reference 'Test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:29:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:30:9 Unresolved reference 'assertFalse'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:33:6 Unresolved reference 'Test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:37:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:38:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:39:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:40:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:43:6 Unresolved reference 'Test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:45:9 Unresolved reference 'assertEquals'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:49:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:50:9 Unresolved reference 'assertTrue'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:54:9 Unresolved reference 'assertFalse'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:60:6 Unresolved reference 'Test'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:65:9 Unresolved reference 'assertEquals'.
-e: file:///home/runner/work/my-zafiro/my-zafiro/app/src/test/java/com/niki914/zafiro/mcp/McpCoreTest.kt:66:9 Unresolved reference 'assertEquals'.
+ConversationPersisterTest > trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd FAILED
+TurnNotificationManagerTest > onTurnEvent_whenOtherConversationActive_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenDisabled_doesNotPostNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenTriggeredByHost_skipsNotification FAILED
+TurnNotificationManagerTest > onTurnEvent_whenVisibleInForeground_skipsNotification FAILED
+SlashFuzzyMatcherTest > match_builtinCommandsMatchedByPrefixAndKeywords FAILED
+McpSettingsViewModelTest > startEdit_formatsHeadersInputAsSortedMultilineJson FAILED
+McpSettingsViewModelTest > save_rejectsDuplicateName FAILED
+McpSettingsViewModelTest > requestDelete_refreshesOtherLoadedMcpSettingsViewModels FAILED
+McpSettingsViewModelTest > load_readsSavedServersIntoUiState FAILED
+McpSettingsViewModelTest > save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence FAILED
+McpSettingsViewModelTest > save_renameFailureDoesNotDeleteExistingServer FAILED
+McpSettingsViewModelTest > save_withHeaders_persistsHeadersAndEmitsExitDetail FAILED
+McpSettingsViewModelTest > formState_comparesValidHeadersByNormalizedMap FAILED
+McpSettingsViewModelTest > save_withBlankName_setsNameErrorAndSkipsPersistence FAILED
+McpSettingsViewModelTest > save_persistsTrimmedServerAndUpdatesUiState FAILED
+McpSettingsViewModelTest > save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence FAILED
+McpSettingsViewModelTest > requestDelete_deletesServerAndEmitsExitDetail FAILED
+SettingsViewModelTest > buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections FAILED
+McpCoreTest > refreshUsesSixtySecondSkew FAILED
+McpCoreTest > shippedCatalogParsesAndContainsCategoryCoverage FAILED
+XRepoDomainSettingsTest > mcpSaveRecoversBrokenServersJsonAndKeepsDottedName FAILED
+> Task :app:testDebugUnitTest FAILED
 * What went wrong:
-Execution failed for task ':app:compileDebugUnitTestKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugUnitTestKotlin'.
-BUILD FAILED in 4m 29s
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 9m 42s
 ```
 ## lint: key error lines
 ```
@@ -70,5 +94,5 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':agent-r
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:lintDebug'.
-BUILD FAILED in 4m 29s
+BUILD FAILED in 4m 21s
 ```

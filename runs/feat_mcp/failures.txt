@@ -1,0 +1,383 @@
+=== com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords
+java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
+java.lang.AssertionError: expected:<[new]> but was:<[new, vd]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.home.composer.suggestion.SlashFuzzyMatcherTest.match_builtinCommandsMatchedByPrefixAndKeywords(SlashFuzzyMatcherTest.kt:259)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.jun
+
+=== com.niki914.zafiro.repo.XRepoDomainSettingsTest.mcpSaveRecoversBrokenServersJsonAndKeepsDottedName
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.save(XRepo.kt:1576)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$mcpSaveRecoversBrokenServersJsonAndKeepsDottedName$1.invokeSuspend(XRepoDomainSettingsTest.kt:268)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$mcpSaveRecoversBrokenServersJsonAndKeepsDottedName$1.invoke(XRepoDomainSettingsTest.kt)
+	at com.niki914.zafiro.repo.XRepoDomainSettingsTest$mcpSaveRecoversBrokenServersJsonAndKeepsDottedName$1.invoke(XRepoDomainSettingsTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.cor
+
+=== com.niki914.zafiro.mcp.McpCoreTest.refreshUsesSixtySecondSkew
+java.lang.AssertionError
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at org.junit.Assert.assertFalse(Assert.java:75)
+	at com.niki914.zafiro.mcp.McpCoreTest.refreshUsesSixtySecondSkew(McpCoreTest.kt:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.run
+
+=== com.niki914.zafiro.mcp.McpCoreTest.shippedCatalogParsesAndContainsCategoryCoverage
+java.io.FileNotFoundException: app/src/main/assets/mcp_catalog.json (No such file or directory)
+java.io.FileNotFoundException: app/src/main/assets/mcp_catalog.json (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at kotlin.io.FilesKt__FileReadWriteKt.readText(FileReadWrite.kt:135)
+	at kotlin.io.FilesKt__FileReadWriteKt.readText$default(FileReadWrite.kt:135)
+	at com.niki914.zafiro.mcp.McpCoreTest.shippedCatalogParsesAndContainsCategoryCoverage(McpCoreTest.kt:36)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.
+
+=== com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections
+java.lang.AssertionError: expected:<[Tools, Skills, QuickPrompts, Actions]> but was:<[Tools, Skills, QuickPrompts, Actions, McpMarketplace]>
+java.lang.AssertionError: expected:<[Tools, Skills, QuickPrompts, Actions]> but was:<[Tools, Skills, QuickPrompts, Actions, McpMarketplace]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.SettingsViewModelTest.buildSettingsUiState_excludesHiddenGroupsAndDropsEmptySections(SettingsViewModelTest.kt:43)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at com
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.startEdit_formatsHeadersInputAsSortedMultilineJson
+org.junit.ComparisonFailure: expected:<[{
+  "Authorization": "Bearer xxx",
+  "X-Trace-Id": "trace-1"
+}]> but was:<[]>
+org.junit.ComparisonFailure: expected:<[{
+  "Authorization": "Bearer xxx",
+  "X-Trace-Id": "trace-1"
+}]> but was:<[]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$startEdit_formatsHeadersInputAsSortedMultilineJson$1.invokeSuspend(McpSettingsViewModelTest.kt:318)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$startEdit_formatsHeadersInputAsSortedMultilineJson$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$startEdit_formatsHeadersInputAsSortedMultilineJson$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_rejectsDuplicateName
+java.lang.AssertionError: expected:<1> but was:<0>
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_rejectsDuplicateName$1.invokeSuspend(McpSettingsViewModelTest.kt:107)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_rejectsDuplicateName$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_rejectsDuplicateName$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$work
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_refreshesOtherLoadedMcpSettingsViewModels
+java.lang.AssertionError: expected:<1> but was:<0>
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_refreshesOtherLoadedMcpSettingsViewModels$1.invokeSuspend(McpSettingsViewModelTest.kt:283)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_refreshesOtherLoadedMcpSettingsViewModels$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_refreshesOtherLoadedMcpSettingsViewModels$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineSc
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.load_readsSavedServersIntoUiState
+java.lang.AssertionError: expected:<2> but was:<0>
+java.lang.AssertionError: expected:<2> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$load_readsSavedServersIntoUiState$1.invokeSuspend(McpSettingsViewModelTest.kt:61)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$load_readsSavedServersIntoUiState$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$load_readsSavedServersIntoUiState$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuil
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence$1.invokeSuspend(McpSettingsViewModelTest.kt:170)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withInvalidHeadersJson_setsHeadersErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.proce
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_renameFailureDoesNotDeleteExistingServer
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_renameFailureDoesNotDeleteExistingServer$1.invokeSuspend(McpSettingsViewModelTest.kt:405)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_renameFailureDoesNotDeleteExistingServer$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_renameFailureDoesNotDeleteExistingServer$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withHeaders_persistsHeadersAndEmitsExitDetail
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withHeaders_persistsHeadersAndEmitsExitDetail$1.invokeSuspend(McpSettingsViewModelTest.kt:226)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withHeaders_persistsHeadersAndEmitsExitDetail$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withHeaders_persistsHeadersAndEmitsExitDetail$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDis
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.formState_comparesValidHeadersByNormalizedMap
+java.lang.AssertionError
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$formState_comparesValidHeadersByNormalizedMap$1.invokeSuspend(McpSettingsViewModelTest.kt:388)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$formState_comparesValidHeadersByNormalizedMap$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$formState_comparesValidHeadersByNormalizedMap$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(T
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withBlankName_setsNameErrorAndSkipsPersistence
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withBlankName_setsNameErrorAndSkipsPersistence$1.invokeSuspend(McpSettingsViewModelTest.kt:126)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withBlankName_setsNameErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withBlankName_setsNameErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(Test
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_persistsTrimmedServerAndUpdatesUiState
+java.lang.AssertionError: expected:<1> but was:<0>
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_persistsTrimmedServerAndUpdatesUiState$1.invokeSuspend(McpSettingsViewModelTest.kt:80)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_persistsTrimmedServerAndUpdatesUiState$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_persistsTrimmedServerAndUpdatesUiState$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:98)
+	at kotlinx.coroutines
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence$1.invokeSuspend(McpSettingsViewModelTest.kt:189)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$save_withNonHttpScheme_setsUrlErrorAndSkipsPersistence$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_
+
+=== com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest.requestDelete_deletesServerAndEmitsExitDetail
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+java.lang.RuntimeException: Method getSharedPreferences in android.content.ContextWrapper not mocked. See https://developer.android.com/r/studio-ui/build/not-mocked for details.
+	at android.content.ContextWrapper.getSharedPreferences(ContextWrapper.java)
+	at com.niki914.zafiro.mcp.AndroidMcpSecretStore.<init>(McpSecretStore.kt:24)
+	at com.niki914.zafiro.repo.McpApi.list(XRepo.kt:1553)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_deletesServerAndEmitsExitDetail$1.invokeSuspend(McpSettingsViewModelTest.kt:259)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_deletesServerAndEmitsExitDetail$1.invoke(McpSettingsViewModelTest.kt)
+	at com.niki914.zafiro.app.ui.model.McpSettingsViewModelTest$requestDelete_deletesServerAndEmitsExitDetail$1.invoke(McpSettingsViewModelTest.kt)
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenOtherConversationActive_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenDisabled_doesNotPostNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleConversationMatchesButAppInBackground_postsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenTriggeredByHost_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.notification.TurnNotificationManagerTest.onTurnEvent_whenVisibleInForeground_skipsNotification
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+kotlinx.coroutines.test.UncompletedCoroutinesError: After waiting for 1m, the test body did not run to completion
+	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$2.invokeSuspend$lambda$0(TestBuilders.kt:353)
+	at kotlinx.coroutines.InvokeOnCancelling.invoke(JobSupport.kt:1571)
+	at kotlinx.coroutines.JobSupport.notifyCancelling(JobSupport.kt:1603)
+	at kotlinx.coroutines.JobSupport.tryMakeCancelling(JobSupport.kt:826)
+	at kotlinx.coroutines.JobSupport.makeCancelling(JobSupport.kt:786)
+	at kotlinx.coroutines.JobSupport.cancelImpl$kotlinx_coroutines_core(JobSupport.kt:702)
+	at kotlinx.coroutines.JobSupport.cancelCoroutine(JobSupport.kt:689)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:243)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:498)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:256)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+=== com.niki914.zafiro.app.conversation.ConversationPersisterTest.trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd
+java.lang.AssertionError: expected:<2> but was:<1>
+java.lang.AssertionError: expected:<2> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.niki914.zafiro.app.conversation.ConversationPersisterTest$trackActivity_bumpsUpdatedAtOnApprovalAndTurnEnd$1.invokeSuspend(ConversationPersisterTest.kt:183)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:233)
+	at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:152)
+	at kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:470)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core(CancellableContinuationImpl.kt:504)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$kotlinx_coroutines_core$default(CancellableContinuationImpl.kt:493)
+	at kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:596)
+	at kotlinx.coroutines.test.CancellableContinuationRunnable.run(TestDispatcher.kt:58)
+	at kotli
+
