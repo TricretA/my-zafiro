@@ -6,6 +6,12 @@ import json, os, textwrap
 A = "app/src/main/assets"
 os.makedirs(f"{A}/workspaces", exist_ok=True); os.makedirs(f"{A}/routines", exist_ok=True)
 DISABLED = []  # skill ids that start OFF (a workspace turns them on)
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Per-platform workspaces superseded by the single "social" workspace: their generated files are removed on every run.
+SUPERSEDED = ["substack", "x", "linkedin", "instagram", "facebook", "tiktok", "youtube", "pinterest", "reddit", "threads", "whatsapp"]
+for _ws in SUPERSEDED:
+    for _f in [f"{A}/workspaces/{_ws}.json"] + [f"{A}/routines/{n}" for n in (os.listdir(f"{A}/routines") if os.path.isdir(f"{A}/routines") else []) if n.startswith(_ws + ".")]:
+        if os.path.exists(_f): os.remove(_f)
 
 def w(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -174,7 +180,7 @@ Goal: one finished video + per-platform captions posted to several apps in minut
 5. `screen_routine routine=<platform>.finish_share params={text:<caption>}` taps Next/Continue until the caption screen, puts the caption in the caption field (paste or type), and taps Post/Share. If the routine does not exist or fails, read the screen ONCE and continue by hand with fast-screen rules, then save what worked with `save_as`.
 6. Verify from the result's `on_screen_now`: a success banner, the post in the profile, or "posting"/"uploading" progress. If it says uploading, `wait` for completion before leaving the app. Then `engage op=done id=<id> note=<evidence>`.
 7. Pace: `engage op=pace`, then the next platform.
-**App packages:** TikTok `com.zhiliaoapp.musically` (some regions `com.ss.android.ugc.trill`), Instagram `com.instagram.android`, YouTube `com.google.android.youtube`, Facebook `com.facebook.katana`, Reddit `com.reddit.frontpage`, X `com.twitter.android`, LinkedIn `com.linkedin.android`, Threads `com.instagram.barcelona`, Pinterest `com.pinterest`.
+**App packages:** TikTok `com.zhiliaoapp.musically` (some regions `com.ss.android.ugc.trill`), Instagram `com.instagram.android`, YouTube `com.google.android.youtube`, Facebook `com.facebook.katana`, Reddit `com.reddit.frontpage`, X `com.twitter.android`, LinkedIn `com.linkedin.android`, Threads `com.instagram.barcelona`, Pinterest `com.pinterest`, Snapchat `com.snapchat.android`, Telegram `org.telegram.messenger`, Discord `com.discord`, Messenger `com.facebook.orca`, WhatsApp Business `com.whatsapp.w4b`, Tumblr `com.tumblr`, Bluesky `xyz.blueskyweb.app`, Mastodon `org.joinmastodon.android`. Every platform's package and quirks are in its `<platform>-playbook`.
 **Honest limits:** not every app accepts a shared video straight into its composer (Instagram asks Reel/Story/Feed; Reddit asks for a community and title; Substack's app has no video share, so for Substack post text with a link to the video). The routine labels are best-effort guesses for the English UI and need a first-run fix. Say plainly what actually appeared on screen. Never report a post as done without seeing it.
 """)
 
@@ -197,78 +203,12 @@ TOOLS = dict(
 )
 
 P = [
- dict(id="substack", name="Substack", app="com.substack.app", kind="Notes and posts", can_post=True, off=0, enabled_default=True,
-      quotas="note=6,post=1,comment=15,reply=40,like=30,restack=10,follow=10,dm=5",
-      skills=["social-strategy", "reply-and-comment-writer", "engagement-routine", "email-and-newsletter", "text-post-and-microblog", "content-pillars", "content-calendar", "audience-research", "competitor-analysis", "writing-style-and-tone", "voice-builder", "stop-slop"],
-      facts="Substack has two surfaces: Notes (short posts in a feed, replies, restacks, likes) and long posts (newsletter, comments). Audience growth on Substack comes mostly from Notes and from thoughtful comments on other writers' posts and notes, plus recommendations from other publications. Notes that are only links tend to travel less. A restack shares someone's note or post with your followers (add your own thought when you can). The Activity tab shows replies, likes, new subscribers and restacks. The owner's publication: tricreta.substack.com (Android developer; websites, AI features, dashboards, design/video). Content pillars come from the owner's content plan; WhatsApp/M-Pesa/bot topics are at most 1 in 6 pieces.",
-      look="Substack",
-      labels=dict(home=["Home"], notes=["Notes"], compose=["New note", "Write a note", "Create", "What's on your mind", "Start a note"], field=["What's on your mind", "Say something", "Write a note", "Start writing"], post=["Post", "Publish"], comment=["Comment", "Reply"], send=["Post", "Send", "Reply"], like=["Like"], restack=["Restack"], activity=["Activity", "Notifications", "Inbox"], profile=["Profile"])),
- dict(id="x", name="X (Twitter)", app="com.twitter.android", kind="posts and replies", can_post=True, off=7, enabled_default=False,
-      quotas="post=4,comment=15,reply=30,like=30,follow=8,dm=3",
-      skills=["x-growth", "thread-writer", "reply-and-comment-writer", "engagement-routine", "hook-writer", "trend-jacking", "social-strategy", "writing-style-and-tone"],
-      facts="WARNING: the owner's @tricreta account was permanently suspended (read-only banner seen 2026-11-13). Do not appeal or create accounts unasked. Keep this workspace off until the owner says the account is restored. When active: short posts, threads, replies to larger accounts in the niche are the main growth lever.",
-      look="X",
-      labels=dict(home=["Home"], notes=["For you", "Following"], compose=["Post", "Compose", "What is happening", "What's happening"], field=["What is happening", "What's happening", "Post text"], post=["Post"], comment=["Reply", "Post your reply"], send=["Reply", "Post"], like=["Like"], restack=["Repost"], activity=["Notifications"], profile=["Profile"])),
- dict(id="linkedin", name="LinkedIn", app="com.linkedin.android", kind="posts, comments and connection messages", can_post=True, off=13, enabled_default=True,
-      quotas="post=1,comment=12,reply=25,like=25,follow=5,dm=5",
-      skills=["linkedin-growth", "linkedin-post-writer", "linkedin-company-pages", "profile-optimization", "reply-and-comment-writer", "social-selling-and-dm", "engagement-routine", "social-strategy"],
-      facts="LinkedIn rewards useful comments on other people's posts and consistent posting with a clear point of view. LinkedIn's terms prohibit third-party automation tools; this workspace only drives the official app on the owner's phone at human pace with low caps. Connection requests and DMs are always drafts for the owner to approve. No fake claims about experience.",
-      look="LinkedIn",
-      labels=dict(home=["Home"], notes=["Home"], compose=["Start a post", "Post", "Create a post"], field=["What do you want to talk about", "Share your thoughts", "Start a post"], post=["Post"], comment=["Comment"], send=["Post", "Send"], like=["Like"], restack=["Repost"], activity=["Notifications"], profile=["Me", "Profile"])),
- dict(id="instagram", name="Instagram", app="com.instagram.android", kind="reels, carousels, stories and comments", can_post=False, off=19, enabled_default=True,
-      quotas="post=1,comment=15,reply=30,like=30,follow=8,dm=4",
-      skills=["instagram-growth", "instagram-reels-publishing", "instagram-seo", "reels-script", "carousel-writer", "caption-writer", "hashtag-strategy", "reply-and-comment-writer", "canva", "capcut", "engagement-routine"],
-      facts="Instagram growth comes from Reels (reach), carousels (saves and shares), consistent Stories, and real comments on accounts in the niche. Publishing: prepare the video, caption and hashtags as files, then use share_file (skill video-publish) to open Instagram's share screen with the video attached and finish with the instagram.finish_share routine (its labels may need a first-run fix: look at the screen once and correct the routine file). Instagram asks Reel/Story/Feed after sharing: pick Reel for video. Comments and replies run through the engagement loop.",
-      look="Instagram",
-      labels=dict(home=["Home"], notes=["Home"], compose=["Create", "New post", "+"], field=["Write a caption", "Add a caption"], post=["Share", "Post"], comment=["Comment", "Add a comment"], send=["Post", "Send"], like=["Like"], restack=["Share"], activity=["Activity", "Notifications"], profile=["Profile"])),
- dict(id="facebook", name="Facebook", app="com.facebook.katana", kind="page posts, group posts and comments", can_post=True, off=25, enabled_default=True,
-      quotas="post=2,comment=10,reply=25,like=25,dm=3",
-      skills=["facebook-strategy", "facebook-groups", "caption-writer", "reply-and-comment-writer", "community-management", "engagement-routine", "social-strategy"],
-      facts="Facebook rewards native posts, video, and active groups. Group posting must follow each group's rules and admin approval. Never spam groups; one genuinely helpful comment beats a drop of links. Page management may be in the separate Pages Manager app (com.facebook.pages.app).",
-      look="Facebook",
-      labels=dict(home=["Home"], notes=["Home"], compose=["What's on your mind", "Create post", "Write something"], field=["What's on your mind", "Write something"], post=["POST", "Post"], comment=["Comment", "Write a comment"], send=["Send", "Post"], like=["Like"], restack=["Share"], activity=["Notifications"], profile=["Menu", "Profile"])),
- dict(id="tiktok", name="TikTok", app="com.zhiliaoapp.musically", kind="videos and comments", can_post=False, off=31, enabled_default=True,
-      quotas="post=1,comment=15,reply=25,like=30,follow=8",
-      skills=["tiktok-growth", "tiktok-script", "tiktok-video-publishing", "tiktok-photo-mode", "short-form-video-script", "hook-writer", "capcut", "hashtag-strategy", "trend-jacking", "engagement-routine"],
-      facts="TikTok growth depends on the first 2 seconds, watch-through rate and trend/sound fit. The team writes scripts, shot lists, captions and hashtags and queues them as files; video creation uses the owner's tools (CapCut, generators); publish with share_file (skill video-publish) and the tiktok.finish_share routine (labels may need a first-run fix). Never claim a post went live without seeing it on screen. Some regions use the package com.ss.android.ugc.trill.",
-      look="TikTok",
-      labels=dict(home=["Home"], notes=["For You", "Following"], compose=["Create", "+"], field=["Describe your post", "Add description"], post=["Post"], comment=["Add comment", "Comment"], send=["Post", "Send"], like=["Like"], restack=["Share"], activity=["Inbox", "Activity"], profile=["Profile"])),
- dict(id="youtube", name="YouTube", app="com.google.android.youtube", kind="shorts, videos and comment replies", can_post=False, off=37, enabled_default=True,
-      quotas="post=1,comment=10,reply=30,like=20",
-      skills=["youtube-long-form", "youtube-shorts", "youtube-publishing-and-metadata", "thumbnail-design", "scripting-and-storyboarding", "reply-and-comment-writer", "community-management", "seo-for-youtube" if False else "social-seo"],
-      facts="YouTube growth depends on titles, thumbnails and retention. The team plans topics, writes scripts, titles, descriptions, chapters and thumbnail briefs, and replies to comments on the owner's videos. Uploading uses YouTube Studio (com.google.android.apps.youtube.creator); the final publish stays with the owner until a verified routine exists.",
-      look="YouTube",
-      labels=dict(home=["Home"], notes=["Shorts", "Subscriptions"], compose=["Create", "+"], field=["Add a comment", "Title"], post=["Upload", "Post"], comment=["Comments", "Add a comment"], send=["Send", "Reply"], like=["like this video", "Like"], restack=["Share"], activity=["Notifications"], profile=["You"])),
- dict(id="reddit", name="Reddit", app="com.reddit.frontpage", kind="comments and posts in relevant subreddits", can_post=True, off=43, enabled_default=True,
-      quotas="post=1,comment=8,reply=15,like=20",
-      skills=["reddit-marketing", "reply-and-comment-writer", "community-management", "engagement-routine", "audience-research"],
-      facts="Reddit punishes self-promotion. Contribute first (answers, insight), follow each subreddit's rules (read them before posting), keep promotion under 10%, never post the same text in several subreddits, and expect new or low-karma accounts to be filtered. Reddit has no web fallback from the phone (reddit.com JSON/RSS return 403), so rounds drive the app.",
-      look="Reddit",
-      labels=dict(home=["Home"], notes=["Home", "Popular"], compose=["Create", "Create post", "+"], field=["Title", "Body text", "Add a comment"], post=["Post"], comment=["Add a comment", "Comment"], send=["Reply", "Comment", "Post"], like=["Upvote"], restack=["Share"], activity=["Inbox"], profile=["Profile"])),
- dict(id="threads", name="Threads", app="com.instagram.barcelona", kind="short posts and replies", can_post=True, off=49, enabled_default=True,
-      quotas="post=4,comment=15,reply=30,like=30,follow=8",
-      skills=["threads-growth", "threads-post", "text-post-and-microblog", "reply-and-comment-writer", "engagement-routine", "hook-writer"],
-      facts="Threads rewards conversational short posts and replies to active accounts. Treat it like a stream of small conversations: ask a real question, add a real detail, reply to every reply.",
-      look="Threads",
-      labels=dict(home=["Home"], notes=["For you", "Following"], compose=["New thread", "Start a thread", "What's new", "Create"], field=["What's new", "Start a thread"], post=["Post"], comment=["Reply"], send=["Post", "Reply"], like=["Like"], restack=["Repost"], activity=["Activity"], profile=["Profile"])),
- dict(id="pinterest", name="Pinterest", app="com.pinterest", kind="pins and boards", can_post=False, off=55, enabled_default=True,
-      quotas="post=5,like=20,follow=10",
-      skills=["pinterest-growth", "pinterest-pin-design", "pinterest-seo", "canva", "caption-writer", "social-seo"],
-      facts="Pinterest is a search engine: pin titles, descriptions and board names carry keywords; fresh pins to the same URL beat repeats. The team prepares pin images (files), titles, descriptions and target boards; publishing is the owner's tap until a routine is verified.",
-      look="Pinterest",
-      labels=dict(home=["Home"], notes=["Home"], compose=["Create", "Pin", "+"], field=["Add a title", "Tell everyone what your Pin is about"], post=["Publish", "Save"], comment=["Add a comment"], send=["Post", "Send"], like=["React", "Like"], restack=["Save"], activity=["Notifications", "Updates"], profile=["Saved", "Profile"])),
  dict(id="email", name="Email (Gmail)", app="com.google.android.gm", kind="inbox triage, drafts and follow-ups", can_post=False, off=61, enabled_default=True,
       quotas="reply=30,dm=10",
       skills=["mkt-cold-email", "mkt-emails", "email-and-newsletter", "mkt-email-sequence" if False else "marketing-email-sequence", "social-selling-and-dm", "customer-support-draft-response", "inbox-triage" if False else "productivity-task-management"],
       facts="Email work: triage the inbox, draft replies, follow up on leads and applications, and read notifications. The owner's rule: drafts are typed but NOT sent unless a message type is pre-approved; cold outreach is never bulk. Gmail search on this phone: set_text works in the search field but IME Enter does not submit, tap the keyboard search key. When the phone is locked, `dumpsys notification` via rish can read Gmail notification text.",
       look="Gmail",
       labels=dict(home=["Inbox"], notes=["Inbox", "Primary"], compose=["Compose"], field=["Compose email", "Subject", "To"], post=["Send"], comment=["Reply"], send=["Send"], like=["Star"], restack=["Forward"], activity=["Inbox"], profile=["Search in mail"])),
- dict(id="whatsapp", name="WhatsApp", app="com.whatsapp.w4b", kind="the daily digest and message drafts", can_post=False, off=67, enabled_default=True,
-      quotas="dm=10,reply=20",
-      skills=["social-selling-and-dm", "customer-support-draft-response", "community-management"],
-      facts="WhatsApp Business (com.whatsapp.w4b) is the owner's channel. Daily digest recipe that works when the phone is unlocked: write the report file, open_uri whatsapp://send?phone=<number>&text=<urlencoded>, wait about 10 s, find and tap Send via the accessibility tree, verify the Sent tick. Reports must be well formatted: bold title (*...*), numbered bold sections (What ran / failed and why / done with counts / fixed / plan / needs from you), '- ' bullets, blank lines, newlines as %0A. Lead messages are typed as drafts and NOT sent: the owner reviews and taps send. Never message strangers in bulk.",
-      look="WhatsApp",
-      labels=dict(home=["Chats"], notes=["Chats"], compose=["New chat", "Message"], field=["Message", "Type a message"], post=["Send"], comment=["Reply"], send=["Send"], like=["React"], restack=["Forward"], activity=["Chats"], profile=["Settings"])),
  dict(id="jobhunt", name="Careers (Kenya-first)", app="com.google.android.gm", kind="applications, outreach drafts and the tracker", can_post=False, off=73, enabled_default=True,
       quotas="post=15,dm=10,reply=20",
       skills=["job-sources-kenya", "job-eligibility-gate", "job-application-pipeline", "humanizer", "mkt-cold-email", "social-selling-and-dm", "linkedin-growth", "profile-optimization", "deep-research", "productivity-task-management"],
@@ -371,7 +311,7 @@ def tasks_for(p, ids):
                   prompt=head + "Read today's results and the action log, save the numbers file, write lessons, propose one experiment, and pass the summary to the director.",
                   criteria="A numbers file exists for today and at least one lesson was saved (or 'nothing new' is justified)."))
     T.append(dict(key="digest", name=f"{n}: owner digest", agent=ids["director"][0], trigger="DAILY", time=t(21, 5), maxSteps=50, maxMinutes=25,
-                  prompt=head + "Write today's digest (what was posted or done, who got replies, what needs the owner, what was learned) as a file, notify the owner, and if the whatsapp workspace is on, send it using its recipe. If nothing happened, say so honestly.",
+                  prompt=head + "Write today's digest (what was posted or done, who got replies, what needs the owner, what was learned) as a file, notify the owner, and if whatsapp is enabled in social/PLATFORMS.json, send it with the whatsapp-playbook digest recipe. If nothing happened, say so honestly.",
                   criteria="A digest file exists and the owner was notified."))
     T.append(dict(key="overnight", name=f"{n}: overnight drafting", agent=ids["strategist"][0], trigger="DAILY", time=t(23, 30), maxSteps=60, maxMinutes=40,
                   prompt=head + "Overnight, no screen: prepare tomorrow's drafts and engagement targets from the plan and research, hand them on through the board.",
@@ -490,6 +430,9 @@ Invent facts or results, post ads, spam, bypass locks/CAPTCHAs/verification, exc
           [openapp, dict(op="tap", labels=["Search", "Explore"], timeout_s=6), dict(op="type", labels=["Search"], text="{name}"), dict(op="key", code=66), dict(op="sleep", ms=1500), dict(op="tap", labels=["{name}"], timeout_s=8)])
         R("read_stats", "Open Substack stats and return the visible numbers (subscribers, views).", [],
           [openapp, dict(op="tap", labels=["Dashboard", "Stats", "Profile"], optional=True), dict(op="tap", labels=["Stats", "Subscribers"], optional=True), dict(op="sleep", ms=2000), dict(op="collect", count=2)])
+
+import gen_social
+gen_social.build(skill, w, A, ROLES, ROLE_TITLE, TOOLS, skill_exists)
 
 # A single-agent workspace: turns any repo, document or page into an installed skill.
 w(f"{A}/workspaces/toolsmith.json", json.dumps(dict(

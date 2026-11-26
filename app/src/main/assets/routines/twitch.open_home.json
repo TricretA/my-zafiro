@@ -1,0 +1,21 @@
+{
+ "id": "twitch.open_home",
+ "version": 1,
+ "platform": "twitch",
+ "description": "Open Twitch and go to the home screen.",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "tv.twitch.android.app"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  }
+ ]
+}

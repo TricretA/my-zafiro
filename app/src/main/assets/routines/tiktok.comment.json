@@ -2,7 +2,7 @@
  "id": "tiktok.comment",
  "version": 1,
  "platform": "tiktok",
- "description": "On the post currently open in TikTok, write a comment and send it. Only after an engage gate of AUTO or owner approval.",
+ "description": "On the post (or chat) currently open in TikTok, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
  "params": [
   {
    "name": "text",

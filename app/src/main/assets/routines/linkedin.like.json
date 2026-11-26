@@ -2,7 +2,7 @@
  "id": "linkedin.like",
  "version": 1,
  "platform": "linkedin",
- "description": "Like the post currently open in LinkedIn.",
+ "description": "Like or react to the post currently open in LinkedIn.",
  "params": [],
  "steps": [
   {

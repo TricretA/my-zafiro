@@ -1,0 +1,15 @@
+{
+ "id": "quora.like",
+ "version": 1,
+ "platform": "quora",
+ "description": "Like or react to the post currently open in Quora.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Upvote"
+   ]
+  }
+ ]
+}

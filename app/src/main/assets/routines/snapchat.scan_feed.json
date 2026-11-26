@@ -1,0 +1,38 @@
+{
+ "id": "snapchat.scan_feed",
+ "version": 1,
+ "platform": "snapchat",
+ "description": "Scroll the Snapchat feed and collect post texts to judge for engagement.",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.snapchat.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Camera",
+    "Chat"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Spotlight",
+    "Stories"
+   ],
+   "optional": true
+  },
+  {
+   "op": "sleep",
+   "ms": 1200
+  },
+  {
+   "op": "collect",
+   "count": 5
+  }
+ ]
+}

@@ -2,7 +2,7 @@
  "id": "x.like",
  "version": 1,
  "platform": "x",
- "description": "Like the post currently open in X (Twitter).",
+ "description": "Like or react to the post currently open in X (Twitter).",
  "params": [],
  "steps": [
   {

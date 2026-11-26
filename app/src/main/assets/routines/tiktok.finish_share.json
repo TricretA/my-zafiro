@@ -2,7 +2,7 @@
  "id": "tiktok.finish_share",
  "version": 1,
  "platform": "tiktok",
- "description": "After share_file opened TikTok with a video attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.",
+ "description": "After share_file opened TikTok with a video or image attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.",
  "params": [
   {
    "name": "text",
@@ -16,6 +16,7 @@
     "Next",
     "Post",
     "Share",
+    "Send",
     "Upload",
     "Continue",
     "Publish",
@@ -62,7 +63,8 @@
     "Share",
     "Publish",
     "Upload",
-    "Post"
+    "Post",
+    "Send"
    ],
    "timeout_s": 10
   }

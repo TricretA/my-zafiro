@@ -1,0 +1,28 @@
+{
+ "id": "twitch.read_activity",
+ "version": 1,
+ "platform": "twitch",
+ "description": "Open Twitch notifications/activity and return what is shown (replies, likes, mentions).",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "tv.twitch.android.app"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Notifications"
+   ],
+   "optional": true
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "collect",
+   "count": 3
+  }
+ ]
+}

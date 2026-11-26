@@ -30,6 +30,21 @@ class TeamTest {
         assertEquals(15, Quotas.DEFAULT.limits["comment"])
     }
 
+    @Test fun perPlatformKeysUseTheirOwnCapAndFallBackToTheGenericOne() {
+        val q = Quotas.parse("instagram.comment=2,comment=9")
+        assertTrue(q.check("instagram.comment", 2) is Quotas.Verdict.Denied)
+        assertEquals(Quotas.Verdict.Allowed(1), q.check("Instagram.Comment", 0))
+        assertEquals(Quotas.Verdict.Allowed(8), q.check("tiktok.comment", 0))
+        assertTrue(q.check("tiktok.comment", 9) is Quotas.Verdict.Denied)
+        assertEquals(Quotas.Verdict.Allowed(Int.MAX_VALUE), q.check("tiktok.follow", 50))
+    }
+
+    @Test fun platformPrefixDoesNotChangeTheGateRules() {
+        assertEquals(Tiering.Gate.NEEDS_APPROVAL, Tiering.gate("instagram.dm", false, Tiering.State()))
+        assertEquals(Tiering.Gate.AUTO, Tiering.gate("instagram.comment", false, Tiering.State()))
+        assertEquals(Tiering.Gate.AUTO, Tiering.gate("x.reply", true, Tiering.State(), serious = true))
+    }
+
     @Test fun pacingStaysInRange() {
         assertEquals(1000, Pacing.delayMs(1000, 5000, 0.0)); assertEquals(5000, Pacing.delayMs(1000, 5000, 1.0))
         assertEquals(3000, Pacing.delayMs(5000, 1000, 0.5))

@@ -2,7 +2,7 @@
  "id": "reddit.comment",
  "version": 1,
  "platform": "reddit",
- "description": "On the post currently open in Reddit, write a comment and send it. Only after an engage gate of AUTO or owner approval.",
+ "description": "On the post (or chat) currently open in Reddit, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
  "params": [
   {
    "name": "text",

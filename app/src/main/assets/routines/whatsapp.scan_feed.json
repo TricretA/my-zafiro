@@ -20,7 +20,8 @@
   {
    "op": "tap",
    "labels": [
-    "Chats"
+    "Chats",
+    "Updates"
    ],
    "optional": true
   },

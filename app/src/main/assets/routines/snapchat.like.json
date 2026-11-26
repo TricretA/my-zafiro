@@ -1,0 +1,15 @@
+{
+ "id": "snapchat.like",
+ "version": 1,
+ "platform": "snapchat",
+ "description": "Like or react to the post currently open in Snapchat.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Reply"
+   ]
+  }
+ ]
+}

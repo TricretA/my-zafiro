@@ -834,7 +834,16 @@
     <string name="masking_rules_error_delete_failed">Failed to delete masking rule: %1$s</string>
     <string name="masking_rules_delete_dialog_title">Delete Masking Rule</string>
     <string name="masking_rules_delete_dialog_text">Are you sure you want to delete the masking rule \"%1$s\"? This action cannot be undone.</string>
-
+    <string name="social_platforms_summary">%1$d of %2$d platforms on</string>
+    <string name="social_platforms_hint">Switch on only the platforms you use. The team works on those and ignores the rest.</string>
+    <string name="social_select_installed">Select all installed</string>
+    <string name="social_optional">optional</string>
+    <string name="social_caps_button">Daily caps</string>
+    <string name="social_caps_title">%1$s daily caps</string>
+    <string name="social_caps_text">The most the team does per day on this platform. 0 stops that action. New accounts use half of these while warming up.</string>
+    <string name="social_caps_save">Save</string>
+    <string name="social_cancel">Cancel</string>
+    <string name="social_installed_done">%1$d installed platforms switched on</string>
     <!-- Realtime signals -->
     <string name="signals_page_title">Realtime signals</string>
     <string name="signals_row_title">Realtime signals</string>

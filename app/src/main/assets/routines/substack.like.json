@@ -2,7 +2,7 @@
  "id": "substack.like",
  "version": 1,
  "platform": "substack",
- "description": "Like the post currently open in Substack.",
+ "description": "Like or react to the post currently open in Substack.",
  "params": [],
  "steps": [
   {

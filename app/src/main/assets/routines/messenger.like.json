@@ -1,0 +1,15 @@
+{
+ "id": "messenger.like",
+ "version": 1,
+ "platform": "messenger",
+ "description": "Like or react to the post currently open in Messenger.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Like"
+   ]
+  }
+ ]
+}
