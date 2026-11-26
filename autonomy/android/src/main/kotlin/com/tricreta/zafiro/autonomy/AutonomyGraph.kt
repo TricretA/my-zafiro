@@ -3,10 +3,14 @@ package com.tricreta.zafiro.autonomy
 import android.app.Application
 import android.content.Context
 import com.niki914.zafiro.api.AgentDelegator
+import com.niki914.zafiro.api.InboxService
+import com.niki914.zafiro.api.LearnService
 import com.niki914.zafiro.service.installService
 import com.tricreta.zafiro.autonomy.data.AutonomyDatabase
 import com.tricreta.zafiro.autonomy.data.AutonomyRepository
 import com.niki914.zafiro.api.TeamService
+import com.tricreta.zafiro.autonomy.inbox.InboxStore
+import com.tricreta.zafiro.autonomy.learn.LearnServiceImpl
 import com.tricreta.zafiro.autonomy.run.DelegateRunner
 import com.tricreta.zafiro.autonomy.team.TeamServiceImpl
 import com.tricreta.zafiro.autonomy.run.RunExecutor
@@ -30,6 +34,8 @@ class AutonomyGraph private constructor(context: Context) {
     val alarm = AlarmProjection(appContext)
     val scheduler = AutonomyScheduler(appContext, repo, alarm)
     val executor = RunExecutor(repo, notifier)
+    val inbox = InboxStore(appContext.filesDir)
+    val learn = LearnServiceImpl(db.learnDao())
 
     companion object {
         @Volatile
@@ -49,6 +55,8 @@ object AutonomyInstaller {
         val graph = AutonomyGraph.get(application)
         installService<AgentDelegator>(DelegateRunner(graph.repo, graph.scope))
         installService<TeamService>(TeamServiceImpl(graph.repo.teamDao(), onSchedulesChanged = { graph.scheduler.reconcile("agent_schedule") }))
+        installService<LearnService>(graph.learn)
+        installService<InboxService>(graph.inbox)
         // Re-arm the alarm and record anything missed whenever the process starts.
         graph.scope.launch { graph.scheduler.reconcile("app_start") }
     }

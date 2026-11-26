@@ -4,6 +4,9 @@ import com.niki914.zafiro.chat.agentic.buildin.impl.BoardBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.CreateSkillBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.EngageBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.ExamplesBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.InboxBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.LessonsBuiltin
+import com.niki914.zafiro.chat.agentic.buildin.impl.OutcomesBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.DatetimeBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.MakeCardBuiltin
 import com.niki914.zafiro.chat.agentic.buildin.impl.RssReadBuiltin
@@ -62,6 +65,9 @@ class BuiltinToolRegistry(
                 BoardBuiltin(),
                 EngageBuiltin(),
                 ExamplesBuiltin(),
+                InboxBuiltin(),
+                LessonsBuiltin(),
+                OutcomesBuiltin(),
                 LockScreenBuiltin(),
                 ComposeMessageBuiltin(),
                 ShareFileBuiltin(),

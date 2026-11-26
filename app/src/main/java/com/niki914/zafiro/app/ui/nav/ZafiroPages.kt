@@ -459,6 +459,16 @@ data class FileViewPage(val path: String) : ZafiroPage {
     override val rightAction: TopBarActionSpec? = null
 }
 
+/** Lessons the team learned and the last week's measured results. */
+data object LearningPage : ZafiroPage {
+    override val routeKey: String = "learning"
+    override val titleSpec: PageTitleSpec = ResTitle(R.string.learning_page_title)
+    override val leftAction: TopBarActionSpec =
+        TopBarActionSpec(icon = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button")
+    override val rightAction: TopBarActionSpec? = null
+    override val titleMode: TitleBarMode = TitleBarMode.Collapsible
+}
+
 /** Delete or edit stored things and reset the app to its defaults. */
 data object ManagePage : ZafiroPage {
     override val routeKey: String = "manage"

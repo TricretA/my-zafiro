@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="learning_page_title">Learning</string>
+    <string name="learning_tile">Learning</string>
+    <string name="learning_intro">What the team has learned from measured results. Only ACTIVE lessons are added to agent prompts. Lessons never change caps, approvals or safety rules.</string>
+    <string name="learning_section_lessons">Lessons (%1$d)</string>
+    <string name="learning_section_outcomes">Results, last 7 days</string>
+    <string name="learning_empty_lessons">No lessons yet. Agents add one after they record results with the outcomes tool and see a pattern.</string>
+    <string name="learning_empty_outcomes">No results recorded in the last 7 days. Agents record views, likes, replies and application answers with evidence.</string>
+    <string name="learning_lesson_summary">%1$s · confidence %2$d%% · %3$d evidence · %4$d helped, %5$d hurt</string>
+    <string name="learning_confirm">Confirm lesson #%1$d</string>
+    <string name="learning_confirm_summary">You agree with it: it becomes active</string>
+    <string name="learning_retire">Retire lesson #%1$d</string>
+    <string name="learning_done_confirmed">Lesson activated</string>
+    <string name="learning_done_retired">Lesson retired</string>
+    <string name="learning_outcome_summary">%1$d items · median %2$s · best %3$s</string>
+    <string name="tool_group_learning">Learning and inbox</string>
+    <string name="tool_group_learning_summary">Record results, get the next experiment, keep lessons, read files shared to Zafiro</string>
+</resources>

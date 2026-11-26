@@ -256,6 +256,59 @@ P = [
 ]
 
 
+# ------------------------------------------------------------------ share inbox and learning loop (shared skills)
+skill("share-inbox", "Get a generated image, video, audio or text out of ChatGPT, Gemini, Flow, ElevenLabs or Chrome into Zafiro with the Android Share sheet, verify it, and use it. Use whenever a file made in another app is needed.", """
+# Share to Zafiro (the inbox)
+Zafiro appears in the Android share sheet as **Zafiro inbox**. Anything shared to it is copied into `outputs/inbox/` (no storage permission, no guessing which file is newest) and listed by the `inbox` tool. Phone behaviour of this path is UNVERIFIED until the owner confirms it: if a step does not match the screen, say so, use the fallback below, and record the real label as a lesson.
+## Steps
+1. **Mark the time.** `inbox op=list limit=1`: remember the newest `time` (use 0 if the inbox is empty). Never rely on "the latest file".
+2. **Generate** in the app (ChatGPT, Gemini, Flow, ElevenLabs) and wait until the result is fully shown.
+3. **Open the share sheet** on the result:
+   - ChatGPT / Gemini image: tap the image to open it full screen, then the share icon (arrow out of a box or three dots, then Share). Long-press on the image also offers Share in many versions.
+   - Flow (video): open the finished clip, then the download or share icon, then Share.
+   - ElevenLabs / audio: the audio file's share or download menu, then Share.
+   - Chrome: long-press an image, choose Share image. For a page or text: three dots menu, Share, or select text and tap Share.
+   Use `screen_operation` read to find the share icon by its label; do not tap by position.
+4. **Pick the target.** In the share sheet choose **Zafiro inbox**. If it is not in the first row, scroll the app row or tap More. A short "Saved to the Zafiro inbox" message appears; the screen returns to the source app.
+5. **Verify.** `inbox op=list since=<time from step 1> kind=image|video|audio|text`. Require: the item exists, `kind` is right, `size` is plausible (an image under 10 KB or a video under 100 KB is probably a thumbnail or an error page), and for images open it with `view_image` on its `path`. Several items: take the one whose `source` is the app you used.
+6. **Use it.** `inbox op=take id=<id> to=outputs/<workspace>/` moves it where you need it (stays inside Zafiro's files folder) and returns the new path. Then continue (edit, `share_file`, publish). `inbox op=delete id=<id>` for rejects. Never publish before you have looked at the file.
+## Rules
+- Share only content you generated or the owner owns. Respect each app's terms: ChatGPT's terms ban programmatic extraction of output, so keep human pacing, one account, and prefer Gemini first. Generated media carries provenance marks: never strip them and set the AI flag when posting.
+- Stop with `take_over` on CAPTCHA, login or consent screens.
+- Text shared to the inbox becomes a .txt file you can read with `inbox op=list kind=text` then `take`.
+## Fallback (if the share sheet has no Zafiro inbox or the app blocks sharing)
+Use the MediaStore or shell route from `content-factory-screen`: note the time before generating, then list images or videos added after that time (`content query --uri content://media/external/images/media --projection _display_name:date_added --sort "date_added DESC"` or `ls -t /sdcard/Pictures /sdcard/Download`), copy the first new one into `outputs/`, and verify size and that it decodes.
+""")
+
+skill("learning-loop", "How the team learns from measured results: when to record outcomes, how to ask the bandit for the next experiment, how to add and use lessons, and the evidence rule. Load before any post, application or weekly review.", """
+# Learning loop
+Success is **evidence from the world**, never "the run finished". Replies, views, saves, follows, an interview invite: those are results. A run that only checked the date and did nothing is SKIPPED, not a success.
+## 1. Record outcomes (`outcomes op=record`)
+Always give `platform`, `kind` (post|application|reply|video), `artifact` (post id, URL or application id), `metric`, `value`, `lag`, and `evidence` (where you read the number: "TikTok stats screen", "Gmail reply from X"). A record without evidence is refused. Tag what was tested so the bandit can learn: `hook_type`, `format`, `length_bucket`, `time_bucket`, `topic` (short lower-case words).
+- **Posts and videos:** read the stats at +1 h (`lag=1h`), +24 h (`24h`), +7 d (`7d`). Metrics: views, likes, comments, saves, shares, follows_gained (use what the screen shows; write nothing you did not see).
+- **Applications:** +3 d, +7 d, +14 d (`3d`, `7d`, `14d`): metric `reply_status` with value 0 = no answer, 1 = auto-reply, 2 = human reply, 3 = interview invite, 4 = offer; evidence is the email or message.
+- **Replies and comments:** likes and replies received at +24 h.
+Schedule the checks yourself (`schedule op=create ... once_at=`) or put them on the board for the analyst at posting time. Observations are cheap; skipping them blinds the team.
+## 2. Read results
+`outcomes op=summary platform=<p> days=7` gives per-metric medians and the best items. Compare with your own median, not with other accounts. One viral post is an outlier: do not rebuild the playbook on it.
+## 3. Choose the next experiment (`outcomes op=suggest`)
+Before writing a post, `outcomes op=suggest platform=<p> dimension=hook_type metric=views arms=question,story,list` returns the arm to use and why. Use exactly that arm and record it as the tag. About 15% of picks are deliberate exploration and new arms are tried a few times before they are judged: that is intended, do not override it.
+## 4. Lessons (`lessons`)
+- `lessons op=top scope=<workspace> k=5` before you write or decide: it returns the best ACTIVE one-line lessons.
+- After a pattern shows in at least two recorded results: `lessons op=add scope=<workspace> claim=<one specific sentence> evidence=o12,o15`. It starts as a CANDIDATE.
+- When a later result agrees: `lessons op=confirm id=<id> evidence=<new outcome id>`. When it contradicts: `lessons op=harm id=<id> reason=...`. Only NEW evidence counts. Three confirmations promote it to ACTIVE; harm, age or silence retires it. The owner can confirm or retire on the Learning page.
+- A claim states something about content or timing ("question hooks get about twice the replies", "posts after 18:00 Nairobi get more saves"). **Lessons can never change caps, approvals, budgets, safety rules, checklists or truthfulness rules**; such claims are refused. No agent edits those, in any run.
+## 5. Weekly review (analyst)
+Read `outcomes op=summary days=7`, `lessons op=list`, and the current `<workspace>-playbook` skill. Write a **proposal file** `<workspace>/proposals/<date>.md` in diff style (`- old line` / `+ new line`, each with its evidence ids) and add a board item for the owner. You propose; you never edit a playbook, rule or checklist yourself. Classify each change:
+- **LOW risk** (wording, hook phrasing, example lists, topic ideas, timing hints, format preferences): the owner can batch-approve.
+- **HIGH risk** (anything touching caps or quotas, approvals or gates, account safety or warm-up, spending, platform-rule interpretation, truthfulness or AI-disclosure, checklists): flag as HIGH, explain the evidence, and wait for the owner.
+If there is too little data (fewer than about 10 recorded artifacts), say so and propose only experiments.
+""")
+
+for _r in ("director", "strategist", "writer", "engager", "analyst"):
+    TOOLS[_r] += ",outcomes,lessons"
+TOOLS["executor"] += ",inbox"
+
 BASE_MAP = dict(
     director=[("plan the day or week", "social-strategy,content-calendar,batch-content-plan,goals-and-kpis"), ("before you say a day is done", "sp-verification-before-completion")],
     researcher=[("trends, competitors, audience", "audience-research,competitor-analysis,content-research-and-sourcing,deep-research,viral-reverse-engineering")],
@@ -266,6 +319,9 @@ BASE_MAP = dict(
     executor=[("any screen job", "fast-screen,screen-routines,human-pacing"), ("post a video or image", "video-publish,platform-specs-and-validation")],
     analyst=[("numbers and reporting", "analytics-and-reporting,goals-and-kpis,mkt-analytics"), ("experiments", "experimentation-and-ab-testing,content-audit")],
 )
+for _r in ("director", "strategist", "writer", "engager", "analyst"):
+    BASE_MAP[_r].append(("record results, pick the next experiment, use lessons", "learning-loop"))
+BASE_MAP["executor"].append(("fetch a file made in another app (share sheet, then verify)", "share-inbox"))
 PLATFORM_KEYS = dict(
     writer=("writer", "script", "caption", "carousel", "thread", "hook", "story", "newsletter", "microblog", "post", "copy", "email-and"),
     strategist=("growth", "strategy", "seo", "calendar", "pillars", "trend", "audience", "profile"),
@@ -357,6 +413,9 @@ def tasks_for(p, ids):
     T.append(dict(key="weekly", name=f"{n}: weekly review and plan", agent=ids["director"][0], trigger="WEEKLY", days=["SUN"], time=t(18, 0), maxSteps=80, maxMinutes=45,
                   prompt=head + "Weekly review: what worked, what did not, numbers vs plan, lessons. Write next week's plan as a Markdown file with save_file (`" + ws + "/plans/week-<n>.md`) and show the link. Do not start implementing until the owner says so, except the normal daily tasks.",
                   criteria="A weekly plan file exists and the review names at least one change."))
+    T.append(dict(key="review", name=f"{n}: weekly learning review", agent=ids["analyst"][0], trigger="WEEKLY", days=["SUN"], time=t(16, 30), maxSteps=60, maxMinutes=30,
+                  prompt=head + "Load skill learning-loop and follow its section 5. Read `outcomes op=summary platform=" + ws + " days=7`, `lessons op=list scope=" + ws + "` and the " + ws + "-playbook skill. Write a PROPOSAL file with save_file at `" + ws + "/proposals/<date>.md` (diff style, each change with its evidence ids and a LOW or HIGH risk label) and add one board item for the owner (`board op=add owner=owner`) naming the file. Do NOT edit any playbook, rule, cap, approval or checklist yourself, and never write a lesson that touches them. With under about 10 recorded results, propose experiments only and say so.",
+                  criteria="A proposal file exists for this week (or the result says there was too little data), and the owner has a board item pointing to it."))
     return T
 
 
@@ -406,7 +465,7 @@ for p in P:
     for a in agents:
         if a["id"] == ids["engager"][0]: a["usesScreen"] = False
     skills = ["team-protocol", "toolbox", "skill-router", "fast-screen", "engagement-loop", "reviewer-rubric", "owner-corrections", "human-pacing", "screen-routines", f"{ws}-playbook"] + (["video-publish"] if ws in VIDEO else []) + p["skills"] + sorted(map_ids(p))
-    d = dict(id=ws, version=1, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
+    d = dict(id=ws, version=2, name=p["name"], platform=ws, app=p["app"], summary=f"A ready-made {p['name']} team ({len(ROLES)} agents, {len(tasks_for(p, ids))} scheduled tasks): {p['kind']}, engagement and daily learning.",
              quotas=p["quotas"], agents=agents, tasks=tasks_for(p, ids), skills=sorted(set(skills)), mcps=[], memory=[p["facts"]])
     w(f"{A}/workspaces/{ws}.json", json.dumps(d, indent=1, ensure_ascii=False) + "\n")
 
@@ -558,21 +617,21 @@ skill("content-factory-screen", "Make voice, images and AI video through apps an
 **Voice.** Prefer an option with no commercial limit: Gemini TTS in AI Studio (free; Google may use unpaid inputs for training, so send nothing sensitive) or a TTS step on the render runner. ElevenLabs Free forbids commercial use and the restriction sticks to content made on it: use it only for non-monetised tests unless the owner has a paid plan. Never create extra accounts to get more credits; stop on CAPTCHA (take_over).
 **Images.** Open the Gemini or ChatGPT app with `launch_app`, prompt with the aspect ratio written in the prompt (4:5 for Instagram, 9:16 for stories/reel covers), generate, then save. Free limits are not published; on a limit message switch app or retry later. ChatGPT's terms ban programmatic extraction of output: keep human-like pacing, one real account, prefer Gemini first. Generated images carry provenance marks: assume platforms may label them AI and set the AI flag when posting; never strip metadata or claim AI work is human-made.
 **AI video (only if the owner asks).** Google Flow (Gemini Pro): about 50 credits a day for free accounts, Veo Lite clips of 4-8 s cost 10 credits, peak-hour limits for free users (about 17:00-20:00 Nairobi). Prefer code-rendered video.
-**Bringing the file back.** Before pressing generate, note the time. Afterwards find the first image or video added after that time: `shell`/`execute_python` with `content query --uri content://media/external/images/media --projection _display_name:date_added --sort "date_added DESC"` (or `ls -t /sdcard/Pictures/* /sdcard/Download`), copy it into Zafiro's files outputs/ folder, verify it decodes and has the expected size. Never take "the latest file overall".
+**Bringing the file back (preferred: Share to Zafiro).** Load `share-inbox`: after generating, use the app's Share button and pick **Zafiro inbox**; then `inbox op=list since=<time noted before>` and verify. If the share sheet has no Zafiro inbox or the app blocks sharing, use the MediaStore/shell fallback below. **Fallback.** Before pressing generate, note the time. Afterwards find the first image or video added after that time: `shell`/`execute_python` with `content query --uri content://media/external/images/media --projection _display_name:date_added --sort "date_added DESC"` (or `ls -t /sdcard/Pictures/* /sdcard/Download`), copy it into Zafiro's files outputs/ folder, verify it decodes and has the expected size. Never take "the latest file overall".
 **Posting.** Use the Metricool MCP if connected (media must be public URLs; set the AI flags isAiGenerated / isAigc / isAiGeneratedContent for generated media); otherwise share_file and the platform's finish_share routine. Always run drafts through `humanizer` first.
 """)
 
 STUDIO = ["studio-director","studio-motion-craft","studio-shortform-playbook","studio-graphics-toolkit","studio-style-bank","studio-reference-analyst","studio-canvas-motion-engine","studio-qa-gates","studio-editing-rules","studio-editing-styles","studio-shorts-clipper"]
 for sid in STUDIO + ["humanizer"]:
     DISABLED.append(sid)
-vs_skills = STUDIO + ["humanizer", "studio-actions-render", "content-factory-screen", "video-publish", "fast-screen", "skill-router", "caption-writer", "hook-writer", "short-form-video-script", "platform-specs-and-validation", "capcut", "ai-voiceover", "thumbnail-design", "team-protocol", "toolbox"]
+vs_skills = STUDIO + ["humanizer", "studio-actions-render", "share-inbox", "content-factory-screen", "video-publish", "fast-screen", "skill-router", "caption-writer", "hook-writer", "short-form-video-script", "platform-specs-and-validation", "capcut", "ai-voiceover", "thumbnail-design", "team-protocol", "toolbox"]
 w(f"{A}/workspaces/video-studio.json", json.dumps(dict(
-    id="video-studio", version=1, name="Video Studio", platform="video-studio", app="", summary="Produces short videos, reels and ads: brief, script, storyboard, voice, render on GitHub Actions, QA gates, delivery. Built from the owner's own studio skills.", quotas="",
+    id="video-studio", version=2, name="Video Studio", platform="video-studio", app="", summary="Produces short videos, reels and ads: brief, script, storyboard, voice, render on GitHub Actions, QA gates, delivery. Built from the owner's own studio skills.", quotas="",
     agents=[
         dict(id="video-producer", name="Video Producer", tools=["board","save_file","execute_python","http_request","web_fetch","web_search","load_skill","memory","datetime","make_card","agent","notify","wait"], skills=["studio-director","studio-actions-render","skill-router"], usesScreen=False,
              instructions="You are the Video Producer: executive producer of a one-person studio. Load studio-director first and follow its role chain and standing rules (graphics first, a new visual event every 1.5-2.5 s, hook in 2 s, plain language, real assets, honesty). For code-rendered video load studio-actions-render and render on GitHub Actions; for typographic or kinetic stories use studio-canvas-motion-engine; for real footage see studio-editing-rules. Run every script and caption through the humanizer skill. After rendering apply the studio-qa-gates checks and fix failures before delivering. Save deliverables (mp4, cover, caption text, hashtags) under outputs/video/<project>/ and report the paths. Never post: hand finished items to the Media Operator. Save a lesson with memory after each delivered video. If the render repo, token or voice file is missing, ask the owner with a board item (owner set) and continue with other work."),
-        dict(id="video-media-operator", name="Media Operator", tools=["screen_routine","screen_operation","share_file","launch_app","open_uri","screenshot","wait","take_over","shell","save_file","board","load_skill","clipboard","execute_python"], skills=["content-factory-screen","fast-screen","video-publish"], usesScreen=True,
-             instructions="You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."),
+        dict(id="video-media-operator", name="Media Operator", tools=["screen_routine","screen_operation","share_file","launch_app","open_uri","screenshot","wait","take_over","shell","save_file","board","load_skill","clipboard","execute_python","inbox"], skills=["share-inbox","content-factory-screen","fast-screen","video-publish"], usesScreen=True,
+             instructions="You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load share-inbox, content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."),
     ],
     tasks=[
         dict(key="heartbeat", name="Video Studio: heartbeat", agent="video-producer", trigger="INTERVAL", intervalMinutes=60, maxSteps=60, maxMinutes=30,
