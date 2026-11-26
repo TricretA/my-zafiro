@@ -140,4 +140,12 @@ class DictationSessionTest {
         words.forEach { s.onPartial(it); s.onFinalResult(it) }
         assertEquals(words.joinToString(" "), s.transcript)
     }
+
+    @Test
+    fun `hearing partial speech resets transient retry budget`() {
+        val s = DictationSession()
+        repeat(cfg.maxTransientRetries) { assertIs<Action.Restart>(s.onFault(Fault.TRANSIENT)) }
+        s.onPartial("keep going")
+        assertIs<Action.Restart>(s.onFault(Fault.TRANSIENT))
+    }
 }

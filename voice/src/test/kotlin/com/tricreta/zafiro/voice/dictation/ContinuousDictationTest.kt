@@ -224,4 +224,18 @@ class ContinuousDictationTest {
         assertEquals(words.joinToString(" "), transcripts.last())
         assertTrue(d.isActive)
     }
+
+    @Test
+    fun `trailing error after onResult in same session is ignored and restart does not cancel`() {
+        val d = newDictation()
+        d.start()
+        val first = engine.current
+        first.onResult("still speaking")
+        first.onError(Fault.FATAL, 5, "client") // Android sometimes fires trailing error before restart delay fires
+        assertEquals(0, engine.cancelCalls)
+        assertTrue(d.isActive)
+        timer.advance(cfg.restartDelayMs)
+        assertEquals(2, engine.sessions.size)
+        assertTrue(ends.isEmpty())
+    }
 }
