@@ -26,6 +26,7 @@ Skills are expert method files: using one is faster and better than working from
 | monetise | creator-monetization, lead-magnets-and-funnels, link-in-bio-and-traffic, mkt-offers, mkt-pricing |
 | brand voice | brand-profile, voice-builder, writing-style-and-tone, smc-voice-builder, smc-newsletter-voice |
 | operate the phone | fast-screen, screen-routines, human-pacing, phone-use |
+| use a website (forms, logins, JavaScript pages) | agent-browser |
 | build a plan or check your own work | sp-writing-plans, sp-executing-plans, sp-verification-before-completion, sp-systematic-debugging |
 | make a new skill from a repo or doc | skill-from-source, install-skill-from-github, skill-creator |
 Also check any MCP tools that are switched on (their names appear in your tool list): an MCP that does the job (search, scrape, image/video generation, scheduling, CRM) is better than doing it by hand on the screen.

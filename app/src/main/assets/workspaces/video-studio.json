@@ -57,10 +57,11 @@
     "share-inbox",
     "content-factory-screen",
     "fast-screen",
+    "agent-browser",
     "video-publish"
    ],
    "usesScreen": true,
-   "instructions": "You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load share-inbox, content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."
+   "instructions": "You operate apps on the phone for the Video Studio: generate images and voice in the Gemini or ChatGPT apps or web tools, bring the files back, and publish finished videos. Load content-factory-screen and fast-screen first. One job per call. Obey the rules in those skills on terms of service and provenance. Report the saved file path and verify the file exists before saying done. Stop with take_over on any CAPTCHA, login or consent screen."
   }
  ],
  "tasks": [
@@ -94,6 +95,7 @@
   "content-factory-screen",
   "video-publish",
   "fast-screen",
+  "agent-browser",
   "skill-router",
   "caption-writer",
   "hook-writer",

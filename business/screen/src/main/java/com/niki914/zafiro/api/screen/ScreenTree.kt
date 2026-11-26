@@ -2,6 +2,7 @@ package com.niki914.zafiro.api.screen
 
 enum class SemanticType {
     BUTTON, INPUT, TEXT, IMAGE,
+    LINK, HEADING,
     LIST, LIST_ITEM,
     SWITCH, CHECKBOX,
     TAB, CHIP,

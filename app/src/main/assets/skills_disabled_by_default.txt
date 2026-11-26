@@ -303,3 +303,4 @@ twitch-playbook
 realtime-signals
 learning-loop
 share-inbox
+agent-browser

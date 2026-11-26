@@ -17,6 +17,9 @@ import com.niki914.zafiro.api.screen.ShowTarget
 import com.niki914.zafiro.api.screen.VirtualDisplayContext
 import com.niki914.zafiro.api.util.runCatchingCancellable
 import com.niki914.zafiro.app.R
+import com.niki914.zafiro.app.browser.BrowserPrefs
+import com.niki914.zafiro.app.browser.WebBrowserHost
+import com.niki914.zafiro.app.browser.WebBrowserScreen
 import com.niki914.zafiro.app.ui.helper.ZafiroToast
 import com.niki914.zafiro.business.permission.Permission
 import kotlinx.coroutines.CoroutineScope
@@ -26,9 +29,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * 前台会话绑定的虚拟屏只读状态（纯内存派生，不落盘）。
@@ -52,6 +57,9 @@ object AppScreens : Screens {
 
     private val virtualScreens = ConcurrentHashMap<ScreenId, VirtualDisplayScreen>()
     private val conversationScreens = ConcurrentHashMap<String, ScreenId>()
+    private val browserScreens = ConcurrentHashMap<ScreenId, WebBrowserScreen>()
+    private val conversationBrowsers = ConcurrentHashMap<String, ScreenId>()
+    private val browserCounter = AtomicInteger(0)
     @Volatile
     private var foregroundConversationId: String? = null
     private val overlayVisibleConversations = ConcurrentHashMap.newKeySet<String>()
@@ -83,6 +91,15 @@ object AppScreens : Screens {
     }
 
     override fun list(callerConversationId: String?): List<ScreenInfo> {
+        return listVirtual(callerConversationId) + visibleBrowsers(callerConversationId).map { it.info() }
+    }
+
+    private fun visibleBrowsers(callerConversationId: String?): List<WebBrowserScreen> =
+        browserScreens.values
+            .filter { callerConversationId == null || it.ownerConversationId == null || it.ownerConversationId == callerConversationId }
+            .sortedBy { it.id.value }
+
+    private fun listVirtual(callerConversationId: String?): List<ScreenInfo> {
         val extra = if (callerConversationId != null) {
             val targetScreenId = conversationScreens[callerConversationId]
             targetScreenId?.let { virtualScreens[it]?.info() }
@@ -100,6 +117,11 @@ object AppScreens : Screens {
 
     override fun get(id: ScreenId, callerConversationId: String?): Screen? {
         if (id == PhoneScreenId) return phone
+        browserScreens[id]?.let { browser ->
+            val owner = browser.ownerConversationId
+            if (callerConversationId != null && owner != null && owner != callerConversationId) return null
+            return browser
+        }
         val screen = virtualScreens[id] ?: return null
         if (callerConversationId != null && screen.ownerConversationId != null && screen.ownerConversationId != callerConversationId) {
             return null
@@ -108,8 +130,8 @@ object AppScreens : Screens {
     }
 
     override suspend fun open(kind: OpenKind, ownerConversationId: String?): OpenResult {
-        if (kind != OpenKind.VirtualDisplay) return OpenResult.Unsupported(kind)
         val key = bindingKey(ownerConversationId) ?: return OpenResult.Rejected("NO_CONVERSATION")
+        if (kind == OpenKind.Browser) return openBrowser(key)
         gate.withLock {
             val existingId = conversationScreens[key]
             val existing = existingId?.let { virtualScreens[it] }
@@ -129,6 +151,14 @@ object AppScreens : Screens {
 
     override suspend fun close(id: ScreenId, callerConversationId: String?): CloseResult {
         if (id == PhoneScreenId) return CloseResult.Rejected("PHONE_NOT_CLOSABLE")
+        browserScreens[id]?.let { browser ->
+            val owner = browser.ownerConversationId
+            if (callerConversationId != null && owner != null && owner != callerConversationId) {
+                return CloseResult.Rejected("PERMISSION_DENIED")
+            }
+            dismissBrowser(browser)
+            return CloseResult.Closed
+        }
         return gate.withLock {
             val screen = virtualScreens[id] ?: return@withLock CloseResult.Rejected("UNKNOWN_SCREEN")
             if (callerConversationId != null && screen.ownerConversationId != null && screen.ownerConversationId != callerConversationId) {
@@ -141,6 +171,8 @@ object AppScreens : Screens {
 
     override suspend fun closeForConversation(conversationId: String): CloseResult {
         val key = bindingKey(conversationId) ?: return CloseResult.Rejected("UNKNOWN_SCREEN")
+        val browser = conversationBrowsers[key]?.let { browserScreens[it] }
+        if (browser != null) dismissBrowser(browser)
         return gate.withLock {
             val screenId = conversationScreens[key] ?: return@withLock CloseResult.Rejected("UNKNOWN_SCREEN")
             val screen = virtualScreens[screenId] ?: return@withLock CloseResult.Rejected("UNKNOWN_SCREEN")
@@ -260,6 +292,9 @@ object AppScreens : Screens {
 
     /** 当会话被销毁时彻底释放该会话持有的虚拟屏 */
     override fun onConversationDestroyed(conversationId: String) {
+        conversationBrowsers[conversationId]?.let { browserScreens[it] }?.let { browser ->
+            cardScope.launch { dismissBrowser(browser) }
+        }
         val targetScreenId = conversationScreens[conversationId] ?: return
         val screen = virtualScreens[targetScreenId] ?: return
         cardScope.launch {
@@ -401,5 +436,41 @@ object AppScreens : Screens {
             runCatchingCancellable { vdController.close() }
         }
         refreshForegroundState()
+    }
+
+    // ------------------------------------------------------------------ browser screens
+
+    private suspend fun openBrowser(key: String): OpenResult {
+        if (!BrowserPrefs.isEnabled()) return OpenResult.Rejected("BROWSER_DISABLED")
+        return gate.withLock {
+            val existing = conversationBrowsers[key]?.let { browserScreens[it] }
+            if (existing != null) return@withLock OpenResult.Opened(existing.info())
+            if (!WebBrowserHost.canCreateWebView()) return@withLock OpenResult.Rejected("BROWSER_LIMIT")
+            val screen = withContext(Dispatchers.Main.immediate) { WebBrowserScreen(browserCounter.incrementAndGet(), key) }
+            browserScreens[screen.id] = screen
+            conversationBrowsers[key] = screen.id
+            OpenResult.Opened(screen.info())
+        }
+    }
+
+    /** The browser the owner uses from the "Agent browser" page: no conversation owns it, so any agent may use it. */
+    internal suspend fun userBrowser(): WebBrowserScreen? {
+        if (!BrowserPrefs.isEnabled()) return null
+        return gate.withLock {
+            browserScreens.values.firstOrNull { it.ownerConversationId == null }
+                ?: withContext(Dispatchers.Main.immediate) { WebBrowserScreen(browserCounter.incrementAndGet(), null) }
+                    .also { browserScreens[it.id] = it }
+        }
+    }
+
+    private suspend fun dismissBrowser(screen: WebBrowserScreen) {
+        if (browserScreens.remove(screen.id) == null) return
+        screen.ownerConversationId?.let { conversationBrowsers.remove(it, screen.id) }
+        runCatchingCancellable { screen.close() }
+    }
+
+    /** Closes every browser screen, used when the owner turns the agent browser off. */
+    suspend fun closeAllBrowsers() {
+        browserScreens.values.toList().forEach { dismissBrowser(it) }
     }
 }

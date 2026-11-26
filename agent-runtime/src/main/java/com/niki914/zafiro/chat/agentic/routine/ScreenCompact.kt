@@ -23,6 +23,7 @@ object ScreenCompact {
     const val MAX_TEXT = 60
 
     private val APP = Regex("""(?m)^app:\s*(\S+)""")
+    private val PAGE = Regex("""(?m)^page:\s*(.+)$""")
 
     fun format(s: ScreenSnapshot): String {
         val lines = lines(s)
@@ -30,6 +31,9 @@ object ScreenCompact {
         val pkg = APP.find(s.yaml)?.groupValues?.get(1).orEmpty()
         val sb = StringBuilder()
         sb.append("app:").append(pkg.ifEmpty { "?" }).append(' ').append(s.width).append('x').append(s.height).append('\n')
+        // Browser screens carry the address and scroll position; phone screens have neither.
+        s.url?.takeIf { it.isNotBlank() }?.let { sb.append("url:").append(it.take(200)).append('\n') }
+        PAGE.find(s.yaml)?.groupValues?.get(1)?.trim()?.takeIf { it.isNotEmpty() }?.let { sb.append("page:").append(it.take(160)).append('\n') }
         shown.forEach { sb.append(it.text).append('\n') }
         if (lines.size > MAX_LINES) sb.append("... ").append(lines.size - MAX_LINES).append(" more nodes hidden; use operation=search to find them\n")
         if (lines.isEmpty()) sb.append("(no readable or tappable elements)\n")
@@ -37,7 +41,7 @@ object ScreenCompact {
     }
 
     /** What changes when the screen really changes. Excludes the node indices and the per-read version, which differ on every read. */
-    fun signature(s: ScreenSnapshot): String = lines(s).joinToString("\n") { it.body }
+    fun signature(s: ScreenSnapshot): String = (s.url?.let { "$it\n" }.orEmpty()) + lines(s).joinToString("\n") { it.body }
 
     class Line(val index: Int, val body: String) {
         val text: String get() = "[$index]$body"
@@ -85,6 +89,8 @@ object ScreenCompact {
 
     private fun code(t: SemanticType): String = when (t) {
         SemanticType.BUTTON -> "btn"
+        SemanticType.LINK -> "link"
+        SemanticType.HEADING -> "h"
         SemanticType.INPUT -> "in"
         SemanticType.TEXT -> "txt"
         SemanticType.IMAGE -> "img"

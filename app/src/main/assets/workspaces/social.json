@@ -28,6 +28,9 @@
     "datetime",
     "schedule",
     "web_search",
+    "screens",
+    "screen_operation",
+    "open",
     "outcomes",
     "lessons"
    ],
@@ -56,7 +59,10 @@
     "memory",
     "board",
     "save_file",
-    "execute_python"
+    "execute_python",
+    "screens",
+    "screen_operation",
+    "open"
    ],
    "skills": [
     "team-protocol",

@@ -10,6 +10,10 @@ import com.niki914.zafiro.app.ui.content.WorkspacesVisualContent
 import com.niki914.zafiro.app.ui.nav.DashboardPage
 import com.niki914.zafiro.app.ui.nav.FileViewPage
 import com.niki914.zafiro.app.ui.nav.FilesPage
+import com.niki914.zafiro.app.ui.nav.AgentBrowserPage
+import com.niki914.zafiro.app.ui.nav.AgentBrowserSettingsPage
+import com.niki914.zafiro.app.ui.content.AgentBrowserPageContent
+import com.niki914.zafiro.app.ui.content.AgentBrowserSettingsContent
 import com.niki914.zafiro.app.ui.nav.ManagePage
 import com.niki914.zafiro.app.ui.nav.SignalsPage
 import com.niki914.zafiro.app.ui.nav.WorkspacesPage
@@ -171,6 +175,7 @@ fun ZafiroPageContent(
                     "dashboard" -> onPush(DashboardPage)
                     "workspaces" -> onPush(WorkspacesPage)
                     "files" -> onPush(FilesPage)
+                    "browser" -> onPush(AgentBrowserSettingsPage)
                     "learning" -> onPush(com.niki914.zafiro.app.ui.nav.LearningPage)
                     "manage" -> onPush(ManagePage)
                 }
@@ -263,6 +268,10 @@ fun ZafiroPageContent(
         SignalsPage -> com.niki914.zafiro.app.ui.content.SignalsSettingsContent()
 
         WorkspacesPage -> WorkspacesVisualContent()
+
+        AgentBrowserSettingsPage -> AgentBrowserSettingsContent(onOpenBrowser = { onPush(AgentBrowserPage) })
+
+        AgentBrowserPage -> AgentBrowserPageContent()
 
         FilesPage -> FilesPageContent(onOpen = { onPush(FileViewPage(it)) })
 
