@@ -459,6 +459,15 @@ data class FileViewPage(val path: String) : ZafiroPage {
     override val rightAction: TopBarActionSpec? = null
 }
 
+/** Realtime notification signals: access, watched apps, owner sender and the latest captures. */
+data object SignalsPage : ZafiroPage {
+    override val routeKey: String = "signals"
+    override val titleSpec: PageTitleSpec = ResTitle(R.string.signals_page_title)
+    override val leftAction: TopBarActionSpec =
+        TopBarActionSpec(icon = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button")
+    override val rightAction: TopBarActionSpec? = null
+}
+
 /** Delete or edit stored things and reset the app to its defaults. */
 data object ManagePage : ZafiroPage {
     override val routeKey: String = "manage"
