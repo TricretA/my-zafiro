@@ -2,7 +2,7 @@
  "id": "whatsapp.like",
  "version": 1,
  "platform": "whatsapp",
- "description": "Like the post currently open in WhatsApp.",
+ "description": "Like or react to the post currently open in WhatsApp.",
  "params": [],
  "steps": [
   {

@@ -59,6 +59,7 @@ internal object AppStartup {
             { runCatching { XRepo.seedTextActions() } },
             { runCatching { XRepo.seedMcpServers() } },
             { runCatching { com.niki914.zafiro.repo.WorkspaceManager.seedRoutines(application) } },
+            { runCatching { com.niki914.zafiro.repo.WorkspaceManager.migrateSupersededWorkspaces(application) } },
         )
         // OpenRouter 公共目录预热：免鉴权后台抓，30 分钟内不重拉；失败保留旧缓存
         ioScope.launch(Dispatchers.IO) {

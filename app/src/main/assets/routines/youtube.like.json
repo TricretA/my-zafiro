@@ -2,7 +2,7 @@
  "id": "youtube.like",
  "version": 1,
  "platform": "youtube",
- "description": "Like the post currently open in YouTube.",
+ "description": "Like or react to the post currently open in YouTube.",
  "params": [],
  "steps": [
   {

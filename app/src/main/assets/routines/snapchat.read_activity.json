@@ -1,0 +1,29 @@
+{
+ "id": "snapchat.read_activity",
+ "version": 1,
+ "platform": "snapchat",
+ "description": "Open Snapchat notifications/activity and return what is shown (replies, likes, mentions).",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "com.snapchat.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Chat",
+    "Notifications"
+   ],
+   "optional": true
+  },
+  {
+   "op": "sleep",
+   "ms": 1500
+  },
+  {
+   "op": "collect",
+   "count": 3
+  }
+ ]
+}

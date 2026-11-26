@@ -1,0 +1,37 @@
+{
+ "id": "snapchat.comment",
+ "version": 1,
+ "platform": "snapchat",
+ "description": "On the post (or chat) currently open in Snapchat, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Reply",
+    "Send a chat"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Add a caption",
+    "Caption"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Send"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

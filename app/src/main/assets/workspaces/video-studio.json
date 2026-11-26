@@ -1,6 +1,6 @@
 {
  "id": "video-studio",
- "version": 1,
+ "version": 2,
  "name": "Video Studio",
  "platform": "video-studio",
  "app": "",
@@ -50,9 +50,11 @@
     "board",
     "load_skill",
     "clipboard",
-    "execute_python"
+    "execute_python",
+    "inbox"
    ],
    "skills": [
+    "share-inbox",
     "content-factory-screen",
     "fast-screen",
     "agent-browser",
@@ -89,6 +91,7 @@
   "studio-shorts-clipper",
   "humanizer",
   "studio-actions-render",
+  "share-inbox",
   "content-factory-screen",
   "video-publish",
   "fast-screen",

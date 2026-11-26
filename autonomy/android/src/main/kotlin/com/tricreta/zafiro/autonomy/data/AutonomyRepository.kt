@@ -21,6 +21,9 @@ class AutonomyRepository(
     /** Direct DAO access for the team layer (board, action log, examples, tiers). */
     fun teamDao(): AutonomyDao = dao
 
+    /** Outcomes and lessons (learning loop). */
+    fun learnDao(): LearnDao = db.learnDao()
+
     fun observeTasks(): Flow<List<TaskEntity>> = dao.observeTasks()
     fun observeRuns(limit: Int = 60): Flow<List<RunEntity>> = dao.observeRuns(limit)
 

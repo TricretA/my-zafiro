@@ -1,0 +1,38 @@
+{
+ "id": "medium.comment",
+ "version": 1,
+ "platform": "medium",
+ "description": "On the post (or chat) currently open in Medium, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Respond",
+    "Add a response"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Title",
+    "Tell your story"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Publish",
+    "Respond"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

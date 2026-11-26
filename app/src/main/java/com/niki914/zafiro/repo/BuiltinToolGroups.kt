@@ -34,11 +34,18 @@ object BuiltinToolGroups {
             members = listOf("shell", "ssh", "execute_python", "py_meta_tools"),
         ),
         BuiltinToolGroup(
+            id = "learning",
+            titleRes = R.string.tool_group_learning,
+            summaryRes = R.string.tool_group_learning_summary,
+            mode = BuiltinToolGroupMode.PER_TOOL,
+            members = listOf("inbox", "lessons", "outcomes"),
+        ),
+        BuiltinToolGroup(
             id = "android_native",
             titleRes = R.string.tool_group_android_native,
             summaryRes = R.string.tool_group_android_native_summary,
             mode = BuiltinToolGroupMode.PER_TOOL,
-            members = listOf("open_uri", "launch_app", "find_installed_apps", "notify", "wait", "device_info", "clipboard", "take_over", "compose_message", "share_file", "http_request", "agent", "board", "engage", "examples", "save_file", "create_skill", "web_fetch", "web_search", "rss_read", "datetime", "make_card", "schedule", "lock_screen", "view_image"),
+            members = listOf("open_uri", "launch_app", "find_installed_apps", "notify", "wait", "device_info", "clipboard", "take_over", "compose_message", "share_file", "http_request", "agent", "board", "engage", "examples", "save_file", "create_skill", "web_fetch", "web_search", "rss_read", "datetime", "make_card", "schedule", "signals", "lock_screen", "view_image"),
         ),
         BuiltinToolGroup(
             id = "screen_operation",

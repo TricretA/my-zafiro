@@ -1,0 +1,21 @@
+{
+ "id": "bluesky.open_home",
+ "version": 1,
+ "platform": "bluesky",
+ "description": "Open Bluesky and go to the home screen.",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "xyz.blueskyweb.app"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  }
+ ]
+}

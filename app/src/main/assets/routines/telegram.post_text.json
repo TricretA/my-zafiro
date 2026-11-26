@@ -1,0 +1,49 @@
+{
+ "id": "telegram.post_text",
+ "version": 1,
+ "platform": "telegram",
+ "description": "Create and publish a text post in Telegram. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "org.telegram.messenger"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Chats"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "New Message",
+    "Write message"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "Message",
+    "Write a message"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Send"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

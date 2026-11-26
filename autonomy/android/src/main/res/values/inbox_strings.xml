@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="share_receiver_label">Zafiro inbox</string>
+    <string name="share_saved_one">Saved to the Zafiro inbox</string>
+    <string name="share_saved_many">Saved %1$d items to the Zafiro inbox</string>
+    <string name="share_failed">Could not save the shared item: %1$s</string>
+    <string name="share_nothing">Nothing to save</string>
+</resources>

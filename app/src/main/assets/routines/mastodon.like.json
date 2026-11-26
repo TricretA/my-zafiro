@@ -1,0 +1,16 @@
+{
+ "id": "mastodon.like",
+ "version": 1,
+ "platform": "mastodon",
+ "description": "Like or react to the post currently open in Mastodon.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Favorite",
+    "Like"
+   ]
+  }
+ ]
+}

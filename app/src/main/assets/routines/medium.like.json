@@ -1,0 +1,15 @@
+{
+ "id": "medium.like",
+ "version": 1,
+ "platform": "medium",
+ "description": "Like or react to the post currently open in Medium.",
+ "params": [],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Clap"
+   ]
+  }
+ ]
+}

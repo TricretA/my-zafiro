@@ -1,0 +1,21 @@
+{
+ "id": "mastodon.open_home",
+ "version": 1,
+ "platform": "mastodon",
+ "description": "Open Mastodon and go to the home screen.",
+ "params": [],
+ "steps": [
+  {
+   "op": "open_app",
+   "package": "org.joinmastodon.android"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Home"
+   ],
+   "optional": true,
+   "timeout_s": 6
+  }
+ ]
+}

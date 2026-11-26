@@ -1,0 +1,37 @@
+{
+ "id": "mastodon.comment",
+ "version": 1,
+ "platform": "mastodon",
+ "description": "On the post (or chat) currently open in Mastodon, write a comment or reply and send it. Only after an engage gate of AUTO or owner approval.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "tap",
+   "labels": [
+    "Reply"
+   ],
+   "timeout_s": 6
+  },
+  {
+   "op": "type",
+   "labels": [
+    "What's on your mind",
+    "Type or paste what's on your mind"
+   ],
+   "text": "{text}"
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Publish",
+    "Post"
+   ],
+   "timeout_s": 8
+  }
+ ]
+}

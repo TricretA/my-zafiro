@@ -2,7 +2,7 @@
  "id": "pinterest.like",
  "version": 1,
  "platform": "pinterest",
- "description": "Like the post currently open in Pinterest.",
+ "description": "Like or react to the post currently open in Pinterest.",
  "params": [],
  "steps": [
   {

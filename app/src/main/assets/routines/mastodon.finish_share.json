@@ -1,0 +1,73 @@
+{
+ "id": "mastodon.finish_share",
+ "version": 1,
+ "platform": "mastodon",
+ "description": "After share_file opened Mastodon with a video or image attached: continue through Next/Continue, put the caption in, and post. Labels are best-effort for the English UI.",
+ "params": [
+  {
+   "name": "text",
+   "required": true
+  }
+ ],
+ "steps": [
+  {
+   "op": "wait",
+   "labels": [
+    "Next",
+    "Post",
+    "Share",
+    "Send",
+    "Upload",
+    "Continue",
+    "Publish",
+    "Create"
+   ],
+   "timeout_s": 15
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Next",
+    "Continue"
+   ],
+   "optional": true,
+   "timeout_s": 3
+  },
+  {
+   "op": "type",
+   "labels": [
+    "What's on your mind",
+    "Type or paste what's on your mind",
+    "Caption",
+    "Description",
+    "Add a caption",
+    "Write a caption",
+    "Title"
+   ],
+   "text": "{text}",
+   "optional": true
+  },
+  {
+   "op": "tap",
+   "labels": [
+    "Publish",
+    "Post",
+    "Share",
+    "Publish",
+    "Upload",
+    "Post",
+    "Send"
+   ],
+   "timeout_s": 10
+  }
+ ]
+}
